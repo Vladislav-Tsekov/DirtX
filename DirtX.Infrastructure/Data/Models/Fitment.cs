@@ -5,6 +5,8 @@ namespace DirtX.Infrastructure.Data.Models
 {
     public class Fitment
     {
+        //FITMENT WON'T BE NEEDED IF I STORE MOTORCYCLE MODELS DIRECTLY
+
         [Key]
         public int Id { get; set; }
 

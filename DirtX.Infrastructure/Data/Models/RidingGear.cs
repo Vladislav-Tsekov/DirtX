@@ -10,17 +10,25 @@ namespace DirtX.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public string Brand { get; set; }
+        [ForeignKey(nameof(BrandId))]
+        public Brand Brand { get; set; }
+        public int BrandId { get; set; }
 
         [Required]
         public string Title { get; set; }
 
         [Required]
-        public string Size { get; set; }
+        public RidingGearSize Size { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Price { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public RidingGearType Type { get; set; }
 
         [Required]
         public bool IsAvailable { get; set; }
@@ -28,7 +36,6 @@ namespace DirtX.Infrastructure.Data.Models
         [Required]
         public int StockQuantity { get; set; }
 
-        [Required]
-        public RidingGearType Type { get; set; }
+        //TODO - EVALUATE THE NEED TO IMPLEMENT PROPERTY FOR PIECES OF RIDING GEAR, FOLLOWING THE PARTS MODEL
     }
 }

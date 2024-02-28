@@ -10,7 +10,9 @@ namespace DirtX.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public string Brand { get; set; }
+        [ForeignKey(nameof(BrandId))]
+        public Brand Brand { get; set; }
+        public int BrandId { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -20,16 +22,16 @@ namespace DirtX.Infrastructure.Data.Models
         public decimal Price { get; set; }
 
         [Required]
-        public bool IsAvailable { get; set; }
-
-        [Required]
-        public int StockQuantity { get; set; }
-
-        [Required]
         public string Description { get; set; }
 
         [Required]
         public PartType Type { get; set; }
+
+        [Required]
+        public bool IsAvailable { get; set; }
+
+        [Required]
+        public int StockQuantity { get; set; }
 
         public List<Property> Properties { get; set; }
         public List<Fitment> Fitments { get; set; }

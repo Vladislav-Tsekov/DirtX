@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Infrastructure.Data.Models
 {
-    public class Part
+    public class Oil
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -25,13 +24,10 @@ namespace DirtX.Infrastructure.Data.Models
         public int StockQuantity { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public string PackageSize { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
         public int CategoryId { get; set; }
-
-        public List<Property> Properties { get; set; }
-        public List<Fitment> Fitments { get; set; }
     }
 }

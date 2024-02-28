@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using DirtX.Infrastructure.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Infrastructure.Data.Models
 {
-    public class Part
+    public class RidingGear
     {
         [Key]
         public int Id { get; set; }
@@ -13,6 +14,9 @@ namespace DirtX.Infrastructure.Data.Models
 
         [Required]
         public string Title { get; set; }
+
+        [Required]
+        public string Size { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
@@ -25,13 +29,10 @@ namespace DirtX.Infrastructure.Data.Models
         public int StockQuantity { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public RidingGearType Type { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
         public int CategoryId { get; set; }
-
-        public List<Property> Properties { get; set; }
-        public List<Fitment> Fitments { get; set; }
     }
 }

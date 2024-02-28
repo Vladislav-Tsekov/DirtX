@@ -3,21 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Infrastructure.Data.Models
 {
-    public class Fitment
+    public class ProductProperty
     {
-        //FITMENT WON'T BE NEEDED IF I STORE MOTORCYCLE MODELS DIRECTLY
-
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Model { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public int Year { get; set; }
-
-        [Required]
-        public int Cc { get; set; }
+        public string Value { get; set; }
 
         [ForeignKey(nameof(PartId))]
         public Part Part { get; set; }

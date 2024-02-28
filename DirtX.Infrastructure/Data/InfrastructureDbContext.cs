@@ -1,4 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models;
+using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Infrastructure.Data
@@ -7,11 +8,16 @@ namespace DirtX.Infrastructure.Data
     {
         public InfrastructureDbContext(DbContextOptions<InfrastructureDbContext> options) : base(options) {}
 
-        public DbSet<Fitment> Fitments { get; set; }
-        public DbSet<Oil> Oils { get; set; }
+        public DbSet<Motorcycle> Motorcycles { get; set; }
+        public DbSet<MotoMake> MotoMakes { get; set; }
+        public DbSet<MotoModel> MotoModels { get; set; }
+        public DbSet<MotoYear> MotoYears { get; set; }
+        public DbSet<MotoDisplacement> MotoDisplacements { get; set; }
         public DbSet<Part> Parts { get; set; }
-        public DbSet<Property> Properties { get; set; }
+        public DbSet<Oil> Oils { get; set; }
         public DbSet<RidingGear> RidingGears { get; set; }
+        public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<ProductProperty> ProductsProperties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,7 +29,9 @@ namespace DirtX.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Motorcycle>()
+                        .HasIndex(m => new { m.MakeId, m.ModelId, m.YearId, m.DisplacementId })
+                        .IsUnique(false);
         }
     }
 

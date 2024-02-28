@@ -10,7 +10,7 @@ namespace DirtX.Infrastructure.Data.Models
 
         [Required]
         [ForeignKey(nameof(BrandId))]
-        public Brand Brand { get; set; }
+        public ProductBrand Brand { get; set; }
         public int BrandId { get; set; }
 
         [Required]

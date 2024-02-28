@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="MotocrossScraper\" />
+    <Folder Include="EnduroScraper\" />
+  </ItemGroup>
+
 </Project>

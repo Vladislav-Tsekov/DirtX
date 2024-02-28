@@ -24,6 +24,8 @@ namespace DirtX.Infrastructure.Data.Models.MotorcycleSpecs
         public MotoDisplacement Displacement { get; set; }
         public int DisplacementId { get; set; }
 
+        public List<MotorcyclePart> MotorcycleParts { get; set; }
+
         public bool IsValid()
         {
             if (Make != null && Model != null)

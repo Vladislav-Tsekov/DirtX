@@ -13,6 +13,7 @@ namespace DirtX.Infrastructure.Data
         public DbSet<MotoModel> MotoModels { get; set; }
         public DbSet<MotoYear> MotoYears { get; set; }
         public DbSet<MotoDisplacement> MotoDisplacements { get; set; }
+        public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
         public DbSet<Part> Parts { get; set; }
         public DbSet<Oil> Oils { get; set; }
         public DbSet<RidingGear> RidingGears { get; set; }
@@ -32,6 +33,9 @@ namespace DirtX.Infrastructure.Data
             modelBuilder.Entity<Motorcycle>()
                         .HasIndex(m => new { m.MakeId, m.ModelId, m.YearId, m.DisplacementId })
                         .IsUnique(false);
+
+            modelBuilder.Entity<MotorcyclePart>()
+                        .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
         }
     }
 

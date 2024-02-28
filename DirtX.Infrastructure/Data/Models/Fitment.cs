@@ -12,7 +12,10 @@ namespace DirtX.Infrastructure.Data.Models
         public string Model { get; set; }
 
         [Required]
-        public string YearRange { get; set; }
+        public int Year { get; set; }
+
+        [Required]
+        public int Cc { get; set; }
 
         [ForeignKey(nameof(PartId))]
         public Part Part { get; set; }

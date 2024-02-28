@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using DirtX.Infrastructure.Data.Models.Enums;
 
 namespace DirtX.Infrastructure.Data.Models
 {
@@ -27,9 +28,8 @@ namespace DirtX.Infrastructure.Data.Models
         [Required]
         public string Description { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
-        public Category Category { get; set; }
-        public int CategoryId { get; set; }
+        [Required]
+        public PartType Type { get; set; }
 
         public List<Property> Properties { get; set; }
         public List<Fitment> Fitments { get; set; }

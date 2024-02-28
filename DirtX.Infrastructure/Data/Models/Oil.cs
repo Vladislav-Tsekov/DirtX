@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using DirtX.Infrastructure.Data.Models.Enums;
 
 namespace DirtX.Infrastructure.Data.Models
 {
@@ -26,8 +27,6 @@ namespace DirtX.Infrastructure.Data.Models
         [Required]
         public string PackageSize { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
-        public Category Category { get; set; }
-        public int CategoryId { get; set; }
+        public OilType Type { get; set; }
     }
 }

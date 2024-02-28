@@ -30,9 +30,5 @@ namespace DirtX.Infrastructure.Data.Models
 
         [Required]
         public RidingGearType Type { get; set; }
-
-        [ForeignKey(nameof(CategoryId))]
-        public Category Category { get; set; }
-        public int CategoryId { get; set; }
     }
 }

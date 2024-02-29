@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DirtX.Infrastructure.Data.Models
+namespace DirtX.Infrastructure.Data.Models.ProductModels
 {
     public abstract class Product
     {

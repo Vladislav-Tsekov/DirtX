@@ -2,7 +2,7 @@
 using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
 using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models
+namespace DirtX.Infrastructure.Data.Models.ProductModels
 {
     public class Part : Product
     {

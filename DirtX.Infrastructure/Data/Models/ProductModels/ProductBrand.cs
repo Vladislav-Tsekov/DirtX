@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models
+namespace DirtX.Infrastructure.Data.Models.ProductModels
 {
     public class ProductBrand
     {

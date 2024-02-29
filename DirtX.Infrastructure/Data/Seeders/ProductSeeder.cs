@@ -85,48 +85,48 @@ namespace DirtX.Infrastructure.Data.Seeders
 
         private static void SeedProductProperties(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PartProperty>().HasData(
+            modelBuilder.Entity<PartSpec>().HasData(
                 //Material
-                new PartProperty { Id = 1, Name = "Material", Value = "Aluminium", PartId = 1 },
-                new PartProperty { Id = 2, Name = "Material", Value = "Titanium", PartId = 1 },
-                new PartProperty { Id = 3, Name = "Material", Value = "Foam", PartId = 1 },
-                new PartProperty { Id = 4, Name = "Material", Value = "Ferodo", PartId = 1 },
-                new PartProperty { Id = 5, Name = "Material", Value = "Impregnated Cork", PartId = 1 },
-                new PartProperty { Id = 6, Name = "Material", Value = "Steel", PartId = 2 },
+                new PartSpec { Id = 1, Name = "Material", Value = "Aluminium", PartId = 1 },
+                new PartSpec { Id = 2, Name = "Material", Value = "Titanium", PartId = 1 },
+                new PartSpec { Id = 3, Name = "Material", Value = "Foam", PartId = 1 },
+                new PartSpec { Id = 4, Name = "Material", Value = "Ferodo", PartId = 1 },
+                new PartSpec { Id = 5, Name = "Material", Value = "Impregnated Cork", PartId = 1 },
+                new PartSpec { Id = 6, Name = "Material", Value = "Steel", PartId = 2 },
 
                 //Manufacture Method
-                new PartProperty { Id = 7, Name = "Manufacture Method", Value = "Cast", PartId = 1 },
-                new PartProperty { Id = 8, Name = "Manufacture Method", Value = "Forged", PartId = 1 },
+                new PartSpec { Id = 7, Name = "Manufacture Method", Value = "Cast", PartId = 1 },
+                new PartSpec { Id = 8, Name = "Manufacture Method", Value = "Forged", PartId = 1 },
 
                 //Color
-                new PartProperty { Id = 9, Name = "Color", Value = "Red", PartId = 1 },
-                new PartProperty { Id = 10, Name = "Color", Value = "Blue", PartId = 1 },
-                new PartProperty { Id = 11, Name = "Color", Value = "Green", PartId = 1 },
-                new PartProperty { Id = 12, Name = "Color", Value = "Orange", PartId = 1 },
-                new PartProperty { Id = 13, Name = "Color", Value = "White", PartId = 1 },
-                new PartProperty { Id = 14, Name = "Color", Value = "Dark Gray", PartId = 1 },
-                new PartProperty { Id = 15, Name = "Color", Value = "Black", PartId = 1 },
+                new PartSpec { Id = 9, Name = "Color", Value = "Red", PartId = 1 },
+                new PartSpec { Id = 10, Name = "Color", Value = "Blue", PartId = 1 },
+                new PartSpec { Id = 11, Name = "Color", Value = "Green", PartId = 1 },
+                new PartSpec { Id = 12, Name = "Color", Value = "Orange", PartId = 1 },
+                new PartSpec { Id = 13, Name = "Color", Value = "White", PartId = 1 },
+                new PartSpec { Id = 14, Name = "Color", Value = "Dark Gray", PartId = 1 },
+                new PartSpec { Id = 15, Name = "Color", Value = "Black", PartId = 1 },
 
                 //Piston Diameter
-                new PartProperty { Id = 16, Name = "Piston Diameter", Value = "74.96mm", PartId = 1 },
-                new PartProperty { Id = 17, Name = "Piston Diameter", Value = "74.98mm", PartId = 1 },
-                new PartProperty { Id = 18, Name = "Piston Diameter", Value = "75.00mm", PartId = 1 },
-                new PartProperty { Id = 19, Name = "Piston Diameter", Value = "88.96mm", PartId = 1 },
-                new PartProperty { Id = 20, Name = "Piston Diameter", Value = "88.98mm", PartId = 1 },
-                new PartProperty { Id = 21, Name = "Piston Diameter", Value = "89.00mm", PartId = 1 },
+                new PartSpec { Id = 16, Name = "Piston Diameter", Value = "74.96mm", PartId = 1 },
+                new PartSpec { Id = 17, Name = "Piston Diameter", Value = "74.98mm", PartId = 1 },
+                new PartSpec { Id = 18, Name = "Piston Diameter", Value = "75.00mm", PartId = 1 },
+                new PartSpec { Id = 19, Name = "Piston Diameter", Value = "88.96mm", PartId = 1 },
+                new PartSpec { Id = 20, Name = "Piston Diameter", Value = "88.98mm", PartId = 1 },
+                new PartSpec { Id = 21, Name = "Piston Diameter", Value = "89.00mm", PartId = 1 },
 
                 //Spring Rate
-                new PartProperty { Id = 22, Name = "Spring Rate", Value = "4.2kg/mm", PartId = 2 },
-                new PartProperty { Id = 23, Name = "Spring Rate", Value = "4.6kg/mm", PartId = 2 },
-                new PartProperty { Id = 24, Name = "Spring Rate", Value = "5.0kg/mm", PartId = 2 },
+                new PartSpec { Id = 22, Name = "Spring Rate", Value = "4.2kg/mm", PartId = 2 },
+                new PartSpec { Id = 23, Name = "Spring Rate", Value = "4.6kg/mm", PartId = 2 },
+                new PartSpec { Id = 24, Name = "Spring Rate", Value = "5.0kg/mm", PartId = 2 },
 
                 //Disc Diameter
-                new PartProperty { Id = 25, Name = "Disc Diameter", Value = "240mm", PartId = 2 },
-                new PartProperty { Id = 26, Name = "Disc Diameter", Value = "270mm", PartId = 2 },
+                new PartSpec { Id = 25, Name = "Disc Diameter", Value = "240mm", PartId = 2 },
+                new PartSpec { Id = 26, Name = "Disc Diameter", Value = "270mm", PartId = 2 },
 
                 //Seal Fitment
-                new PartProperty { Id = 27, Name = "Seal Fitment", Value = "48mm", PartId = 2 },
-                new PartProperty { Id = 28, Name = "Seal Fitment", Value = "50mm", PartId = 2 },
+                new PartSpec { Id = 27, Name = "Seal Fitment", Value = "48mm", PartId = 2 },
+                new PartSpec { Id = 28, Name = "Seal Fitment", Value = "50mm", PartId = 2 },
 
                 //Oil Viscosity
                 //new PartProperty { Id = 29, Name = "Viscosity", Value = "5W", OilId = 4 },

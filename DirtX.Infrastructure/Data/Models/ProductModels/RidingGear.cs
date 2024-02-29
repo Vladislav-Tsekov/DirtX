@@ -11,6 +11,6 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
         [Required]
         public RidingGearType Type { get; set; }
 
-        //TODO - EVALUATE THE NEED TO IMPLEMENT PROPERTY FOR PIECES OF RIDING GEAR, FOLLOWING THE PARTS MODEL
+        public List<RidingGearProperty> Properties { get; set; }
     }
 }

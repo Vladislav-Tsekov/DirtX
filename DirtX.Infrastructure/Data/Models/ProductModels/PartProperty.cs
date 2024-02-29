@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Infrastructure.Data.Models.ProductModels
 {
-    public class ProductProperty
+    public class PartProperty
     {
         [Key]
         public int Id { get; set; }

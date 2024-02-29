@@ -9,5 +9,7 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
 
         [Required]
         public double PackageSize { get; set; }
+
+        public List<OilProperty> Properties { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace DirtX.Web.Data
         public DbSet<Oil> Oils { get; set; }
         public DbSet<RidingGear> RidingGears { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<ProductProperty> ProductProperties { get; set; }
+        public DbSet<PartProperty> ProductProperties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -43,6 +43,7 @@ namespace DirtX.Web.Data
                         .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
+            ProductSeeder.SeedProducts(modelBuilder);
         }
     }
 }

@@ -12,6 +12,6 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
         [Required]
         public GearType Type { get; set; }
 
-        public List<PropertyOfGear> Specifications { get; set; }
+        public List<GearProperty> GearProperties { get; set; }
     }
 }

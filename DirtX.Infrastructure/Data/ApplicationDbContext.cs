@@ -22,7 +22,7 @@ namespace DirtX.Web.Data
         public DbSet<Oil> Oils { get; set; }
         public DbSet<Gear> Gears { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<PropertyOfPart> ProductProperties { get; set; }
+        public DbSet<PartSpecification> ProductProperties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,5 +1,4 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Infrastructure.Data.Models.ProductModels
@@ -11,6 +10,6 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
         [Required]
         public double PackageSize { get; set; }
 
-        public List<PropertyOfOil> Specifications { get; set; }
+        public List<OilProperty> OilProperties { get; set; }
     }
 }

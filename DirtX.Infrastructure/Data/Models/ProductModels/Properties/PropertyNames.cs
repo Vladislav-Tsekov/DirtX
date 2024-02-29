@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models.ProductModels
+namespace DirtX.Infrastructure.Data.Models.ProductModels.Properties
 {
     public class PropertyNames
     {

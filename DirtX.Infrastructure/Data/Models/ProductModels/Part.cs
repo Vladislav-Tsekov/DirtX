@@ -1,5 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
+using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Infrastructure.Data.Models.ProductModels

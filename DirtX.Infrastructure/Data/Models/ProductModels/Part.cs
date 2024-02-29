@@ -9,7 +9,7 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
         [Required]
         public PartType Type { get; set; }
 
-        public List<PartSpec> Specifications { get; set; }
+        public List<PropertyOfPart> Specifications { get; set; }
         public List<MotorcyclePart> MotorcycleParts { get; set; }
     }
 }

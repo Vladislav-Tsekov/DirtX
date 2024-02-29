@@ -19,9 +19,9 @@ namespace DirtX.Web.Data
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
         public DbSet<Part> Parts { get; set; }
         public DbSet<Oil> Oils { get; set; }
-        public DbSet<RidingGear> RidingGears { get; set; }
+        public DbSet<Gear> Gears { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<PartSpec> ProductProperties { get; set; }
+        public DbSet<PropertyOfPart> ProductProperties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

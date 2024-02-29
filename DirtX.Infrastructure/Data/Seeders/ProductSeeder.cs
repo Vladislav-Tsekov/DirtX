@@ -13,7 +13,7 @@ namespace DirtX.Infrastructure.Data.Seeders
             SeedParts(modelBuilder);
             SeedProductProperties(modelBuilder);
             SeedOils(modelBuilder);
-            SeedRidingGears(modelBuilder);
+            SeedGears(modelBuilder);
         }
 
         private static void SeedProductBrands(ModelBuilder modelBuilder)
@@ -85,48 +85,48 @@ namespace DirtX.Infrastructure.Data.Seeders
 
         private static void SeedProductProperties(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PartSpec>().HasData(
+            modelBuilder.Entity<PropertyOfPart>().HasData(
                 //Material
-                new PartSpec { Id = 1, Name = "Material", Value = "Aluminium", PartId = 1 },
-                new PartSpec { Id = 2, Name = "Material", Value = "Titanium", PartId = 1 },
-                new PartSpec { Id = 3, Name = "Material", Value = "Foam", PartId = 1 },
-                new PartSpec { Id = 4, Name = "Material", Value = "Ferodo", PartId = 1 },
-                new PartSpec { Id = 5, Name = "Material", Value = "Impregnated Cork", PartId = 1 },
-                new PartSpec { Id = 6, Name = "Material", Value = "Steel", PartId = 2 },
+                new PropertyOfPart { Id = 1, Name = "Material", Value = "Aluminium", PartId = 1 },
+                new PropertyOfPart { Id = 2, Name = "Material", Value = "Titanium", PartId = 1 },
+                new PropertyOfPart { Id = 3, Name = "Material", Value = "Foam", PartId = 1 },
+                new PropertyOfPart { Id = 4, Name = "Material", Value = "Ferodo", PartId = 1 },
+                new PropertyOfPart { Id = 5, Name = "Material", Value = "Impregnated Cork", PartId = 1 },
+                new PropertyOfPart { Id = 6, Name = "Material", Value = "Steel", PartId = 2 },
 
                 //Manufacture Method
-                new PartSpec { Id = 7, Name = "Manufacture Method", Value = "Cast", PartId = 1 },
-                new PartSpec { Id = 8, Name = "Manufacture Method", Value = "Forged", PartId = 1 },
+                new PropertyOfPart { Id = 7, Name = "Manufacture Method", Value = "Cast", PartId = 1 },
+                new PropertyOfPart { Id = 8, Name = "Manufacture Method", Value = "Forged", PartId = 1 },
 
                 //Color
-                new PartSpec { Id = 9, Name = "Color", Value = "Red", PartId = 1 },
-                new PartSpec { Id = 10, Name = "Color", Value = "Blue", PartId = 1 },
-                new PartSpec { Id = 11, Name = "Color", Value = "Green", PartId = 1 },
-                new PartSpec { Id = 12, Name = "Color", Value = "Orange", PartId = 1 },
-                new PartSpec { Id = 13, Name = "Color", Value = "White", PartId = 1 },
-                new PartSpec { Id = 14, Name = "Color", Value = "Dark Gray", PartId = 1 },
-                new PartSpec { Id = 15, Name = "Color", Value = "Black", PartId = 1 },
+                new PropertyOfPart { Id = 9, Name = "Color", Value = "Red", PartId = 1 },
+                new PropertyOfPart { Id = 10, Name = "Color", Value = "Blue", PartId = 1 },
+                new PropertyOfPart { Id = 11, Name = "Color", Value = "Green", PartId = 1 },
+                new PropertyOfPart { Id = 12, Name = "Color", Value = "Orange", PartId = 1 },
+                new PropertyOfPart { Id = 13, Name = "Color", Value = "White", PartId = 1 },
+                new PropertyOfPart { Id = 14, Name = "Color", Value = "Dark Gray", PartId = 1 },
+                new PropertyOfPart { Id = 15, Name = "Color", Value = "Black", PartId = 1 },
 
                 //Piston Diameter
-                new PartSpec { Id = 16, Name = "Piston Diameter", Value = "74.96mm", PartId = 1 },
-                new PartSpec { Id = 17, Name = "Piston Diameter", Value = "74.98mm", PartId = 1 },
-                new PartSpec { Id = 18, Name = "Piston Diameter", Value = "75.00mm", PartId = 1 },
-                new PartSpec { Id = 19, Name = "Piston Diameter", Value = "88.96mm", PartId = 1 },
-                new PartSpec { Id = 20, Name = "Piston Diameter", Value = "88.98mm", PartId = 1 },
-                new PartSpec { Id = 21, Name = "Piston Diameter", Value = "89.00mm", PartId = 1 },
+                new PropertyOfPart { Id = 16, Name = "Piston Diameter", Value = "74.96mm", PartId = 1 },
+                new PropertyOfPart { Id = 17, Name = "Piston Diameter", Value = "74.98mm", PartId = 1 },
+                new PropertyOfPart { Id = 18, Name = "Piston Diameter", Value = "75.00mm", PartId = 1 },
+                new PropertyOfPart { Id = 19, Name = "Piston Diameter", Value = "88.96mm", PartId = 1 },
+                new PropertyOfPart { Id = 20, Name = "Piston Diameter", Value = "88.98mm", PartId = 1 },
+                new PropertyOfPart { Id = 21, Name = "Piston Diameter", Value = "89.00mm", PartId = 1 },
 
                 //Spring Rate
-                new PartSpec { Id = 22, Name = "Spring Rate", Value = "4.2kg/mm", PartId = 2 },
-                new PartSpec { Id = 23, Name = "Spring Rate", Value = "4.6kg/mm", PartId = 2 },
-                new PartSpec { Id = 24, Name = "Spring Rate", Value = "5.0kg/mm", PartId = 2 },
+                new PropertyOfPart { Id = 22, Name = "Spring Rate", Value = "4.2kg/mm", PartId = 2 },
+                new PropertyOfPart { Id = 23, Name = "Spring Rate", Value = "4.6kg/mm", PartId = 2 },
+                new PropertyOfPart { Id = 24, Name = "Spring Rate", Value = "5.0kg/mm", PartId = 2 },
 
                 //Disc Diameter
-                new PartSpec { Id = 25, Name = "Disc Diameter", Value = "240mm", PartId = 2 },
-                new PartSpec { Id = 26, Name = "Disc Diameter", Value = "270mm", PartId = 2 },
+                new PropertyOfPart { Id = 25, Name = "Disc Diameter", Value = "240mm", PartId = 2 },
+                new PropertyOfPart { Id = 26, Name = "Disc Diameter", Value = "270mm", PartId = 2 },
 
                 //Seal Fitment
-                new PartSpec { Id = 27, Name = "Seal Fitment", Value = "48mm", PartId = 2 },
-                new PartSpec { Id = 28, Name = "Seal Fitment", Value = "50mm", PartId = 2 },
+                new PropertyOfPart { Id = 27, Name = "Seal Fitment", Value = "48mm", PartId = 2 },
+                new PropertyOfPart { Id = 28, Name = "Seal Fitment", Value = "50mm", PartId = 2 },
 
                 //Oil Viscosity
                 //new PartProperty { Id = 29, Name = "Viscosity", Value = "5W", OilId = 4 },
@@ -149,11 +149,11 @@ namespace DirtX.Infrastructure.Data.Seeders
             );
         }
 
-        private static void SeedRidingGears(ModelBuilder modelBuilder)
+        private static void SeedGears(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<RidingGear>().HasData(
-                new RidingGear { Id = 1, BrandId = 6, Title = "Helmet", Size = RidingGearSize.M, Price = 99.99m, Description = "Premium motorcycle helmet for maximum protection.", IsAvailable = true, StockQuantity = 5, Type = RidingGearType.Helmet },
-                new RidingGear { Id = 2, BrandId = 7, Title = "Protective Jacket", Size = RidingGearSize.L, Price = 149.99m, Description = "Durable protective jacket for safe riding.", IsAvailable = true, StockQuantity = 7, Type = RidingGearType.ProtectiveGear }
+            modelBuilder.Entity<Gear>().HasData(
+                new Gear { Id = 1, BrandId = 6, Title = "Helmet", Size = GearSize.M, Price = 99.99m, Description = "Premium motorcycle helmet for maximum protection.", IsAvailable = true, StockQuantity = 5, Type = GearType.Helmet },
+                new Gear { Id = 2, BrandId = 7, Title = "Protective Jacket", Size = GearSize.L, Price = 149.99m, Description = "Durable protective jacket for safe riding.", IsAvailable = true, StockQuantity = 7, Type = GearType.ProtectiveGear }
             );
         }
     }

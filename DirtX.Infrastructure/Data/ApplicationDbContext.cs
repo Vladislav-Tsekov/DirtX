@@ -1,6 +1,7 @@
 ﻿using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
 using DirtX.Infrastructure.Data.Models.ProductModels;
+using DirtX.Infrastructure.Data.Seeders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,8 @@ namespace DirtX.Web.Data
 
             modelBuilder.Entity<MotorcyclePart>()
                         .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
+
+            MotorcycleSeeder.SeedMotorcycles(modelBuilder);
         }
     }
 }

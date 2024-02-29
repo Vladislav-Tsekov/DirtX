@@ -7,7 +7,7 @@ namespace DirtX.Infrastructure.Data.Models
     public class GearProperty
     {
         [ForeignKey(nameof(PropertyId))]
-        public GearSpecification Spec { get; set; }
+        public GearSpecification Specification { get; set; }
         public int PropertyId { get; set; }
 
         [ForeignKey(nameof(GearId))]

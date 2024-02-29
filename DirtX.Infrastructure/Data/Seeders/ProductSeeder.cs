@@ -1,6 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels;
-using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using Microsoft.EntityFrameworkCore;
 using static DirtX.Infrastructure.Data.Seeders.SeedersConstants;
 
@@ -12,7 +11,7 @@ namespace DirtX.Infrastructure.Data.Seeders
         {
             SeedProductBrands(modelBuilder);
             SeedParts(modelBuilder);
-            SeedProductProperties(modelBuilder);
+            //SeedProductProperties(modelBuilder);
             SeedOils(modelBuilder);
             SeedGears(modelBuilder);
         }
@@ -84,58 +83,58 @@ namespace DirtX.Infrastructure.Data.Seeders
             );
         }
 
-        private static void SeedProductProperties(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<PartSpecification>().HasData(
-                //Material
-                new PartSpecification { Id = 1, Name = "Material", Value = "Aluminium", PartId = 1 },
-                new PartSpecification { Id = 2, Name = "Material", Value = "Titanium", PartId = 1 },
-                new PartSpecification { Id = 3, Name = "Material", Value = "Foam", PartId = 1 },
-                new PartSpecification { Id = 4, Name = "Material", Value = "Ferodo", PartId = 1 },
-                new PartSpecification { Id = 5, Name = "Material", Value = "Impregnated Cork", PartId = 1 },
-                new PartSpecification { Id = 6, Name = "Material", Value = "Steel", PartId = 2 },
+        //private static void SeedProductProperties(ModelBuilder modelBuilder)
+        //{
+        //    //modelBuilder.Entity<PartSpecification>().HasData(
+        //    //    //Material
+        //    //    new PartSpecification { Id = 1, Name = "Material", Value = "Aluminium", PartId = 1 },
+        //    //    new PartSpecification { Id = 2, Name = "Material", Value = "Titanium", PartId = 1 },
+        //    //    new PartSpecification { Id = 3, Name = "Material", Value = "Foam", PartId = 1 },
+        //    //    new PartSpecification { Id = 4, Name = "Material", Value = "Ferodo", PartId = 1 },
+        //    //    new PartSpecification { Id = 5, Name = "Material", Value = "Impregnated Cork", PartId = 1 },
+        //    //    new PartSpecification { Id = 6, Name = "Material", Value = "Steel", PartId = 2 },
 
-                //Manufacture Method
-                new PartSpecification { Id = 7, Name = "Manufacture Method", Value = "Cast", PartId = 1 },
-                new PartSpecification { Id = 8, Name = "Manufacture Method", Value = "Forged", PartId = 1 },
+        //    //    //Manufacture Method
+        //    //    new PartSpecification { Id = 7, Name = "Manufacture Method", Value = "Cast", PartId = 1 },
+        //    //    new PartSpecification { Id = 8, Name = "Manufacture Method", Value = "Forged", PartId = 1 },
 
-                //Color
-                new PartSpecification { Id = 9, Name = "Color", Value = "Red", PartId = 1 },
-                new PartSpecification { Id = 10, Name = "Color", Value = "Blue", PartId = 1 },
-                new PartSpecification { Id = 11, Name = "Color", Value = "Green", PartId = 1 },
-                new PartSpecification { Id = 12, Name = "Color", Value = "Orange", PartId = 1 },
-                new PartSpecification { Id = 13, Name = "Color", Value = "White", PartId = 1 },
-                new PartSpecification { Id = 14, Name = "Color", Value = "Dark Gray", PartId = 1 },
-                new PartSpecification { Id = 15, Name = "Color", Value = "Black", PartId = 1 },
+        //    //    //Color
+        //    //    new PartSpecification { Id = 9, Name = "Color", Value = "Red", PartId = 1 },
+        //    //    new PartSpecification { Id = 10, Name = "Color", Value = "Blue", PartId = 1 },
+        //    //    new PartSpecification { Id = 11, Name = "Color", Value = "Green", PartId = 1 },
+        //    //    new PartSpecification { Id = 12, Name = "Color", Value = "Orange", PartId = 1 },
+        //    //    new PartSpecification { Id = 13, Name = "Color", Value = "White", PartId = 1 },
+        //    //    new PartSpecification { Id = 14, Name = "Color", Value = "Dark Gray", PartId = 1 },
+        //    //    new PartSpecification { Id = 15, Name = "Color", Value = "Black", PartId = 1 },
 
-                //Piston Diameter
-                new PartSpecification { Id = 16, Name = "Piston Diameter", Value = "74.96mm", PartId = 1 },
-                new PartSpecification { Id = 17, Name = "Piston Diameter", Value = "74.98mm", PartId = 1 },
-                new PartSpecification { Id = 18, Name = "Piston Diameter", Value = "75.00mm", PartId = 1 },
-                new PartSpecification { Id = 19, Name = "Piston Diameter", Value = "88.96mm", PartId = 1 },
-                new PartSpecification { Id = 20, Name = "Piston Diameter", Value = "88.98mm", PartId = 1 },
-                new PartSpecification { Id = 21, Name = "Piston Diameter", Value = "89.00mm", PartId = 1 },
+        //    //    //Piston Diameter
+        //    //    new PartSpecification { Id = 16, Name = "Piston Diameter", Value = "74.96mm", PartId = 1 },
+        //    //    new PartSpecification { Id = 17, Name = "Piston Diameter", Value = "74.98mm", PartId = 1 },
+        //    //    new PartSpecification { Id = 18, Name = "Piston Diameter", Value = "75.00mm", PartId = 1 },
+        //    //    new PartSpecification { Id = 19, Name = "Piston Diameter", Value = "88.96mm", PartId = 1 },
+        //    //    new PartSpecification { Id = 20, Name = "Piston Diameter", Value = "88.98mm", PartId = 1 },
+        //    //    new PartSpecification { Id = 21, Name = "Piston Diameter", Value = "89.00mm", PartId = 1 },
 
-                //Spring Rate
-                new PartSpecification { Id = 22, Name = "Spring Rate", Value = "4.2kg/mm", PartId = 2 },
-                new PartSpecification { Id = 23, Name = "Spring Rate", Value = "4.6kg/mm", PartId = 2 },
-                new PartSpecification { Id = 24, Name = "Spring Rate", Value = "5.0kg/mm", PartId = 2 },
+        //    //    //Spring Rate
+        //    //    new PartSpecification { Id = 22, Name = "Spring Rate", Value = "4.2kg/mm", PartId = 2 },
+        //    //    new PartSpecification { Id = 23, Name = "Spring Rate", Value = "4.6kg/mm", PartId = 2 },
+        //    //    new PartSpecification { Id = 24, Name = "Spring Rate", Value = "5.0kg/mm", PartId = 2 },
 
-                //Disc Diameter
-                new PartSpecification { Id = 25, Name = "Disc Diameter", Value = "240mm", PartId = 2 },
-                new PartSpecification { Id = 26, Name = "Disc Diameter", Value = "270mm", PartId = 2 },
+        //    //    //Disc Diameter
+        //    //    new PartSpecification { Id = 25, Name = "Disc Diameter", Value = "240mm", PartId = 2 },
+        //    //    new PartSpecification { Id = 26, Name = "Disc Diameter", Value = "270mm", PartId = 2 },
 
-                //Seal Fitment
-                new PartSpecification { Id = 27, Name = "Seal Fitment", Value = "48mm", PartId = 2 },
-                new PartSpecification { Id = 28, Name = "Seal Fitment", Value = "50mm", PartId = 2 },
+        //    //    //Seal Fitment
+        //    //    new PartSpecification { Id = 27, Name = "Seal Fitment", Value = "48mm", PartId = 2 },
+        //    //    new PartSpecification { Id = 28, Name = "Seal Fitment", Value = "50mm", PartId = 2 },
 
-                //Oil Viscosity
-                //new PartProperty { Id = 29, Name = "Viscosity", Value = "5W", OilId = 4 },
-                //new PartProperty { Id = 30, Name = "Viscosity", Value = "10W40", OilId = 3 },
-                //new PartProperty { Id = 31, Name = "Viscosity", Value = "10W40", OilId = 7 },
-                //new PartProperty { Id = 32, Name = "Viscosity", Value = "15W60", OilId = 2 }
-            );
-        }
+        //        //Oil Viscosity
+        //        //new PartProperty { Id = 29, Name = "Viscosity", Value = "5W", OilId = 4 },
+        //        //new PartProperty { Id = 30, Name = "Viscosity", Value = "10W40", OilId = 3 },
+        //        //new PartProperty { Id = 31, Name = "Viscosity", Value = "10W40", OilId = 7 },
+        //        //new PartProperty { Id = 32, Name = "Viscosity", Value = "15W60", OilId = 2 }
+        //    );
+        //}
 
         private static void SeedOils(ModelBuilder modelBuilder)
         {

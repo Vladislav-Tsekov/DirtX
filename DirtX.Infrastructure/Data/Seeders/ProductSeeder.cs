@@ -1,5 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels;
+using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using Microsoft.EntityFrameworkCore;
 using static DirtX.Infrastructure.Data.Seeders.SeedersConstants;
 
@@ -10,10 +11,16 @@ namespace DirtX.Infrastructure.Data.Seeders
         public static void SeedProducts(ModelBuilder modelBuilder)
         {
             SeedProductBrands(modelBuilder);
+            SeedSpecificationTitles(modelBuilder);
+
             SeedParts(modelBuilder);
-            //SeedProductProperties(modelBuilder);
+            SeedPartSpecifications(modelBuilder);
+
             SeedOils(modelBuilder);
+            SeedOilSpecifications(modelBuilder);
+
             SeedGears(modelBuilder);
+            SeedGearSpecifications(modelBuilder);
         }
 
         private static void SeedProductBrands(ModelBuilder modelBuilder)
@@ -38,6 +45,19 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new ProductBrand { Id = 17, Name = "Vertex", Description = VertexDescription },
                 new ProductBrand { Id = 18, Name = "Wiseco", Description = WisecoDescription },
                 new ProductBrand { Id = 19, Name = "YAMALUBE", Description = YamalubeDescription } 
+            );
+        }
+
+        private static void SeedSpecificationTitles(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SpecificationTitles>().HasData(
+                new SpecificationTitles { Id = 1, Title = "Material" },
+                new SpecificationTitles { Id = 2, Title = "Manufacture Method" },
+                new SpecificationTitles { Id = 3, Title = "Color" },
+                new SpecificationTitles { Id = 4, Title = "Diameter" },
+                new SpecificationTitles { Id = 5, Title = "Spring Rate" },
+                new SpecificationTitles { Id = 6, Title = "Seal Fitment" },
+                new SpecificationTitles { Id = 7, Title = "Viscosity" }
             );
         }
 
@@ -83,58 +103,52 @@ namespace DirtX.Infrastructure.Data.Seeders
             );
         }
 
-        //private static void SeedProductProperties(ModelBuilder modelBuilder)
-        //{
-        //    //modelBuilder.Entity<PartSpecification>().HasData(
-        //    //    //Material
-        //    //    new PartSpecification { Id = 1, Name = "Material", Value = "Aluminium", PartId = 1 },
-        //    //    new PartSpecification { Id = 2, Name = "Material", Value = "Titanium", PartId = 1 },
-        //    //    new PartSpecification { Id = 3, Name = "Material", Value = "Foam", PartId = 1 },
-        //    //    new PartSpecification { Id = 4, Name = "Material", Value = "Ferodo", PartId = 1 },
-        //    //    new PartSpecification { Id = 5, Name = "Material", Value = "Impregnated Cork", PartId = 1 },
-        //    //    new PartSpecification { Id = 6, Name = "Material", Value = "Steel", PartId = 2 },
+        private static void SeedPartSpecifications(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PartSpecification>().HasData(
+                // Material
+                new PartSpecification { Id = 1, TitleId = 1, Value = "Aluminium" },
+                new PartSpecification { Id = 2, TitleId = 1, Value = "Titanium" },
+                new PartSpecification { Id = 3, TitleId = 1, Value = "Foam" },
+                new PartSpecification { Id = 4, TitleId = 1, Value = "Ferodo" },
+                new PartSpecification { Id = 5, TitleId = 1, Value = "Impregnated Cork" },
+                new PartSpecification { Id = 6, TitleId = 1, Value = "Steel" },
 
-        //    //    //Manufacture Method
-        //    //    new PartSpecification { Id = 7, Name = "Manufacture Method", Value = "Cast", PartId = 1 },
-        //    //    new PartSpecification { Id = 8, Name = "Manufacture Method", Value = "Forged", PartId = 1 },
+                // Manufacture Method
+                new PartSpecification { Id = 7, TitleId = 2, Value = "Cast" },
+                new PartSpecification { Id = 8, TitleId = 2, Value = "Forged" },
 
-        //    //    //Color
-        //    //    new PartSpecification { Id = 9, Name = "Color", Value = "Red", PartId = 1 },
-        //    //    new PartSpecification { Id = 10, Name = "Color", Value = "Blue", PartId = 1 },
-        //    //    new PartSpecification { Id = 11, Name = "Color", Value = "Green", PartId = 1 },
-        //    //    new PartSpecification { Id = 12, Name = "Color", Value = "Orange", PartId = 1 },
-        //    //    new PartSpecification { Id = 13, Name = "Color", Value = "White", PartId = 1 },
-        //    //    new PartSpecification { Id = 14, Name = "Color", Value = "Dark Gray", PartId = 1 },
-        //    //    new PartSpecification { Id = 15, Name = "Color", Value = "Black", PartId = 1 },
+                // Color
+                new PartSpecification { Id = 9, TitleId = 3, Value = "Red" },
+                new PartSpecification { Id = 10, TitleId = 3, Value = "Blue" },
+                new PartSpecification { Id = 11, TitleId = 3, Value = "Green" },
+                new PartSpecification { Id = 12, TitleId = 3, Value = "Orange" },
+                new PartSpecification { Id = 13, TitleId = 3, Value = "White" },
+                new PartSpecification { Id = 14, TitleId = 3, Value = "Dark Gray" },
+                new PartSpecification { Id = 15, TitleId = 3, Value = "Black" },
 
-        //    //    //Piston Diameter
-        //    //    new PartSpecification { Id = 16, Name = "Piston Diameter", Value = "74.96mm", PartId = 1 },
-        //    //    new PartSpecification { Id = 17, Name = "Piston Diameter", Value = "74.98mm", PartId = 1 },
-        //    //    new PartSpecification { Id = 18, Name = "Piston Diameter", Value = "75.00mm", PartId = 1 },
-        //    //    new PartSpecification { Id = 19, Name = "Piston Diameter", Value = "88.96mm", PartId = 1 },
-        //    //    new PartSpecification { Id = 20, Name = "Piston Diameter", Value = "88.98mm", PartId = 1 },
-        //    //    new PartSpecification { Id = 21, Name = "Piston Diameter", Value = "89.00mm", PartId = 1 },
+                // Piston Diameter
+                new PartSpecification { Id = 16, TitleId = 4, Value = "74.96mm" },
+                new PartSpecification { Id = 17, TitleId = 4, Value = "74.98mm" },
+                new PartSpecification { Id = 18, TitleId = 4, Value = "75.00mm" },
+                new PartSpecification { Id = 19, TitleId = 4, Value = "88.96mm" },
+                new PartSpecification { Id = 20, TitleId = 4, Value = "88.98mm" },
+                new PartSpecification { Id = 21, TitleId = 4, Value = "89.00mm" },
 
-        //    //    //Spring Rate
-        //    //    new PartSpecification { Id = 22, Name = "Spring Rate", Value = "4.2kg/mm", PartId = 2 },
-        //    //    new PartSpecification { Id = 23, Name = "Spring Rate", Value = "4.6kg/mm", PartId = 2 },
-        //    //    new PartSpecification { Id = 24, Name = "Spring Rate", Value = "5.0kg/mm", PartId = 2 },
+                // Spring Rate
+                new PartSpecification { Id = 22, TitleId = 5, Value = "4.2kg/mm" },
+                new PartSpecification { Id = 23, TitleId = 5, Value = "4.6kg/mm" },
+                new PartSpecification { Id = 24, TitleId = 5, Value = "5.0kg/mm" },
 
-        //    //    //Disc Diameter
-        //    //    new PartSpecification { Id = 25, Name = "Disc Diameter", Value = "240mm", PartId = 2 },
-        //    //    new PartSpecification { Id = 26, Name = "Disc Diameter", Value = "270mm", PartId = 2 },
+                // Disc Diameter
+                new PartSpecification { Id = 25, TitleId = 4, Value = "220mm" },
+                new PartSpecification { Id = 26, TitleId = 4, Value = "270mm" },
 
-        //    //    //Seal Fitment
-        //    //    new PartSpecification { Id = 27, Name = "Seal Fitment", Value = "48mm", PartId = 2 },
-        //    //    new PartSpecification { Id = 28, Name = "Seal Fitment", Value = "50mm", PartId = 2 },
-
-        //        //Oil Viscosity
-        //        //new PartProperty { Id = 29, Name = "Viscosity", Value = "5W", OilId = 4 },
-        //        //new PartProperty { Id = 30, Name = "Viscosity", Value = "10W40", OilId = 3 },
-        //        //new PartProperty { Id = 31, Name = "Viscosity", Value = "10W40", OilId = 7 },
-        //        //new PartProperty { Id = 32, Name = "Viscosity", Value = "15W60", OilId = 2 }
-        //    );
-        //}
+                // Seal Fitment
+                new PartSpecification { Id = 27, TitleId = 6, Value = "48mm" },
+                new PartSpecification { Id = 28, TitleId = 6, Value = "50mm" }
+            );
+        }
 
         private static void SeedOils(ModelBuilder modelBuilder)
         {
@@ -149,11 +163,53 @@ namespace DirtX.Infrastructure.Data.Seeders
             );
         }
 
+        private static void SeedOilSpecifications(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OilSpecification>().HasData(
+                // Oil Viscosity
+                new OilSpecification { Id = 1, TitleId = 7, Value = "5W" },
+                new OilSpecification { Id = 2, TitleId = 7, Value = "10W40" },
+                new OilSpecification { Id = 3, TitleId = 7, Value = "15W60" },
+
+                // Color
+                new OilSpecification { Id = 4, TitleId = 3, Value = "Red" },
+                new OilSpecification { Id = 5, TitleId = 3, Value = "Blue" },
+                new OilSpecification { Id = 6, TitleId = 3, Value = "Green" }
+            );
+        }
+
         private static void SeedGears(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Gear>().HasData(
-                new Gear { Id = 1, BrandId = 6, Title = "Helmet", Size = GearSize.M, Price = 99.99m, Description = "Premium motorcycle helmet for maximum protection.", IsAvailable = true, StockQuantity = 5, Type = GearType.Helmet },
-                new Gear { Id = 2, BrandId = 7, Title = "Protective Jacket", Size = GearSize.L, Price = 149.99m, Description = "Durable protective jacket for safe riding.", IsAvailable = true, StockQuantity = 7, Type = GearType.ProtectiveGear }
+                new Gear { Id = 1, BrandId = 1, Title = "SM5", Size = GearSize.M, Price = 899.99m, Description = "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.", IsAvailable = true, StockQuantity = 2, Type = GearType.Helmet },
+                new Gear { Id = 2, BrandId = 13, Title = "3-Series", Size = GearSize.S, Price = 279.99m, Description = "High-quality full-face racing helmet with aerodynamic design.", IsAvailable = true, StockQuantity = 7, Type = GearType.Helmet },
+                new Gear { Id = 3, BrandId = 1, Title = "Bionic Action V2", Size = GearSize.L, Price = 319.99m, Description = "Durable protective vest for safe riding.", IsAvailable = true, StockQuantity = 4, Type = GearType.ProtectiveGear },
+                new Gear { Id = 4, BrandId = 15, Title = "AsteriX Knee Braces", Size = GearSize.M, Price = 179.99m, Description = "Knee protection that allows for some movement while protecting the knee cap and shin.", IsAvailable = true, StockQuantity = 10, Type = GearType.ProtectiveGear },
+                new Gear { Id = 5, BrandId = 13, Title = "50th Anniversary Jersey", Size = GearSize.L, Price = 79.99m, Description = "Limited anniversary edition jersey.", IsAvailable = true, StockQuantity = 3, Type = GearType.Outfit },
+                new Gear { Id = 6, BrandId = 15, Title = "Prime Ace Complete Outfit", Size = GearSize.M, Price = 259.99m, Description = "A complete outfit of THOR's middle-class 'Prime Ace' line.", IsAvailable = true, StockQuantity = 5, Type = GearType.Outfit },
+                new Gear { Id = 7, BrandId = 1, Title = "Tech10", Size = GearSize.M, Price = 1099.99m, Description = "The most advanced riding boots on the market.", IsAvailable = true, StockQuantity = 2, Type = GearType.Boots },
+                new Gear { Id = 8, BrandId = 13, Title = "Blitz XR", Size = GearSize.L, Price = 559.99m, Description = "Motocross/Enduro boots with waterproof lining and reinforced toe.", IsAvailable = true, StockQuantity = 6, Type = GearType.Boots },
+                new Gear { Id = 9, BrandId = 13, Title = "B20 Goggles", Size = GearSize.M, Price = 129.99m, Description = "Motocross goggles with flippers.", IsAvailable = true, StockQuantity = 6, Type = GearType.Accessory },
+                new Gear { Id = 10, BrandId = 13, Title = "Element Gloves", Size = GearSize.XL, Price = 39.99m, Description = "Universal offroad gloves.", IsAvailable = true, StockQuantity = 11, Type = GearType.Accessory }
+            );
+        }
+
+        private static void SeedGearSpecifications(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GearSpecification>().HasData(
+                // Material
+                new GearSpecification { Id = 1, TitleId = 1, Value = "Polyester Mesh" },
+                new GearSpecification { Id = 2, TitleId = 1, Value = "Cotton" },
+                new GearSpecification { Id = 3, TitleId = 1, Value = "Denim" },
+
+                // Color
+                new GearSpecification { Id = 4, TitleId = 3, Value = "Red" },
+                new GearSpecification { Id = 5, TitleId = 3, Value = "Blue" },
+                new GearSpecification { Id = 6, TitleId = 3, Value = "Green" },
+                new GearSpecification { Id = 7, TitleId = 3, Value = "Orange" },
+                new GearSpecification { Id = 8, TitleId = 3, Value = "White" },
+                new GearSpecification { Id = 9, TitleId = 3, Value = "Dark Gray" },
+                new GearSpecification { Id = 10, TitleId = 3, Value = "Black" }
             );
         }
     }

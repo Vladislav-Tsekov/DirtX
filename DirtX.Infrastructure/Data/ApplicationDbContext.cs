@@ -62,8 +62,8 @@ namespace DirtX.Web.Data
             modelBuilder.Entity<GearProperty>()
                         .HasKey(gp => new { gp.GearId, gp.SpecificationId });
 
-            //MotorcycleSeeder.SeedMotorcycles(modelBuilder);
-            //ProductSeeder.SeedProducts(modelBuilder);
+            MotorcycleSeeder.SeedMotorcycles(modelBuilder);
+            ProductSeeder.SeedProducts(modelBuilder);
         }
     }
 }

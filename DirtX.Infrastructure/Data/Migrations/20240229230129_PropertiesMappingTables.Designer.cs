@@ -4,6 +4,7 @@ using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240229230129_PropertiesMappingTables")]
+    partial class PropertiesMappingTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1441,7 +1443,7 @@ namespace DirtX.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.GearSpecification", "Specification")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.GearSpecification", "Spec")
                         .WithMany("GearProperties")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1449,7 +1451,7 @@ namespace DirtX.Web.Data.Migrations
 
                     b.Navigation("Gear");
 
-                    b.Navigation("Specification");
+                    b.Navigation("Spec");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcyclePart", b =>
@@ -1514,7 +1516,7 @@ namespace DirtX.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.OilSpecification", "Specification")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.OilSpecification", "Spec")
                         .WithMany("OilProperties")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1522,7 +1524,7 @@ namespace DirtX.Web.Data.Migrations
 
                     b.Navigation("Oil");
 
-                    b.Navigation("Specification");
+                    b.Navigation("Spec");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.PartProperty", b =>
@@ -1533,7 +1535,7 @@ namespace DirtX.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.PartSpecification", "Specification")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.PartSpecification", "Spec")
                         .WithMany("PartProperties")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1541,7 +1543,7 @@ namespace DirtX.Web.Data.Migrations
 
                     b.Navigation("Part");
 
-                    b.Navigation("Specification");
+                    b.Navigation("Spec");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Gear", b =>

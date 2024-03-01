@@ -1,6 +1,6 @@
 ﻿namespace DirtX.Infrastructure.Data.Models.Enums
 {
-    public enum RidingGearType
+    public enum GearType
     {
         Helmet,
         ProtectiveGear,

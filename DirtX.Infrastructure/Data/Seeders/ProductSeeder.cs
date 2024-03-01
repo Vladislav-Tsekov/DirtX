@@ -96,10 +96,10 @@ namespace DirtX.Infrastructure.Data.Seeders
                 // Drivetrain
                 new Part { Id = 22, BrandId = 4, Title = "114-Links Chain", Price = 119.99m, Description = "Durable motorcycle chain for smooth power transfer.", IsAvailable = true, StockQuantity = 10, Type = PartType.Drivetrain },
                 new Part { Id = 23, BrandId = 4, Title = "120-Links Chain", Price = 129.99m, Description = "Durable motorcycle chain for smooth power transfer.", IsAvailable = true, StockQuantity = 7, Type = PartType.Drivetrain },
-                new Part { Id = 24, BrandId = 4, Title = "52-Teeth Rear Sprocket", Price = 89.79m, Description = "Durable motorcycle chain for smooth power transfer.", IsAvailable = true, StockQuantity = 4, Type = PartType.Drivetrain },
-                new Part { Id = 25, BrandId = 4, Title = "13-Teeth Front Sprocket", Price = 24.19m, Description = "Durable motorcycle chain for smooth power transfer.", IsAvailable = true, StockQuantity = 13, Type = PartType.Drivetrain },
+                new Part { Id = 24, BrandId = 4, Title = "52-Teeth Rear Sprocket", Price = 89.79m, Description = "Quality rear sprocked made out of aluminium.", IsAvailable = true, StockQuantity = 4, Type = PartType.Drivetrain },
+                new Part { Id = 25, BrandId = 4, Title = "13-Teeth Front Sprocket", Price = 24.19m, Description = "Standart-sized front sprocked with self-cleaning properties.", IsAvailable = true, StockQuantity = 13, Type = PartType.Drivetrain },
                 new Part { Id = 26, BrandId = 7, Title = "Complete Clutch Kit", Price = 2149.99m, Description = "Complete clutch kit for enhanced performance and durability.", IsAvailable = true, StockQuantity = 3, Type = PartType.Drivetrain },
-                new Part { Id = 27, BrandId = 17, Title = "Clutch Plate Kit", Price = 339.69m, Description = "Complete clutch plate kit with friction plates and steel plates for smooth engagement.", IsAvailable = true, StockQuantity = 8, Type = PartType.Drivetrain }
+                new Part { Id = 27, BrandId = 17, Title = "Clutch Plate Kit", Price = 339.69m, Description = "Clutch plate kit with friction plates and steel plates for smooth engagement.", IsAvailable = true, StockQuantity = 8, Type = PartType.Drivetrain }
             );
         }
 

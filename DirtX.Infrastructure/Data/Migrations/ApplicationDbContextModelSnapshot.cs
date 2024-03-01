@@ -141,16 +141,11 @@ namespace DirtX.Web.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Displacement = 300
-                        },
-                        new
-                        {
-                            Id = 3,
                             Displacement = 350
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             Displacement = 450
                         });
                 });
@@ -300,27 +295,83 @@ namespace DirtX.Web.Data.Migrations
                             DisplacementId = 1,
                             MakeId = 1,
                             ModelId = 1,
-                            YearId = 5
+                            YearId = 1
                         },
                         new
                         {
                             Id = 2,
-                            DisplacementId = 4,
-                            MakeId = 2,
-                            ModelId = 2,
-                            YearId = 15
+                            DisplacementId = 1,
+                            MakeId = 1,
+                            ModelId = 1,
+                            YearId = 2
                         },
                         new
                         {
                             Id = 3,
-                            DisplacementId = 1,
-                            MakeId = 3,
-                            ModelId = 3,
-                            YearId = 10
+                            DisplacementId = 3,
+                            MakeId = 1,
+                            ModelId = 1,
+                            YearId = 3
                         },
                         new
                         {
                             Id = 4,
+                            DisplacementId = 3,
+                            MakeId = 2,
+                            ModelId = 2,
+                            YearId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplacementId = 3,
+                            MakeId = 2,
+                            ModelId = 2,
+                            YearId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DisplacementId = 1,
+                            MakeId = 2,
+                            ModelId = 2,
+                            YearId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DisplacementId = 3,
+                            MakeId = 3,
+                            ModelId = 3,
+                            YearId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DisplacementId = 1,
+                            MakeId = 3,
+                            ModelId = 3,
+                            YearId = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DisplacementId = 1,
+                            MakeId = 3,
+                            ModelId = 3,
+                            YearId = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DisplacementId = 3,
+                            MakeId = 4,
+                            ModelId = 4,
+                            YearId = 10
+                        },
+                        new
+                        {
+                            Id = 11,
                             DisplacementId = 1,
                             MakeId = 4,
                             ModelId = 4,
@@ -328,27 +379,75 @@ namespace DirtX.Web.Data.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 12,
                             DisplacementId = 3,
-                            MakeId = 5,
-                            ModelId = 5,
-                            YearId = 17
+                            MakeId = 4,
+                            ModelId = 4,
+                            YearId = 12
                         },
                         new
                         {
-                            Id = 6,
-                            DisplacementId = 4,
-                            MakeId = 6,
-                            ModelId = 6,
+                            Id = 13,
+                            DisplacementId = 1,
+                            MakeId = 5,
+                            ModelId = 5,
                             YearId = 13
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 14,
+                            DisplacementId = 2,
+                            MakeId = 5,
+                            ModelId = 5,
+                            YearId = 14
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DisplacementId = 3,
+                            MakeId = 5,
+                            ModelId = 5,
+                            YearId = 15
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DisplacementId = 1,
+                            MakeId = 6,
+                            ModelId = 6,
+                            YearId = 16
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DisplacementId = 1,
+                            MakeId = 6,
+                            ModelId = 6,
+                            YearId = 17
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DisplacementId = 3,
+                            MakeId = 6,
+                            ModelId = 6,
+                            YearId = 18
+                        },
+                        new
+                        {
+                            Id = 19,
                             DisplacementId = 1,
                             MakeId = 7,
                             ModelId = 7,
-                            YearId = 18
+                            YearId = 19
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DisplacementId = 3,
+                            MakeId = 7,
+                            ModelId = 7,
+                            YearId = 20
                         });
                 });
 
@@ -467,36 +566,6 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 20,
                             Year = 2024
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Year = 2025
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Year = 2026
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Year = 2027
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Year = 2028
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Year = 2029
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Year = 2030
                         });
                 });
 
@@ -1115,7 +1184,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 24,
                             BrandId = 4,
-                            Description = "Durable motorcycle chain for smooth power transfer.",
+                            Description = "Quality rear sprocked made out of aluminium.",
                             IsAvailable = true,
                             Price = 89.79m,
                             StockQuantity = 4,
@@ -1126,7 +1195,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 25,
                             BrandId = 4,
-                            Description = "Durable motorcycle chain for smooth power transfer.",
+                            Description = "Standart-sized front sprocked with self-cleaning properties.",
                             IsAvailable = true,
                             Price = 24.19m,
                             StockQuantity = 13,
@@ -1148,7 +1217,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 27,
                             BrandId = 17,
-                            Description = "Complete clutch plate kit with friction plates and steel plates for smooth engagement.",
+                            Description = "Clutch plate kit with friction plates and steel plates for smooth engagement.",
                             IsAvailable = true,
                             Price = 339.69m,
                             StockQuantity = 8,
@@ -1205,13 +1274,13 @@ namespace DirtX.Web.Data.Migrations
                         new
                         {
                             Id = 5,
-                            Description = "Description for Brand C",
+                            Description = "Galfer USA is the leading manufacturer of performance braking systems and accessories for motorcycle enthusiasts and racers alike.",
                             Name = "Galfer"
                         },
                         new
                         {
                             Id = 6,
-                            Description = "Galfer USA is the leading manufacturer of performance braking systems and accessories for motorcycle enthusiasts and racers alike.",
+                            Description = "HifloFiltro specializes in the production of all types of filters for the motorcycle with the goal of harnessing maximum racing performance.",
                             Name = "HifloFiltro"
                         },
                         new

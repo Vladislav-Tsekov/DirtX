@@ -6,9 +6,9 @@ namespace DirtX.Infrastructure.Data.Models
 {
     public class OilProperty
     {
-        [ForeignKey(nameof(PropertyId))]
+        [ForeignKey(nameof(SpecificationId))]
         public OilSpecification Specification { get; set; }
-        public int PropertyId { get; set; }
+        public int SpecificationId { get; set; }
 
         [ForeignKey(nameof(OilId))]
         public Oil Oil { get; set; }

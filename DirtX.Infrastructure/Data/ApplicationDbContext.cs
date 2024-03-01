@@ -54,13 +54,13 @@ namespace DirtX.Web.Data
                         .HasKey(mp => new { mp.MotorcycleId, mp.PartId });  
             
             modelBuilder.Entity<PartProperty>()
-                        .HasKey(pp => new { pp.PartId, pp.PropertyId }); 
+                        .HasKey(pp => new { pp.PartId, pp.SpecificationId }); 
             
             modelBuilder.Entity<OilProperty>()
-                        .HasKey(op => new { op.OilId, op.PropertyId });  
+                        .HasKey(op => new { op.OilId, op.SpecificationId });  
             
             modelBuilder.Entity<GearProperty>()
-                        .HasKey(gp => new { gp.GearId, gp.PropertyId });
+                        .HasKey(gp => new { gp.GearId, gp.SpecificationId });
 
             //MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             //ProductSeeder.SeedProducts(modelBuilder);

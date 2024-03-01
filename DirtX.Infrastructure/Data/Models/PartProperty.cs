@@ -6,9 +6,9 @@ namespace DirtX.Infrastructure.Data.Models
 {
     public class PartProperty
     {
-        [ForeignKey(nameof(PropertyId))]
+        [ForeignKey(nameof(SpecificationId))]
         public PartSpecification Specification { get; set; }
-        public int PropertyId { get; set; }
+        public int SpecificationId { get; set; }
 
         [ForeignKey(nameof(PartId))]
         public Part Part { get; set; }

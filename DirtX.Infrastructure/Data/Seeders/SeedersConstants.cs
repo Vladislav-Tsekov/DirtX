@@ -2,7 +2,6 @@
 {
     public static class SeedersConstants
     {
-        //BRAND DESCRIPTIONS
         public const string AlpinestarsDescription = "Alpinestars is an Italian motorsports and action sports safety equipment manufacturer based in Asolo, Italy.";
         public const string BelRayDescription = "A leader in lubrication technology, Bel-Ray has engineered products to protect, while delivering superior business value for application in automotive, motorcycle, powersports, steel, textile and other industries.";
         public const string BoyesenDescription = "Boyesen has captured the attention of Racing teams, leveraging their engineering and manufacturing mastery to create water pump covers and impellers, ignition and clutch covers.";

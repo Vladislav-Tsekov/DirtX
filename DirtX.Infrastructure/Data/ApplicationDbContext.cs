@@ -64,6 +64,7 @@ namespace DirtX.Web.Data
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);
+            MappingTableSeeder.SeedMappingTables(modelBuilder);
         }
     }
 }

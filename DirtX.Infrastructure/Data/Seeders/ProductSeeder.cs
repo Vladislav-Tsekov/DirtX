@@ -77,12 +77,12 @@ namespace DirtX.Infrastructure.Data.Seeders
                 // Filter
                 new Part { Id = 9, BrandId = 16, Title = "Air Filter", Price = 24.49m, Description = "Premium air filter for improved air flow and engine performance.", IsAvailable = true, StockQuantity = 27, Type = PartType.Filter },
                 new Part { Id = 10, BrandId = 6, Title = "Oil Filter", Price = 10.99m, Description = "High-quality oil filter for efficient filtration and engine longevity.", IsAvailable = true, StockQuantity = 19, Type = PartType.Filter },
-                new Part { Id = 11, BrandId = 16, Title = "Aluminium Oil Filter Cap", Price = 54.29m, Description = "High-quality oil filter for efficient filtration and engine longevity.", IsAvailable = true, StockQuantity = 8, Type = PartType.Filter },
+                new Part { Id = 11, BrandId = 16, Title = "Aluminum Oil Filter Cap", Price = 54.29m, Description = "High-quality oil filter for efficient filtration and engine longevity.", IsAvailable = true, StockQuantity = 8, Type = PartType.Filter },
                 new Part { Id = 12, BrandId = 16, Title = "Fuel Filter (Gas Tank)", Price = 50.99m, Description = "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal", IsAvailable = true, StockQuantity = 5, Type = PartType.Filter },
 
                 // Brake
                 new Part { Id = 13, BrandId = 5, Title = "Sintered Front Brake Pads", Price = 35.89m, Description = "Replacement brake pads offering reliable stopping performance.", IsAvailable = true, StockQuantity = 20, Type = PartType.Brake },
-                new Part { Id = 14, BrandId = 11, Title = "Aluminium Brake Lever", Price = 71.99m, Description = "Comfortable and durable lever, made out of aluminium for improved control and comfort.", IsAvailable = true, StockQuantity = 14, Type = PartType.Brake },
+                new Part { Id = 14, BrandId = 11, Title = "Aluminum Brake Lever", Price = 71.99m, Description = "Comfortable and durable lever, made out of aluminum for improved control and comfort.", IsAvailable = true, StockQuantity = 14, Type = PartType.Brake },
                 new Part { Id = 15, BrandId = 11, Title = "Front Brake Disc", Price = 89.99m, Description = "High-performance brake disc for superior stopping power.", IsAvailable = true, StockQuantity = 1, Type = PartType.Brake },
                 new Part { Id = 16, BrandId = 11, Title = "Rear Brake Disc", Price = 77.29m, Description = "High-performance brake disc for superior stopping power.", IsAvailable = true, StockQuantity = 7, Type = PartType.Brake },
 
@@ -96,7 +96,7 @@ namespace DirtX.Infrastructure.Data.Seeders
                 // Drivetrain
                 new Part { Id = 22, BrandId = 4, Title = "114-Links Chain", Price = 119.99m, Description = "Durable motorcycle chain for smooth power transfer.", IsAvailable = true, StockQuantity = 10, Type = PartType.Drivetrain },
                 new Part { Id = 23, BrandId = 4, Title = "120-Links Chain", Price = 129.99m, Description = "Durable motorcycle chain for smooth power transfer.", IsAvailable = true, StockQuantity = 7, Type = PartType.Drivetrain },
-                new Part { Id = 24, BrandId = 4, Title = "52-Teeth Rear Sprocket", Price = 89.79m, Description = "Quality rear sprocked made out of aluminium.", IsAvailable = true, StockQuantity = 4, Type = PartType.Drivetrain },
+                new Part { Id = 24, BrandId = 4, Title = "52-Teeth Rear Sprocket", Price = 89.79m, Description = "Quality rear sprocked made out of aluminum.", IsAvailable = true, StockQuantity = 4, Type = PartType.Drivetrain },
                 new Part { Id = 25, BrandId = 4, Title = "13-Teeth Front Sprocket", Price = 24.19m, Description = "Standart-sized front sprocked with self-cleaning properties.", IsAvailable = true, StockQuantity = 13, Type = PartType.Drivetrain },
                 new Part { Id = 26, BrandId = 7, Title = "Complete Clutch Kit", Price = 2149.99m, Description = "Complete clutch kit for enhanced performance and durability.", IsAvailable = true, StockQuantity = 3, Type = PartType.Drivetrain },
                 new Part { Id = 27, BrandId = 17, Title = "Clutch Plate Kit", Price = 339.69m, Description = "Clutch plate kit with friction plates and steel plates for smooth engagement.", IsAvailable = true, StockQuantity = 8, Type = PartType.Drivetrain }
@@ -107,7 +107,7 @@ namespace DirtX.Infrastructure.Data.Seeders
         {
             modelBuilder.Entity<PartSpecification>().HasData(
                 // Material
-                new PartSpecification { Id = 1, TitleId = 1, Value = "Aluminium" },
+                new PartSpecification { Id = 1, TitleId = 1, Value = "Aluminum" },
                 new PartSpecification { Id = 2, TitleId = 1, Value = "Titanium" },
                 new PartSpecification { Id = 3, TitleId = 1, Value = "Foam" },
                 new PartSpecification { Id = 4, TitleId = 1, Value = "Ferodo" },

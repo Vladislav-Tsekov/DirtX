@@ -572,7 +572,7 @@ namespace DirtX.Web.Data.Migrations
                 columns: new[] { "Id", "TitleId", "Value" },
                 values: new object[,]
                 {
-                    { 1, 1, "Aluminium" },
+                    { 1, 1, "Aluminum" },
                     { 2, 1, "Titanium" },
                     { 3, 1, "Foam" },
                     { 4, 1, "Ferodo" },
@@ -624,10 +624,10 @@ namespace DirtX.Web.Data.Migrations
                     { 8, 18, "Electric fuel pump for replacing the old one. Comes with all necessary components.", true, 149.99m, 12, "Fuel Pump", 0 },
                     { 9, 16, "Premium air filter for improved air flow and engine performance.", true, 24.49m, 27, "Air Filter", 1 },
                     { 10, 6, "High-quality oil filter for efficient filtration and engine longevity.", true, 10.99m, 19, "Oil Filter", 1 },
-                    { 11, 16, "High-quality oil filter for efficient filtration and engine longevity.", true, 54.29m, 8, "Aluminium Oil Filter Cap", 1 },
+                    { 11, 16, "High-quality oil filter for efficient filtration and engine longevity.", true, 54.29m, 8, "Aluminum Oil Filter Cap", 1 },
                     { 12, 16, "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal", true, 50.99m, 5, "Fuel Filter (Gas Tank)", 1 },
                     { 13, 5, "Replacement brake pads offering reliable stopping performance.", true, 35.89m, 20, "Sintered Front Brake Pads", 3 },
-                    { 14, 11, "Comfortable and durable lever, made out of aluminium for improved control and comfort.", true, 71.99m, 14, "Aluminium Brake Lever", 3 },
+                    { 14, 11, "Comfortable and durable lever, made out of aluminum for improved control and comfort.", true, 71.99m, 14, "Aluminum Brake Lever", 3 },
                     { 15, 11, "High-performance brake disc for superior stopping power.", true, 89.99m, 1, "Front Brake Disc", 3 },
                     { 16, 11, "High-performance brake disc for superior stopping power.", true, 77.29m, 7, "Rear Brake Disc", 3 },
                     { 17, 14, "Precision-engineered shock absorber for smooth ride experience.", true, 799.19m, 3, "Shock Absorber", 4 },
@@ -637,7 +637,7 @@ namespace DirtX.Web.Data.Migrations
                     { 21, 14, "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.", true, 125.50m, 6, "Steering Stem Bearing Kit", 4 },
                     { 22, 4, "Durable motorcycle chain for smooth power transfer.", true, 119.99m, 10, "114-Links Chain", 2 },
                     { 23, 4, "Durable motorcycle chain for smooth power transfer.", true, 129.99m, 7, "120-Links Chain", 2 },
-                    { 24, 4, "Quality rear sprocked made out of aluminium.", true, 89.79m, 4, "52-Teeth Rear Sprocket", 2 },
+                    { 24, 4, "Quality rear sprocked made out of aluminum.", true, 89.79m, 4, "52-Teeth Rear Sprocket", 2 },
                     { 25, 4, "Standart-sized front sprocked with self-cleaning properties.", true, 24.19m, 13, "13-Teeth Front Sprocket", 2 },
                     { 26, 7, "Complete clutch kit for enhanced performance and durability.", true, 2149.99m, 3, "Complete Clutch Kit", 2 },
                     { 27, 17, "Clutch plate kit with friction plates and steel plates for smooth engagement.", true, 339.69m, 8, "Clutch Plate Kit", 2 }

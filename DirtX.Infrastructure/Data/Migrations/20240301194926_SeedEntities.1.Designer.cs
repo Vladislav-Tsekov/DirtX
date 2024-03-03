@@ -1047,7 +1047,7 @@ namespace DirtX.Web.Data.Migrations
                             IsAvailable = true,
                             Price = 54.29m,
                             StockQuantity = 8,
-                            Title = "Aluminium Oil Filter Cap",
+                            Title = "Aluminum Oil Filter Cap",
                             Type = 1
                         },
                         new
@@ -1076,11 +1076,11 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 14,
                             BrandId = 11,
-                            Description = "Comfortable and durable lever, made out of aluminium for improved control and comfort.",
+                            Description = "Comfortable and durable lever, made out of aluminum for improved control and comfort.",
                             IsAvailable = true,
                             Price = 71.99m,
                             StockQuantity = 14,
-                            Title = "Aluminium Brake Lever",
+                            Title = "Aluminum Brake Lever",
                             Type = 3
                         },
                         new
@@ -1186,7 +1186,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 24,
                             BrandId = 4,
-                            Description = "Quality rear sprocked made out of aluminium.",
+                            Description = "Quality rear sprocked made out of aluminum.",
                             IsAvailable = true,
                             Price = 89.79m,
                             StockQuantity = 4,
@@ -1535,7 +1535,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 1,
                             TitleId = 1,
-                            Value = "Aluminium"
+                            Value = "Aluminum"
                         },
                         new
                         {

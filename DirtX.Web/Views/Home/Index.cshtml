@@ -1,8 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using DirtX.Infrastructure.Data.Models.ProductModels
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model List<Part>
+
+<h1>Most Expensive Parts</h1>
+
+<div class="d-flex flex-wrap">
+    @foreach (var part in Model)
+    {
+        <div class="card m-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@part.Title</h5>
+                <p class="card-text">Price: $@part.Price</p>
+            </div>
+        </div>
+    }
 </div>

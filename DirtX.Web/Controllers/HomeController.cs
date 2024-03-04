@@ -1,21 +1,27 @@
-﻿using DirtX.Web.Models;
+﻿using DirtX.Web.Data;
+using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DirtX.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext _context/*ILogger<HomeController> logger*/)
         {
-            _logger = logger;
+            //_logger = logger;
+            context = _context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var mostExpensiveParts = context.Parts.OrderByDescending(p => p.Price).Take(5).ToList();
+
+            return View(mostExpensiveParts);
         }
 
         public IActionResult Privacy()

@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*NAVIGATOIN BAR*/
+
+nav ul li a:hover {
+    background-color: #4800ff;
+}

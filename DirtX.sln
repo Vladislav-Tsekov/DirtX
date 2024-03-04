@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtX.Infrastructure", "Dir
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtX.Scraper", "DirtX.Scraper\DirtX.Scraper.csproj", "{3E17E77F-C4D3-4D8B-8B62-332BF07852C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirtX.Tests", "DirtX.Tests\DirtX.Tests.csproj", "{6D1A4D10-1167-4A8F-B933-D2B7726CFDE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtX.Tests", "DirtX.Tests\DirtX.Tests.csproj", "{6D1A4D10-1167-4A8F-B933-D2B7726CFDE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

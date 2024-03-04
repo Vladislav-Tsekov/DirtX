@@ -15,18 +15,19 @@ namespace DirtX.Web.Data
 
         // MOTORCYCLES
         public DbSet<Motorcycle> Motorcycles { get; set; }
-        public DbSet<Make> MotoMakes { get; set; }
-        public DbSet<Model> MotoModels { get; set; }
-        public DbSet<Year> MotoYears { get; set; }
-        public DbSet<Displacement> MotoDisplacements { get; set; }
+
+        public DbSet<Make>  Makes { get; set; }
+        public DbSet<Model> Models { get; set; }
+        public DbSet<Year> Years { get; set; }
+        public DbSet<Displacement> Displacements { get; set; }
 
         // PRODUCTS AND PRODUCTS SPECIFICATIONS/PROPERTIES
         public DbSet<Part> Parts { get; set; }
-        public DbSet<PartSpecification> PartSpecifications { get; set; }
+        public DbSet<PartSpecification> PartsSpecifications { get; set; }
         public DbSet<Oil> Oils { get; set; }
-        public DbSet<OilSpecification> OilSpecifications { get; set; }
+        public DbSet<OilSpecification> OilsSpecifications { get; set; }
         public DbSet<Gear> Gears { get; set; }
-        public DbSet<GearSpecification> GearSpecifications { get; set; }
+        public DbSet<GearSpecification> GearsSpecifications { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
 
         // MAPPING/JUNCTION TABLES

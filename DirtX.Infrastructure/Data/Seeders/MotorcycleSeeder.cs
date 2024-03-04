@@ -38,45 +38,45 @@ namespace DirtX.Infrastructure.Data.Seeders
 
         private static void SeedMotoMakes(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MotoMake>().HasData(
-                new MotoMake { Id = 1, Make = "Yamaha" },
-                new MotoMake { Id = 2, Make = "Honda" },
-                new MotoMake { Id = 3, Make = "Suzuki" },
-                new MotoMake { Id = 4, Make = "Kawasaki" },
-                new MotoMake { Id = 5, Make = "KTM" },
-                new MotoMake { Id = 6, Make = "Husqvarna" },
-                new MotoMake { Id = 7, Make = "GASGAS" }
+            modelBuilder.Entity<Make>().HasData(
+                new Make { Id = 1, Title = "Yamaha" },
+                new Make { Id = 2, Title = "Honda" },
+                new Make { Id = 3, Title = "Suzuki" },
+                new Make { Id = 4, Title = "Kawasaki" },
+                new Make { Id = 5, Title = "KTM" },
+                new Make { Id = 6, Title = "Husqvarna" },
+                new Make { Id = 7, Title = "GASGAS" }
             );
         }
 
         private static void SeedMotoModels(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MotoModel>().HasData(
-                new MotoModel { Id = 1, Model = "YZ-F" },
-                new MotoModel { Id = 2, Model = "CRF" },
-                new MotoModel { Id = 3, Model = "RM-Z" },
-                new MotoModel { Id = 4, Model = "KX-F" },
-                new MotoModel { Id = 5, Model = "SX-F" },
-                new MotoModel { Id = 6, Model = "FC" },
-                new MotoModel { Id = 7, Model = "MC-F" }
+            modelBuilder.Entity<Model>().HasData(
+                new Model { Id = 1, Title = "YZ-F" },
+                new Model { Id = 2, Title = "CRF" },
+                new Model { Id = 3, Title = "RM-Z" },
+                new Model { Id = 4, Title = "KX-F" },
+                new Model { Id = 5, Title = "SX-F" },
+                new Model { Id = 6, Title = "FC" },
+                new Model { Id = 7, Title = "MC-F" }
             );
         }
 
         private static void SeedMotoYears(ModelBuilder modelBuilder)
         {
-            List<MotoYear> years = Enumerable.Range(2005, 20)
-                                  .Select(year => new MotoYear { Id = year - 2004, Year = year })
+            List<Year> years = Enumerable.Range(2005, 20)
+                                  .Select(year => new Year { Id = year - 2004, ManufactureYear = year })
                                   .ToList();
 
-            modelBuilder.Entity<MotoYear>().HasData(years);
+            modelBuilder.Entity<Year>().HasData(years);
         }
 
         private static void SeedMotoDisplacements(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MotoDisplacement>().HasData(
-                new MotoDisplacement { Id = 1, Displacement = 250 },
-                new MotoDisplacement { Id = 2, Displacement = 350 },
-                new MotoDisplacement { Id = 3, Displacement = 450 }
+            modelBuilder.Entity<Displacement>().HasData(
+                new Displacement { Id = 1, Volume = 250 },
+                new Displacement { Id = 2, Volume = 350 },
+                new Displacement { Id = 3, Volume = 450 }
             );
         }
     }

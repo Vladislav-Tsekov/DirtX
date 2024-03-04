@@ -106,19 +106,14 @@ namespace DirtX.Infrastructure.Data.Seeders
         private static void SeedPartSpecifications(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PartSpecification>().HasData(
-                // Material
                 new PartSpecification { Id = 1, TitleId = 1, Value = "Aluminum" },
                 new PartSpecification { Id = 2, TitleId = 1, Value = "Titanium" },
                 new PartSpecification { Id = 3, TitleId = 1, Value = "Foam" },
                 new PartSpecification { Id = 4, TitleId = 1, Value = "Ferodo" },
                 new PartSpecification { Id = 5, TitleId = 1, Value = "Impregnated Cork" },
                 new PartSpecification { Id = 6, TitleId = 1, Value = "Steel" },
-
-                // Manufacture Method
                 new PartSpecification { Id = 7, TitleId = 2, Value = "Cast" },
                 new PartSpecification { Id = 8, TitleId = 2, Value = "Forged" },
-
-                // Color
                 new PartSpecification { Id = 9, TitleId = 3, Value = "Red" },
                 new PartSpecification { Id = 10, TitleId = 3, Value = "Blue" },
                 new PartSpecification { Id = 11, TitleId = 3, Value = "Green" },
@@ -126,25 +121,17 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new PartSpecification { Id = 13, TitleId = 3, Value = "White" },
                 new PartSpecification { Id = 14, TitleId = 3, Value = "Dark Gray" },
                 new PartSpecification { Id = 15, TitleId = 3, Value = "Black" },
-
-                // Piston Diameter
                 new PartSpecification { Id = 16, TitleId = 4, Value = "74.96mm" },
                 new PartSpecification { Id = 17, TitleId = 4, Value = "74.98mm" },
                 new PartSpecification { Id = 18, TitleId = 4, Value = "75.00mm" },
                 new PartSpecification { Id = 19, TitleId = 4, Value = "88.96mm" },
                 new PartSpecification { Id = 20, TitleId = 4, Value = "88.98mm" },
                 new PartSpecification { Id = 21, TitleId = 4, Value = "89.00mm" },
-
-                // Spring Rate
                 new PartSpecification { Id = 22, TitleId = 5, Value = "4.2kg/mm" },
                 new PartSpecification { Id = 23, TitleId = 5, Value = "4.6kg/mm" },
                 new PartSpecification { Id = 24, TitleId = 5, Value = "5.0kg/mm" },
-
-                // Disc Diameter
                 new PartSpecification { Id = 25, TitleId = 4, Value = "220mm" },
                 new PartSpecification { Id = 26, TitleId = 4, Value = "270mm" },
-
-                // Seal Fitment
                 new PartSpecification { Id = 27, TitleId = 6, Value = "48mm" },
                 new PartSpecification { Id = 28, TitleId = 6, Value = "50mm" }
             );
@@ -166,12 +153,9 @@ namespace DirtX.Infrastructure.Data.Seeders
         private static void SeedOilSpecifications(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OilSpecification>().HasData(
-                // Oil Viscosity
                 new OilSpecification { Id = 1, TitleId = 7, Value = "5W" },
                 new OilSpecification { Id = 2, TitleId = 7, Value = "10W40" },
                 new OilSpecification { Id = 3, TitleId = 7, Value = "15W60" },
-
-                // Color
                 new OilSpecification { Id = 4, TitleId = 3, Value = "Red" },
                 new OilSpecification { Id = 5, TitleId = 3, Value = "Blue" },
                 new OilSpecification { Id = 6, TitleId = 3, Value = "Green" }
@@ -197,12 +181,9 @@ namespace DirtX.Infrastructure.Data.Seeders
         private static void SeedGearSpecifications(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<GearSpecification>().HasData(
-                // Material
                 new GearSpecification { Id = 1, TitleId = 1, Value = "Polyester Mesh" },
                 new GearSpecification { Id = 2, TitleId = 1, Value = "Cotton" },
                 new GearSpecification { Id = 3, TitleId = 1, Value = "Denim" },
-
-                // Color
                 new GearSpecification { Id = 4, TitleId = 3, Value = "Red" },
                 new GearSpecification { Id = 5, TitleId = 3, Value = "Blue" },
                 new GearSpecification { Id = 6, TitleId = 3, Value = "Green" },

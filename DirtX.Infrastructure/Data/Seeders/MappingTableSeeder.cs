@@ -10,7 +10,6 @@ namespace DirtX.Infrastructure.Data.Seeders
             SeedPartProperty(modelBuilder);
             SeedOilProperty(modelBuilder);
             SeedGearProperty(modelBuilder);
-
             SeedMotorcyclePart(modelBuilder);
         }
 

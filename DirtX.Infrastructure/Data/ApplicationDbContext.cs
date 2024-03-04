@@ -10,16 +10,17 @@ namespace DirtX.Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
+        //TODO - ADD COMMENTS TO THE DB ELEMENTS
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
 
-        //MOTORCYCLES
+        // MOTORCYCLES
         public DbSet<Motorcycle> Motorcycles { get; set; }
-        public DbSet<MotoMake> MotoMakes { get; set; }
-        public DbSet<MotoModel> MotoModels { get; set; }
-        public DbSet<MotoYear> MotoYears { get; set; }
-        public DbSet<MotoDisplacement> MotoDisplacements { get; set; }
+        public DbSet<Make> MotoMakes { get; set; }
+        public DbSet<Model> MotoModels { get; set; }
+        public DbSet<Year> MotoYears { get; set; }
+        public DbSet<Displacement> MotoDisplacements { get; set; }
 
-        //PRODUCTS AND PRODUCTS SPECIFICATIONS/PROPERTIES
+        // PRODUCTS AND PRODUCTS SPECIFICATIONS/PROPERTIES
         public DbSet<Part> Parts { get; set; }
         public DbSet<PartSpecification> PartSpecifications { get; set; }
         public DbSet<Oil> Oils { get; set; }
@@ -28,7 +29,7 @@ namespace DirtX.Web.Data
         public DbSet<GearSpecification> GearSpecifications { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
 
-        //MAPPING/JUNCTION TABLES
+        // MAPPING/JUNCTION TABLES
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
         public DbSet<PartProperty> PartsProperties { get; set; }
         public DbSet<OilProperty> OilsProperties { get; set; }

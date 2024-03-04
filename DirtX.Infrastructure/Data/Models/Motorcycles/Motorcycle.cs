@@ -8,32 +8,32 @@ namespace DirtX.Infrastructure.Data.Models.MotorcycleSpecs
         [Key]
         public int Id { get; set; }
 
+        [Required]
         [ForeignKey(nameof(MakeId))]
-        public MotoMake Make { get; set; }
+        public Make Make { get; set; }
         public int MakeId { get; set; }
 
+        [Required]
         [ForeignKey(nameof(ModelId))]
-        public MotoModel Model { get; set; }
+        public Model Model { get; set; }
         public int ModelId { get; set; }
 
+        [Required]
         [ForeignKey(nameof(YearId))]
-        public MotoYear Year { get; set; }
+        public Year Year { get; set; }
         public int YearId { get; set; }
 
+        [Required]
         [ForeignKey(nameof(DisplacementId))]
-        public MotoDisplacement Displacement { get; set; }
+        public Displacement Displacement { get; set; }
         public int DisplacementId { get; set; }
 
         public List<MotorcyclePart> MotorcycleParts { get; set; }
 
-        public bool IsValid()
-        {
-            if (Make != null && Model != null)
-            {
-                return Make.IsModelValid(Model);
-            }
-
-            return false;
-        }
+        //TODO - CHECK WHETHER ADDITIONAL VALIDATIONS WILL BE REQUIRED FOR MAKE/MODEL RELATIONSHIP.
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) 
+        //{
+        
+        //}
     }
 }

@@ -61,9 +61,20 @@
         font-weight: bold;
     }
 
+    .brand-title {
+        margin-top: 5px;
+        font-weight: bold;
+    }
+
     .category-item a {
         color: #00008B;
         transition: color 0.3s; 
+        text-decoration: none;
+    }
+
+    .brand-item a {
+        color: #00008B;
+        transition: color 0.3s;
         text-decoration: none;
     }
 
@@ -73,6 +84,16 @@
 
     .category-item:hover a {
         color: #FFA500; 
+    }
+
+    .brand-item:hover .brand-image {
+        border-color: #FFA500;
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+
+    .brand-item:hover img {
+        color: #FFA500;
     }
 
     .brands-list li, a {

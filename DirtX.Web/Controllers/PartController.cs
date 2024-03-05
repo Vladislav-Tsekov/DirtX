@@ -59,6 +59,29 @@ namespace DirtX.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Brand(string brandName)
+        {
+            var brand = context.ProductBrands.FirstOrDefault(b => b.Name == brandName);
+
+            if (brand is null)
+            {
+                return NotFound();
+            }
+
+            var brandParts = await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
+
+            var model = new PartBrandViewModel
+            {
+                Name = brand.Name,
+                Description = brand.Description,
+                ImageUrl = brand.ImageUrl,
+                Parts = brandParts
+            };
+
+            return View(model);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var part = await context.Parts
@@ -70,7 +93,7 @@ namespace DirtX.Controllers
                 return NotFound();
             }
 
-            var partViewModel = new PartDetailsViewModel
+            var model = new PartDetailsViewModel
             {
                 Id = part.Id,
                 Type = part.Type,
@@ -82,7 +105,7 @@ namespace DirtX.Controllers
                 StockQuantity = part.StockQuantity
             };
 
-            return View(partViewModel);
+            return View(model);
         }
 
         private static string GetImageUrlForCategoryAsync(PartType type)

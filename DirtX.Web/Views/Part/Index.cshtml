@@ -112,7 +112,7 @@
     @foreach (var brand in Model.SelectMany(c => c.Brands).Distinct())
     {
         <div class="brand-item">
-            <a href="@Url.Action("Index", "Part", new { brandName = brand.Name })">
+            <a href="@Url.Action("Brand", "Part", new { brandName = brand.Name })">
                 <div class="brand-image">
                     <img src="@brand.ImageUrl" alt="@brand.Name" />
                 </div>

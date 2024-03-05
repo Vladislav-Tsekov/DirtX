@@ -1,8 +1,16 @@
 ﻿@using DirtX.Models
 
-@model PartCategoryViewModel
+@model PartBrandViewModel
 
-<h1>@Model.CategoryName</h1>
+<div>
+    <h4>@Model.Name</h4>
+    <h4>@Model.Description</h4>
+    <div class="brand-image">
+        <img src="@Model.ImageUrl" alt="@Model.Name" />
+    </div>
+</div>
+
+<h1>Parts from this manufacturer:</h1>
 
 @foreach (var part in Model.Parts)
 {

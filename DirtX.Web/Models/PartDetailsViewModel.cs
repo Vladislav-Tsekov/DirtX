@@ -2,7 +2,7 @@
 
 namespace DirtX.Models
 {
-    public class PartViewModel
+    public class PartDetailsViewModel
     {
         public int Id { get; set; }
         public PartType Type { get; set; }

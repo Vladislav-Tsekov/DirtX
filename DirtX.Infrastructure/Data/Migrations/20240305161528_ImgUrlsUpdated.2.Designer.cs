@@ -4,6 +4,7 @@ using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305161528_ImgUrlsUpdated.2")]
+    partial class ImgUrlsUpdated2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2996,7 +2998,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 3,
                             Description = "Boyesen has captured the attention of Racing teams, leveraging their engineering and manufacturing mastery to create water pump covers and impellers, ignition and clutch covers.",
-                            ImageUrl = "https://i.ibb.co/d6VvnbP/Brand-Boyesen.png",
+                            ImageUrl = "https://i.ibb.co/J7JkP6Q/Brand-Boyesen.png",
                             Name = "Boyesen"
                         },
                         new

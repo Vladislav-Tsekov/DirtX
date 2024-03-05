@@ -31,9 +31,9 @@ namespace DirtX.Controllers
                 .Where(brand => distinctBrands.Contains(brand.Id))
                 .ToListAsync();
 
-            var categoryViewModels = categories.Select(category =>
+            var model = categories.Select(category =>
             {
-                return new PartsCategoryViewModel
+                return new PartIndexViewModel
                 {
                     CategoryName = category.ToString(),
                     ImageUrl = GetImageUrlForCategoryAsync(category),
@@ -41,7 +41,7 @@ namespace DirtX.Controllers
                 };
             }).ToList();
 
-            return View(categoryViewModels);
+            return View(model);
         }
 
         [HttpGet]
@@ -49,13 +49,13 @@ namespace DirtX.Controllers
         {
             var parts = await context.Parts.Where(p => p.Type == type).ToListAsync();
 
-            var viewModel = new PartsCategoryViewModel
+            var model = new PartCategoryViewModel
             {
                 CategoryName = type.ToString(),
                 Parts = parts
             };
 
-            return View(viewModel);
+            return View(model);
         }
 
         [HttpGet]
@@ -70,7 +70,7 @@ namespace DirtX.Controllers
                 return NotFound();
             }
 
-            var partViewModel = new PartViewModel
+            var partViewModel = new PartDetailsViewModel
             {
                 Id = part.Id,
                 Type = part.Type,
@@ -85,15 +85,6 @@ namespace DirtX.Controllers
             return View(partViewModel);
         }
 
-        private List<string> GetDistinctBrandsForAllCategories()
-        {
-            return context.Parts
-                .Select(p => p.Brand.Name)
-                .Distinct()
-                .ToList();
-        }
-
-        // CHECK FOR PROPER FORMATTING, TIMING AND IMGS
         private static string GetImageUrlForCategoryAsync(PartType type)
         {
             switch (type)

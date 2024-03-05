@@ -4,6 +4,7 @@ using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305152026_ImgUrlsUpdated")]
+    partial class ImgUrlsUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2996,7 +2998,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 3,
                             Description = "Boyesen has captured the attention of Racing teams, leveraging their engineering and manufacturing mastery to create water pump covers and impellers, ignition and clutch covers.",
-                            ImageUrl = "https://i.ibb.co/d6VvnbP/Brand-Boyesen.png",
+                            ImageUrl = "https://i.ibb.co/8XQjB28/Brand-Boyesen.png",
                             Name = "Boyesen"
                         },
                         new
@@ -3010,7 +3012,7 @@ namespace DirtX.Web.Data.Migrations
                         {
                             Id = 5,
                             Description = "Galfer USA is the leading manufacturer of performance braking systems and accessories for motorcycle enthusiasts and racers alike.",
-                            ImageUrl = "https://i.ibb.co/dcgHQTq/Brand-Galfer.jpg",
+                            ImageUrl = "https://i.ibb.co/2kwbTSB/Brand-Galfer.png",
                             Name = "Galfer"
                         },
                         new
@@ -3032,7 +3034,7 @@ namespace DirtX.Web.Data.Migrations
                             Id = 8,
                             Description = "All KYB shock absorbers are designed to the highest standards and are manufactured in the same facilities that build shocks for new vehicle manufacturers.",
                             ImageUrl = "https://i.ibb.co/rb39ScR/Brand-KYB.jpg",
-                            Name = "KYB"
+                            Name = "KYB Suspension"
                         },
                         new
                         {

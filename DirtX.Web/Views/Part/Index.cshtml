@@ -1,18 +1,30 @@
 ﻿@using DirtX.Models
 
-@model List<PartsCategoryViewModel>
+@model List<PartIndexViewModel>
 
 <style>
     .category-list {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
+        gap: 25px;
+    }
+
+    .brands-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
     }
 
     .category-item {
         text-align: center;
         width: 200px;
+        transition: background-size 0.3s, border-color 0.3s;
+    }
+
+    .brand-item {
+        text-align: center;
         transition: background-size 0.3s, border-color 0.3s;
     }
 
@@ -24,7 +36,21 @@
         transition: border-color 0.3s;
     }
 
+    .brand-image {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border: 1px solid #00008B;
+        transition: border-color 0.3s;
+    }
+
     .category-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .brand-image img {
         width: 100%;
         height: auto;
         object-fit: cover;
@@ -49,18 +75,15 @@
         color: #FFA500; 
     }
 
-    .brands-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px; 
-        text-decoration: none;
-        justify-content: center;
-
-    }
-
     .brands-list li, a {
         list-style: none;
-        text-decoration: none;
+    }
+
+    .p{
+        display:flex;
+        text-align: center;
+        justify-content: center;
+        box-sizing:content-box;
     }
 
 </style>
@@ -83,11 +106,17 @@
 
 <hr />
 
-<ul class="brands-list">
+<p>Shop By Brands</p>
+
+<div class="brands-list">
     @foreach (var brand in Model.SelectMany(c => c.Brands).Distinct())
     {
-        <li>
-            <a href="@Url.Action("Index", "Part", new { brandName = brand.Name })">@brand.Name</a>
-        </li>
+        <div class="brand-item">
+            <a href="@Url.Action("Index", "Part", new { brandName = brand.Name })">
+                <div class="brand-image">
+                    <img src="@brand.ImageUrl" alt="@brand.Name" />
+                </div>
+            </a>
+        </div>
     }
-</ul>
+</div>

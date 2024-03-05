@@ -1,27 +1,26 @@
 ﻿namespace DirtX.Infrastructure.Data.Seeders
-{
+{ 
     public static class SeedersConstants
     {
-        public const string AlpinestarsImage = "https://drive.google.com/file/d/1FxMePAAWfcIuzJXsNkyLGXc72SarzT9w/view?usp=drive_link";
-        public const string BelRayImage = "https://drive.google.com/file/d/1Q7eHGc39Nu74JiQ9xAGXT_U6PyYt_3AA/view?usp=drive_link";
-        public const string BoyesenImage = "https://drive.google.com/file/d/18V7aJGhpLDHahDCZXkUj3ba1EC4yRAt1/view?usp=drive_link";
-        public const string DidImage = "https://drive.google.com/file/d/1u_AMDYAvMITYvJ5gvvBQvSoXCdWzy4Fn/view?usp=drive_link";
-        public const string GalferImage = "https://drive.google.com/file/d/1vqoUtU3jktoXdRLUVy2hy8BNM9NIKsIH/view?usp=drive_link";
-        public const string HifloFiltroImage = "https://drive.google.com/file/d/1pfA43ItMESpKjcNFkt9mPxPfFsuBGIek/view?usp=drive_link";
-        public const string HinsonImage = "https://drive.google.com/file/d/1vM-q7GziWJ0QPM9DvCtHou0IeFB2V09x/view?usp=drive_link";
-        public const string KybImage = "https://drive.google.com/file/d/1v9HysbXJIFiRPjNNRmk0WuIDFGu9s7vd/view?usp=drive_link";
-        public const string MotoMasterImage = "https://drive.google.com/file/d/17WA4ruim_w_0d4NZYFkqZBQxD8YCRrRh/view?usp=drive_link";
-        public const string MotorexImage = "https://drive.google.com/file/d/1OQEWGCcm1Nu86_gnPJsFBig1BirU-FPK/view?usp=drive_link";
-        public const string MotulImage = "https://drive.google.com/file/d/1fiWhSD1H8Ey86z-EA2R7kGqnaq8P_g1J/view?usp=drive_link";
-        public const string NgkImage = "https://drive.google.com/file/d/1M0Ueez4o-I1lL8b0b1I3o-01cCoFjSvs/view?usp=drive_link";
-        public const string OnealImage = "https://drive.google.com/file/d/1wp9VbB7HEyXBwEdBLcifwDXOQF0z8jo7/view?usp=drive_link";
-        public const string ShowaImage = "https://drive.google.com/file/d/1ZB6Dwt_HLf3POFZzqnD0a3HXxubUJcW7/view?usp=drive_link";
-        public const string ThorImage = "https://drive.google.com/file/d/1wfLhkB71NPVcHwN-arQzM1rMHEM5Tw0W/view?usp=drive_link";
-        public const string TwinAirImage = "https://drive.google.com/file/d/147cA1lxAaTuhfO-kyAP1a4tj94rmnqme/view?usp=drive_link";
-        public const string VertexImage = "https://drive.google.com/file/d/1aXRZrZDsliYeRI_Rc3VnvRAa8pxbeq9f/view?usp=drive_link";
-        public const string WisecoImage = "https://drive.google.com/file/d/1fSttXdhGap4aN91KiHXoK4Y99aNUpQLD/view?usp=drive_link";
-        public const string YamalubeImage = "https://drive.google.com/file/d/1py97QclS3g4hys_ah5hUqzyrH9VwPFcH/view?usp=drive_link";
-
+        public const string AlpinestarsImage = "https://i.ibb.co/pRBhwQL/Brand-Alpinestars.jpg";
+        public const string BelRayImage = "https://i.ibb.co/QJVYPT5/Brand-Belray.png";
+        public const string BoyesenImage = "https://i.ibb.co/d6VvnbP/Brand-Boyesen.png";
+        public const string DidImage = "https://i.ibb.co/FHZw9Kn/Brand-DID.jpg";
+        public const string GalferImage = "https://i.ibb.co/dcgHQTq/Brand-Galfer.jpg";
+        public const string HifloFiltroImage = "https://i.ibb.co/JHRM0wR/Brand-Hiflofiltro.png";
+        public const string HinsonImage = "https://i.ibb.co/6P8X0rw/Brand-Hinson.png";
+        public const string KybImage = "https://i.ibb.co/rb39ScR/Brand-KYB.jpg";
+        public const string MotoMasterImage = "https://i.ibb.co/wYHcP3V/Brand-Moto-Master.png";
+        public const string MotorexImage = "https://i.ibb.co/BTH07X5/Brand-Motorex.png";
+        public const string MotulImage = "https://i.ibb.co/GCr2RWB/Brand-Motul.png";
+        public const string NgkImage = "https://i.ibb.co/LPmhfCZ/Brand-NGK.jpg";
+        public const string OnealImage = "https://i.ibb.co/mcTTcvw/Brand-Oneal.png";
+        public const string ShowaImage = "https://i.ibb.co/Hq2m8dJ/Brand-Showa.png";
+        public const string ThorImage = "https://i.ibb.co/brNJbzM/Brand-Thor.jpg";
+        public const string TwinAirImage = "https://i.ibb.co/SVDTgZW/Brand-Twin-Air.png";
+        public const string VertexImage = "https://i.ibb.co/ggg74HP/Brand-Vertex.gif";
+        public const string WisecoImage = "https://i.ibb.co/c2BQ2n7/Brand-Wiseco.gif";
+        public const string YamalubeImage = "https://i.ibb.co/8403f2t/Brand-Yamalube.jpg";
 
         public const string AlpinestarsDescription = "Alpinestars is an Italian motorsports and action sports safety equipment manufacturer based in Asolo, Italy.";
         public const string BelRayDescription = "A leader in lubrication technology, Bel-Ray has engineered products to protect, while delivering superior business value for application in automotive, motorcycle, powersports, steel, textile and other industries.";

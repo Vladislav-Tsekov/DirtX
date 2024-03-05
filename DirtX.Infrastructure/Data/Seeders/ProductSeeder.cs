@@ -33,7 +33,7 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new ProductBrand { Id = 5, Name = "Galfer", Description = GalferDescription, ImageUrl = GalferImage },
                 new ProductBrand { Id = 6, Name = "HifloFiltro", Description = HifloFiltroDescription, ImageUrl = HifloFiltroImage },
                 new ProductBrand { Id = 7, Name = "Hinson", Description = HinsonDescription, ImageUrl = HinsonImage },
-                new ProductBrand { Id = 8, Name = "KYB Suspension", Description = KybDescription, ImageUrl = KybImage },
+                new ProductBrand { Id = 8, Name = "KYB", Description = KybDescription, ImageUrl = KybImage },
                 new ProductBrand { Id = 9, Name = "Motorex", Description = MotorexDescription, ImageUrl = MotorexImage },
                 new ProductBrand { Id = 10, Name = "MOTUL", Description = MotulDescription, ImageUrl = MotulImage },
                 new ProductBrand { Id = 11, Name = "Moto-Master", Description = MotoMasterDescription, ImageUrl = MotoMasterImage },

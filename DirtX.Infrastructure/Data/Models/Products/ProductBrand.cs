@@ -12,5 +12,7 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
 
         [Required]
         public string Description { get; set; }
+
+        //TODO - ADD BRAND IMAGES
     }
 }

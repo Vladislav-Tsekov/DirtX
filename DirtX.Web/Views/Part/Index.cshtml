@@ -52,15 +52,27 @@
     .category-item:hover a {
         color: #FFA500; 
     }
-</style>
 
-<h1>Parts</h1>
+    .brands-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; 
+        text-decoration: none;
+        justify-content: center;
+
+    }
+
+    .brands-list li, a {
+        list-style: none;
+        text-decoration: none;
+    }
+</style>
 
 <div class="category-list">
     @foreach (var category in Model)
     {
         <div class="category-item">
-            <a href="@Url.Action("Category", "Parts", new { type = category.CategoryName })">
+            <a href="@Url.Action("Category", "Part", new { type = category.CategoryName })">
                 <div class="category-image">
                     <img src="@category.ImageUrl" alt="@category.CategoryName" />
                 </div>
@@ -71,3 +83,14 @@
         </div>
     }
 </div>
+
+<hr />
+
+<ul class="brands-list">
+    @foreach (var brand in Model.SelectMany(c => c.Brands).Distinct())
+    {
+        <li>
+            <a href="@Url.Action("Index", "Part", new { brandName = brand.Name })">@brand.Name</a>
+        </li>
+    }
+</ul>

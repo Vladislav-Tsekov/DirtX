@@ -6,26 +6,38 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Controllers
 {
-    public class PartsController : Controller
+    public class PartController : Controller
     {
         private readonly ApplicationDbContext context;
 
-        public PartsController(ApplicationDbContext _context)
+        public PartController(ApplicationDbContext _context)
         {
             context = _context;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var categories = Enum.GetValues(typeof(PartType)).Cast<PartType>();
+
+            var allParts = await context.Parts.ToListAsync();
+
+            var distinctBrands = allParts
+                .Select(p => p.BrandId)
+                .Distinct()
+                .ToList();
+
+            var partsBrands = await context.ProductBrands
+                .Where(brand => distinctBrands.Contains(brand.Id))
+                .ToListAsync();
 
             var categoryViewModels = categories.Select(category =>
             {
                 return new PartsCategoryViewModel
                 {
                     CategoryName = category.ToString(),
-                    ImageUrl = GetImageUrlForCategoryAsync(category)
+                    ImageUrl = GetImageUrlForCategoryAsync(category),
+                    Brands = partsBrands
                 };
             }).ToList();
 
@@ -71,6 +83,14 @@ namespace DirtX.Controllers
             };
 
             return View(partViewModel);
+        }
+
+        private List<string> GetDistinctBrandsForAllCategories()
+        {
+            return context.Parts
+                .Select(p => p.Brand.Name)
+                .Distinct()
+                .ToList();
         }
 
         // CHECK FOR PROPER FORMATTING, TIMING AND IMGS

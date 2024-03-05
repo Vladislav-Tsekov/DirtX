@@ -7,5 +7,6 @@ namespace DirtX.Models
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
         public List<Part> Parts { get; set; }
+        public List<ProductBrand> Brands { get; set; }
     }
 }

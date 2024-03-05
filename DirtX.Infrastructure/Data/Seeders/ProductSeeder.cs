@@ -26,25 +26,25 @@ namespace DirtX.Infrastructure.Data.Seeders
         private static void SeedProductBrands(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductBrand>().HasData(
-                new ProductBrand { Id = 1, Name = "Alpinestars", Description = AlpinestarsDescription },
-                new ProductBrand { Id = 2, Name = "BEL-RAY", Description = BelRayDescription },
-                new ProductBrand { Id = 3, Name = "Boyesen", Description = BoyesenDescription },
-                new ProductBrand { Id = 4, Name = "D.I.D", Description = DIDDescription },
-                new ProductBrand { Id = 5, Name = "Galfer", Description = GalferDescription },
-                new ProductBrand { Id = 6, Name = "HifloFiltro", Description = HifloFiltroDescription },
-                new ProductBrand { Id = 7, Name = "Hinson", Description = HinsonDescription },
-                new ProductBrand { Id = 8, Name = "KYB Suspension", Description = KYBDescription },
-                new ProductBrand { Id = 9, Name = "Motorex", Description = MotorexDescription },
-                new ProductBrand { Id = 10, Name = "MOTUL", Description = MotulDescription },
-                new ProductBrand { Id = 11, Name = "Moto-Master", Description = MotoMasterDescription },
-                new ProductBrand { Id = 12, Name = "NGK", Description = NGKDescription },
-                new ProductBrand { Id = 13, Name = "O'NEAL", Description = ONealDescription },
-                new ProductBrand { Id = 14, Name = "Showa", Description = ShowaDescription },
-                new ProductBrand { Id = 15, Name = "THOR", Description = ThorDescription },
-                new ProductBrand { Id = 16, Name = "Twin Air", Description = TwinAirDescription },
-                new ProductBrand { Id = 17, Name = "Vertex", Description = VertexDescription },
-                new ProductBrand { Id = 18, Name = "Wiseco", Description = WisecoDescription },
-                new ProductBrand { Id = 19, Name = "YAMALUBE", Description = YamalubeDescription } 
+                new ProductBrand { Id = 1, Name = "Alpinestars", Description = AlpinestarsDescription, ImageUrl = AlpinestarsImage },
+                new ProductBrand { Id = 2, Name = "BEL-RAY", Description = BelRayDescription, ImageUrl = BelRayImage },
+                new ProductBrand { Id = 3, Name = "Boyesen", Description = BoyesenDescription, ImageUrl = BoyesenImage },
+                new ProductBrand { Id = 4, Name = "D.I.D", Description = DidDescription, ImageUrl = DidImage },
+                new ProductBrand { Id = 5, Name = "Galfer", Description = GalferDescription, ImageUrl = GalferImage },
+                new ProductBrand { Id = 6, Name = "HifloFiltro", Description = HifloFiltroDescription, ImageUrl = HifloFiltroImage },
+                new ProductBrand { Id = 7, Name = "Hinson", Description = HinsonDescription, ImageUrl = HinsonImage },
+                new ProductBrand { Id = 8, Name = "KYB Suspension", Description = KybDescription, ImageUrl = KybImage },
+                new ProductBrand { Id = 9, Name = "Motorex", Description = MotorexDescription, ImageUrl = MotorexImage },
+                new ProductBrand { Id = 10, Name = "MOTUL", Description = MotulDescription, ImageUrl = MotulImage },
+                new ProductBrand { Id = 11, Name = "Moto-Master", Description = MotoMasterDescription, ImageUrl = MotoMasterImage },
+                new ProductBrand { Id = 12, Name = "NGK", Description = NgkDescription, ImageUrl = NgkImage },
+                new ProductBrand { Id = 13, Name = "O'NEAL", Description = OnealDescription, ImageUrl = OnealImage },
+                new ProductBrand { Id = 14, Name = "Showa", Description = ShowaDescription, ImageUrl = ShowaImage },
+                new ProductBrand { Id = 15, Name = "THOR", Description = ThorDescription, ImageUrl = ThorImage },
+                new ProductBrand { Id = 16, Name = "Twin Air", Description = TwinAirDescription, ImageUrl = TwinAirImage },
+                new ProductBrand { Id = 17, Name = "Vertex", Description = VertexDescription, ImageUrl = VertexImage },
+                new ProductBrand { Id = 18, Name = "Wiseco", Description = WisecoDescription, ImageUrl = WisecoImage },
+                new ProductBrand { Id = 19, Name = "YAMALUBE", Description = YamalubeDescription, ImageUrl = YamalubeImage } 
             );
         }
 

@@ -17,16 +17,13 @@ namespace DirtX.Web.Controllers
             context = _context;
         }
 
+
+        //TODO - DROPDOWN JS - SELECT 2 LIBRARY
         public IActionResult Index()
         {
             var mostExpensiveParts = context.Parts.OrderByDescending(p => p.Price).Take(5).ToList();
 
             return View(mostExpensiveParts);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

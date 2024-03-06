@@ -8,6 +8,8 @@ namespace DirtX.Controllers
 {
     public class PartController : Controller
     {
+        //TODO - USE CUSTOM ROUTING IF ENOUGH TIME IS LEFT FOR THE TASK
+
         private readonly ApplicationDbContext context;
 
         public PartController(ApplicationDbContext _context)

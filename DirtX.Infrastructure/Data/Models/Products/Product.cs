@@ -20,6 +20,8 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Price { get; set; }
 
+        //TODO - PROPERTY bool IsOnSale? / SalePercentage
+
         [Required]
         public string Description { get; set; }
 

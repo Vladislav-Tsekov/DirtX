@@ -13,9 +13,8 @@ namespace DirtX.Web.Data
         //TODO - ADD COMMENTS TO THE DB ELEMENTS
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
 
-        // MOTORCYCLES
+        // MOTORCYCLE AND MOTORCYCLE RELATED TABLES
         public DbSet<Motorcycle> Motorcycles { get; set; }
-
         public DbSet<Make>  Makes { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Year> Years { get; set; }
@@ -46,6 +45,8 @@ namespace DirtX.Web.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //TODO - USE THE IENTITYCONFIGURATION INSTEAD MODELBUILDER?
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Motorcycle>()

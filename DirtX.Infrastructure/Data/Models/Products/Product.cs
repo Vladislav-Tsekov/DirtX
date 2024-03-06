@@ -16,8 +16,10 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
         [Required]
         public string Title { get; set; }
 
+        //TODO - DECIMAL RANGE NEEDED OR NOT?
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
+        //[Range(typeof(decimal), "", "", ConvertValueInInvariantCulture = true)]
         public decimal Price { get; set; }
 
         //TODO - PROPERTY bool IsOnSale? / SalePercentage

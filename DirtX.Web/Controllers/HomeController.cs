@@ -1,7 +1,6 @@
 ﻿using DirtX.Web.Data;
 using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DirtX.Web.Controllers
@@ -16,7 +15,6 @@ namespace DirtX.Web.Controllers
             //_logger = logger;
             context = _context;
         }
-
 
         //TODO - DROPDOWN JS - SELECT 2 LIBRARY
         public IActionResult Index()

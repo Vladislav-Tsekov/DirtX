@@ -45,7 +45,7 @@ namespace DirtX.Web.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //TODO - USE THE IENTITYCONFIGURATION INSTEAD MODELBUILDER?
+            //TODO - USE IENTITYCONFIGURATION INSTEAD MODELBUILDER?
 
             base.OnModelCreating(modelBuilder);
 

@@ -2,7 +2,7 @@
 using DirtX.Infrastructure.Data.Models.ProductModels;
 using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using Microsoft.EntityFrameworkCore;
-using static DirtX.Infrastructure.Data.Seeders.SeedersConstants;
+using static DirtX.Infrastructure.Shared.SeedersConstants;
 
 namespace DirtX.Infrastructure.Data.Seeders
 {

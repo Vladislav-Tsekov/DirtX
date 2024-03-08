@@ -16,10 +16,16 @@ namespace DirtX.Web.Controllers
             context = _context;
         }
 
+        //TODO - MODELSTATE VALIDATION EVERYWHERE!
         //TODO - DROPDOWN JS - SELECT 2 LIBRARY
         public IActionResult Index()
         {
             var mostExpensiveParts = context.Parts.OrderByDescending(p => p.Price).Take(5).ToList();
+
+            if (!ModelState.IsValid)
+            {
+                return Error();
+            }
 
             return View(mostExpensiveParts);
         }

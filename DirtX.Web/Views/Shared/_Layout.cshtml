@@ -9,29 +9,79 @@
     <link rel="stylesheet" href="~/DirtX.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+    <div class="header-container">
+        <div class="row">
+            <header class="d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <a href="#"><img src="logo_image_url" title="Logo Title" alt="Logo Alt Text"></a>
+                </div>
+                <div class="phone">
+                    <img src="phone_image_url" alt="Phone Icon"> +3598888888
+                </div>
+                <div class="garage">
+                    <div class="total-bikes">0</div>
+                    <img width="48" height="27" src="garage_image_url" alt="Garage Icon">
+                    <a href="my_garage_view_here">My Garage</a>
+                </div>
+                <div class="wishlist">
+                    <a href="wishlist_link">
+                        <img src="wishlist_image_url" alt="Wishlist Icon">
+                        <span class="favorite_cnt">0</span>
+                    </a>
+                </div>
+            </header>
+        </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DirtX (LOGO)</a>
+@*                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a> 
+                   INSERT CLICKABLE LOGO THAT WILL LEAD TO THE HOMEPAGE
+*@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-2">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Part" asp-action="Index">Parts</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Oils and Liquids</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Riding Gear</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Used Motorcycles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Forum (?)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Maintenance Tips</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Helpful Links (Dropdown)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Rent a Trailer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">About Us</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
+    </div>
 
-    </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

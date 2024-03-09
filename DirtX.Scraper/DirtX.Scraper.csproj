@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MotocrossScraper\" />
-    <Folder Include="EnduroScraper\" />
+    <Compile Remove="EnduroScraper\**" />
+    <Compile Remove="MotocrossScraper\**" />
+    <EmbeddedResource Remove="EnduroScraper\**" />
+    <EmbeddedResource Remove="MotocrossScraper\**" />
+    <None Remove="EnduroScraper\**" />
+    <None Remove="MotocrossScraper\**" />
   </ItemGroup>
 
 </Project>

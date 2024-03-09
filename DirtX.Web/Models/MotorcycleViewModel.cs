@@ -1,0 +1,14 @@
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace DirtX.Models
+{
+    public class MotorcycleViewModel
+    {
+        public int SelectedMake { get; set; }
+        public int SelectedModel { get; set; }
+
+        public IEnumerable<SelectListItem> Makes { get; set; }
+        public IEnumerable<SelectListItem> Models { get; set; }
+    }
+
+}

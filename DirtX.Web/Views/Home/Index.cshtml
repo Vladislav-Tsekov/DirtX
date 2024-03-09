@@ -1,17 +1,44 @@
-﻿@model List<Part>
+﻿@model MotorcycleViewModel
 
-@*DIFFERENT SECTIONS - ONE FOR NEWS (ON THE LEFT), ONE FOR SPECIAL OFFERS (ON THE RIGHT), ETC...*@
+@{
+    ViewData["Title"] = "Motorcycle Selection";
+}
 
-<h1>Most Expensive Parts</h1>
+<h2>Motorcycle Selection</h2>
 
-<div class="d-flex flex-wrap">
-    @foreach (var part in Model)
-    {
-        <div class="card m-2" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">@part.Title</h5>
-                <p class="card-text">Price: $@part.Price</p>
-            </div>
-        </div>
-    }
+<div class="form-group">
+    <label asp-for="SelectedMake" class="control-label"></label>
+    <select asp-for="SelectedMake" class="form-control" id="makeDropdown">
+        <option value="">Select a Make</option>
+        @foreach (var make in Model.Makes)
+        {
+            <option value="@make.Value">@make.Text</option>
+        }
+    </select>
 </div>
+
+<div class="form-group">
+    <label asp-for="SelectedModel" class="control-label"></label>
+    <select asp-for="SelectedModel" class="form-control" id="modelDropdown">
+        <option value="">Select a Model</option>
+    </select>
+</div>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#makeDropdown').change(function () {
+                var selectedMake = $(this).val();
+                $.getJSON('@Url.Action("GetMotorcycle", "Home")', { make: selectedMake }, function (models) {
+                    var modelDropdown = $('#modelDropdown');
+                    modelDropdown.empty();
+                    modelDropdown.append($('<option></option>').attr('value', '').text('Select a Model'));
+                    $.each(models, function (index, model) {
+                        modelDropdown.append($('<option></option>').attr('value', model.value).text(model.text));
+                    });
+                });
+            });
+        });
+    </script>
+}

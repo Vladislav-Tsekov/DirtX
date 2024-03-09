@@ -1,6 +1,9 @@
-﻿using DirtX.Web.Data;
+﻿using DirtX.Models;
+using DirtX.Web.Data;
 using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DirtX.Web.Controllers
@@ -18,16 +21,36 @@ namespace DirtX.Web.Controllers
 
         //TODO - MODELSTATE VALIDATION EVERYWHERE!
         //TODO - DROPDOWN JS - SELECT 2 LIBRARY
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            var mostExpensiveParts = context.Parts.OrderByDescending(p => p.Price).Take(5).ToList();
+            var viewModel = new MotorcycleViewModel
+            {
+                Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
+                Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMotorcycle(int make)
+        {
+            var motorcycles = await context.Motorcycles
+                                        .Include(m => m.Model)
+                                        .Where(m => m.MakeId == make)
+                                        .Select(m => m.Model)
+                                        .Distinct()
+                                        .ToListAsync();
 
             if (!ModelState.IsValid)
             {
                 return Error();
             }
 
-            return View(mostExpensiveParts);
+            var models = motorcycles.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title });
+
+            return Json(models);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

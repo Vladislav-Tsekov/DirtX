@@ -20,7 +20,7 @@ namespace DirtX.Web.Data
         public DbSet<Year> Years { get; set; }
         public DbSet<Displacement> Displacements { get; set; }
 
-        // PRODUCTS AND PRODUCTS SPECIFICATIONS/PROPERTIES
+        // PRODUCTS AND PRODUCT'S SPECIFICATIONS/PROPERTIES
         public DbSet<Part> Parts { get; set; }
         public DbSet<PartSpecification> PartsSpecifications { get; set; }
         public DbSet<Oil> Oils { get; set; }

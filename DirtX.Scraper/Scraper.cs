@@ -1,4 +1,5 @@
-﻿using DirtX.Scraper.Models;
+﻿using DirtX.Scraper.Data.Models.Enums;
+using DirtX.Scraper.Models;
 using HtmlAgilityPack;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -174,29 +175,22 @@ namespace DirtX.Scraper
                 }
             }
 
+            HashSet<Motorcycle> motorcycles = new();
 
+            Category ctg = Category.Motocross;
 
-            HashSet<IMotorcycle> motorcycles = new();
-
-            IMotorcycle currentMoto;
-            if (motoClass == "motocross")
+            if (motoClass == "enduro")
             {
-                for (int i = 0; i < makes.Count; i++)
-                {
-                    currentMoto = new Motocross(makes[i], displacements[i], years[i], prices[i], links[i]);
-                    motorcycles.Add(currentMoto);
-                }
-            }
-            else if (motoClass == "enduro")
-            {
-                for (int i = 0; i < makes.Count; i++)
-                {
-                    currentMoto = new Enduro(makes[i], displacements[i], years[i], prices[i], links[i]);
-                    motorcycles.Add(currentMoto);
-                }
+                ctg = Category.Enduro;
             }
 
-            List<IMotorcycle> scrapedMoto = motorcycles
+            for (int i = 0; i < makes.Count; i++)
+            {
+                Motorcycle currentMoto = new(makes[i], displacements[i], years[i], prices[i], links[i], ctg);
+                motorcycles.Add(currentMoto);
+            }
+
+            List<Motorcycle> scrapedMoto = motorcycles
                                 .Where(m => m.Price > 3000 && m.Year >= 2006 && m.Year <= DateTime.Now.Year)
                                 .OrderBy(m => m.Make)
                                 .ThenBy(m => m.Year)

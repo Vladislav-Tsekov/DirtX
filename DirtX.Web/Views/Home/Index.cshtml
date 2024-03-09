@@ -24,21 +24,49 @@
     </select>
 </div>
 
+<div class="form-group">
+    <label asp-for="SelectedYear" class="control-label"></label>
+    <select asp-for="SelectedYear" class="form-control" id="yearDropdown">
+        <option value="">Select a Year</option>
+    </select>
+</div>
+
+
 
 @section scripts {
     <script>
         $(document).ready(function () {
             $('#makeDropdown').change(function () {
                 var selectedMake = $(this).val();
+                var modelDropdown = $('#modelDropdown');
+                modelDropdown.empty();
+                modelDropdown.append($('<option></option>').attr('value', '').text('Select a Model')); 
+
+                var yearDropdown = $('#yearDropdown');
+                yearDropdown.empty(); 
+                yearDropdown.append($('<option></option>').attr('value', '').text('Select a Year'));
+
                 $.getJSON('@Url.Action("GetMotorcycle", "Home")', { make: selectedMake }, function (models) {
-                    var modelDropdown = $('#modelDropdown');
-                    modelDropdown.empty();
-                    modelDropdown.append($('<option></option>').attr('value', '').text('Select a Model'));
                     $.each(models, function (index, model) {
                         modelDropdown.append($('<option></option>').attr('value', model.value).text(model.text));
                     });
                 });
             });
+
+            $('#modelDropdown').change(function () {
+                var selectedMake = $('#makeDropdown').val();
+                var selectedModel = $(this).val();
+                var yearDropdown = $('#yearDropdown');
+                yearDropdown.empty(); 
+                yearDropdown.append($('<option></option>').attr('value', '').text('Select a Year'));
+
+                $.getJSON('@Url.Action("GetYear", "Home")', { make: selectedMake, model: selectedModel }, function (years) {
+                    $.each(years, function (index, year) {
+                        yearDropdown.append($('<option></option>').attr('value', year.value).text(year.text));
+                    });
+                });
+            });
         });
+
     </script>
 }

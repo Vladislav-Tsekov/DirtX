@@ -27,7 +27,8 @@ namespace DirtX.Web.Controllers
             var viewModel = new MotorcycleViewModel
             {
                 Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
-                Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync()
+                Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
+                Years = await context.Years.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.ManufactureYear.ToString() }).ToListAsync()
             };
 
             return View(viewModel);
@@ -52,6 +53,24 @@ namespace DirtX.Web.Controllers
 
             return Json(models);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetYear(int make, int model)
+        {
+            var years = await context.Motorcycles
+                                    .Where(m => m.MakeId == make && m.ModelId == model)
+                                    .Select(m => new SelectListItem { Value = m.YearId.ToString(), Text = m.Year.ManufactureYear.ToString() })
+                                    .Distinct()
+                                    .ToListAsync();
+
+            if (!ModelState.IsValid)
+            {
+                return Error();
+            }
+
+            return Json(years);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

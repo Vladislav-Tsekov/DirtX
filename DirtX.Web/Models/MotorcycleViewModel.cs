@@ -6,9 +6,11 @@ namespace DirtX.Models
     {
         public int SelectedMake { get; set; }
         public int SelectedModel { get; set; }
+        public int SelectedYear { get; set; }
 
         public IEnumerable<SelectListItem> Makes { get; set; }
         public IEnumerable<SelectListItem> Models { get; set; }
+        public IEnumerable<SelectListItem> Years { get; set; }
     }
 
 }

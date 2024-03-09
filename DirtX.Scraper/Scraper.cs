@@ -57,6 +57,117 @@ namespace DirtX.Scraper
                     HtmlNodeCollection descriptionNodes = doc.DocumentNode.SelectNodes(DescriptionNodes);
                     HtmlNodeCollection linkNodes = doc.DocumentNode.SelectNodes(LinkNodes);
 
+                    if (titleNodes != null)
+                    {
+                        foreach (var titleNode in titleNodes)
+                        {
+                            string title = titleNode.InnerText;
+
+                            if (string.IsNullOrEmpty(title))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                string[] titleTokens = title.Split();
+
+                                string make = titleTokens[0];
+                                makes.Add(make);
+
+                                int cc = 0;
+
+                                foreach (string cubicCent in titleTokens)
+                                {
+                                    Match ccMatch = Regex.Match(cubicCent, @"\d{3}");
+
+                                    if (ccMatch.Success)
+                                    {
+                                        string ccValue = ccMatch.Value;
+                                        cc = int.Parse(ccValue);
+                                        displacements.Add(cc);
+                                        break;
+                                    }
+                                }
+
+                                if (cc == 0)
+                                {
+                                    displacements.Add(cc);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        doomCounter++;
+                        Console.WriteLine("No titles found on the page.");
+                    }
+
+                    if (priceNodes != null)
+                    {
+                        foreach (var priceNode in priceNodes)
+                        {
+                            string priceInnerText = priceNode.InnerText;
+                            string priceEdit = Regex.Replace(priceInnerText, @"[^\d]", "");
+
+                            if (decimal.TryParse(priceEdit, out decimal price))
+                            {
+                                prices.Add(price);
+                            }
+                            else
+                            {
+                                prices.Add(0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        doomCounter++;
+                        Console.WriteLine("No prices found on the page.");
+                    }
+
+                    if (descriptionNodes != null)
+                    {
+                        foreach (var infoNode in descriptionNodes)
+                        {
+                            string infoText = infoNode.InnerText;
+                            Match yearMatch = Regex.Match(infoText, @"\d{4}");
+
+                            if (yearMatch.Success)
+                            {
+                                int year = int.Parse(yearMatch.Value);
+                                years.Add(year);
+                            }
+                            else
+                            {
+                                years.Add(0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        doomCounter++;
+                        Console.WriteLine("No years found on the page.");
+                    }
+
+                    if (linkNodes != null)
+                    {
+                        foreach (var href in linkNodes)
+                        {
+                            string link = href.GetAttributeValue("href", "");
+                            string modifiedLink = link[2..40];
+                            links.Add(modifiedLink);
+                        }
+                    }
+                    else
+                    {
+                        doomCounter++;
+                        Console.WriteLine("No matching links found.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Failed to retrieve the web page.");
+                    return;
                 }
             }
         }

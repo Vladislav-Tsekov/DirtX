@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using DirtX.Scraper.Models;
+using HtmlAgilityPack;
 using System.Text;
 using System.Text.RegularExpressions;
 using static DirtX.Scraper.Settings;
@@ -7,9 +8,11 @@ namespace DirtX.Scraper
 {
     public class Scraper
     {
-        public async Task Run(string category)
+        public async Task Run(string vehicleClass)
         {
             Config();
+            
+            string motoClass = vehicleClass.ToLower();
 
             List<string> makes = new();
             List<int> displacements = new();
@@ -20,11 +23,11 @@ namespace DirtX.Scraper
             using HttpClient client = new();
 
             string baseUrl = string.Empty;
-            if (category.ToLower() == "motocross")
+            if (motoClass == "motocross")
             {
                 baseUrl = MxBaseUrl;
             }
-            else
+            else if (motoClass == "enduro")
             {
                 baseUrl = EnduroBaseUrl;
             }
@@ -170,6 +173,38 @@ namespace DirtX.Scraper
                     return;
                 }
             }
+
+
+
+            HashSet<IMotorcycle> motorcycles = new();
+
+            IMotorcycle currentMoto;
+            if (motoClass == "motocross")
+            {
+                for (int i = 0; i < makes.Count; i++)
+                {
+                    currentMoto = new Motocross(makes[i], displacements[i], years[i], prices[i], links[i]);
+                    motorcycles.Add(currentMoto);
+                }
+            }
+            else if (motoClass == "enduro")
+            {
+                for (int i = 0; i < makes.Count; i++)
+                {
+                    currentMoto = new Enduro(makes[i], displacements[i], years[i], prices[i], links[i]);
+                    motorcycles.Add(currentMoto);
+                }
+            }
+
+            List<IMotorcycle> scrapedMoto = motorcycles
+                                .Where(m => m.Price > 3000 && m.Year >= 2006 && m.Year <= DateTime.Now.Year)
+                                .OrderBy(m => m.Make)
+                                .ThenBy(m => m.Year)
+                                .ThenBy(m => m.Price)
+                                .ToList();
+
+            List<string> distinctMakes = makes.Distinct().OrderBy(m => m).ToList();
+            List<int> distinctYears = years.Distinct().OrderBy(y => y).ToList();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿namespace DirtX.Infrastructure.Data.Seeders
-{ 
+﻿namespace DirtX.Infrastructure.Shared
+{
     public static class SeedersConstants
     {
         public const string AlpinestarsImage = "https://i.ibb.co/pRBhwQL/Brand-Alpinestars.jpg";

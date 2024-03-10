@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<AppUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
         //TODO - ADD COMMENTS TO THE DB ELEMENTS
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}

@@ -32,5 +32,8 @@ namespace DirtX.Infrastructure.Data.Models.ProductModels
 
         [Required]
         public int StockQuantity { get; set; }
+
+        [Required]
+        public string ImageUrl { get; set; }
     }
 }

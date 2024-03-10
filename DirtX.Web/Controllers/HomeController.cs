@@ -88,21 +88,7 @@ namespace DirtX.Web.Controllers
             return Json(years);
         }
 
-        [HttpGet]
-        public IActionResult GetCompatibleParts(int makeId, int modelId, int displacementId, int yearId)
-        {
-            var compatibleParts = context.MotorcyclesParts
-                .Include(mp => mp.Motorcycle)
-                .Include(mp => mp.Part)
-                .Include(mp => mp.Part.Brand)
-                .Where(mp => mp.Motorcycle.MakeId == makeId &&
-                             mp.Motorcycle.ModelId == modelId &&
-                             mp.Motorcycle.DisplacementId == displacementId &&
-                             mp.Motorcycle.YearId == yearId)
-                .ToList();
 
-            return View(compatibleParts);
-        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

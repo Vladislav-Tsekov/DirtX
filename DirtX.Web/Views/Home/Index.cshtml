@@ -105,7 +105,7 @@
             var selectedDisplacement = $('#displacementDropdown').val();
             var selectedYear = $('#yearDropdown').val();
 
-            window.location.href = '@Url.Action("GetCompatibleParts", "Home")'
+            window.location.href = '@Url.Action("GetCompatibleParts", "Part")'
                 + '?makeId=' + selectedMake
                 + '&modelId=' + selectedModel
                 + '&displacementId=' + selectedDisplacement

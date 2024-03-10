@@ -11,8 +11,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Part Name</th>
-                <th>Part Description</th>
+                <th>Brand</th>
+                <th>Part</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
                 <!-- Add props -->
             </tr>
         </thead>
@@ -20,8 +23,11 @@
             @foreach (var part in Model)
             {
                 <tr>
-                    <td>@part.Part.Title</td>
+                    <td><img src="@part.Part.Brand.ImageUrl" style="width: 80px; height: 80px; border: 1px solid black;" /></td>
+                    <td>@part.Part.Brand.Name - @part.Part.Title</td>
                     <td>@part.Part.Description</td>
+                    <td>@part.Part.Price</td>
+                    <td>@part.Part.Type.ToString()</td>
                     <!-- Add props -->
                 </tr>
             }

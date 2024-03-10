@@ -94,6 +94,7 @@ namespace DirtX.Web.Controllers
             var compatibleParts = context.MotorcyclesParts
                 .Include(mp => mp.Motorcycle)
                 .Include(mp => mp.Part)
+                .Include(mp => mp.Part.Brand)
                 .Where(mp => mp.Motorcycle.MakeId == makeId &&
                              mp.Motorcycle.ModelId == modelId &&
                              mp.Motorcycle.DisplacementId == displacementId &&

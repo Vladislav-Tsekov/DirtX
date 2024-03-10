@@ -88,9 +88,6 @@ namespace DirtX.Web.Controllers
             return Json(years);
         }
 
-
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

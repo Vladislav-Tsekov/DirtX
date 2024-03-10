@@ -1,15 +1,10 @@
 ﻿@model MotorcycleViewModel
 
-@{
-    ViewData["Title"] = "Motorcycle Selection";
-}
+<h2>Find Parts For Your Motorcycle!</h2>
 
-<h2>Motorcycle Selection</h2>
-
-<div class="form-group">
-    <label asp-for="SelectedMake" class="control-label"></label>
-    <select asp-for="SelectedMake" class="form-control" id="makeDropdown">
-        <option value="">Select a Make</option>
+<div class="form-group" style="display: inline-block; margin-right: 10px;">
+    <select asp-for="SelectedMake" class="form-control select-field" id="makeDropdown">
+        <option value="">Make</option>
         @foreach (var make in Model.Makes)
         {
             <option value="@make.Value">@make.Text</option>
@@ -17,56 +12,70 @@
     </select>
 </div>
 
-<div class="form-group">
-    <label asp-for="SelectedModel" class="control-label"></label>
-    <select asp-for="SelectedModel" class="form-control" id="modelDropdown">
-        <option value="">Select a Model</option>
+<div class="form-group" style="display: inline-block; margin-right: 10px;">
+    <select asp-for="SelectedModel" class="form-control select-field" id="modelDropdown">
+        <option value="">Model</option>
     </select>
 </div>
 
-<div class="form-group">
-    <label asp-for="SelectedDisplacement" class="control-label"></label>
-    <select asp-for="SelectedDisplacement" class="form-control" id="displacementDropdown">
-        <option value="">Select a Displacement</option>
+<div class="form-group" style="display: inline-block; margin-right: 10px;">
+    <select asp-for="SelectedDisplacement" class="form-control select-field" id="displacementDropdown">
+        <option value="">Displacement</option>
     </select>
 </div>
 
-<div class="form-group">
-    <label asp-for="SelectedYear" class="control-label"></label>
-    <select asp-for="SelectedYear" class="form-control" id="yearDropdown">
-        <option value="">Select a Year</option>
+<div class="form-group" style="display: inline-block; margin-right: 10px;">
+    <select asp-for="SelectedYear" class="form-control select-field" id="yearDropdown">
+        <option value="">Year</option>
     </select>
 </div>
 
-<div class="form-group">
+<div class="form-group" style="display: inline-block;">
     <button id="submitButton" class="btn btn-primary">Find Parts</button>
 </div>
 
-
-
+<style>
+    .select-field {
+        width: 150px;
+        padding-right: 30px;
+        background-image: url('https://i.ibb.co/pXFZPR7/drop-down-arrow-4.png');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 20px;
+        box-sizing: border-box;
+    }
+</style>
 
 @section scripts {
     <script>
         $(document).ready(function () {
+            $('#modelDropdown').prop('disabled', true);
+            $('#displacementDropdown').prop('disabled', true);
+            $('#yearDropdown').prop('disabled', true);
+            $('#submitButton').prop('disabled', true);
+
             $('#makeDropdown').change(function () {
                 var selectedMake = $(this).val();
                 var modelDropdown = $('#modelDropdown');
                 modelDropdown.empty();
-                modelDropdown.append($('<option></option>').attr('value', '').text('Select a Model'));
+                modelDropdown.append($('<option></option>').attr('value', '').text('Model'));
 
                 var displacementDropdown = $('#displacementDropdown');
                 displacementDropdown.empty();
-                displacementDropdown.append($('<option></option>').attr('value', '').text('Select a Displacement'));
+                displacementDropdown.append($('<option></option>').attr('value', '').text('Displacement'));
 
                 var yearDropdown = $('#yearDropdown');
                 yearDropdown.empty();
-                yearDropdown.append($('<option></option>').attr('value', '').text('Select a Year'));
+                yearDropdown.append($('<option></option>').attr('value', '').text('Year'));
 
                 $.getJSON('@Url.Action("GetMotorcycle", "Home")', { make: selectedMake }, function (models) {
                     $.each(models, function (index, model) {
                         modelDropdown.append($('<option></option>').attr('value', model.value).text(model.text));
                     });
                 });
+
+                modelDropdown.prop('disabled', false);
+                modelDropdown.removeClass('dimmed').addClass('undimmed');
             });
 
             $('#modelDropdown').change(function () {
@@ -74,13 +83,16 @@
                 var selectedModel = $(this).val();
                 var displacementDropdown = $('#displacementDropdown');
                 displacementDropdown.empty();
-                displacementDropdown.append($('<option></option>').attr('value', '').text('Select a Displacement'));
+                displacementDropdown.append($('<option></option>').attr('value', '').text('Displacement'));
 
                 $.getJSON('@Url.Action("GetDisplacement", "Home")', { make: selectedMake, model: selectedModel }, function (displacements) {
                     $.each(displacements, function (index, displacement) {
                         displacementDropdown.append($('<option></option>').attr('value', displacement.value).text(displacement.text));
                     });
                 });
+
+                displacementDropdown.prop('disabled', false);
+                displacementDropdown.removeClass('dimmed').addClass('undimmed');
             });
 
             $('#displacementDropdown').change(function () {
@@ -89,27 +101,34 @@
                 var selectedDisplacement = $(this).val();
                 var yearDropdown = $('#yearDropdown');
                 yearDropdown.empty();
-                yearDropdown.append($('<option></option>').attr('value', '').text('Select a Year'));
+                yearDropdown.append($('<option></option>').attr('value', '').text('Year'));
 
                 $.getJSON('@Url.Action("GetYear", "Home")', { make: selectedMake, model: selectedModel, displacement: selectedDisplacement }, function (years) {
                     $.each(years, function (index, year) {
                         yearDropdown.append($('<option></option>').attr('value', year.value).text(year.text));
                     });
                 });
+
+                yearDropdown.prop('disabled', false);
+                yearDropdown.removeClass('dimmed').addClass('undimmed');
             });
-        });
 
-        $('#submitButton').click(function () {
-            var selectedMake = $('#makeDropdown').val();
-            var selectedModel = $('#modelDropdown').val();
-            var selectedDisplacement = $('#displacementDropdown').val();
-            var selectedYear = $('#yearDropdown').val();
+            $('#yearDropdown').change(function () {
+                $('#submitButton').prop('disabled', false);
+            });
 
-            window.location.href = '@Url.Action("GetCompatibleParts", "Part")'
-                + '?makeId=' + selectedMake
-                + '&modelId=' + selectedModel
-                + '&displacementId=' + selectedDisplacement
-                + '&yearId=' + selectedYear;
+            $('#submitButton').click(function () {
+                var selectedMake = $('#makeDropdown').val();
+                var selectedModel = $('#modelDropdown').val();
+                var selectedDisplacement = $('#displacementDropdown').val();
+                var selectedYear = $('#yearDropdown').val();
+
+                window.location.href = '@Url.Action("GetCompatibleParts", "Part")'
+                    + '?makeId=' + selectedMake
+                    + '&modelId=' + selectedModel
+                    + '&displacementId=' + selectedDisplacement
+                    + '&yearId=' + selectedYear;
+            });
         });
     </script>
 }

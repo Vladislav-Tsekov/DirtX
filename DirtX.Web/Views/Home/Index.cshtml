@@ -38,6 +38,11 @@
     </select>
 </div>
 
+<div class="form-group">
+    <button id="submitButton" class="btn btn-primary">Find Parts</button>
+</div>
+
+
 
 
 @section scripts {
@@ -92,6 +97,19 @@
                     });
                 });
             });
+        });
+
+        $('#submitButton').click(function () {
+            var selectedMake = $('#makeDropdown').val();
+            var selectedModel = $('#modelDropdown').val();
+            var selectedDisplacement = $('#displacementDropdown').val();
+            var selectedYear = $('#yearDropdown').val();
+
+            window.location.href = '@Url.Action("GetCompatibleParts", "Home")'
+                + '?makeId=' + selectedMake
+                + '&modelId=' + selectedModel
+                + '&displacementId=' + selectedDisplacement
+                + '&yearId=' + selectedYear;
         });
     </script>
 }

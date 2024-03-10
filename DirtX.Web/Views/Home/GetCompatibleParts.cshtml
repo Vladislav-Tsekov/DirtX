@@ -1,0 +1,34 @@
+﻿@model List<MotorcyclePart>
+
+@{
+    ViewData["Title"] = "Compatible Parts";
+}
+
+<h2>Compatible Parts</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Part Name</th>
+                <th>Part Description</th>
+                <!-- Add props -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var part in Model)
+            {
+                <tr>
+                    <td>@part.Part.Title</td>
+                    <td>@part.Part.Description</td>
+                    <!-- Add props -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No compatible parts found.</p>
+}

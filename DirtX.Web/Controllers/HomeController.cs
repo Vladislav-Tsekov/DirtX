@@ -49,9 +49,9 @@ namespace DirtX.Web.Controllers
                 return Error();
             }
 
-            var models = motorcycles.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title });
+            var makesAndModels = motorcycles.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title });
 
-            return Json(models);
+            return Json(makesAndModels);
         }
 
         [HttpGet]
@@ -87,6 +87,22 @@ namespace DirtX.Web.Controllers
 
             return Json(years);
         }
+
+        [HttpGet]
+        public IActionResult GetCompatibleParts(int makeId, int modelId, int displacementId, int yearId)
+        {
+            var compatibleParts = context.MotorcyclesParts
+                .Include(mp => mp.Motorcycle)
+                .Include(mp => mp.Part)
+                .Where(mp => mp.Motorcycle.MakeId == makeId &&
+                             mp.Motorcycle.ModelId == modelId &&
+                             mp.Motorcycle.DisplacementId == displacementId &&
+                             mp.Motorcycle.YearId == yearId)
+                .ToList();
+
+            return View(compatibleParts);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

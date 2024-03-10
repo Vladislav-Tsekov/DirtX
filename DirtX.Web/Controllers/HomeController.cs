@@ -55,13 +55,30 @@ namespace DirtX.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetYear(int make, int model)
+        public async Task<IActionResult> GetDisplacement(int make, int model)
+        {
+            var displacements = await context.Motorcycles
+                                            .Where(m => m.MakeId == make && m.ModelId == model)
+                                            .Select(m => new SelectListItem { Value = m.DisplacementId.ToString(), Text = m.Displacement.Volume.ToString() })
+                                            .Distinct()
+                                            .ToListAsync();
+
+            if (!ModelState.IsValid)
+            {
+                return Error();
+            }
+
+            return Json(displacements);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetYear(int make, int model, int displacement)
         {
             var years = await context.Motorcycles
-                                    .Where(m => m.MakeId == make && m.ModelId == model)
-                                    .Select(m => new SelectListItem { Value = m.YearId.ToString(), Text = m.Year.ManufactureYear.ToString() })
-                                    .Distinct()
-                                    .ToListAsync();
+                .Where(m => m.MakeId == make && m.ModelId == model && m.DisplacementId == displacement)
+                .Select(m => new SelectListItem { Value = m.YearId.ToString(), Text = m.Year.ManufactureYear.ToString() })
+                .Distinct()
+                .ToListAsync();
 
             if (!ModelState.IsValid)
             {
@@ -70,7 +87,6 @@ namespace DirtX.Web.Controllers
 
             return Json(years);
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

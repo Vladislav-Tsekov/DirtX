@@ -25,6 +25,13 @@
 </div>
 
 <div class="form-group">
+    <label asp-for="SelectedDisplacement" class="control-label"></label>
+    <select asp-for="SelectedDisplacement" class="form-control" id="displacementDropdown">
+        <option value="">Select a Displacement</option>
+    </select>
+</div>
+
+<div class="form-group">
     <label asp-for="SelectedYear" class="control-label"></label>
     <select asp-for="SelectedYear" class="form-control" id="yearDropdown">
         <option value="">Select a Year</option>
@@ -40,10 +47,14 @@
                 var selectedMake = $(this).val();
                 var modelDropdown = $('#modelDropdown');
                 modelDropdown.empty();
-                modelDropdown.append($('<option></option>').attr('value', '').text('Select a Model')); 
+                modelDropdown.append($('<option></option>').attr('value', '').text('Select a Model'));
+
+                var displacementDropdown = $('#displacementDropdown');
+                displacementDropdown.empty();
+                displacementDropdown.append($('<option></option>').attr('value', '').text('Select a Displacement'));
 
                 var yearDropdown = $('#yearDropdown');
-                yearDropdown.empty(); 
+                yearDropdown.empty();
                 yearDropdown.append($('<option></option>').attr('value', '').text('Select a Year'));
 
                 $.getJSON('@Url.Action("GetMotorcycle", "Home")', { make: selectedMake }, function (models) {
@@ -56,17 +67,31 @@
             $('#modelDropdown').change(function () {
                 var selectedMake = $('#makeDropdown').val();
                 var selectedModel = $(this).val();
+                var displacementDropdown = $('#displacementDropdown');
+                displacementDropdown.empty();
+                displacementDropdown.append($('<option></option>').attr('value', '').text('Select a Displacement'));
+
+                $.getJSON('@Url.Action("GetDisplacement", "Home")', { make: selectedMake, model: selectedModel }, function (displacements) {
+                    $.each(displacements, function (index, displacement) {
+                        displacementDropdown.append($('<option></option>').attr('value', displacement.value).text(displacement.text));
+                    });
+                });
+            });
+
+            $('#displacementDropdown').change(function () {
+                var selectedMake = $('#makeDropdown').val();
+                var selectedModel = $('#modelDropdown').val();
+                var selectedDisplacement = $(this).val();
                 var yearDropdown = $('#yearDropdown');
-                yearDropdown.empty(); 
+                yearDropdown.empty();
                 yearDropdown.append($('<option></option>').attr('value', '').text('Select a Year'));
 
-                $.getJSON('@Url.Action("GetYear", "Home")', { make: selectedMake, model: selectedModel }, function (years) {
+                $.getJSON('@Url.Action("GetYear", "Home")', { make: selectedMake, model: selectedModel, displacement: selectedDisplacement }, function (years) {
                     $.each(years, function (index, year) {
                         yearDropdown.append($('<option></option>').attr('value', year.value).text(year.text));
                     });
                 });
             });
         });
-
     </script>
 }

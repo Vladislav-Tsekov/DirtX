@@ -104,7 +104,8 @@ namespace DirtX.Controllers
                 Price = part.Price,
                 Description = part.Description,
                 IsAvailable = part.IsAvailable,
-                StockQuantity = part.StockQuantity
+                StockQuantity = part.StockQuantity,
+                ImageUrl = part.ImageUrl
             };
 
             return View(model);

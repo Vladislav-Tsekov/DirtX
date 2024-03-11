@@ -2,7 +2,7 @@
 
 namespace DirtX.Models
 {
-    public class MotorcycleViewModel
+    public class MotoSelectionViewModel
     {
         public int SelectedMake { get; set; }
         public int SelectedModel { get; set; }

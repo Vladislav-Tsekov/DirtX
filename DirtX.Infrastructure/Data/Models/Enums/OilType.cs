@@ -6,7 +6,6 @@
         Stroke4,
         Transmission,
         Suspension,
-        Coolant,
-        Lubricant
+        Coolant
     }
 }

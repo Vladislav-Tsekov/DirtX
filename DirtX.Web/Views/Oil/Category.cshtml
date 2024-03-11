@@ -1,0 +1,13 @@
+﻿@model CategoryViewModel
+
+<h1>@Model.CategoryName</h1>
+
+@foreach (var oil in Model.Oils)
+{
+    <div>
+        <h2>@oil.Title</h2>
+        <p>@oil.Description</p>
+        <p>Price: @oil.Price</p>
+@*         <a href="@Url.Action("Details", "Oil", new { id = oil.Id })">View Details</a> *@
+    </div>
+}

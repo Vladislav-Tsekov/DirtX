@@ -5,7 +5,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 25px;
     }
 
     .brands-list {
@@ -111,7 +111,7 @@
     @foreach (var category in Model)
     {
         <div class="category-item">
-            <a href="@Url.Action("Category", "Part", new { type = category.CategoryName })">
+            <a href="@Url.Action("Category", "Oil", new { type = category.CategoryName })">
                 <div class="category-image">
                     <img src="@category.ImageUrl" alt="@category.CategoryName" />
                 </div>

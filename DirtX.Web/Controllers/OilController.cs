@@ -47,14 +47,27 @@ namespace DirtX.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Category(OilType type)
+        {
+            var oils = await context.Oils.Where(o => o.Type == type).ToListAsync();
+
+            var model = new CategoryViewModel
+            {
+                CategoryName = type.ToString(),
+                Oils = oils
+            };
+
+            return View(model);
+        }
+
         private static readonly Dictionary<OilType, string> CustomCategoryNames = new()
         {
             { OilType.Stroke4, "4T Motor Oils" },
             { OilType.Stroke2, "2T Motor Oils" },
             { OilType.Transmission, "Transmission Oils" },
             { OilType.Suspension, "Suspension Oils" },
-            { OilType.Coolant, "Coolants" },
-            { OilType.Lubricant, "Lubricants" }
+            { OilType.Coolant, "Coolants" }
         };
 
         private static string GetImageUrlForCategoryAsync(OilType type)
@@ -62,19 +75,17 @@ namespace DirtX.Controllers
             switch (type)
             {
                 case OilType.Stroke4:
-                    return "https://www.tdrmoto.com.au/cdn/shop/products/1_f77b9b2a-c02f-49c4-bab2-3ff908523beb.jpg?v=1559108074";
+                    return "https://i.ibb.co/56sGHHC/Oil-Motul-300-V-1-L.jpg";
                 case OilType.Stroke2:
-                    return "https://mxchampusashop.com/cdn/shop/products/ktmfnt_943fac65-f56d-44e6-b044-97de45b5c6e5.jpg?v=1662520095";
+                    return "https://i.ibb.co/k58PBnC/Oil-Cross-Power-2-T.jpg";
                 case OilType.Transmission:
-                    return "https://s.alicdn.com/@sc04/kf/A1b9aa66dbfa04599865efe1b6a91097aS.jpg_300x300.jpg";
+                    return "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg";
                 case OilType.Suspension:
-                    return "https://www.tracktrailpowersports.com/productimages/110895-Twin-Air-Dirt-Bike-Backfire-Replacement-Filter.png";
+                    return "https://i.ibb.co/g9R6Ztv/Oil-Bel-Ray-Fork-5-W.jpg";
                 case OilType.Coolant:
-                    return "https://m.media-amazon.com/images/I/61DluB-9etL._AC_UF1000,1000_QL80_.jpg";
-                case OilType.Lubricant:
-                    return "https://m.media-amazon.com/images/I/61DluB-9etL._AC_UF1000,1000_QL80_.jpg";
+                    return "https://i.ibb.co/DRWKczb/Oil-Motul-Antifreeze.jpg";
                 default:
-                    return "https://placeholder.com/300";
+                    return "";
             }
         }
     }

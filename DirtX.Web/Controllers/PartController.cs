@@ -56,7 +56,7 @@ namespace DirtX.Controllers
         {
             var parts = await context.Parts.Where(p => p.Type == type).ToListAsync();
 
-            var model = new PartCategoryViewModel
+            var model = new CategoryViewModel
             {
                 CategoryName = type.ToString(),
                 Parts = parts
@@ -170,7 +170,7 @@ namespace DirtX.Controllers
                 case PartType.Drivetrain:
                     return "https://m.media-amazon.com/images/I/61DluB-9etL._AC_UF1000,1000_QL80_.jpg";
                 default:
-                    return "https://placeholder.com/300";
+                    return "";
             }
         }
     }

@@ -1,4 +1,7 @@
-﻿using DirtX.Infrastructure.Data.Models.Enums;
+﻿using DirtX.Infrastructure.Data.Models;
+using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
+using DirtX.Infrastructure.Data.Models.ProductModels;
 using DirtX.Models;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -63,16 +66,16 @@ namespace DirtX.Controllers
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            var brand = context.ProductBrands.FirstOrDefault(b => b.Name == brandName);
+            ProductBrand brand = context.ProductBrands.FirstOrDefault(b => b.Name == brandName);
 
             if (brand is null)
             {
                 return NotFound();
             }
 
-            var brandParts = await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
+            List<Part> brandParts = await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
 
-            var model = new PartBrandViewModel
+            PartBrandViewModel model = new()
             {
                 Name = brand.Name,
                 Description = brand.Description,
@@ -95,7 +98,7 @@ namespace DirtX.Controllers
                 return NotFound();
             }
 
-            var model = new PartDetailsViewModel
+            PartDetailsViewModel model = new()
             {
                 Id = part.Id,
                 Type = part.Type,
@@ -112,19 +115,33 @@ namespace DirtX.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCompatibleParts(int makeId, int modelId, int displacementId, int yearId)
+        public async Task<IActionResult> CompatibleParts(int makeId, int modelId, int displacementId, int yearId)
         {
-            var compatibleParts = context.MotorcyclesParts
+            List<MotorcyclePart> compatibleParts = await context.MotorcyclesParts
                 .Include(mp => mp.Motorcycle)
-                .Include(mp => mp.Part)
+                .Include(mp => mp.Motorcycle.Make)
+                .Include(mp => mp.Motorcycle.Model)
+                .Include(mp => mp.Motorcycle.Displacement)
+                .Include(mp => mp.Motorcycle.Year)
                 .Include(mp => mp.Part.Brand)
                 .Where(mp => mp.Motorcycle.MakeId == makeId &&
                              mp.Motorcycle.ModelId == modelId &&
                              mp.Motorcycle.DisplacementId == displacementId &&
                              mp.Motorcycle.YearId == yearId)
-                .ToList();
+                .ToListAsync();
 
-            return View(compatibleParts);
+            Motorcycle motorcycle = compatibleParts.FirstOrDefault().Motorcycle;
+
+            CompatiblePartsViewModel model = new()
+            {
+                Make = motorcycle.Make.Title,
+                Model = motorcycle.Model.Title,
+                Displacement = motorcycle.Displacement.Volume.ToString(),
+                Year = motorcycle.Year.ManufactureYear.ToString(),
+                Parts = compatibleParts.Select(cp => cp.Part).ToList(),
+            };
+
+            return View(model);
         }
 
         private static string GetImageUrlForCategoryAsync(PartType type)

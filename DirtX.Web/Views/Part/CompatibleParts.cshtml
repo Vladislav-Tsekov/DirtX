@@ -1,0 +1,29 @@
+﻿@model CompatiblePartsViewModel
+
+<h2>Compatible Parts for @Model.Make @Model.Model @Model.Displacement (@Model.Year)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Part</th>
+            <th>Description</th>
+            <th>More Information</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Parts)
+        {
+            <tr>
+            <tr>
+                <td><img src="@item.Brand.ImageUrl" style="width: 80px; height: 80px; border: 1px solid black;" /></td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td><a href="@Url.Action("Details", "Part", new { id = item.Id })">View Details</a></td>
+                <td>@item.Price</td>
+            </tr>
+            </tr>
+        }
+    </tbody>
+</table>

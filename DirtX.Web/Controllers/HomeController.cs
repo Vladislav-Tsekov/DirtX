@@ -24,7 +24,7 @@ namespace DirtX.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var viewModel = new MotorcycleViewModel
+            var viewModel = new MotoSelectionViewModel
             {
                 Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
                 Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),

@@ -1,4 +1,4 @@
-﻿@model MotorcycleViewModel
+﻿@model MotoSelectionViewModel
 
 <h2>Find Parts For Your Motorcycle!</h2>
 
@@ -123,7 +123,7 @@
                 var selectedDisplacement = $('#displacementDropdown').val();
                 var selectedYear = $('#yearDropdown').val();
 
-                window.location.href = '@Url.Action("GetCompatibleParts", "Part")'
+                window.location.href = '@Url.Action("CompatibleParts", "Part")'
                     + '?makeId=' + selectedMake
                     + '&modelId=' + selectedModel
                     + '&displacementId=' + selectedDisplacement

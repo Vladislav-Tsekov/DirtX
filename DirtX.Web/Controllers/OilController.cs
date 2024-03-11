@@ -34,9 +34,11 @@ namespace DirtX.Controllers
 
             var model = categories.Select(category =>
             {
+                var customName = CustomCategoryNames.ContainsKey(category) ? CustomCategoryNames[category] : category.ToString();
+
                 return new OilIndexViewModel
                 {
-                    CategoryName = category.ToString(),
+                    CategoryName = customName,
                     ImageUrl = GetImageUrlForCategoryAsync(category),
                     Brands = oildBrands
                 };
@@ -44,6 +46,16 @@ namespace DirtX.Controllers
 
             return View(model);
         }
+
+        private static readonly Dictionary<OilType, string> CustomCategoryNames = new()
+        {
+            { OilType.Stroke4, "4T Motor Oils" },
+            { OilType.Stroke2, "2T Motor Oils" },
+            { OilType.Transmission, "Transmission Oils" },
+            { OilType.Suspension, "Suspension Oils" },
+            { OilType.Coolant, "Coolants" },
+            { OilType.Lubricant, "Lubricants" }
+        };
 
         private static string GetImageUrlForCategoryAsync(OilType type)
         {

@@ -54,7 +54,7 @@ namespace DirtX.Controllers
         {
             var parts = await context.Parts.Where(p => p.Type == type).ToListAsync();
 
-            var model = new CategoryViewModel
+            var model = new ProductCategoryViewModel
             {
                 CategoryName = type.ToString(),
                 Parts = parts
@@ -75,7 +75,7 @@ namespace DirtX.Controllers
 
             List<Part> brandParts = await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
 
-            PartBrandViewModel model = new()
+            ProductBrandViewModel model = new()
             {
                 Name = brand.Name,
                 Description = brand.Description,
@@ -149,15 +149,15 @@ namespace DirtX.Controllers
             switch (type)
             {
                 case PartType.Engine:
-                    return "https://www.tdrmoto.com.au/cdn/shop/products/1_f77b9b2a-c02f-49c4-bab2-3ff908523beb.jpg?v=1559108074";
+                    return "https://i.ibb.co/jWNQWk2/engine.jpg";
                 case PartType.Brake:
-                    return "https://mxchampusashop.com/cdn/shop/products/ktmfnt_943fac65-f56d-44e6-b044-97de45b5c6e5.jpg?v=1662520095";
+                    return "https://i.ibb.co/Lpnz4qR/Brakes.jpg";
                 case PartType.Suspension:
-                    return "https://s.alicdn.com/@sc04/kf/A1b9aa66dbfa04599865efe1b6a91097aS.jpg_300x300.jpg";
+                    return "https://i.ibb.co/CsC1t3w/Suspension.jpg";
                 case PartType.Filter:
-                    return "https://www.tracktrailpowersports.com/productimages/110895-Twin-Air-Dirt-Bike-Backfire-Replacement-Filter.png";
+                    return "https://i.ibb.co/jh1vrCq/filters.png";
                 case PartType.Drivetrain:
-                    return "https://m.media-amazon.com/images/I/61DluB-9etL._AC_UF1000,1000_QL80_.jpg";
+                    return "https://i.ibb.co/cCs6tQt/chain.jpg";
                 default:
                     return "";
             }

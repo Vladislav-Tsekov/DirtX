@@ -2,7 +2,7 @@
 
 namespace DirtX.Models
 {
-    public class CategoryViewModel
+    public class ProductCategoryViewModel
     {
         public string CategoryName { get; set; }
         public List<Part> Parts { get; set; }

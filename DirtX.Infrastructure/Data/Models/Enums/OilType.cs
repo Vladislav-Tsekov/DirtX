@@ -2,8 +2,8 @@
 {
     public enum OilType
     {
-        Stroke2,
-        Stroke4,
+        Two_Stroke,
+        Four_Stroke,
         Transmission,
         Suspension,
         Coolant

@@ -50,10 +50,33 @@ namespace DirtX.Controllers
         {
             var oils = await context.Oils.Where(o => o.Type == type).ToListAsync();
 
-            var model = new CategoryViewModel
+            var model = new ProductCategoryViewModel
             {
                 CategoryName = type.ToString(),
                 Oils = oils
+            };
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Brand(string brandName)
+        {
+            ProductBrand brand = context.ProductBrands.FirstOrDefault(b => b.Name == brandName);
+
+            if (brand is null)
+            {
+                return NotFound();
+            }
+
+            List<Oil> brandOils = await context.Oils.Where(p => p.BrandId == brand.Id).ToListAsync();
+
+            ProductBrandViewModel model = new()
+            {
+                Name = brand.Name,
+                Description = brand.Description,
+                ImageUrl = brand.ImageUrl,
+                Oils = brandOils
             };
 
             return View(model);
@@ -63,9 +86,9 @@ namespace DirtX.Controllers
         {
             switch (type)
             {
-                case OilType.Stroke4:
+                case OilType.Four_Stroke:
                     return "https://i.ibb.co/56sGHHC/Oil-Motul-300-V-1-L.jpg";
-                case OilType.Stroke2:
+                case OilType.Two_Stroke:
                     return "https://i.ibb.co/k58PBnC/Oil-Cross-Power-2-T.jpg";
                 case OilType.Transmission:
                     return "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg";

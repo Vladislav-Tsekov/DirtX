@@ -1,6 +1,6 @@
-﻿@model CategoryViewModel
+﻿@model ProductCategoryViewModel
 
-<h1>@Model.CategoryName</h1>
+<h1>@Model.CategoryName.Replace("_", " ")</h1>
 
 @foreach (var oil in Model.Oils)
 {
@@ -8,6 +8,6 @@
         <h2>@oil.Title</h2>
         <p>@oil.Description</p>
         <p>Price: @oil.Price</p>
-@*         <a href="@Url.Action("Details", "Oil", new { id = oil.Id })">View Details</a> *@
+        <a href="@Url.Action("Details", "Oil", new { id = oil.Id })">View Details</a>
     </div>
 }

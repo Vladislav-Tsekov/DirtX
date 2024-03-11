@@ -113,10 +113,10 @@
         <div class="category-item">
             <a href="@Url.Action("Category", "Oil", new { type = category.CategoryName })">
                 <div class="category-image">
-                    <img src="@category.ImageUrl" alt="@category.CategoryName" />
+                    <img src="@category.ImageUrl" alt="@category.CategoryName.Replace("_", " ")" />
                 </div>
                 <div class="category-title">
-                    <span>@category.CategoryName</span>
+                    <span>@category.CategoryName.Replace("_", " ")</span>
                 </div>
             </a>
         </div>

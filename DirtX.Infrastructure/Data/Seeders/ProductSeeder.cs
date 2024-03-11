@@ -146,7 +146,8 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new Oil { Id = 4, BrandId = 2, Title = "Fork Oil 5W", Price = 27.00m, Description = "Lightweight fork oil for smoother suspension stroke.", IsAvailable = true, StockQuantity = 8, Type = OilType.Suspension, PackageSize = 0.500, ImageUrl = "https://i.ibb.co/W52svBD/Oil-Bel-Ray-Fork-5-W.jpg" },
                 new Oil { Id = 5, BrandId = 9, Title = "Performance Line: Shock Oil", Price = 29.99m, Description = "Performance Line Oils Series is used by MXGP Factory teams.", IsAvailable = true, StockQuantity = 8, Type = OilType.Suspension, PackageSize = 0.750, ImageUrl = "https://i.ibb.co/f1fW4j5/Oil-Motorex-Shock-Oil.jpg" },
                 new Oil { Id = 6, BrandId = 19, Title = "YAMALUBE 10W40", Price = 26.29m, Description = "The baseline 4-stroke engine oil for motorcycles.", IsAvailable = true, StockQuantity = 14, Type = OilType.Stroke4, PackageSize = 1.5, ImageUrl = "https://i.ibb.co/2dRRzHy/Oil-Yamalube-10w40.jpg" },
-                new Oil { Id = 7, BrandId = 10, Title = "AutoCool -35°C 1L", Price = 26.29m, Description = "The most efficient coolant on the market.", IsAvailable = true, StockQuantity = 14, Type = OilType.Coolant, PackageSize = 1.0, ImageUrl = "https://i.ibb.co/9rgYKcv/Oil-Motul-Antifreeze.jpg" }
+                new Oil { Id = 7, BrandId = 10, Title = "AutoCool -35°C 1L", Price = 26.29m, Description = "The most efficient coolant on the market.", IsAvailable = true, StockQuantity = 14, Type = OilType.Coolant, PackageSize = 1.0, ImageUrl = "https://i.ibb.co/9rgYKcv/Oil-Motul-Antifreeze.jpg" },
+                new Oil { Id = 8, BrandId = 2, Title = "TransOil Expert 10W40", Price = 28.29m, Description = "More throttle, less grinding gears.", IsAvailable = true, StockQuantity = 4, Type = OilType.Transmission, PackageSize = 1.0, ImageUrl = "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg" }
             );
         }
 

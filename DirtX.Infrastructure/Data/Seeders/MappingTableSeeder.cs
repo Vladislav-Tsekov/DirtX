@@ -69,7 +69,8 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new OilProperty { OilId = 5, SpecificationId = 1 },
                 new OilProperty { OilId = 6, SpecificationId = 2 },
                 new OilProperty { OilId = 6, SpecificationId = 5 },
-                new OilProperty { OilId = 7, SpecificationId = 5 }
+                new OilProperty { OilId = 7, SpecificationId = 5 },
+                new OilProperty { OilId = 8, SpecificationId = 2 }
             );
         }
 

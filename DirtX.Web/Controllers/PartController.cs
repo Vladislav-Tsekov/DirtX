@@ -38,11 +38,9 @@ namespace DirtX.Controllers
 
             var model = categories.Select(category =>
             {
-                var customName = CustomCategoryNames.ContainsKey(category) ? CustomCategoryNames[category] : category.ToString();
-
                 return new PartIndexViewModel
                 {
-                    CategoryName = customName,
+                    CategoryName = category.ToString(),
                     ImageUrl = GetImageUrlForCategoryAsync(category),
                     Brands = partsBrands
                 };
@@ -145,15 +143,6 @@ namespace DirtX.Controllers
 
             return View(model);
         }
-
-        private static readonly Dictionary<PartType, string> CustomCategoryNames = new()
-        {
-            { PartType.Engine, "Engine" },
-            { PartType.Brake, "Brakes" },
-            { PartType.Drivetrain, "Final Transmission" },
-            { PartType.Suspension, "Suspension" },
-            { PartType.Filter, "Filters" },
-        };
 
         private static string GetImageUrlForCategoryAsync(PartType type)
         {

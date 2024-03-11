@@ -20,4 +20,8 @@
     <ProjectReference Include="..\DirtX.Infrastructure\DirtX.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Oil\" />
+  </ItemGroup>
+
 </Project>

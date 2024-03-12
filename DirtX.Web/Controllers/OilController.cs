@@ -83,6 +83,34 @@ namespace DirtX.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var oil = await context.Oils
+                .Include(o => o.Brand)
+                .FirstOrDefaultAsync(o => o.Id == id);
+
+            if (oil == null)
+            {
+                return NotFound();
+            }
+
+            OilDetailsViewModel model = new()
+            {
+                Id = oil.Id,
+                Type = oil.Type,
+                BrandName = oil.Brand.Name,
+                Title = oil.Title,
+                Price = oil.Price,
+                Description = oil.Description,
+                IsAvailable = oil.IsAvailable,
+                StockQuantity = oil.StockQuantity,
+                ImageUrl = oil.ImageUrl
+            };
+
+            return View(model);
+        }
+
         private static string GetImageUrlForCategoryAsync(OilType type)
         {
             switch (type)

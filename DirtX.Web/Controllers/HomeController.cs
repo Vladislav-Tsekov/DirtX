@@ -1,6 +1,6 @@
 ﻿using DirtX.Models;
+using DirtX.Models.Home;
 using DirtX.Web.Data;
-using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;

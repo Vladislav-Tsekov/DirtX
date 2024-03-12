@@ -1,6 +1,7 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels;
 using DirtX.Models;
+using DirtX.Models.Part;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -50,7 +51,7 @@ namespace DirtX.Controllers
         {
             var oils = await context.Oils.Where(o => o.Type == type).ToListAsync();
 
-            var model = new ProductCategoryViewModel
+            var model = new OilCategoryViewModel
             {
                 CategoryName = type.ToString(),
                 Oils = oils
@@ -71,7 +72,7 @@ namespace DirtX.Controllers
 
             List<Oil> brandOils = await context.Oils.Where(p => p.BrandId == brand.Id).ToListAsync();
 
-            ProductBrandViewModel model = new()
+            OilBrandViewModel model = new()
             {
                 Name = brand.Name,
                 Description = brand.Description,

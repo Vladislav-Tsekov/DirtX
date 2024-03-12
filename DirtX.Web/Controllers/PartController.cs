@@ -3,6 +3,8 @@ using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
 using DirtX.Infrastructure.Data.Models.ProductModels;
 using DirtX.Models;
+using DirtX.Models.Home;
+using DirtX.Models.Part;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -54,7 +56,7 @@ namespace DirtX.Controllers
         {
             var parts = await context.Parts.Where(p => p.Type == type).ToListAsync();
 
-            var model = new ProductCategoryViewModel
+            var model = new PartCategoryViewModel
             {
                 CategoryName = type.ToString(),
                 Parts = parts
@@ -75,7 +77,7 @@ namespace DirtX.Controllers
 
             List<Part> brandParts = await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
 
-            ProductBrandViewModel model = new()
+            PartBrandViewModel model = new()
             {
                 Name = brand.Name,
                 Description = brand.Description,

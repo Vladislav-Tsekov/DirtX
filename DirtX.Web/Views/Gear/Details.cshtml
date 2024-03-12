@@ -1,0 +1,15 @@
+﻿@model GearDetailsViewModel
+
+<h3>GEAR DETAILS</h3>
+
+<div>
+    <h4>Part ID: @Model.Id</h4>
+    <h4>Type: @Model.Type</h4>
+    <h4>Brand: @Model.BrandName</h4>
+    <h4>Title: @Model.Title</h4>
+    <h4>Price: @Model.Price</h4>
+    <h4>Description: @Model.Description</h4>
+    <h4>Is Available: @Model.IsAvailable</h4>
+    <h4>Stock Quantity: @Model.StockQuantity</h4>
+    <img src="@Model.ImageUrl" style="width: 75px; height: 75px;" />
+</div>

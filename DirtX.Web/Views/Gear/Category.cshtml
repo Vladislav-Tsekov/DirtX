@@ -1,0 +1,13 @@
+﻿@model GearCategoryViewModel
+
+<h1>@Model.CategoryName.Replace("_", " ")</h1>
+
+@foreach (var gear in Model.Gears)
+{
+    <div>
+        <h2>@gear.Title</h2>
+        <p>@gear.Description</p>
+        <p>Price: @gear.Price</p>
+        <a href="@Url.Action("Details", "Gear", new { id = gear.Id })">View Details</a>
+    </div>
+}

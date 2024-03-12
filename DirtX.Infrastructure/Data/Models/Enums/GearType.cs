@@ -3,7 +3,7 @@
     public enum GearType
     {
         Helmet,
-        ProtectiveGear,
+        Protective_Gear,
         Outfit,
         Boots,
         Accessory

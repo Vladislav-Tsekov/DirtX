@@ -2,6 +2,7 @@
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
 using DirtX.Infrastructure.Data.Models.ProductModels;
+using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using DirtX.Models;
 using DirtX.Models.Home;
 using DirtX.Models.Part;
@@ -91,14 +92,21 @@ namespace DirtX.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var part = await context.Parts
+            Part part = await context.Parts
                 .Include(p => p.Brand)
+                .Include(p => p.PartProperties)
+                .ThenInclude(pp => pp.Specification)
+                .ThenInclude(pp => pp.Title)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (part == null)
             {
                 return NotFound();
             }
+
+            List<PartSpecification> partSpecs = part.PartProperties
+                .Select(ps => ps.Specification)
+                .ToList();
 
             PartDetailsViewModel model = new()
             {
@@ -110,7 +118,8 @@ namespace DirtX.Controllers
                 Description = part.Description,
                 IsAvailable = part.IsAvailable,
                 StockQuantity = part.StockQuantity,
-                ImageUrl = part.ImageUrl
+                ImageUrl = part.ImageUrl,
+                Specs = partSpecs
             };
 
             return View(model);

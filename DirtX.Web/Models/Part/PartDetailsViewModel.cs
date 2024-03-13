@@ -1,5 +1,6 @@
 ﻿namespace DirtX.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 
 public class PartDetailsViewModel
 {
@@ -12,4 +13,5 @@ public class PartDetailsViewModel
     public bool IsAvailable { get; set; }
     public int StockQuantity { get; set; }
     public string ImageUrl { get; set; }
+    public ICollection<PartSpecification> Specs { get; set; }
 }

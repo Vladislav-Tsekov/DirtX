@@ -11,5 +11,14 @@
     <h4>Description: @Model.Description</h4>
     <h4>Is Available: @Model.IsAvailable</h4>
     <h4>Stock Quantity: @Model.StockQuantity</h4>
+    @if (Model.Specs.Any())
+    {
+        <h4>
+            Properties: @foreach (var spec in Model.Specs)
+            {
+                <p>@spec.Title.Title - @spec.Value</p>
+            }
+        </h4>
+    }
     <img src="@Model.ImageUrl" style="width: 75px; height: 75px;" />
 </div>

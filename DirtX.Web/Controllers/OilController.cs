@@ -1,5 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels;
+using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using DirtX.Models;
 using DirtX.Models.Part;
 using DirtX.Web.Data;
@@ -86,14 +87,21 @@ namespace DirtX.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var oil = await context.Oils
+            Oil oil = await context.Oils
                 .Include(o => o.Brand)
+                .Include(o => o.OilProperties)
+                .ThenInclude(op => op.Specification)
+                .ThenInclude(op => op.Title)
                 .FirstOrDefaultAsync(o => o.Id == id);
 
             if (oil == null)
             {
                 return NotFound();
             }
+
+            List<OilSpecification> oilSpecs = oil.OilProperties
+                .Select(os => os.Specification)
+                .ToList();
 
             OilDetailsViewModel model = new()
             {
@@ -105,7 +113,8 @@ namespace DirtX.Controllers
                 Description = oil.Description,
                 IsAvailable = oil.IsAvailable,
                 StockQuantity = oil.StockQuantity,
-                ImageUrl = oil.ImageUrl
+                ImageUrl = oil.ImageUrl,
+                Specs = oilSpecs
             };
 
             return View(model);

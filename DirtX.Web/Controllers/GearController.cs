@@ -1,5 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels;
+using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 using DirtX.Models.Gear;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -85,14 +86,21 @@ namespace DirtX.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var gear = await context.Gears
-                .Include(o => o.Brand)
-                .FirstOrDefaultAsync(o => o.Id == id);
+            Gear gear = await context.Gears
+                .Include(g => g.Brand)
+                .Include(g => g.GearProperties)
+                .ThenInclude(gp => gp.Specification)
+                .ThenInclude(gp => gp.Title)
+                .FirstOrDefaultAsync(g => g.Id == id);
 
             if (gear == null)
             {
                 return NotFound();
             }
+
+            List<GearSpecification> gearSpecs = gear.GearProperties 
+                .Select(gp => gp.Specification) 
+                .ToList();
 
             GearDetailsViewModel model = new()
             {
@@ -104,7 +112,8 @@ namespace DirtX.Controllers
                 Description = gear.Description,
                 IsAvailable = gear.IsAvailable,
                 StockQuantity = gear.StockQuantity,
-                ImageUrl = gear.ImageUrl
+                ImageUrl = gear.ImageUrl,
+                Specs = gearSpecs
             };
 
             return View(model);

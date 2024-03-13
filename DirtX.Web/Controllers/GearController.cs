@@ -115,15 +115,15 @@ namespace DirtX.Controllers
             switch (type)
             {
                 case GearType.Helmet:
-                    return "https://i.ibb.co/56sGHHC/Oil-Motul-300-V-1-L.jpg";
+                    return "https://i.ibb.co/pyjR9Dh/Gear-SM5-Helmet.jpg";
                 case GearType.Protective_Gear:
-                    return "https://i.ibb.co/k58PBnC/Oil-Cross-Power-2-T.jpg";
+                    return "https://i.ibb.co/3fW6GMp/Gear-Bionic-Action.jpg";
                 case GearType.Outfit:
-                    return "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg";
+                    return "https://i.ibb.co/7QRGQvn/Gear-Thor-Outfit.jpg";
                 case GearType.Boots:
-                    return "https://i.ibb.co/g9R6Ztv/Oil-Bel-Ray-Fork-5-W.jpg";
+                    return "https://i.ibb.co/pzGDVTv/Gear-Tech10-Boots.jpg";
                 case GearType.Accessory:
-                    return "https://i.ibb.co/DRWKczb/Oil-Motul-Antifreeze.jpg";
+                    return "https://i.ibb.co/Vm5NZBG/Gear-B20-Goggles.jpg";
                 default:
                     return "";
             }

@@ -1,4 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models;
+using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
 using DirtX.Infrastructure.Data.Models.ProductModels;
 using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
@@ -15,6 +16,7 @@ namespace DirtX.Web.Data
 
         // MOTORCYCLE AND MOTORCYCLE RELATED TABLES
         public DbSet<Motorcycle> Motorcycles { get; set; }
+        public DbSet<UsedMotorcycle> UsedMotorcycles { get; set; }
         public DbSet<Make>  Makes { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Year> Years { get; set; }
@@ -45,8 +47,6 @@ namespace DirtX.Web.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //TODO - USE IENTITYCONFIGURATION INSTEAD MODELBUILDER?
-
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Motorcycle>()

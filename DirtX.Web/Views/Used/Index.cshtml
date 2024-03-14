@@ -1,1 +1,37 @@
 ﻿@model List<UsedIndexViewModel>
+
+<h1>Used Motorcycles</h1>
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;">
+    @foreach (var motorcycle in Model)
+    {
+        <div style="border: 1px solid black; padding: 10px;">
+            <div style="display: flex; flex-direction: column;">
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(motorcycle.Image)" alt="Motorcycle Image" style="max-width: 100%; max-height: 260px; margin-bottom: 10px;" />
+                <div style="font-weight: bold;">
+                    @motorcycle.Make @motorcycle.Model (@motorcycle.Year)
+                </div>
+                <div>
+                    Displacement: @motorcycle.Displacement
+                </div>
+                <div>
+                    Location: @motorcycle.Province.Replace("_", " ")
+                </div>
+                <div style="margin-top: 10px;">
+                    <span style="font-weight: bold;">Price:</span> @motorcycle.Price
+                </div>
+                <div style="margin-top: 10px;">
+                    <a href="@Url.Action("Details", "Motorcycle", new { id = motorcycle.Id })" style="font-weight: bold;">More Information</a>
+                </div>
+@*                 <div style="margin-top: 10px;">
+                    <a href="@Url.Action("CompatibleParts", "Part", new { motorcycleId = motorcycle.Id })">Check available parts for this motorcycle</a>
+                </div> *@
+            </div>
+        </div>
+    }
+</div>
+
+</div>
+
+
+

@@ -1,0 +1,34 @@
+﻿namespace DirtX.Infrastructure.Data.Models.Enums
+{
+    public enum Province
+    {
+        Blagoevgrad,
+        Burgas,
+        Dobrich,
+        Gabrovo,
+        Haskovo,
+        Kardzhali,
+        Kyustendil,
+        Lovech,
+        Montana,
+        Pazardzhik,
+        Pernik,
+        Pleven,
+        Plovdiv,
+        Razgrad,
+        Ruse,
+        Shumen,
+        Silistra,
+        Sliven,
+        Smolyan,
+        Sofia_City,
+        Sofia_Province,
+        Stara_Zagora,
+        Targovishte,
+        Varna,
+        Veliko_Tarnovo,
+        Vidin,
+        Vratsa,
+        Yambol
+    }
+}

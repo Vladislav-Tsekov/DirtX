@@ -3,14 +3,13 @@ using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
 using DirtX.Infrastructure.Data.Models.ProductModels;
 using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
-using DirtX.Models;
-using DirtX.Models.Home;
-using DirtX.Models.Part;
 using DirtX.Web.Data;
+using DirtX.Web.Models;
+using DirtX.Web.Models.Part;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DirtX.Controllers
+namespace DirtX.Web.Controllers
 {
     public class PartController : Controller
     {

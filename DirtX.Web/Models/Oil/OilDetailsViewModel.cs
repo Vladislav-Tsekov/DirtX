@@ -1,4 +1,4 @@
-﻿namespace DirtX.Models;
+﻿namespace DirtX.Web.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 

@@ -1,4 +1,4 @@
-namespace DirtX.Models.Home;
+namespace DirtX.Web.Models.Home;
 
 public class ErrorViewModel
 {

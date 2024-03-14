@@ -1,12 +1,12 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels;
 using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
-using DirtX.Models.Gear;
 using DirtX.Web.Data;
+using DirtX.Web.Models.Gear;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DirtX.Controllers
+namespace DirtX.Web.Controllers
 {
     public class GearController : Controller
     {

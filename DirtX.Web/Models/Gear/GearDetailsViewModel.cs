@@ -1,7 +1,7 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
 
-namespace DirtX.Models.Gear
+namespace DirtX.Web.Models.Gear
 {
     public class GearDetailsViewModel
     {

@@ -1,4 +1,4 @@
-﻿namespace DirtX.Models.Gear;
+﻿namespace DirtX.Web.Models.Gear;
 using DirtX.Infrastructure.Data.Models.ProductModels;
 
 public class GearIndexViewModel

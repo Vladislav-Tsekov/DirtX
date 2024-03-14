@@ -30,11 +30,11 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public Year Year { get; set; }
         public int YearId { get; set; }
 
-        [Column(TypeName = "decimal(10, 2)")]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
         [Required]
         public byte[] Image { get; set; }
+        //TODO - ADD AN ALBUM FOR EVERY USEDMOTO, IF PROJECT IS FINISHED EARLY
 
         [Required]
         public Province Province { get; set; } 

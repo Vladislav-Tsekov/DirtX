@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtX", "DirtX.Web\DirtX.csproj", "{694B499D-65A7-4DE3-BDED-9CABA0F704CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtX.Web", "DirtX.Web\DirtX.Web.csproj", "{694B499D-65A7-4DE3-BDED-9CABA0F704CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtX.Core", "DirtX.Core\DirtX.Core.csproj", "{0A8935DA-1AAF-4266-9164-2E7B254E26BE}"
 EndProject

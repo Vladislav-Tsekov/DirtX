@@ -1,5 +1,8 @@
-﻿using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
+﻿using DirtX.Infrastructure.Data.Models.Motorcycles;
+using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
+using DirtX.Infrastructure.Data.Models.Enums;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace DirtX.Infrastructure.Data.Seeders
 {
@@ -11,7 +14,29 @@ namespace DirtX.Infrastructure.Data.Seeders
             SeedMotoModels(modelBuilder);
             SeedMotoYears(modelBuilder);
             SeedMotoDisplacements(modelBuilder);
+            SeedAvailableMotorcycles(modelBuilder);
+            SeedUsedMotorcycles(modelBuilder);
+        }
 
+        private static void SeedUsedMotorcycles(ModelBuilder modelBuilder)
+        {
+            string currentDir = Directory.GetCurrentDirectory();
+            string parentDir = Directory.GetParent(currentDir).FullName;
+
+            string ktmImagePath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\ktm.jpg");
+            string yamahaImagePath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\yamaha.jpg");
+
+            byte[] ktmImage = File.ReadAllBytes(ktmImagePath);
+            byte[] yamahaImage = File.ReadAllBytes(yamahaImagePath);
+
+            modelBuilder.Entity<UsedMotorcycle>().HasData(
+                new UsedMotorcycle { Id = 1, MakeId = 1, ModelId = 1, DisplacementId = 1, YearId = 2, Price = 3200, Contact = "0885992255", Image = yamahaImage, Province = Province.Blagoevgrad, Description = "In a very good condition for its age. Leaky suspension. For more questions don't hesitate to call me!" },
+                new UsedMotorcycle { Id = 2, MakeId = 5, ModelId = 5, DisplacementId = 3, YearId = 15, Price = 9800, Contact = "0892557711", Image = ktmImage, Province = Province.Sofia_Province, Description = "Oil and filters changes 5h ago. Excellent bike for beginners. Get in touch if you want to see more pictures." }
+             );
+        }
+
+        private static void SeedAvailableMotorcycles(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Motorcycle>().HasData(
                 new Motorcycle { Id = 1, MakeId = 1, ModelId = 1, YearId = 1, DisplacementId = 1 },
                 new Motorcycle { Id = 2, MakeId = 1, ModelId = 1, YearId = 2, DisplacementId = 1 },
@@ -34,6 +59,8 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new Motorcycle { Id = 19, MakeId = 7, ModelId = 7, YearId = 19, DisplacementId = 1 },
                 new Motorcycle { Id = 20, MakeId = 7, ModelId = 7, YearId = 20, DisplacementId = 3 }
             );
+
+            //TODO - ADD MORE MOTORCYCLES, IF PROJECT IS FINISHED EARLY
         }
 
         private static void SeedMotoMakes(ModelBuilder modelBuilder)

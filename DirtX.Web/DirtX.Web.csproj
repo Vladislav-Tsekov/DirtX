@@ -27,8 +27,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Used\" />
-  </ItemGroup>
-
 </Project>

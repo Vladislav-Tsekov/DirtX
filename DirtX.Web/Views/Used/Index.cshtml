@@ -1,5 +1,13 @@
 ﻿@model List<UsedIndexViewModel>
 
+<div style="background-image: url('https://i.ibb.co/sQ1Z1yR/Used-Moto-Banner.jpg'); background-size: cover; border: 1px solid black; background-position: center top; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+@*         <h2 style="font-size: 24px; color: white;">Sell your motorcycle</h2>
+        <p style="font-size: 18px; color: white;">Looking to sell your motorcycle? Click below to list it for sale!</p> *@
+    </div>
+    <a href="@Url.Action("Sell", "Used")" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 5px;">Sell Now</a>
+</div>
+
 <h1>Used Motorcycles</h1>
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;">
@@ -7,7 +15,7 @@
     {
         <div style="border: 1px solid black; padding: 10px;">
             <div style="display: flex; flex-direction: column;">
-                <img src="data:image/jpeg;base64,@Convert.ToBase64String(motorcycle.Image)" alt="Motorcycle Image" style="max-width: 100%; max-height: 260px; margin-bottom: 10px;" />
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(motorcycle.Image)" alt="Motorcycle Image" style="max-width: 100%; max-height: 260px; margin-bottom: 10px; border: 1px solid black" />
                 <div style="font-weight: bold;">
                     @motorcycle.Make @motorcycle.Model (@motorcycle.Year)
                 </div>
@@ -23,14 +31,9 @@
                 <div style="margin-top: 10px;">
                     <a href="@Url.Action("Details", "Motorcycle", new { id = motorcycle.Id })" style="font-weight: bold;">More Information</a>
                 </div>
-@*                 <div style="margin-top: 10px;">
-                    <a href="@Url.Action("CompatibleParts", "Part", new { motorcycleId = motorcycle.Id })">Check available parts for this motorcycle</a>
-                </div> *@
             </div>
         </div>
     }
-</div>
-
 </div>
 
 

@@ -1,6 +1,9 @@
-﻿using DirtX.Web.Data;
+﻿using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Web.Data;
+using DirtX.Web.Models.Home;
 using DirtX.Web.Models.Used;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Controllers
@@ -42,9 +45,59 @@ namespace DirtX.Web.Controllers
             return View(models);
         }
 
-        public IActionResult Sell()
+        [HttpGet]
+        public async Task<IActionResult> Sell()
         {
-            return View();
+            //List<Province> provinces = Enum.GetValues(typeof(Province)).Cast<Province>().ToList();
+
+            var viewModel = new SellFormViewModel
+            {
+                Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
+                Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
+                Years = await context.Years.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.ManufactureYear.ToString() }).ToListAsync(),
+                //Provinces = provinces
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMotorcycle(int make)
+        {
+            var motorcycles = await context.Motorcycles
+                .Include(m => m.Model)
+                .Where(m => m.MakeId == make)
+                .Select(m => m.Model)
+                .Distinct()
+                .ToListAsync();
+
+            var makesAndModels = motorcycles.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title });
+
+            return Json(makesAndModels);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetDisplacement(int make, int model)
+        {
+            var displacements = await context.Motorcycles
+                .Where(m => m.MakeId == make && m.ModelId == model)
+                .Select(m => new SelectListItem { Value = m.DisplacementId.ToString(), Text = m.Displacement.Volume.ToString() })
+                .Distinct()
+                .ToListAsync();
+
+            return Json(displacements);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetYear(int make, int model, int displacement)
+        {
+            var years = await context.Motorcycles
+                .Where(m => m.MakeId == make && m.ModelId == model && m.DisplacementId == displacement)
+                .Select(m => new SelectListItem { Value = m.YearId.ToString(), Text = m.Year.ManufactureYear.ToString() })
+                .Distinct()
+                .ToListAsync();
+
+            return Json(years);
         }
     }
 }

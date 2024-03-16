@@ -1,5 +1,4 @@
-﻿@using DirtX.Infrastructure.Data.Models.Enums
-@model SellFormViewModel
+﻿@model SellFormViewModel
 
 <h1>Sell Your Motorcycle</h1>
 
@@ -21,21 +20,26 @@
                 <option value="">Model</option>
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="displacementDropdown">Displacement:</label>
             <select asp-for="SelectedDisplacement" class="form-control" id="displacementDropdown">
                 <option value="">Displacement</option>
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="yearDropdown">Year:</label>
             <select asp-for="SelectedYear" class="form-control" id="yearDropdown">
                 <option value="">Year</option>
             </select>
         </div>
-        <div class="col-md-2">
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
             <label for="provinceDropdown">Province:</label>
-            <select asp-for="Province" class="form-control" id="provinceDropdown">
+            <select asp-for="Province" class="form-control" id="dropdown">
                 <option value="">Province</option>
                 @foreach (var province in Enum.GetValues(typeof(Province)))
                 {
@@ -43,90 +47,75 @@
                 }
             </select>
         </div>
-    </div>
-</div>
-
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="priceInput">Price:</label>
-                <input type="number" name="Price" class="form-control" id="priceInput" required>
-            </div>
-            <div class="form-group">
-                <label for="imageInput">Image:</label>
-                <input type="file" name="Image" class="form-control-file" id="imageInput" accept="image/*" required>
+                <input type="number" name="Price" class="form-control" id="input" required>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="descriptionInput">Description:</label>
-                <textarea name="Description" class="form-control" id="descriptionInput" required></textarea>
-            </div>
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="contactInput">Contact:</label>
-                <input type="text" name="Contact" class="form-control" id="contactInput" required>
+                <input type="text" name="Contact" class="form-control" id="input" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="imageInput">Image:</label>
+                <input type="file" name="Image" class="form-control-file" id="input" accept="image/*" required>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container mt-4">
+<div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="descriptionInput">Description:</label>
+            <textarea name="Description" class="form-control" id="input" required></textarea>
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>
 
 <style>
     .form-control {
-        border-radius: 0;
+        box-sizing: border-box;
     }
 
-    .select-field {
-        width: 150px;
-        padding-right: 30px;
+    #dropdown {
         background-image: url('https://i.ibb.co/pXFZPR7/drop-down-arrow-4.png');
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 20px;
-        box-sizing: border-box;
     }
 
     .form-control:focus {
         border-color: darkorange;
-        box-shadow: darkblue;
-    }
-
-    .form-group label {
-        font-weight: bold;
+        box-shadow: blue;
     }
 
     .container {
+        margin-top: 3px;
         margin-bottom: 20px;
     }
 
-    .mt-4 {
-        margin-top: 1.5rem;
-    }
-
     .btn-primary {
-        background-color: blue;
-        border-color: darkorange;
+        margin-top: 20px;
+        background-color: darkblue;
+        border-color: white;
         color: white;
         font-weight: bold;
     }
 
     .btn-primary:hover {
         background-color: darkorange;
-        border-color: blue;
+        border-color: black;
         color: black;
         font-weight: bold;
+        transition: background-color 0.3s;
     }
 </style>
-
-
 
 @section scripts {
     <script>

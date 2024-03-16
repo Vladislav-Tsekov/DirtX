@@ -10,35 +10,27 @@
 </head>
 <body>
     <div class="header-container">
-        <div class="row">
+        <div class="row" style="padding-top: 5px; padding-bottom: 5px; padding-left:300px; padding-right: 300px;">
             <header class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <a href="#"><img src="logo_image_url" title="Logo Title" alt="Logo Alt Text"></a>
-                </div>
-                <div class="phone">
-                    <img src="phone_image_url" alt="Phone Icon"> +3598888888
+@*                 <div class="logo">
+                    <a href="#"><img src="https://i.ibb.co/jGCvPjT/ai-logo.png" title="Logo Title" alt="Logo Alt Text"></a>
+                </div> *@
+                <div class="contact">
+                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/ck069J2/phone-edited.png" alt="Phone Icon">Contact Us</a>
                 </div>
                 <div class="sell">
-                    <a href=""><img src="phone_image_url" alt="Moto Icon">Sell Your Motorcycle</a>
+                    <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/b6CCnZk/sale-edited.png" alt="Moto Icon">Sell Your Motorcycle</a>
                 </div>
                 <div class="garage">
-                    <div class="total-bikes">0</div>
-                    <img width="48" height="27" src="garage_image_url" alt="Garage Icon">
-                    <a href="my_garage_view_here">My Garage</a>
+                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/804Z509/garage-edited.png" alt="Garage Icon">My Garage</a>
                 </div>
                 <div class="wishlist">
-                    <a href="wishlist_link">
-                        <img src="wishlist_image_url" alt="Wishlist Icon">
-                        <span class="favorite_cnt">0</span>
-                    </a>
+                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/Ch2b54P/heart-edited.png" alt="Wishlist Icon">My Wishlist</a>
                 </div>
             </header>
         </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-@*                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a> 
-                   INSERT CLICKABLE LOGO THAT WILL LEAD TO THE HOMEPAGE
-*@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

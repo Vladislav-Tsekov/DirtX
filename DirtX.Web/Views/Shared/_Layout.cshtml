@@ -16,16 +16,16 @@
                     <a href="#"><img src="https://i.ibb.co/jGCvPjT/ai-logo.png" title="Logo Title" alt="Logo Alt Text"></a>
                 </div> *@
                 <div class="contact">
-                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/ck069J2/phone-edited.png" alt="Phone Icon">Contact Us</a>
+                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/ck069J2/phone-edited.png" alt="Phone Icon"> Contact Us</a>
                 </div>
                 <div class="sell">
-                    <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/b6CCnZk/sale-edited.png" alt="Moto Icon">Sell Your Motorcycle</a>
+                    <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/qpQrF52/sale-1.png" alt="Sale Icon"> Sell Your Motorcycle</a>
                 </div>
                 <div class="garage">
-                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/804Z509/garage-edited.png" alt="Garage Icon">My Garage</a>
+                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/804Z509/garage-edited.png" alt="Garage Icon"> My Garage</a>
                 </div>
                 <div class="wishlist">
-                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/Ch2b54P/heart-edited.png" alt="Wishlist Icon">My Wishlist</a>
+                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/Ch2b54P/heart-edited.png" alt="Wishlist Icon"> My Wishlist</a>
                 </div>
             </header>
         </div>
@@ -94,3 +94,21 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    .contact a,
+    .sell a,
+    .garage a,
+    .wishlist a{
+        text-decoration: none; 
+        color: black;
+    }
+
+    .contact a:hover,
+    .sell a:hover,
+    .garage a:hover,
+    .wishlist a:hover {
+        color: darkorange;
+        transition: 0.3s ;
+    }
+</style>

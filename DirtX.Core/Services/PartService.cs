@@ -15,19 +15,25 @@ namespace DirtX.Core.Services
             context = _context;
         }
 
-        public async Task<List<Part>> GetByBrandAsync(string brandName)
+        public async Task<List<Part>> GetAllProductsAsync()
         {
-            var brand = await context.ProductBrands.FirstOrDefaultAsync(b => b.Name == brandName);
-
-            //TODO - BETTER NULL HANDLING
-            if (brand == null)
-            {
-                return null;
-            }
-
-            var parts = await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
+            List<Part> parts = await context.Parts.ToListAsync();
 
             return parts;
+        }
+
+        public async Task<List<ProductBrand>> GetDistinctBrandsAsync()
+        {
+            var distinctBrands = await context.Parts
+                .Select(p => p.BrandId)
+                .Distinct()
+                .ToListAsync();
+
+            var brands = await context.ProductBrands
+                .Where(brand => distinctBrands.Contains(brand.Id))
+                .ToListAsync();
+
+            return brands;
         }
 
         public async Task<List<Part>> GetAllByCategoryAsync(Enum category)

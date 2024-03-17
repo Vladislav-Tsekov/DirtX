@@ -45,13 +45,8 @@ namespace DirtX.Core.Services
                 .Include(p => p.Brand)
                 .Include(p => p.PartProperties)
                 .ThenInclude(pp => pp.Specification)
+                .ThenInclude(pp => pp.Title)
                 .FirstOrDefaultAsync(p => p.Id == id);
-
-            //TODO - BETTER NULL HANDLING
-            if (part == null)
-            {
-                return null;
-            }
 
             return part;
         }

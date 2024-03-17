@@ -29,9 +29,9 @@ namespace DirtX.Web.Controllers
         {
             IEnumerable<PartType> categories = Enum.GetValues(typeof(PartType)).Cast<PartType>();
 
-            List<Part> allParts = await partService.GetAllProductsAsync();
+            List<Part> parts = await partService.GetAllProductsAsync();
 
-            var partsBrands = await partService.GetDistinctBrandsAsync();
+            List<ProductBrand> partsBrands = await partService.GetDistinctBrandsAsync();
 
             var model = categories.Select(category =>
             {
@@ -49,12 +49,12 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(PartType type)
         {
-            var parts = await context.Parts.Where(p => p.Type == type).ToListAsync();
+            List<Part> parts = await partService.GetAllProductsAsync();
 
-            var model = new PartCategoryViewModel
+            var model = new ProductCategoryViewModel<Part>
             {
                 CategoryName = type.ToString(),
-                Parts = parts
+                Products = parts
             };
 
             return View(model);

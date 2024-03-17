@@ -52,10 +52,10 @@ namespace DirtX.Web.Controllers
         {
             var gears = await context.Gears.Where(o => o.Type == type).ToListAsync();
 
-            var model = new GearCategoryViewModel
+            var model = new ProductCategoryViewModel<Gear>
             {
                 CategoryName = type.ToString(),
-                Gears = gears
+                Products = gears
             };
 
             return View(model);

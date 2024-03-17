@@ -1,4 +1,5 @@
 ﻿using DirtX.Core.Interfaces;
+using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.MotorcycleData;
@@ -34,7 +35,7 @@ namespace DirtX.Web.Controllers
 
             var model = categories.Select(category =>
             {
-                return new PartIndexViewModel
+                return new ProductIndexViewModel
                 {
                     CategoryName = category.ToString(),
                     ImageUrl = GetImageUrlForCategoryAsync(category),

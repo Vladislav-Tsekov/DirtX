@@ -1,8 +1,8 @@
 ﻿using DirtX.Infrastructure.Data.Models.Products;
 
-namespace DirtX.Web.Models.Part
+namespace DirtX.Core.Models
 {
-    public class PartIndexViewModel
+    public class ProductIndexViewModel
     {
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }

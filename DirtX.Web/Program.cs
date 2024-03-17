@@ -1,3 +1,5 @@
+using DirtX.Core.Interfaces;
+using DirtX.Core.Services;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Identity;
@@ -22,6 +24,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IProductService<Part>, PartService>();
 
 var app = builder.Build();
 

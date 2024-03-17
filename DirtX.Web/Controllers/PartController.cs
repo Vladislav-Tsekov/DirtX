@@ -1,4 +1,5 @@
-﻿using DirtX.Infrastructure.Data.Models;
+﻿using DirtX.Core.Services;
+using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.MotorcycleData;
 using DirtX.Infrastructure.Data.Models.Products;
@@ -14,10 +15,12 @@ namespace DirtX.Web.Controllers
     public class PartController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly PartService partService;
 
-        public PartController(ApplicationDbContext _context)
+        public PartController(ApplicationDbContext _context, PartService _partService)
         {
             context = _context;
+            partService = _partService;
         }
 
         [HttpGet]

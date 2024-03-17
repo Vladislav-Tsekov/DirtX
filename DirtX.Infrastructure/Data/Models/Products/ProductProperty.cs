@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
-    public abstract class ProductProperty
+    public class ProductProperty
     {
         [Key]
         public int Id { get; set; }

@@ -1,4 +1,4 @@
-﻿using DirtX.Core.Services;
+﻿using DirtX.Core.Interfaces;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.MotorcycleData;
@@ -15,9 +15,9 @@ namespace DirtX.Web.Controllers
     public class PartController : Controller
     {
         private readonly ApplicationDbContext context;
-        private readonly PartService partService;
+        private readonly IProductService<Part> partService;
 
-        public PartController(ApplicationDbContext _context, PartService _partService)
+        public PartController(ApplicationDbContext _context, IProductService<Part> _partService)
         {
             context = _context;
             partService = _partService;
@@ -26,18 +26,11 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = Enum.GetValues(typeof(PartType)).Cast<PartType>();
+            IEnumerable<PartType> categories = Enum.GetValues(typeof(PartType)).Cast<PartType>();
 
-            var allParts = await context.Parts.ToListAsync();
+            List<Part> allParts = await partService.GetAllProductsAsync();
 
-            var distinctBrands = allParts
-                .Select(p => p.BrandId)
-                .Distinct()
-                .ToList();
-
-            var partsBrands = await context.ProductBrands
-                .Where(brand => distinctBrands.Contains(brand.Id))
-                .ToListAsync();
+            var partsBrands = await partService.GetDistinctBrandsAsync();
 
             var model = categories.Select(category =>
             {

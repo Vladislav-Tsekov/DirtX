@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 //DATABASE SERVICE
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -24,7 +26,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+
+//CUSTOM SERVICES
 builder.Services.AddScoped<IProductService<Part>, PartService>();
+
 
 var app = builder.Build();
 

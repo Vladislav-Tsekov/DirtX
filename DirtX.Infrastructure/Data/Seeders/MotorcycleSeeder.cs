@@ -17,51 +17,6 @@ namespace DirtX.Infrastructure.Data.Seeders
             SeedUsedMotorcycles(modelBuilder);
         }
 
-        private static void SeedUsedMotorcycles(ModelBuilder modelBuilder)
-        {
-            string currentDir = Directory.GetCurrentDirectory();
-            string parentDir = Directory.GetParent(currentDir).FullName;
-
-            string ktmImagePath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\ktm.jpg");
-            string yamahaImagePath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\yamaha.jpg");
-
-            byte[] ktmImage = File.ReadAllBytes(ktmImagePath);
-            byte[] yamahaImage = File.ReadAllBytes(yamahaImagePath);
-
-            modelBuilder.Entity<UsedMotorcycle>().HasData(
-                new UsedMotorcycle { Id = 1, MakeId = 1, ModelId = 1, DisplacementId = 1, YearId = 2, Price = 3200, Contact = "0885992255", Image = yamahaImage, Province = Province.Blagoevgrad, Description = "In a very good condition for its age. Leaky suspension. For more questions don't hesitate to call me!" },
-                new UsedMotorcycle { Id = 2, MakeId = 5, ModelId = 5, DisplacementId = 3, YearId = 15, Price = 9800, Contact = "0892557711", Image = ktmImage, Province = Province.Sofia_Province, Description = "Oil and filters changes 5h ago. Excellent bike for beginners. Get in touch if you want to see more pictures." }
-             );
-        }
-
-        private static void SeedAvailableMotorcycles(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Motorcycle>().HasData(
-                new Motorcycle { Id = 1, MakeId = 1, ModelId = 1, YearId = 1, DisplacementId = 1 },
-                new Motorcycle { Id = 2, MakeId = 1, ModelId = 1, YearId = 2, DisplacementId = 1 },
-                new Motorcycle { Id = 3, MakeId = 1, ModelId = 1, YearId = 3, DisplacementId = 3 },
-                new Motorcycle { Id = 4, MakeId = 2, ModelId = 2, YearId = 4, DisplacementId = 3 },
-                new Motorcycle { Id = 5, MakeId = 2, ModelId = 2, YearId = 5, DisplacementId = 3 },
-                new Motorcycle { Id = 6, MakeId = 2, ModelId = 2, YearId = 6, DisplacementId = 1 },
-                new Motorcycle { Id = 7, MakeId = 3, ModelId = 3, YearId = 7, DisplacementId = 3 },
-                new Motorcycle { Id = 8, MakeId = 3, ModelId = 3, YearId = 8, DisplacementId = 1 },
-                new Motorcycle { Id = 9, MakeId = 3, ModelId = 3, YearId = 9, DisplacementId = 1 },
-                new Motorcycle { Id = 10, MakeId = 4, ModelId = 4, YearId = 10, DisplacementId = 3 },
-                new Motorcycle { Id = 11, MakeId = 4, ModelId = 4, YearId = 11, DisplacementId = 1 },
-                new Motorcycle { Id = 12, MakeId = 4, ModelId = 4, YearId = 12, DisplacementId = 3 },
-                new Motorcycle { Id = 13, MakeId = 5, ModelId = 5, YearId = 13, DisplacementId = 1 },
-                new Motorcycle { Id = 14, MakeId = 5, ModelId = 5, YearId = 14, DisplacementId = 2 },
-                new Motorcycle { Id = 15, MakeId = 5, ModelId = 5, YearId = 15, DisplacementId = 3 },
-                new Motorcycle { Id = 16, MakeId = 6, ModelId = 6, YearId = 16, DisplacementId = 1 },
-                new Motorcycle { Id = 17, MakeId = 6, ModelId = 6, YearId = 17, DisplacementId = 1 },
-                new Motorcycle { Id = 18, MakeId = 6, ModelId = 6, YearId = 18, DisplacementId = 3 },
-                new Motorcycle { Id = 19, MakeId = 7, ModelId = 7, YearId = 19, DisplacementId = 1 },
-                new Motorcycle { Id = 20, MakeId = 7, ModelId = 7, YearId = 20, DisplacementId = 3 }
-            );
-
-            //TODO - ADD MORE MOTORCYCLES, IF PROJECT IS FINISHED EARLY
-        }
-
         private static void SeedMotoMakes(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Make>().HasData(
@@ -104,6 +59,54 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new Displacement { Id = 2, Volume = 350 },
                 new Displacement { Id = 3, Volume = 450 }
             );
+        }
+
+
+        private static void SeedAvailableMotorcycles(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Motorcycle>().HasData(
+                new Motorcycle { Id = 1, MakeId = 1, ModelId = 1, YearId = 1, DisplacementId = 1 },
+                new Motorcycle { Id = 2, MakeId = 1, ModelId = 1, YearId = 2, DisplacementId = 1 },
+                new Motorcycle { Id = 3, MakeId = 1, ModelId = 1, YearId = 3, DisplacementId = 3 },
+                new Motorcycle { Id = 4, MakeId = 2, ModelId = 2, YearId = 4, DisplacementId = 3 },
+                new Motorcycle { Id = 5, MakeId = 2, ModelId = 2, YearId = 5, DisplacementId = 3 },
+                new Motorcycle { Id = 6, MakeId = 2, ModelId = 2, YearId = 6, DisplacementId = 1 },
+                new Motorcycle { Id = 7, MakeId = 3, ModelId = 3, YearId = 7, DisplacementId = 3 },
+                new Motorcycle { Id = 8, MakeId = 3, ModelId = 3, YearId = 8, DisplacementId = 1 },
+                new Motorcycle { Id = 9, MakeId = 3, ModelId = 3, YearId = 9, DisplacementId = 1 },
+                new Motorcycle { Id = 10, MakeId = 4, ModelId = 4, YearId = 10, DisplacementId = 3 },
+                new Motorcycle { Id = 11, MakeId = 4, ModelId = 4, YearId = 11, DisplacementId = 1 },
+                new Motorcycle { Id = 12, MakeId = 4, ModelId = 4, YearId = 12, DisplacementId = 3 },
+                new Motorcycle { Id = 13, MakeId = 5, ModelId = 5, YearId = 13, DisplacementId = 1 },
+                new Motorcycle { Id = 14, MakeId = 5, ModelId = 5, YearId = 14, DisplacementId = 2 },
+                new Motorcycle { Id = 15, MakeId = 5, ModelId = 5, YearId = 15, DisplacementId = 3 },
+                new Motorcycle { Id = 16, MakeId = 6, ModelId = 6, YearId = 16, DisplacementId = 1 },
+                new Motorcycle { Id = 17, MakeId = 6, ModelId = 6, YearId = 17, DisplacementId = 1 },
+                new Motorcycle { Id = 18, MakeId = 6, ModelId = 6, YearId = 18, DisplacementId = 3 },
+                new Motorcycle { Id = 19, MakeId = 7, ModelId = 7, YearId = 19, DisplacementId = 1 },
+                new Motorcycle { Id = 20, MakeId = 7, ModelId = 7, YearId = 20, DisplacementId = 3 }
+            );
+
+            //TODO - ADD MORE MOTORCYCLES, IF PROJECT IS FINISHED EARLY
+        }
+        private static void SeedUsedMotorcycles(ModelBuilder modelBuilder)
+        {
+            string currentDir = Directory.GetCurrentDirectory();
+            string parentDir = Directory.GetParent(currentDir).FullName;
+
+            string ktmImagePath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\ktm.jpg");
+            string yamahaImagePath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\yamaha.jpg");
+            string kawasakiImagePath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\kawasaki.jpg");
+
+            byte[] ktmImage = File.ReadAllBytes(ktmImagePath);
+            byte[] yamahaImage = File.ReadAllBytes(yamahaImagePath);
+            byte[] kawasakiImage = File.ReadAllBytes(kawasakiImagePath);
+
+            modelBuilder.Entity<UsedMotorcycle>().HasData(
+                new UsedMotorcycle { Id = 1, MakeId = 1, ModelId = 1, DisplacementId = 1, YearId = 2, Price = 3200, Contact = "0885992255", Image = yamahaImage, Province = Province.Blagoevgrad, Description = "In a very good condition for its age. Leaky suspension. For more questions don't hesitate to call me!" },
+                new UsedMotorcycle { Id = 2, MakeId = 5, ModelId = 5, DisplacementId = 3, YearId = 15, Price = 9800, Contact = "0892557711", Image = ktmImage, Province = Province.Sofia_Province, Description = "Oil and filters changes 5h ago. Excellent bike for beginners. Get in touch if you want to see more pictures." },
+                new UsedMotorcycle { Id = 3, MakeId = 4, ModelId = 4, DisplacementId = 3, YearId = 12, Price = 7800, Contact = "0884110044", Image = kawasakiImage, Province = Province.Plovdiv, Description = "Recently imported from Italy. I've only used it for sporadic rides together with my son. Oil was changed recently. 94h on the bike." }
+             );
         }
     }
 }

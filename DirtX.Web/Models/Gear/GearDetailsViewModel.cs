@@ -1,5 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
+using DirtX.Infrastructure.Data.Models.Products;
 
 namespace DirtX.Web.Models.Gear
 {
@@ -14,6 +14,6 @@ namespace DirtX.Web.Models.Gear
         public bool IsAvailable { get; set; }
         public int StockQuantity { get; set; }
         public string ImageUrl { get; set; }
-        public ICollection<GearSpecification> Specs { get; set; }
+        public ICollection<ProductProperty> Specs { get; set; }
     }
 }

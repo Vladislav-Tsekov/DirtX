@@ -1,10 +1,8 @@
 ﻿using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
 using DirtX.Web.Data;
 using DirtX.Web.Models;
-using DirtX.Web.Models.Part;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -90,8 +88,7 @@ namespace DirtX.Web.Controllers
         {
             Oil oil = await context.Oils
                 .Include(o => o.Brand)
-                .Include(o => o.OilProperties)
-                .ThenInclude(op => op.Specification)
+                .Include(o => o.Properties)
                 .ThenInclude(op => op.Title)
                 .FirstOrDefaultAsync(o => o.Id == id);
 
@@ -100,9 +97,9 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            List<OilSpecification> oilSpecs = oil.OilProperties
-                .Select(os => os.Specification)
-                .ToList();
+            //List<OilSpecification> oilSpecs = oil.OilProperties
+            //    .Select(os => os.Specification)
+            //    .ToList();
 
             OilDetailsViewModel model = new()
             {
@@ -115,7 +112,7 @@ namespace DirtX.Web.Controllers
                 IsAvailable = oil.IsAvailable,
                 StockQuantity = oil.StockQuantity,
                 ImageUrl = oil.ImageUrl,
-                Specs = oilSpecs
+                //Specs = oilSpecs
             };
 
             return View(model);

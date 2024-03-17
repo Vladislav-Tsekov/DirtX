@@ -2,7 +2,7 @@
 using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.MotorcycleData;
+using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
 using DirtX.Web.Models;
@@ -87,8 +87,7 @@ namespace DirtX.Web.Controllers
         {
             Part part = await context.Parts
                 .Include(p => p.Brand)
-                .Include(p => p.PartProperties)
-                .ThenInclude(pp => pp.Specification)
+                .Include(p => p.Properties)
                 .ThenInclude(pp => pp.Title)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
@@ -97,9 +96,9 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            List<PartSpecification> partSpecs = part.PartProperties
-                .Select(ps => ps.Specification)
-                .ToList();
+            //List<PartSpecification> partSpecs = part.PartProperties
+            //    .Select(ps => ps.Specification)
+            //    .ToList();
 
             PartDetailsViewModel model = new()
             {
@@ -112,7 +111,7 @@ namespace DirtX.Web.Controllers
                 IsAvailable = part.IsAvailable,
                 StockQuantity = part.StockQuantity,
                 ImageUrl = part.ImageUrl,
-                Specs = partSpecs
+                //Specs = partSpecs
             };
 
             return View(model);

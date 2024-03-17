@@ -33,10 +33,10 @@ namespace DirtX.Web.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //{
-            //    optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=DirtX.Test;Integrated Security=True");
-            //}
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=DirtX.Test;Integrated Security=True");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,7 +48,23 @@ namespace DirtX.Web.Data
                         .IsUnique(false);
 
             modelBuilder.Entity<MotorcyclePart>()
-                        .HasKey(mp => new { mp.MotorcycleId, mp.PartId });    
+                        .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
+
+            modelBuilder.Entity<Product>()
+                .HasDiscriminator<string>("product_set")
+                .HasValue<Gear>("Gear")
+                .HasValue<Oil>("Oil")
+                .HasValue<Part>("Part");
+
+            modelBuilder.Entity<Gear>();
+            modelBuilder.Entity<Oil>();
+            modelBuilder.Entity<Part>();
+
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Properties)
+                .WithMany(pp => pp.Products)
+                .UsingEntity(x => x.ToTable("PropertyProductMapper"));
+
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);

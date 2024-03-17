@@ -15,5 +15,7 @@ namespace DirtX.Infrastructure.Data.Models.Products
 
         [Required]
         public string Value { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
 using DirtX.Web.Data;
 using DirtX.Web.Models.Gear;
 using Microsoft.AspNetCore.Mvc;
@@ -89,8 +88,7 @@ namespace DirtX.Web.Controllers
         {
             Gear gear = await context.Gears
                 .Include(g => g.Brand)
-                .Include(g => g.GearProperties)
-                .ThenInclude(gp => gp.Specification)
+                .Include(g => g.Properties)
                 .ThenInclude(gp => gp.Title)
                 .FirstOrDefaultAsync(g => g.Id == id);
 
@@ -99,9 +97,9 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            List<GearSpecification> gearSpecs = gear.GearProperties 
-                .Select(gp => gp.Specification) 
-                .ToList();
+            //List<GearSpecification> gearSpecs = gear.GearProperties 
+            //    .Select(gp => gp.Specification) 
+            //    .ToList();
 
             GearDetailsViewModel model = new()
             {
@@ -114,7 +112,7 @@ namespace DirtX.Web.Controllers
                 IsAvailable = gear.IsAvailable,
                 StockQuantity = gear.StockQuantity,
                 ImageUrl = gear.ImageUrl,
-                Specs = gearSpecs
+                //Specs = gearSpecs
             };
 
             return View(model);

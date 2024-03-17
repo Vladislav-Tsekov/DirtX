@@ -1,8 +1,8 @@
-﻿@model OilCategoryViewModel
+﻿@model ProductCategoryViewModel<Oil>
 
 <h1>@Model.CategoryName.Replace("_", " ")</h1>
 
-@foreach (var oil in Model.Oils)
+@foreach (var oil in Model.Products)
 {
     <div>
         <h2>@oil.Title</h2>

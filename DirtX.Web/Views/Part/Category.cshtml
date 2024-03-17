@@ -1,8 +1,8 @@
-﻿@model PartCategoryViewModel
+﻿@model ProductCategoryViewModel<Part>
 
 <h1>@Model.CategoryName</h1>
 
-@foreach (var part in Model.Parts)
+@foreach (var part in Model.Products)
 {
     <div>
         <h2>@part.Title</h2>

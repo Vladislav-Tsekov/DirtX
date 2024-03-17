@@ -1,8 +1,8 @@
-﻿@model GearCategoryViewModel
+﻿@model ProductCategoryViewModel<Gear>
 
 <h1>@Model.CategoryName.Replace("_", " ")</h1>
 
-@foreach (var gear in Model.Gears)
+@foreach (var gear in Model.Products)
 {
     <div>
         <h2>@gear.Title</h2>

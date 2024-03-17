@@ -8,22 +8,27 @@ namespace DirtX.Core.Services
     {
         private readonly DbContext _context;
 
-        public OilService(DbContext context)
-        {
-            _context = context;
-        }
-
         public Task<List<Oil>> GetAllProductsAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Oil> GetDetailsAsync(int id)
+        public Task<List<ProductBrand>> GetDistinctProductBrandsAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ProductBrand>> GetDistinctBrandsAsync()
+        public Task<ProductBrand> GetProductBrandAsync(string brandName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Oil> GetProductDetailsAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Oil>> GetProductsByBrandAsync(ProductBrand brand)
         {
             throw new NotImplementedException();
         }

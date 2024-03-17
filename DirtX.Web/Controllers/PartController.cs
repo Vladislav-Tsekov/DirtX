@@ -31,7 +31,7 @@ namespace DirtX.Web.Controllers
 
             List<Part> parts = await partService.GetAllProductsAsync();
 
-            List<ProductBrand> partsBrands = await partService.GetDistinctBrandsAsync();
+            List<ProductBrand> partsBrands = await partService.GetDistinctProductBrandsAsync();
 
             var model = categories.Select(category =>
             {
@@ -63,21 +63,21 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            ProductBrand brand = context.ProductBrands.FirstOrDefault(b => b.Name == brandName);
+            ProductBrand brand = await partService.GetProductBrandAsync(brandName);
 
             if (brand is null)
             {
                 return NotFound();
             }
 
-            List<Part> brandParts = await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
+            var parts = await partService.GetProductsByBrandAsync(brand);
 
-            PartBrandViewModel model = new()
+            var model = new ProductBrandViewModel<Part>
             {
                 Name = brand.Name,
                 Description = brand.Description,
                 ImageUrl = brand.ImageUrl,
-                Parts = brandParts
+                Products = parts
             };
 
             return View(model);

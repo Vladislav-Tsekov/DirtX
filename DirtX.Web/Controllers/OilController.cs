@@ -72,14 +72,14 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            List<Oil> brandOils = await context.Oils.Where(p => p.BrandId == brand.Id).ToListAsync();
+            List<Oil> oils = await context.Oils.Where(p => p.BrandId == brand.Id).ToListAsync();
 
-            OilBrandViewModel model = new()
+            ProductBrandViewModel<Oil> model = new()
             {
                 Name = brand.Name,
                 Description = brand.Description,
                 ImageUrl = brand.ImageUrl,
-                Oils = brandOils
+                Products = oils
             };
 
             return View(model);

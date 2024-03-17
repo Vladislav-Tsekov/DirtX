@@ -1,4 +1,4 @@
-﻿@model GearBrandViewModel
+﻿@model ProductBrandViewModel<Gear>
 
 <style>
     .brand-container {
@@ -46,7 +46,7 @@
 <h1>Products from this manufacturer:</h1>
 
 <div class="gears-container">
-    @foreach (var gear in Model.Gears)
+    @foreach (var gear in Model.Products)
     {
         <div class="oil">
             <h2>@gear.Title</h2>

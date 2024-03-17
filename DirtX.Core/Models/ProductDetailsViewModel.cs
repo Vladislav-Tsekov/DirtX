@@ -1,4 +1,4 @@
-﻿using DirtX.Infrastructure.Data.Models.Products.Properties;
+﻿using DirtX.Infrastructure.Data.Models.Products;
 
 namespace DirtX.Core.Models
 {
@@ -10,6 +10,6 @@ namespace DirtX.Core.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public ICollection<ProductSpecification> Specs { get; set; }
+        public ICollection<ProductProperty> Specs { get; set; }
     }
 }

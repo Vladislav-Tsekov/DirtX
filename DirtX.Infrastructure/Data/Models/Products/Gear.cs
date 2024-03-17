@@ -1,5 +1,4 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
 using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Infrastructure.Data.Models.Products
@@ -11,7 +10,5 @@ namespace DirtX.Infrastructure.Data.Models.Products
 
         [Required]
         public GearType Type { get; set; }
-
-        public List<GearProperty> GearProperties { get; set; }
     }
 }

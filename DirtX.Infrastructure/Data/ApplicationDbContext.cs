@@ -1,8 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
-using DirtX.Infrastructure.Data.Models.MotorcycleData;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
 using DirtX.Infrastructure.Data.Seeders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -24,18 +22,14 @@ namespace DirtX.Web.Data
 
         // PRODUCTS AND PRODUCT'S SPECIFICATIONS/PROPERTIES
         public DbSet<Part> Parts { get; set; }
-        public DbSet<PartSpecification> PartsSpecifications { get; set; }
         public DbSet<Oil> Oils { get; set; }
-        public DbSet<OilSpecification> OilsSpecifications { get; set; }
         public DbSet<Gear> Gears { get; set; }
-        public DbSet<GearSpecification> GearsSpecifications { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<ProductProperty> ProductProperties { get; set; }
+        public DbSet<PropertyTitle> PropertyTitles { get; set; }
 
         // MAPPING/JUNCTION TABLES
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
-        public DbSet<PartProperty> PartsProperties { get; set; }
-        public DbSet<OilProperty> OilsProperties { get; set; }
-        public DbSet<GearProperty> GearsProperties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,16 +48,7 @@ namespace DirtX.Web.Data
                         .IsUnique(false);
 
             modelBuilder.Entity<MotorcyclePart>()
-                        .HasKey(mp => new { mp.MotorcycleId, mp.PartId });  
-            
-            modelBuilder.Entity<PartProperty>()
-                        .HasKey(pp => new { pp.PartId, pp.SpecificationId }); 
-            
-            modelBuilder.Entity<OilProperty>()
-                        .HasKey(op => new { op.OilId, op.SpecificationId });  
-            
-            modelBuilder.Entity<GearProperty>()
-                        .HasKey(gp => new { gp.GearId, gp.SpecificationId });
+                        .HasKey(mp => new { mp.MotorcycleId, mp.PartId });    
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);

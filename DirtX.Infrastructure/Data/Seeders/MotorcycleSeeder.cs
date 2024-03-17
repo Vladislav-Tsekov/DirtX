@@ -1,5 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Motorcycles;
-using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
+using DirtX.Infrastructure.Data.Models.MotorcycleData;
 using DirtX.Infrastructure.Data.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 

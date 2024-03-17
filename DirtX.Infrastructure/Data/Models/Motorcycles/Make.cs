@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models.MotorcycleSpecs
+namespace DirtX.Infrastructure.Data.Models.MotorcycleData
 {
     public class Make
     {

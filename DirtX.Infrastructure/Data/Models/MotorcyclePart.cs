@@ -1,4 +1,4 @@
-﻿using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
+﻿using DirtX.Infrastructure.Data.Models.MotorcycleData;
 using DirtX.Infrastructure.Data.Models.Products;
 using System.ComponentModel.DataAnnotations.Schema;
 

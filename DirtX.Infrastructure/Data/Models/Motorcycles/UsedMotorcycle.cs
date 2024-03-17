@@ -1,5 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.MotorcycleSpecs;
+using DirtX.Infrastructure.Data.Models.MotorcycleData;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

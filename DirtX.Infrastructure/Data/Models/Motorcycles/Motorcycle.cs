@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DirtX.Infrastructure.Data.Models.MotorcycleData
+namespace DirtX.Infrastructure.Data.Models.Motorcycles
 {
     public class Motorcycle
     {

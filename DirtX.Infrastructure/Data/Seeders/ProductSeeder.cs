@@ -1,6 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
 using Microsoft.EntityFrameworkCore;
 using static DirtX.Infrastructure.Shared.SeedersConstants;
 
@@ -50,14 +49,14 @@ namespace DirtX.Infrastructure.Data.Seeders
 
         private static void SeedSpecificationTitles(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SpecificationTitles>().HasData(
-                new SpecificationTitles { Id = 1, Title = "Material" },
-                new SpecificationTitles { Id = 2, Title = "Manufacture Method" },
-                new SpecificationTitles { Id = 3, Title = "Color" },
-                new SpecificationTitles { Id = 4, Title = "Diameter" },
-                new SpecificationTitles { Id = 5, Title = "Spring Rate" },
-                new SpecificationTitles { Id = 6, Title = "Seal Fitment" },
-                new SpecificationTitles { Id = 7, Title = "Viscosity" }
+            modelBuilder.Entity<PropertyTitle>().HasData(
+                new PropertyTitle { Id = 1, Title = "Material" },
+                new PropertyTitle { Id = 2, Title = "Manufacture Method" },
+                new PropertyTitle { Id = 3, Title = "Color" },
+                new PropertyTitle { Id = 4, Title = "Diameter" },
+                new PropertyTitle { Id = 5, Title = "Spring Rate" },
+                new PropertyTitle { Id = 6, Title = "Seal Fitment" },
+                new PropertyTitle { Id = 7, Title = "Viscosity" }
             );
         }
 

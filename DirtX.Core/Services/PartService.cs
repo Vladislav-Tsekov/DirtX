@@ -36,24 +36,6 @@ namespace DirtX.Core.Services
             return brands;
         }
 
-        public async Task<List<Part>> GetAllByCategoryAsync(Enum category)
-        {
-            PartType partCategory = (PartType)category;
-
-            List<Part> parts = await context.Parts.Where(p => p.Type == partCategory).ToListAsync();
-
-            return parts;
-        }
-
-        public async Task<List<Part>> GetByCategoryAsync(Enum category)
-        {
-            PartType partCategory = (PartType)category;
-
-            List<Part> parts = await context.Parts.Where(p => p.Type == partCategory).ToListAsync();
-
-            return parts;
-        }
-
         public async Task<Part> GetDetailsAsync(int id)
         {
             var part = await context.Parts

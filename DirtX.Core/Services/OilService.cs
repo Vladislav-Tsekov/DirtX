@@ -13,22 +13,7 @@ namespace DirtX.Core.Services
             _context = context;
         }
 
-        public Task<List<Oil>> GetAllByCategoryAsync(Enum category)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<List<Oil>> GetAllProductsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Oil>> GetByBrandAsync(string brandName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Oil>> GetByCategoryAsync(Enum category)
         {
             throw new NotImplementedException();
         }

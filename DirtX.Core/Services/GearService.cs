@@ -13,22 +13,7 @@ namespace DirtX.Core.Services
             _context = context;
         }
 
-        public Task<List<Gear>> GetAllByCategoryAsync(Enum category)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<List<Gear>> GetAllProductsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Gear>> GetByBrandAsync(string brandName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Gear>> GetByCategoryAsync(Enum category)
         {
             throw new NotImplementedException();
         }
@@ -43,5 +28,4 @@ namespace DirtX.Core.Services
             throw new NotImplementedException();
         }
     }
-
 }

@@ -61,7 +61,6 @@ namespace DirtX.Infrastructure.Data.Seeders
             );
         }
 
-
         private static void SeedAvailableMotorcycles(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Motorcycle>().HasData(
@@ -89,6 +88,7 @@ namespace DirtX.Infrastructure.Data.Seeders
 
             //TODO - ADD MORE MOTORCYCLES, IF PROJECT IS FINISHED EARLY
         }
+
         private static void SeedUsedMotorcycles(ModelBuilder modelBuilder)
         {
             string currentDir = Directory.GetCurrentDirectory();

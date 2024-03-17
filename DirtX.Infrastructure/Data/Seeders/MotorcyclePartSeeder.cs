@@ -3,14 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Infrastructure.Data.Seeders
 {
-    public static class MappingTableSeeder
+    public static class MotorcyclePartSeeder
     {
-        public static void SeedMappingTables(ModelBuilder modelBuilder)
-        {
-            SeedMotorcyclePart(modelBuilder);
-        }
-
-        private static void SeedMotorcyclePart(ModelBuilder modelBuilder)
+        public static void SeedMotorcycleParts(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MotorcyclePart>().HasData(
                 new MotorcyclePart { PartId = 1, MotorcycleId = 3 },

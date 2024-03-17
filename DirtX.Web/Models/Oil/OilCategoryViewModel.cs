@@ -1,5 +1,5 @@
 ﻿namespace DirtX.Web.Models.Part;
-using DirtX.Infrastructure.Data.Models.ProductModels;
+using DirtX.Infrastructure.Data.Models.Products;
 
 public class OilCategoryViewModel
 {

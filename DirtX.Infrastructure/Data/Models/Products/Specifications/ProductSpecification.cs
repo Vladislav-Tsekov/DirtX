@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models.ProductModels.Properties
+namespace DirtX.Infrastructure.Data.Models.Products.Properties
 {
     public abstract class ProductSpecification
     {

@@ -1,8 +1,8 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
+using DirtX.Infrastructure.Data.Models.Products.Properties;
 using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models.ProductModels
+namespace DirtX.Infrastructure.Data.Models.Products
 {
     public class Gear : Product
     {

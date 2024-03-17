@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DirtX.Core\DirtX.Core.csproj" />
     <ProjectReference Include="..\DirtX.Infrastructure\DirtX.Infrastructure.csproj" />
   </ItemGroup>
 

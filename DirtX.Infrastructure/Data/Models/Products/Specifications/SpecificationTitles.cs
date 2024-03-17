@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models.ProductModels.Properties
+namespace DirtX.Infrastructure.Data.Models.Products.Properties
 {
     public class SpecificationTitles
     {

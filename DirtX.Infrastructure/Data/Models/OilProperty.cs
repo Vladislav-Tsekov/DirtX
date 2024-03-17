@@ -1,5 +1,5 @@
-﻿using DirtX.Infrastructure.Data.Models.ProductModels;
-using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
+﻿using DirtX.Infrastructure.Data.Models.Products;
+using DirtX.Infrastructure.Data.Models.Products.Properties;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Infrastructure.Data.Models

@@ -1,6 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.ProductModels;
-using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
+using DirtX.Infrastructure.Data.Models.Products;
+using DirtX.Infrastructure.Data.Models.Products.Properties;
 using Microsoft.EntityFrameworkCore;
 using static DirtX.Infrastructure.Shared.SeedersConstants;
 

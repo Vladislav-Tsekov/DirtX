@@ -2318,7 +2318,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Gear", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Gear", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2495,7 +2495,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Oil", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Oil", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2646,7 +2646,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Part", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3014,7 +3014,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.ProductBrand", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.ProductBrand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3174,7 +3174,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.GearSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.GearSpecification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3258,7 +3258,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.OilSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.OilSpecification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3318,7 +3318,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.PartSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.PartSpecification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3510,7 +3510,7 @@ namespace DirtX.Web.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.SpecificationTitles", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.SpecificationTitles", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3768,13 +3768,13 @@ namespace DirtX.Web.Data.Migrations
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.GearProperty", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Gear", "Gear")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Gear", "Gear")
                         .WithMany("GearProperties")
                         .HasForeignKey("GearId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.GearSpecification", "Specification")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Properties.GearSpecification", "Specification")
                         .WithMany("GearProperties")
                         .HasForeignKey("SpecificationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3793,7 +3793,7 @@ namespace DirtX.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Part", "Part")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Part", "Part")
                         .WithMany("MotorcycleParts")
                         .HasForeignKey("PartId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3876,13 +3876,13 @@ namespace DirtX.Web.Data.Migrations
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.OilProperty", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Oil", "Oil")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Oil", "Oil")
                         .WithMany("OilProperties")
                         .HasForeignKey("OilId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.OilSpecification", "Specification")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Properties.OilSpecification", "Specification")
                         .WithMany("OilProperties")
                         .HasForeignKey("SpecificationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3895,13 +3895,13 @@ namespace DirtX.Web.Data.Migrations
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.PartProperty", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Part", "Part")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Part", "Part")
                         .WithMany("PartProperties")
                         .HasForeignKey("PartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.PartSpecification", "Specification")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Properties.PartSpecification", "Specification")
                         .WithMany("PartProperties")
                         .HasForeignKey("SpecificationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3912,9 +3912,9 @@ namespace DirtX.Web.Data.Migrations
                     b.Navigation("Specification");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Gear", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Gear", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.ProductBrand", "Brand")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3923,9 +3923,9 @@ namespace DirtX.Web.Data.Migrations
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Oil", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Oil", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.ProductBrand", "Brand")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3934,9 +3934,9 @@ namespace DirtX.Web.Data.Migrations
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Part", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.ProductBrand", "Brand")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3945,9 +3945,9 @@ namespace DirtX.Web.Data.Migrations
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.GearSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.GearSpecification", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.SpecificationTitles", "Title")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Properties.SpecificationTitles", "Title")
                         .WithMany()
                         .HasForeignKey("TitleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3956,9 +3956,9 @@ namespace DirtX.Web.Data.Migrations
                     b.Navigation("Title");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.OilSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.OilSpecification", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.SpecificationTitles", "Title")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Properties.SpecificationTitles", "Title")
                         .WithMany()
                         .HasForeignKey("TitleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3967,9 +3967,9 @@ namespace DirtX.Web.Data.Migrations
                     b.Navigation("Title");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.PartSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.PartSpecification", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.ProductModels.Properties.SpecificationTitles", "Title")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Properties.SpecificationTitles", "Title")
                         .WithMany()
                         .HasForeignKey("TitleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4034,34 +4034,34 @@ namespace DirtX.Web.Data.Migrations
                     b.Navigation("MotorcycleParts");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Gear", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Gear", b =>
                 {
                     b.Navigation("GearProperties");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Oil", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Oil", b =>
                 {
                     b.Navigation("OilProperties");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Part", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>
                 {
                     b.Navigation("MotorcycleParts");
 
                     b.Navigation("PartProperties");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.GearSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.GearSpecification", b =>
                 {
                     b.Navigation("GearProperties");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.OilSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.OilSpecification", b =>
                 {
                     b.Navigation("OilProperties");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductModels.Properties.PartSpecification", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Properties.PartSpecification", b =>
                 {
                     b.Navigation("PartProperties");
                 });

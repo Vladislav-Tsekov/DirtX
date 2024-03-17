@@ -1,6 +1,6 @@
 ﻿namespace DirtX.Web.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
+using DirtX.Infrastructure.Data.Models.Products.Properties;
 
 public class OilDetailsViewModel
 {

@@ -1,5 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.ProductModels.Properties;
+using DirtX.Infrastructure.Data.Models.Products.Properties;
 
 namespace DirtX.Web.Models.Gear
 {

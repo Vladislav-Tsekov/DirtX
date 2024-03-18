@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
-    public class ProductProperty
+    public class Specification
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
         [ForeignKey(nameof(TitleId))]
-        public PropertyTitle Title { get; set; }
+        public SpecificationTitle Title { get; set; }
         public int TitleId { get; set; }
 
         [Required]

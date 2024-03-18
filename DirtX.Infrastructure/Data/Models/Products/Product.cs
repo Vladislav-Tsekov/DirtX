@@ -36,6 +36,6 @@ namespace DirtX.Infrastructure.Data.Models.Products
         [Required]
         public string ImageUrl { get; set; }
 
-        public List<ProductProperty> Properties { get; set; }
+        public List<Specification> Properties { get; set; }
     }
 }

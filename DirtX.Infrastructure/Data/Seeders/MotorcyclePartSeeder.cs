@@ -5,7 +5,7 @@ namespace DirtX.Infrastructure.Data.Seeders
 {
     public static class MotorcyclePartSeeder
     {
-        public static void SeedMotorcycleParts(ModelBuilder modelBuilder)
+        public static void SeedMotorcyclesParts(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MotorcyclePart>().HasData(
                 new MotorcyclePart { PartId = 1, MotorcycleId = 3 },

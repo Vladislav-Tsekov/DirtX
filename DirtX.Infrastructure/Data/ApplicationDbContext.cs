@@ -25,11 +25,12 @@ namespace DirtX.Web.Data
         public DbSet<Oil> Oils { get; set; }
         public DbSet<Gear> Gears { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<Specification> ProductProperties { get; set; }
-        public DbSet<SpecificationTitle> PropertyTitles { get; set; }
+        public DbSet<Specification> Specifications { get; set; }
+        public DbSet<SpecificationTitle> SpecificationTitles { get; set; }
 
         // MAPPING/JUNCTION TABLES
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
+        public DbSet<ProductSpecification> ProductsSpecifications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -50,15 +51,18 @@ namespace DirtX.Web.Data
             modelBuilder.Entity<MotorcyclePart>()
                         .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
 
-            modelBuilder.Entity<Product>()
-                .HasDiscriminator<int>("product_set")
-                .HasValue<Part>(1)
-                .HasValue<Oil>(2)
-                .HasValue<Gear>(3);
+            modelBuilder.Entity<ProductSpecification>()
+                        .HasKey(ps => new { ps.ProductId, ps.SpecificationId });
 
-            modelBuilder.Entity<Gear>();
-            modelBuilder.Entity<Oil>();
-            modelBuilder.Entity<Part>();
+            modelBuilder.Entity<Product>()
+                .HasDiscriminator<string>("ProductSet")
+                .HasValue<Part>("Part")
+                .HasValue<Oil>("Oil")
+                .HasValue<Gear>("Gear");
+
+            //modelBuilder.Entity<Part>();
+            //modelBuilder.Entity<Oil>();
+            //modelBuilder.Entity<Gear>();
 
             //modelBuilder.Entity<Product>()
             //    .HasMany(p => p.Properties)
@@ -68,7 +72,8 @@ namespace DirtX.Web.Data
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);
-            MotorcyclePartSeeder.SeedMotorcycleParts(modelBuilder);
+            MotorcyclePartSeeder.SeedMotorcyclesParts(modelBuilder);
+            ProductSpecificationSeeder.SeedProductsSpecifications(modelBuilder);
         }
     }
 }

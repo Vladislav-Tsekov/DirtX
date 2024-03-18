@@ -88,7 +88,7 @@ namespace DirtX.Web.Controllers
         {
             Gear gear = await context.Gears
                 .Include(g => g.Brand)
-                .Include(g => g.Properties)
+                .Include(g => g.Specifications)
                 .ThenInclude(gp => gp.Title)
                 .FirstOrDefaultAsync(g => g.Id == id);
 

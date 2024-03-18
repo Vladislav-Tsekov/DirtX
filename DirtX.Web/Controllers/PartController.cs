@@ -87,7 +87,7 @@ namespace DirtX.Web.Controllers
         {
             Part part = await context.Parts
                 .Include(p => p.Brand)
-                .Include(p => p.Properties)
+                .Include(p => p.Specifications)
                 .ThenInclude(pp => pp.Title)
                 .FirstOrDefaultAsync(p => p.Id == id);
 

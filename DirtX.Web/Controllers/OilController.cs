@@ -88,7 +88,7 @@ namespace DirtX.Web.Controllers
         {
             Oil oil = await context.Oils
                 .Include(o => o.Brand)
-                .Include(o => o.Properties)
+                .Include(o => o.Specifications)
                 .ThenInclude(op => op.Title)
                 .FirstOrDefaultAsync(o => o.Id == id);
 

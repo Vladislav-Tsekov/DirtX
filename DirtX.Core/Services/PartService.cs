@@ -43,7 +43,7 @@ namespace DirtX.Core.Services
         {
             var part = await context.Parts
                 .Include(p => p.Brand)
-                .Include(p => p.Properties)
+                .Include(p => p.Specifications)
                 .ThenInclude(pp => pp.Title)
                 .FirstOrDefaultAsync(p => p.Id == id);
 

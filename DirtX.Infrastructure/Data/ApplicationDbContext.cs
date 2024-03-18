@@ -25,8 +25,8 @@ namespace DirtX.Web.Data
         public DbSet<Oil> Oils { get; set; }
         public DbSet<Gear> Gears { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<ProductProperty> ProductProperties { get; set; }
-        public DbSet<PropertyTitle> PropertyTitles { get; set; }
+        public DbSet<Specification> ProductProperties { get; set; }
+        public DbSet<SpecificationTitle> PropertyTitles { get; set; }
 
         // MAPPING/JUNCTION TABLES
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
@@ -51,19 +51,19 @@ namespace DirtX.Web.Data
                         .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
 
             modelBuilder.Entity<Product>()
-                .HasDiscriminator<string>("product_set")
-                .HasValue<Gear>("Gear")
-                .HasValue<Oil>("Oil")
-                .HasValue<Part>("Part");
+                .HasDiscriminator<int>("product_set")
+                .HasValue<Part>(1)
+                .HasValue<Oil>(2)
+                .HasValue<Gear>(3);
 
             modelBuilder.Entity<Gear>();
             modelBuilder.Entity<Oil>();
             modelBuilder.Entity<Part>();
 
-            modelBuilder.Entity<Product>()
-                .HasMany(p => p.Properties)
-                .WithMany(pp => pp.Products)
-                .UsingEntity(x => x.ToTable("PropertyProductMapper"));
+            //modelBuilder.Entity<Product>()
+            //    .HasMany(p => p.Properties)
+            //    .WithMany(pp => pp.Products)
+            //    .UsingEntity(x => x.ToTable("ProductSpecification"));
 
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);

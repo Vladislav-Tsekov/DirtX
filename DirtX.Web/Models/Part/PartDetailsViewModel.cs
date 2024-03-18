@@ -13,5 +13,5 @@ public class PartDetailsViewModel
     public bool IsAvailable { get; set; }
     public int StockQuantity { get; set; }
     public string ImageUrl { get; set; }
-    public ICollection<ProductProperty> Specs { get; set; }
+    public ICollection<Specification> Specs { get; set; }
 }

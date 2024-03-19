@@ -1,10 +1,8 @@
 ﻿using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
 using DirtX.Web.Data;
 using DirtX.Web.Models;
-using DirtX.Web.Models.Part;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,7 +49,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(OilType type)
         {
-            var oils = await context.Oils.Where(o => o.Type == type).ToListAsync();
+            var oils = await context.Oils.Where(o => o.OilType == type).ToListAsync();
 
             var model = new ProductCategoryViewModel<Oil>
             {
@@ -90,8 +88,7 @@ namespace DirtX.Web.Controllers
         {
             Oil oil = await context.Oils
                 .Include(o => o.Brand)
-                .Include(o => o.OilProperties)
-                .ThenInclude(op => op.Specification)
+                .Include(o => o.Specifications)
                 .ThenInclude(op => op.Title)
                 .FirstOrDefaultAsync(o => o.Id == id);
 
@@ -100,14 +97,10 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            List<OilSpecification> oilSpecs = oil.OilProperties
-                .Select(os => os.Specification)
-                .ToList();
-
             OilDetailsViewModel model = new()
             {
                 Id = oil.Id,
-                Type = oil.Type,
+                Type = oil.OilType,
                 BrandName = oil.Brand.Name,
                 Title = oil.Title,
                 Price = oil.Price,
@@ -115,7 +108,7 @@ namespace DirtX.Web.Controllers
                 IsAvailable = oil.IsAvailable,
                 StockQuantity = oil.StockQuantity,
                 ImageUrl = oil.ImageUrl,
-                Specs = oilSpecs
+                Specs = oil.Specifications
             };
 
             return View(model);

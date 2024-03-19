@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models.MotorcycleData
+namespace DirtX.Infrastructure.Data.Models.Motorcycles
 {
     public class Model
     {

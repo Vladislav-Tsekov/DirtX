@@ -4,6 +4,7 @@ using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240318214551_ProdSpecSeedUpdated")]
+    partial class ProdSpecSeedUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2777,62 +2779,6 @@ namespace DirtX.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.Trailer", b =>
-                {
-                    b.Property<int>("TrailerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrailerId"), 1L, 1);
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("CostPerDay")
-                        .HasColumnType("decimal(5,2)");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("MaximumLoad")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TrailerType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TrailerId");
-
-                    b.ToTable("Trailers");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
-                {
-                    b.Property<int>("RentalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentalId"), 1L, 1);
-
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TotalCost")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<int>("TrailerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RentalId");
-
-                    b.HasIndex("TrailerId");
-
-                    b.ToTable("TrailersRents");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -3054,11 +3000,12 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
 
-                    b.Property<int>("GearSize")
+                    b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<int>("GearType")
-                        .HasColumnType("int");
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("Gear_Type");
 
                     b.HasIndex("BrandId");
 
@@ -3075,8 +3022,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 899.99m,
                             StockQuantity = 2,
                             Title = "SM5",
-                            GearSize = 1,
-                            GearType = 0
+                            Size = 1,
+                            Type = 0
                         },
                         new
                         {
@@ -3088,8 +3035,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 279.99m,
                             StockQuantity = 7,
                             Title = "3-Series",
-                            GearSize = 0,
-                            GearType = 0
+                            Size = 0,
+                            Type = 0
                         },
                         new
                         {
@@ -3101,8 +3048,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 319.99m,
                             StockQuantity = 4,
                             Title = "Bionic Action V2",
-                            GearSize = 2,
-                            GearType = 1
+                            Size = 2,
+                            Type = 1
                         },
                         new
                         {
@@ -3114,8 +3061,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 179.99m,
                             StockQuantity = 10,
                             Title = "AsteriX Knee Braces",
-                            GearSize = 1,
-                            GearType = 1
+                            Size = 1,
+                            Type = 1
                         },
                         new
                         {
@@ -3127,8 +3074,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 79.99m,
                             StockQuantity = 3,
                             Title = "50th Anniversary Jersey",
-                            GearSize = 2,
-                            GearType = 2
+                            Size = 2,
+                            Type = 2
                         },
                         new
                         {
@@ -3140,8 +3087,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 259.99m,
                             StockQuantity = 5,
                             Title = "Prime Ace Complete Outfit",
-                            GearSize = 1,
-                            GearType = 2
+                            Size = 1,
+                            Type = 2
                         },
                         new
                         {
@@ -3153,8 +3100,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 1099.99m,
                             StockQuantity = 2,
                             Title = "Tech10",
-                            GearSize = 1,
-                            GearType = 3
+                            Size = 1,
+                            Type = 3
                         },
                         new
                         {
@@ -3166,8 +3113,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 559.99m,
                             StockQuantity = 6,
                             Title = "Blitz XR",
-                            GearSize = 2,
-                            GearType = 3
+                            Size = 2,
+                            Type = 3
                         },
                         new
                         {
@@ -3179,8 +3126,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 129.99m,
                             StockQuantity = 6,
                             Title = "B20 Goggles",
-                            GearSize = 1,
-                            GearType = 4
+                            Size = 1,
+                            Type = 4
                         },
                         new
                         {
@@ -3192,8 +3139,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 39.99m,
                             StockQuantity = 11,
                             Title = "Element Gloves",
-                            GearSize = 3,
-                            GearType = 4
+                            Size = 3,
+                            Type = 4
                         });
                 });
 
@@ -3201,11 +3148,12 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
 
-                    b.Property<int>("OilType")
-                        .HasColumnType("int");
-
                     b.Property<double>("PackageSize")
                         .HasColumnType("float");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("Oil_Type");
 
                     b.HasIndex("BrandId");
 
@@ -3222,8 +3170,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 28.99m,
                             StockQuantity = 30,
                             Title = "2T Cross Power",
-                            OilType = 0,
-                            PackageSize = 1.0
+                            PackageSize = 1.0,
+                            Type = 0
                         },
                         new
                         {
@@ -3235,8 +3183,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 34.99m,
                             StockQuantity = 12,
                             Title = "300V 15W60 1L",
-                            OilType = 1,
-                            PackageSize = 1.0
+                            PackageSize = 1.0,
+                            Type = 1
                         },
                         new
                         {
@@ -3248,8 +3196,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 114.99m,
                             StockQuantity = 3,
                             Title = "300V 10W40 4L",
-                            OilType = 1,
-                            PackageSize = 4.0
+                            PackageSize = 4.0,
+                            Type = 1
                         },
                         new
                         {
@@ -3261,8 +3209,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 27.00m,
                             StockQuantity = 8,
                             Title = "Fork Oil 5W",
-                            OilType = 3,
-                            PackageSize = 0.5
+                            PackageSize = 0.5,
+                            Type = 3
                         },
                         new
                         {
@@ -3274,8 +3222,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 29.99m,
                             StockQuantity = 8,
                             Title = "Performance Line: Shock Oil",
-                            OilType = 3,
-                            PackageSize = 0.75
+                            PackageSize = 0.75,
+                            Type = 3
                         },
                         new
                         {
@@ -3287,8 +3235,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 26.29m,
                             StockQuantity = 14,
                             Title = "YAMALUBE 10W40",
-                            OilType = 1,
-                            PackageSize = 1.5
+                            PackageSize = 1.5,
+                            Type = 1
                         },
                         new
                         {
@@ -3300,8 +3248,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 26.29m,
                             StockQuantity = 14,
                             Title = "AutoCool -35°C 1L",
-                            OilType = 4,
-                            PackageSize = 1.0
+                            PackageSize = 1.0,
+                            Type = 4
                         },
                         new
                         {
@@ -3313,8 +3261,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 28.29m,
                             StockQuantity = 4,
                             Title = "TransOil Expert 10W40",
-                            OilType = 2,
-                            PackageSize = 1.0
+                            PackageSize = 1.0,
+                            Type = 2
                         });
                 });
 
@@ -3322,7 +3270,7 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
 
-                    b.Property<int>("PartType")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasIndex("BrandId");
@@ -3340,7 +3288,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 455.00m,
                             StockQuantity = 11,
                             Title = "High-Compression Forged Piston",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3352,7 +3300,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 325.00m,
                             StockQuantity = 6,
                             Title = "Cast Piston",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3364,7 +3312,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 99.99m,
                             StockQuantity = 4,
                             Title = "Engine Clutch Cover",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3376,7 +3324,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 89.99m,
                             StockQuantity = 31,
                             Title = "Top-End Gasket Set",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3388,7 +3336,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 87.79m,
                             StockQuantity = 10,
                             Title = "Water Pump Cover",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3400,7 +3348,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 289.99m,
                             StockQuantity = 3,
                             Title = "8-Point Fuel Injector",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3412,7 +3360,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 139.29m,
                             StockQuantity = 7,
                             Title = "Intake Valves Set",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3424,7 +3372,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 149.99m,
                             StockQuantity = 12,
                             Title = "Fuel Pump",
-                            PartType = 0
+                            Type = 0
                         },
                         new
                         {
@@ -3436,7 +3384,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 24.49m,
                             StockQuantity = 27,
                             Title = "Air Filter",
-                            PartType = 1
+                            Type = 1
                         },
                         new
                         {
@@ -3448,7 +3396,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 10.99m,
                             StockQuantity = 19,
                             Title = "Oil Filter",
-                            PartType = 1
+                            Type = 1
                         },
                         new
                         {
@@ -3460,7 +3408,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 54.29m,
                             StockQuantity = 8,
                             Title = "Aluminum Oil Filter Cap",
-                            PartType = 1
+                            Type = 1
                         },
                         new
                         {
@@ -3472,7 +3420,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 50.99m,
                             StockQuantity = 5,
                             Title = "Fuel Filter (Gas Tank)",
-                            PartType = 1
+                            Type = 1
                         },
                         new
                         {
@@ -3484,7 +3432,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 35.89m,
                             StockQuantity = 20,
                             Title = "Sintered Front Brake Pads",
-                            PartType = 3
+                            Type = 3
                         },
                         new
                         {
@@ -3496,7 +3444,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 71.99m,
                             StockQuantity = 14,
                             Title = "Aluminum Brake Lever",
-                            PartType = 3
+                            Type = 3
                         },
                         new
                         {
@@ -3508,7 +3456,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 89.99m,
                             StockQuantity = 1,
                             Title = "Front Brake Disc",
-                            PartType = 3
+                            Type = 3
                         },
                         new
                         {
@@ -3520,7 +3468,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 77.29m,
                             StockQuantity = 7,
                             Title = "Rear Brake Disc",
-                            PartType = 3
+                            Type = 3
                         },
                         new
                         {
@@ -3532,7 +3480,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 799.19m,
                             StockQuantity = 3,
                             Title = "Shock Absorber",
-                            PartType = 4
+                            Type = 4
                         },
                         new
                         {
@@ -3544,7 +3492,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 429.99m,
                             StockQuantity = 5,
                             Title = "Front Fork Springs",
-                            PartType = 4
+                            Type = 4
                         },
                         new
                         {
@@ -3556,7 +3504,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 44.99m,
                             StockQuantity = 18,
                             Title = "Fork Seal Kit",
-                            PartType = 4
+                            Type = 4
                         },
                         new
                         {
@@ -3568,7 +3516,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 1404.49m,
                             StockQuantity = 2,
                             Title = "HI-C Shock Absorber",
-                            PartType = 4
+                            Type = 4
                         },
                         new
                         {
@@ -3580,7 +3528,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 125.50m,
                             StockQuantity = 6,
                             Title = "Steering Stem Bearing Kit",
-                            PartType = 4
+                            Type = 4
                         },
                         new
                         {
@@ -3592,7 +3540,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 119.99m,
                             StockQuantity = 10,
                             Title = "114-Links Chain",
-                            PartType = 2
+                            Type = 2
                         },
                         new
                         {
@@ -3604,7 +3552,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 129.99m,
                             StockQuantity = 7,
                             Title = "120-Links Chain",
-                            PartType = 2
+                            Type = 2
                         },
                         new
                         {
@@ -3616,7 +3564,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 89.79m,
                             StockQuantity = 4,
                             Title = "52-Teeth Rear Sprocket",
-                            PartType = 2
+                            Type = 2
                         },
                         new
                         {
@@ -3628,7 +3576,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 24.19m,
                             StockQuantity = 13,
                             Title = "13-Teeth Front Sprocket",
-                            PartType = 2
+                            Type = 2
                         },
                         new
                         {
@@ -3640,7 +3588,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 2149.99m,
                             StockQuantity = 3,
                             Title = "Complete Clutch Kit",
-                            PartType = 2
+                            Type = 2
                         },
                         new
                         {
@@ -3652,7 +3600,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 339.69m,
                             StockQuantity = 8,
                             Title = "Clutch Plate Kit",
-                            PartType = 2
+                            Type = 2
                         });
                 });
 
@@ -3773,17 +3721,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Specification");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Trailers.Trailer", "Trailer")
-                        .WithMany()
-                        .HasForeignKey("TrailerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Trailer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

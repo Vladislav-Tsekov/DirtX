@@ -35,5 +35,7 @@ namespace DirtX.Infrastructure.Data.Models.Products
 
         [Required]
         public string ImageUrl { get; set; }
+
+        public List<Specification> Specifications { get; set; }
     }
 }

@@ -6,9 +6,8 @@ namespace DirtX.Infrastructure.Data.Models.Products
     public class Part : Product
     {
         [Required]
-        public PartType Type { get; set; }
+        public PartType PartType { get; set; }
 
-        public List<PartProperty> PartProperties { get; set; }
         public List<MotorcyclePart> MotorcycleParts { get; set; }
     }
 }

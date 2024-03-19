@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models.Products.Properties
+namespace DirtX.Infrastructure.Data.Models.Products
 {
-    public class SpecificationTitles
+    public class SpecificationTitle
     {
         [Key]
         public int Id { get; set; }

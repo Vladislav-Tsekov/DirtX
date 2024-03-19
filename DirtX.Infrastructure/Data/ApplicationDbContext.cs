@@ -1,6 +1,7 @@
 ﻿using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
+using DirtX.Infrastructure.Data.Models.Trailers;
 using DirtX.Infrastructure.Data.Seeders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,10 @@ namespace DirtX.Web.Data
         public DbSet<ProductBrand> ProductBrands { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationTitle> SpecificationTitles { get; set; }
+        
+        // TRAILER AND TRAILER RENT TABLES
+        public DbSet<Trailer> Trailers { get; set; }
+        public DbSet<TrailerRent> TrailersRents { get; set; }
 
         // MAPPING/JUNCTION TABLES
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
@@ -69,11 +74,10 @@ namespace DirtX.Web.Data
             //    .WithMany(pp => pp.Products)
             //    .UsingEntity(x => x.ToTable("ProductSpecification"));
 
-
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);
-            MotorcyclePartSeeder.SeedMotorcyclesParts(modelBuilder);
             ProductSpecificationSeeder.SeedProductsSpecifications(modelBuilder);
+            MotorcyclePartSeeder.SeedMotorcyclesParts(modelBuilder);
         }
     }
 }

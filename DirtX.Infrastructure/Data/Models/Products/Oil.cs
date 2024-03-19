@@ -5,7 +5,7 @@ namespace DirtX.Infrastructure.Data.Models.Products
 {
     public class Oil : Product
     {
-        public OilType Type { get; set; }
+        public OilType OilType { get; set; }
 
         [Required]
         public double PackageSize { get; set; }

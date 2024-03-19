@@ -103,7 +103,7 @@ namespace DirtX.Web.Controllers
             PartDetailsViewModel model = new()
             {
                 Id = part.Id,
-                Type = part.Type,
+                Type = part.PartType,
                 BrandName = part.Brand.Name, 
                 Title = part.Title,
                 Price = part.Price,

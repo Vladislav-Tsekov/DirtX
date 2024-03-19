@@ -49,7 +49,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(GearType type)
         {
-            var gears = await context.Gears.Where(o => o.Type == type).ToListAsync();
+            var gears = await context.Gears.Where(o => o.GearType == type).ToListAsync();
 
             var model = new ProductCategoryViewModel<Gear>
             {
@@ -104,7 +104,7 @@ namespace DirtX.Web.Controllers
             GearDetailsViewModel model = new()
             {
                 Id = gear.Id,
-                Type = gear.Type,
+                Type = gear.GearType,
                 BrandName = gear.Brand.Name,
                 Title = gear.Title,
                 Price = gear.Price,

@@ -49,7 +49,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(OilType type)
         {
-            var oils = await context.Oils.Where(o => o.Type == type).ToListAsync();
+            var oils = await context.Oils.Where(o => o.OilType == type).ToListAsync();
 
             var model = new ProductCategoryViewModel<Oil>
             {
@@ -104,7 +104,7 @@ namespace DirtX.Web.Controllers
             OilDetailsViewModel model = new()
             {
                 Id = oil.Id,
-                Type = oil.Type,
+                Type = oil.OilType,
                 BrandName = oil.Brand.Name,
                 Title = oil.Title,
                 Price = oil.Price,

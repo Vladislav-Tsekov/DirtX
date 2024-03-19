@@ -69,11 +69,6 @@ namespace DirtX.Web.Data
             //modelBuilder.Entity<Oil>();
             //modelBuilder.Entity<Gear>();
 
-            //modelBuilder.Entity<Product>()
-            //    .HasMany(p => p.Properties)
-            //    .WithMany(pp => pp.Products)
-            //    .UsingEntity(x => x.ToTable("ProductSpecification"));
-
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);
             ProductSpecificationSeeder.SeedProductsSpecifications(modelBuilder);

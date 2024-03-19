@@ -97,10 +97,6 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            //List<GearSpecification> gearSpecs = gear.GearProperties 
-            //    .Select(gp => gp.Specification) 
-            //    .ToList();
-
             GearDetailsViewModel model = new()
             {
                 Id = gear.Id,
@@ -112,7 +108,7 @@ namespace DirtX.Web.Controllers
                 IsAvailable = gear.IsAvailable,
                 StockQuantity = gear.StockQuantity,
                 ImageUrl = gear.ImageUrl,
-                //Specs = gearSpecs
+                Specs = gear.Specifications
             };
 
             return View(model);

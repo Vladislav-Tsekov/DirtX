@@ -97,10 +97,6 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            //List<OilSpecification> oilSpecs = oil.OilProperties
-            //    .Select(os => os.Specification)
-            //    .ToList();
-
             OilDetailsViewModel model = new()
             {
                 Id = oil.Id,
@@ -112,7 +108,7 @@ namespace DirtX.Web.Controllers
                 IsAvailable = oil.IsAvailable,
                 StockQuantity = oil.StockQuantity,
                 ImageUrl = oil.ImageUrl,
-                //Specs = oilSpecs
+                Specs = oil.Specifications
             };
 
             return View(model);

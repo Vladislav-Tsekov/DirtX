@@ -66,6 +66,9 @@ namespace DirtX.Web.Data
             modelBuilder.Entity<ProductSpecification>()
                         .HasKey(ps => new { ps.ProductId, ps.SpecificationId });
 
+            modelBuilder.Entity<CartProduct>()
+                        .HasKey(cp => new { cp.CartId, cp.ProductId });
+
             modelBuilder.Entity<Product>()
                 .HasDiscriminator<string>("ProductSet")
                 .HasValue<Part>("Part")

@@ -30,7 +30,8 @@ builder.Services.AddControllersWithViews();
 
 //CUSTOM SERVICES
 builder.Services.AddScoped<IProductService<Part, PartType>, PartService>();
-
+builder.Services.AddScoped<IProductService<Oil, OilType>, OilService>();
+builder.Services.AddScoped<IProductService<Gear, GearType>, GearService>();
 
 var app = builder.Build();
 

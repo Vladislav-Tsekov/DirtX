@@ -100,8 +100,8 @@ namespace DirtX.Web.Controllers
             OilDetailsViewModel model = new()
             {
                 Id = oil.Id,
-                Type = oil.OilType,
                 BrandName = oil.Brand.Name,
+                PackageSize = oil.PackageSize,
                 Title = oil.Title,
                 Price = oil.Price,
                 Description = oil.Description,

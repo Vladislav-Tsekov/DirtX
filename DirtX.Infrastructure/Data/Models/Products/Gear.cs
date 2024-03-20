@@ -7,6 +7,7 @@ namespace DirtX.Infrastructure.Data.Models.Products
     {
         [Required]
         public GearSize GearSize { get; set; }
+        //TODO - IS IT BETTER TO MOVE THE SIZE TO SPECS?
 
         [Required]
         public GearType GearType { get; set; }

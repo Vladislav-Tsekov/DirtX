@@ -6,7 +6,7 @@ namespace DirtX.Web.Models.Gear
     public class GearDetailsViewModel
     {
         public int Id { get; set; }
-        public GearType Type { get; set; }
+        public GearSize Size { get; set; }
         public string BrandName { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }

@@ -100,7 +100,7 @@ namespace DirtX.Web.Controllers
             GearDetailsViewModel model = new()
             {
                 Id = gear.Id,
-                Type = gear.GearType,
+                Size = gear.GearSize,
                 BrandName = gear.Brand.Name,
                 Title = gear.Title,
                 Price = gear.Price,

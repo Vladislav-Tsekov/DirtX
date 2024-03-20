@@ -5,7 +5,7 @@ using DirtX.Infrastructure.Data.Models.Products;
 public class OilDetailsViewModel
 {
     public int Id { get; set; }
-    public OilType Type { get; set; }
+    public double PackageSize { get; set; }
     public string BrandName { get; set; }
     public string Title { get; set; }
     public decimal Price { get; set; }

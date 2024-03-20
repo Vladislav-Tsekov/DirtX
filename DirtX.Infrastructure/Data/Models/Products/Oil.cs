@@ -9,5 +9,6 @@ namespace DirtX.Infrastructure.Data.Models.Products
 
         [Required]
         public double PackageSize { get; set; }
+        //TODO - IS IT BETTER TO MOVE THE PACKAGE SIZE TO SPECIFICATIONS?
     }
 }

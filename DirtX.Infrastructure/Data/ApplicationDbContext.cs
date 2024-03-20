@@ -75,10 +75,6 @@ namespace DirtX.Web.Data
                 .HasValue<Oil>("Oil")
                 .HasValue<Gear>("Gear");
 
-            //modelBuilder.Entity<Part>();
-            //modelBuilder.Entity<Oil>();
-            //modelBuilder.Entity<Gear>();
-
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);
             ProductSpecificationSeeder.SeedProductsSpecifications(modelBuilder);

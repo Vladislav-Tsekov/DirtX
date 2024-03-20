@@ -13,12 +13,10 @@ namespace DirtX.Web.Controllers
 {
     public class OilController : Controller
     {
-        private readonly ApplicationDbContext context;
         private readonly IProductService<Oil, OilType> oilService;
 
-        public OilController(ApplicationDbContext _context, IProductService<Oil, OilType> _oilService)
+        public OilController(IProductService<Oil, OilType> _oilService)
         {
-            context = _context;
             oilService = _oilService;
         }
 

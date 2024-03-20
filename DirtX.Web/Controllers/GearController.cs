@@ -11,12 +11,10 @@ namespace DirtX.Web.Controllers
 {
     public class GearController : Controller
     {
-        private readonly ApplicationDbContext context;
         private readonly IProductService<Gear, GearType> gearService;
 
-        public GearController(ApplicationDbContext _context, IProductService<Gear, GearType> _gearService)
+        public GearController(IProductService<Gear, GearType> _gearService)
         {
-            context = _context;
             gearService = _gearService;
         }
 

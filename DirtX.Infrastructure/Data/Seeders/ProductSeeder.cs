@@ -1,7 +1,7 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
 using Microsoft.EntityFrameworkCore;
-using static DirtX.Infrastructure.Shared.SeedersConstants;
+using static DirtX.Infrastructure.Shared.SeederConstants;
 
 namespace DirtX.Infrastructure.Data.Seeders
 {

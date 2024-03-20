@@ -33,6 +33,8 @@ namespace DirtX.Web.Data
         public DbSet<Trailer> Trailers { get; set; }
         public DbSet<TrailerRent> TrailersRents { get; set; }
 
+        //TODO - ADD ORDER RELATED ENTITIES
+
         // MAPPING/JUNCTION TABLES
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
         public DbSet<ProductSpecification> ProductsSpecifications { get; set; }

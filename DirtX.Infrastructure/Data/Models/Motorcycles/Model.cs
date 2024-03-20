@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Motorcycles
 {
@@ -8,7 +9,7 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(40)]
+        [MaxLength(ModelTitleMaxLength)]
         public string Title { get; set; }
     }
 }

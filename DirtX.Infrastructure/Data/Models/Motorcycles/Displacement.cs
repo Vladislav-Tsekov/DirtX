@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Motorcycles
 {
@@ -8,7 +9,7 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public int Id { get; set; }
 
         [Required]
-        [Range(0, 1000)]
+        [Range(EngineVolumeMin, EngineVolumeMax)]
         public int Volume { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DirtX.Infrastructure.Data.Models.Orders;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
@@ -9,23 +10,24 @@ namespace DirtX.Infrastructure.Data.Models.Products
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [ForeignKey(nameof(BrandId))]
         public ProductBrand Brand { get; set; }
         public int BrandId { get; set; }
 
         [Required]
+        [MaxLength(ProductTitleMaxLength)]
         public string Title { get; set; }
 
-        //TODO - DECIMAL RANGE NEEDED OR NOT?
         [Required]
-        [Column(TypeName = "decimal(10, 2)")]
-        //[Range(typeof(decimal), "", "", ConvertValueInInvariantCulture = true)]
+        [Column(TypeName = "decimal(9, 2)")]
+        [Range(typeof(decimal), ProductMinPrice, ProductMaxPrice, ConvertValueInInvariantCulture = true)]
+        //TODO - TROUBLESHOOT THE CONVERT IN THIS SCENARIO
         public decimal Price { get; set; }
 
         //TODO - PROPERTY bool IsOnSale? / SalePercentage
 
         [Required]
+        [MaxLength(ProductDescriptionMaxLength)]
         public string Description { get; set; }
 
         [Required]

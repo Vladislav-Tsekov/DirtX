@@ -1,4 +1,7 @@
-﻿using DirtX.Core.Models;
+﻿using DirtX.Core.Interfaces;
+using DirtX.Core.Models;
+using DirtX.Core.Services;
+using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
@@ -11,27 +14,22 @@ namespace DirtX.Web.Controllers
     public class OilController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly IProductService<Oil, OilType> oilService;
 
-        public OilController(ApplicationDbContext _context)
+        public OilController(ApplicationDbContext _context, IProductService<Oil, OilType> _oilService)
         {
             context = _context;
+            oilService = _oilService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = Enum.GetValues(typeof(OilType)).Cast<OilType>();
+            IEnumerable<OilType> categories = Enum.GetValues(typeof(OilType)).Cast<OilType>();
 
-            var allOils = await context.Oils.ToListAsync();
+            List<Oil> oils = await oilService.GetAllProductsAsync();
 
-            var distinctBrands = allOils
-                .Select(p => p.BrandId)
-                .Distinct()
-                .ToList();
-
-            var oildBrands = await context.ProductBrands
-                .Where(brand => distinctBrands.Contains(brand.Id))
-                .ToListAsync();
+            List<ProductBrand> oilsBrands = await oilService.GetDistinctProductBrandsAsync();
 
             var model = categories.Select(category =>
             {
@@ -39,7 +37,7 @@ namespace DirtX.Web.Controllers
                 {
                     CategoryName = category.ToString(),
                     ImageUrl = GetImageUrlForCategoryAsync(category),
-                    Brands = oildBrands
+                    Brands = oilsBrands
                 };
             }).ToList();
 
@@ -49,7 +47,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(OilType type)
         {
-            var oils = await context.Oils.Where(o => o.OilType == type).ToListAsync();
+            List<Oil> oils = await oilService.GetAllProductsByTypeAsync(type);
 
             var model = new ProductCategoryViewModel<Oil>
             {
@@ -63,16 +61,16 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            ProductBrand brand = context.ProductBrands.FirstOrDefault(b => b.Name == brandName);
+            ProductBrand brand = await oilService.GetProductBrandAsync(brandName);
 
             if (brand is null)
             {
                 return NotFound();
             }
 
-            List<Oil> oils = await context.Oils.Where(p => p.BrandId == brand.Id).ToListAsync();
+            var oils = await oilService.GetProductsByBrandAsync(brand);
 
-            ProductBrandViewModel<Oil> model = new()
+            var model = new ProductBrandViewModel<Oil>
             {
                 Name = brand.Name,
                 Description = brand.Description,
@@ -86,29 +84,26 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Oil oil = await context.Oils
-                .Include(o => o.Brand)
-                .Include(o => o.Specifications)
-                .ThenInclude(op => op.Title)
-                .FirstOrDefaultAsync(o => o.Id == id);
+            Oil oil = oilService.GetProductAsync(id).Result;
 
             if (oil == null)
             {
                 return NotFound();
             }
 
-            OilDetailsViewModel model = new()
+            List<ProductSpecification> oilSpecs = await oilService.GetProductSpecificationsAsync(id);
+
+            PartDetailsViewModel model = new()
             {
                 Id = oil.Id,
                 BrandName = oil.Brand.Name,
-                PackageSize = oil.PackageSize,
                 Title = oil.Title,
                 Price = oil.Price,
                 Description = oil.Description,
                 IsAvailable = oil.IsAvailable,
                 StockQuantity = oil.StockQuantity,
                 ImageUrl = oil.ImageUrl,
-                Specs = oil.Specifications
+                Specs = oilSpecs
             };
 
             return View(model);

@@ -19,9 +19,9 @@ namespace DirtX.Core.Services
         public async Task<Part> GetProductAsync(int id)
         {
             Part part = await context.Parts
+                .AsNoTracking()
                 .Include(p => p.Brand)
                 .Where(p => p.Id == id)
-                .AsNoTracking()
                 .FirstOrDefaultAsync();
 
             return part;
@@ -29,20 +29,22 @@ namespace DirtX.Core.Services
 
         public async Task<List<Part>> GetAllProductsAsync() => await context.Parts.AsNoTracking().ToListAsync();
 
-        public async Task<ProductBrand> GetProductBrandAsync(string brandName) => await context.ProductBrands.FirstOrDefaultAsync(b => b.Name == brandName);
+        public async Task<ProductBrand> GetProductBrandAsync(string brandName) => await context.ProductBrands.AsNoTracking().FirstOrDefaultAsync(b => b.Name == brandName);
 
-        public async Task<List<Part>> GetProductsByBrandAsync(ProductBrand brand) => await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
+        public async Task<List<Part>> GetProductsByBrandAsync(ProductBrand brand) => await context.Parts.Where(p => p.BrandId == brand.Id).AsNoTracking().ToListAsync();
 
-        public async Task<List<Part>> GetAllProductsByTypeAsync(PartType type) => await context.Parts.Where(p => p.PartType == type).ToListAsync();
+        public async Task<List<Part>> GetAllProductsByTypeAsync(PartType type) => await context.Parts.Where(p => p.PartType == type).AsNoTracking().ToListAsync();
 
         public async Task<List<ProductBrand>> GetDistinctProductBrandsAsync()
         {
-            var distinctBrands = await context.Parts
+            List<int> distinctBrands = await context.Parts
+                .AsNoTracking()
                 .Select(p => p.BrandId)
                 .Distinct()
                 .ToListAsync();
 
-            var brands = await context.ProductBrands
+            List<ProductBrand> brands = await context.ProductBrands
+                .AsNoTracking()
                 .Where(brand => distinctBrands.Contains(brand.Id))
                 .ToListAsync();
 
@@ -52,10 +54,10 @@ namespace DirtX.Core.Services
         public async Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id)
         {
             List<ProductSpecification> specs = await context.ProductsSpecifications
+                .AsNoTracking()
                 .Include(p => p.Specification)
                 .ThenInclude(pp => pp.Title)
                 .Where(p => p.ProductId == id)
-                .AsNoTracking()
                 .ToListAsync();
 
             return specs;

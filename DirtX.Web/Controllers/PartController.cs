@@ -38,6 +38,7 @@ namespace DirtX.Web.Controllers
                 {
                     CategoryName = category.ToString(),
                     ImageUrl = GetImageUrlForCategoryAsync(category),
+                    //TODO - RESOLVE THE ISSUE WITH IMAGES.. HOST OR DB SOURCE?
                     Brands = partsBrands
                 };
             }).ToList();
@@ -87,12 +88,12 @@ namespace DirtX.Web.Controllers
         {
             Part part = partService.GetProductAsync(id).Result;
 
-            List<ProductSpecification> partSpecs = await partService.GetProductSpecificationsAsync(id);
-
             if (part == null)
             {
                 return NotFound();
             }
+
+            List<ProductSpecification> partSpecs = await partService.GetProductSpecificationsAsync(id);
 
             PartDetailsViewModel model = new()
             {
@@ -127,6 +128,8 @@ namespace DirtX.Web.Controllers
                 .ToListAsync();
 
             Motorcycle motorcycle = compatibleParts.FirstOrDefault().Motorcycle;
+
+            //TODO - ERROR HANDLING
 
             CompatiblePartsViewModel model = new()
             {

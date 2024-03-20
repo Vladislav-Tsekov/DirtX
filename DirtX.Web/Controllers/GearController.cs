@@ -1,37 +1,33 @@
-﻿using DirtX.Core.Models;
+﻿using DirtX.Core.Interfaces;
+using DirtX.Core.Models;
+using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
-using DirtX.Web.Models.Gear;
+using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Controllers
 {
     public class GearController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly IProductService<Gear, GearType> gearService;
 
-        public GearController(ApplicationDbContext _context)
+        public GearController(ApplicationDbContext _context, IProductService<Gear, GearType> _gearService)
         {
             context = _context;
+            gearService = _gearService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = Enum.GetValues(typeof(GearType)).Cast<GearType>();
+            IEnumerable<GearType> categories = Enum.GetValues(typeof(GearType)).Cast<GearType>();
 
-            var allGears = await context.Gears.ToListAsync();
+            List<Gear> gears = await gearService.GetAllProductsAsync();
 
-            var distinctBrands = allGears
-                .Select(g => g.BrandId)
-                .Distinct()
-                .ToList();
-
-            var gearsBrands = await context.ProductBrands
-                .Where(brand => distinctBrands.Contains(brand.Id))
-                .ToListAsync();
+            List<ProductBrand> gearsBrands = await gearService.GetDistinctProductBrandsAsync();
 
             var model = categories.Select(category =>
             {
@@ -49,7 +45,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(GearType type)
         {
-            var gears = await context.Gears.Where(o => o.GearType == type).ToListAsync();
+            List<Gear> gears = await gearService.GetAllProductsByTypeAsync(type);
 
             var model = new ProductCategoryViewModel<Gear>
             {
@@ -63,16 +59,16 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            ProductBrand brand = context.ProductBrands.FirstOrDefault(b => b.Name == brandName);
+            ProductBrand brand = await gearService.GetProductBrandAsync(brandName);
 
             if (brand is null)
             {
                 return NotFound();
             }
 
-            List<Gear> gears = await context.Gears.Where(p => p.BrandId == brand.Id).ToListAsync();
+            var gears = await gearService.GetProductsByBrandAsync(brand);
 
-            ProductBrandViewModel<Gear> model = new()
+            var model = new ProductBrandViewModel<Gear>
             {
                 Name = brand.Name,
                 Description = brand.Description,
@@ -86,21 +82,18 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Gear gear = await context.Gears
-                .Include(g => g.Brand)
-                .Include(g => g.Specifications)
-                .ThenInclude(gp => gp.Title)
-                .FirstOrDefaultAsync(g => g.Id == id);
+            Gear gear = gearService.GetProductAsync(id).Result;
 
             if (gear == null)
             {
                 return NotFound();
             }
 
-            GearDetailsViewModel model = new()
+            List<ProductSpecification> gearSpecs = await gearService.GetProductSpecificationsAsync(id);
+
+            PartDetailsViewModel model = new()
             {
                 Id = gear.Id,
-                Size = gear.GearSize,
                 BrandName = gear.Brand.Name,
                 Title = gear.Title,
                 Price = gear.Price,
@@ -108,7 +101,7 @@ namespace DirtX.Web.Controllers
                 IsAvailable = gear.IsAvailable,
                 StockQuantity = gear.StockQuantity,
                 ImageUrl = gear.ImageUrl,
-                Specs = gear.Specifications
+                Specs = gearSpecs
             };
 
             return View(model);

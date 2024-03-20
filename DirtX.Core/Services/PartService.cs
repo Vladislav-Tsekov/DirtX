@@ -1,4 +1,5 @@
 ﻿using DirtX.Core.Interfaces;
+using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +15,18 @@ namespace DirtX.Core.Services
             context = _context;
         }
 
-        public async Task<List<Part>> GetAllProductsAsync()
+        public async Task<Part> GetProductAsync(int id)
         {
-            List<Part> parts = await context.Parts.ToListAsync();
+            Part part = await context.Parts
+                .Include(p => p.Brand)
+                .Where(p => p.Id == id)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
 
-            return parts;
+            return part;
         }
+
+        public async Task<List<Part>> GetAllProductsAsync() => await context.Parts.AsNoTracking().ToListAsync();
 
         public async Task<ProductBrand> GetProductBrandAsync(string brandName) => await context.ProductBrands.FirstOrDefaultAsync(b => b.Name == brandName);
 
@@ -39,16 +46,16 @@ namespace DirtX.Core.Services
             return brands;
         }
        
-        public async Task<Part> GetProductDetailsAsync(int id)
+        public async Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id)
         {
-            var part = await context.Parts
-                .Include(p => p.Brand)
-                .Include(p => p.PartProperties)
-                .ThenInclude(pp => pp.Specification)
-                .ThenInclude(pp => pp.Title)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var specs = await context.ProductsSpecifications
+                            .Include(p => p.Product)
+                            .Include(p => p.Specification)
+                            .ThenInclude(s => s.Title)
+                            .Where(p => p.ProductId == id)
+                            .ToListAsync();
 
-            return part;
+            return specs;
         }
     }
 }

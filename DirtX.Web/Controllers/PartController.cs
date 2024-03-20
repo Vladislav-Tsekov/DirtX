@@ -86,12 +86,9 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Part part = await context.Parts
-                .Include(p => p.Brand)
-                .Include(p => p.PartProperties)
-                .ThenInclude(pp => pp.Specification)
-                .ThenInclude(pp => pp.Title)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            Part part = partService.GetProductAsync(id).Result;
+
+            List<ProductSpecification> partSpecs = await partService.GetProductSpecificationsAsync(id);
 
             if (part == null)
             {

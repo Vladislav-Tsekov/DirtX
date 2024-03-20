@@ -1,12 +1,13 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Infrastructure.Data.Models;
+using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Core.Services
 {
-    public class PartService : IProductService<Part>
+    public class PartService : IProductService<Part, PartType>
     {
         private readonly ApplicationDbContext context;
 
@@ -31,6 +32,8 @@ namespace DirtX.Core.Services
         public async Task<ProductBrand> GetProductBrandAsync(string brandName) => await context.ProductBrands.FirstOrDefaultAsync(b => b.Name == brandName);
 
         public async Task<List<Part>> GetProductsByBrandAsync(ProductBrand brand) => await context.Parts.Where(p => p.BrandId == brand.Id).ToListAsync();
+
+        public async Task<List<Part>> GetAllProductsByTypeAsync(PartType type) => await context.Parts.Where(p => p.PartType == type).ToListAsync();
 
         public async Task<List<ProductBrand>> GetDistinctProductBrandsAsync()
         {

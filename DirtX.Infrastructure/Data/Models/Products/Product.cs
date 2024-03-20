@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DirtX.Infrastructure.Data.Models.Orders;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Infrastructure.Data.Models.Products
@@ -36,6 +37,8 @@ namespace DirtX.Infrastructure.Data.Models.Products
         [Required]
         public string ImageUrl { get; set; }
 
-        public List<Specification> Specifications { get; set; }
+        public ICollection<Specification> Specifications { get; set; }
+        public ICollection<CartProduct> CartProducts { get; set; }
+        public ICollection<Wishlist> Wishlists { get; set; }
     }
 }

@@ -48,12 +48,11 @@ namespace DirtX.Core.Services
        
         public async Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id)
         {
-            var specs = await context.ProductsSpecifications
-                            .Include(p => p.Product)
-                            .Include(p => p.Specification)
-                            .ThenInclude(s => s.Title)
-                            .Where(p => p.ProductId == id)
-                            .ToListAsync();
+            var part = await context.Parts
+                .Include(p => p.Brand)
+                .Include(p => p.Specifications)
+                .ThenInclude(pp => pp.Title)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             return specs;
         }

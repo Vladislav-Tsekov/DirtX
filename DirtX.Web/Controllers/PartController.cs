@@ -2,9 +2,8 @@
 using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.MotorcycleData;
+using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.Products.Properties;
 using DirtX.Web.Data;
 using DirtX.Web.Models;
 using DirtX.Web.Models.Part;
@@ -95,15 +94,10 @@ namespace DirtX.Web.Controllers
                 return NotFound();
             }
 
-            List<PartSpecification> partSpecs = part.PartProperties
-                .Select(ps => ps.Specification)
-                .ToList();
-
             PartDetailsViewModel model = new()
             {
                 Id = part.Id,
-                Type = part.Type,
-                BrandName = part.Brand.Name, 
+                BrandName = part.Brand.Name,
                 Title = part.Title,
                 Price = part.Price,
                 Description = part.Description,

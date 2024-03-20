@@ -5,10 +5,16 @@ namespace DirtX.Infrastructure.Data.Models.Orders
 {
     public class Order
     {
-        [Key]
-        public int Id { get; set; }
+        public Order()
+        {
+            Id = Guid.NewGuid();
+            DateCreated = DateTime.Now;
+        }
 
-        //TODO - COMM DATA BELOW TO BE TAKEN FROM THE IDENTITY
+        [Key]
+        public Guid Id { get; set; }
+
+        //TODO - COMM DATA BELOW TO BE TAKEN FROM THE IDENTITY / HANDLE NULLABLE SPECIFICATIONS
 
         //[Required]
         //public string FirstName { get; set; }
@@ -22,7 +28,7 @@ namespace DirtX.Infrastructure.Data.Models.Orders
         //public string City { get; set; }
 
         [Required]
-        public DateTime CreatedOn { get; set; }
+        public DateTime DateCreated { get; set; }
 
         [Required]
         public decimal TotalPrice { get; set; }

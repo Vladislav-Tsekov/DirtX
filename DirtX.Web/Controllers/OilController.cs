@@ -91,15 +91,13 @@ namespace DirtX.Web.Controllers
 
             List<ProductSpecification> oilSpecs = await oilService.GetProductSpecificationsAsync(id);
 
-            PartDetailsViewModel model = new()
+            ProductDetailsViewModel model = new()
             {
                 Id = oil.Id,
                 BrandName = oil.Brand.Name,
                 Title = oil.Title,
                 Price = oil.Price,
                 Description = oil.Description,
-                IsAvailable = oil.IsAvailable,
-                StockQuantity = oil.StockQuantity,
                 ImageUrl = oil.ImageUrl,
                 Specs = oilSpecs
             };

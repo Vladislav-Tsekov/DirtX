@@ -1,4 +1,4 @@
-﻿@model GearDetailsViewModel
+﻿@model ProductDetailsViewModel
 
 <h3>GEAR DETAILS</h3>
 
@@ -12,7 +12,7 @@
         <h4>
             Properties: @foreach (var spec in Model.Specs)
             {
-                <p>@spec.Title.Title - @spec.Value</p>
+                <p>@spec.Specification.Title.Title - @spec.Specification.Value</p>
             }
         </h4>
     }

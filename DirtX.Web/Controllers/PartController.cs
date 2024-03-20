@@ -5,7 +5,6 @@ using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
-using DirtX.Web.Models;
 using DirtX.Web.Models.Part;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -95,15 +94,13 @@ namespace DirtX.Web.Controllers
 
             List<ProductSpecification> partSpecs = await partService.GetProductSpecificationsAsync(id);
 
-            PartDetailsViewModel model = new()
+            ProductDetailsViewModel model = new()
             {
                 Id = part.Id,
                 BrandName = part.Brand.Name,
                 Title = part.Title,
                 Price = part.Price,
                 Description = part.Description,
-                IsAvailable = part.IsAvailable,
-                StockQuantity = part.StockQuantity,
                 ImageUrl = part.ImageUrl,
                 Specs = partSpecs
             };

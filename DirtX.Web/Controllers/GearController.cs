@@ -89,15 +89,13 @@ namespace DirtX.Web.Controllers
 
             List<ProductSpecification> gearSpecs = await gearService.GetProductSpecificationsAsync(id);
 
-            PartDetailsViewModel model = new()
+            ProductDetailsViewModel model = new()
             {
                 Id = gear.Id,
                 BrandName = gear.Brand.Name,
                 Title = gear.Title,
                 Price = gear.Price,
                 Description = gear.Description,
-                IsAvailable = gear.IsAvailable,
-                StockQuantity = gear.StockQuantity,
                 ImageUrl = gear.ImageUrl,
                 Specs = gearSpecs
             };

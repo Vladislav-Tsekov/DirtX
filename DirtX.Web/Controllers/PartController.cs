@@ -15,9 +15,9 @@ namespace DirtX.Web.Controllers
     public class PartController : Controller
     {
         private readonly ApplicationDbContext context;
-        private readonly IProductService<Part> partService;
+        private readonly IProductService<Part, PartType> partService;
 
-        public PartController(ApplicationDbContext _context, IProductService<Part> _partService)
+        public PartController(ApplicationDbContext _context, IProductService<Part, PartType> _partService)
         {
             context = _context;
             partService = _partService;
@@ -48,7 +48,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(PartType type)
         {
-            List<Part> parts = await partService.GetAllProductsAsync();
+            List<Part> parts = await partService.GetAllProductsByTypeAsync(type);
 
             var model = new ProductCategoryViewModel<Part>
             {

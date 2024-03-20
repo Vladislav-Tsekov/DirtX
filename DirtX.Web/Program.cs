@@ -1,5 +1,6 @@
 using DirtX.Core.Interfaces;
 using DirtX.Core.Services;
+using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Identity;
@@ -28,7 +29,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 builder.Services.AddControllersWithViews();
 
 //CUSTOM SERVICES
-builder.Services.AddScoped<IProductService<Part>, PartService>();
+builder.Services.AddScoped<IProductService<Part, PartType>, PartService>();
 
 
 var app = builder.Build();

@@ -5,23 +5,115 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DirtX.Infrastructure.Migrations
 {
-    public partial class ProdSpecTestSeed : Migration
+    public partial class GuidImplementationTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "PropertyProductMapper");
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
 
-            migrationBuilder.DropTable(
-                name: "ProductProperties");
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
 
-            migrationBuilder.DropTable(
-                name: "PropertyTitles");
+            migrationBuilder.CreateTable(
+                name: "Carts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carts", x => x.Id);
+                });
 
-            migrationBuilder.RenameColumn(
-                name: "product_set",
-                table: "Product",
-                newName: "ProductSet");
+            migrationBuilder.CreateTable(
+                name: "Displacements",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Volume = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Displacements", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Makes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Makes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Models",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Models", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductBrands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductBrands", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "SpecificationTitles",
@@ -29,11 +121,198 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SpecificationTitles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trailers",
+                columns: table => new
+                {
+                    TrailerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TrailerType = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CostPerDay = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    MaximumLoad = table.Column<int>(type: "int", nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trailers", x => x.TrailerId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Years",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ManufactureYear = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Years", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CartId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    StockQuantity = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductSet = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GearSize = table.Column<int>(type: "int", nullable: true),
+                    GearType = table.Column<int>(type: "int", nullable: true),
+                    OilType = table.Column<int>(type: "int", nullable: true),
+                    PackageSize = table.Column<double>(type: "float", nullable: true),
+                    PartType = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Product_ProductBrands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "ProductBrands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,7 +322,7 @@ namespace DirtX.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TitleId = table.Column<int>(type: "int", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Value = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,6 +331,157 @@ namespace DirtX.Infrastructure.Migrations
                         name: "FK_Specifications_SpecificationTitles_TitleId",
                         column: x => x.TitleId,
                         principalTable: "SpecificationTitles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TrailersRents",
+                columns: table => new
+                {
+                    RentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TrailerId = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalCost = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrailersRents", x => x.RentId);
+                    table.ForeignKey(
+                        name: "FK_TrailersRents_Trailers_TrailerId",
+                        column: x => x.TrailerId,
+                        principalTable: "Trailers",
+                        principalColumn: "TrailerId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Motorcycles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MakeId = table.Column<int>(type: "int", nullable: false),
+                    ModelId = table.Column<int>(type: "int", nullable: false),
+                    YearId = table.Column<int>(type: "int", nullable: false),
+                    DisplacementId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Motorcycles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Displacements_DisplacementId",
+                        column: x => x.DisplacementId,
+                        principalTable: "Displacements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Makes_MakeId",
+                        column: x => x.MakeId,
+                        principalTable: "Makes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Models_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "Models",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Years_YearId",
+                        column: x => x.YearId,
+                        principalTable: "Years",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UsedMotorcycles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MakeId = table.Column<int>(type: "int", nullable: false),
+                    ModelId = table.Column<int>(type: "int", nullable: false),
+                    DisplacementId = table.Column<int>(type: "int", nullable: false),
+                    YearId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Province = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsedMotorcycles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UsedMotorcycles_Displacements_DisplacementId",
+                        column: x => x.DisplacementId,
+                        principalTable: "Displacements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UsedMotorcycles_Makes_MakeId",
+                        column: x => x.MakeId,
+                        principalTable: "Makes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UsedMotorcycles_Models_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "Models",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UsedMotorcycles_Years_YearId",
+                        column: x => x.YearId,
+                        principalTable: "Years",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartsProducts",
+                columns: table => new
+                {
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartsProducts", x => new { x.CartId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_CartsProducts_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CartsProducts_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Wishlists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wishlists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Wishlists_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -100,6 +530,30 @@ namespace DirtX.Infrastructure.Migrations
                         name: "FK_ProductsSpecifications_Specifications_SpecificationId",
                         column: x => x.SpecificationId,
                         principalTable: "Specifications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MotorcyclesParts",
+                columns: table => new
+                {
+                    MotorcycleId = table.Column<int>(type: "int", nullable: false),
+                    PartId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MotorcyclesParts", x => new { x.MotorcycleId, x.PartId });
+                    table.ForeignKey(
+                        name: "FK_MotorcyclesParts_Motorcycles_MotorcycleId",
+                        column: x => x.MotorcycleId,
+                        principalTable: "Motorcycles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MotorcyclesParts_Product_PartId",
+                        column: x => x.PartId,
+                        principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -242,75 +696,75 @@ namespace DirtX.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "Id", "BrandId", "Description", "ImageUrl", "IsAvailable", "Price", "ProductSet", "Size", "StockQuantity", "Title", "Gear_Type" },
+                columns: new[] { "Id", "BrandId", "Description", "GearSize", "GearType", "ImageUrl", "IsAvailable", "Price", "ProductSet", "StockQuantity", "Title" },
                 values: new object[,]
                 {
-                    { 36, 1, "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.", "https://i.ibb.co/rs2c1Pd/Gear-SM5-Helmet.jpg", true, 899.99m, "Gear", 1, 2, "SM5", 0 },
-                    { 37, 13, "High-quality full-face racing helmet with aerodynamic design.", "https://i.ibb.co/YkHnz4F/Gear-3-Series-Oneal.jpg", true, 279.99m, "Gear", 0, 7, "3-Series", 0 },
-                    { 38, 1, "Durable protective vest for safe riding.", "https://i.ibb.co/RhPrZB3/Gear-Bionic-Action.jpg", true, 319.99m, "Gear", 2, 4, "Bionic Action V2", 1 },
-                    { 39, 15, "Knee protection that allows for some movement while protecting the knee cap and shin.", "https://i.ibb.co/JrJSf2y/Gear-Asterix-Knee.jpg", true, 179.99m, "Gear", 1, 10, "AsteriX Knee Braces", 1 },
-                    { 40, 13, "Limited anniversary edition jersey.", "https://i.ibb.co/bRsz5gz/Gear-Jersey-50th.jpg", true, 79.99m, "Gear", 2, 3, "50th Anniversary Jersey", 2 },
-                    { 41, 15, "A complete outfit of THOR's middle-class 'Prime Ace' line.", "https://i.ibb.co/hcZKcsB/Gear-Thor-Outfit.jpg", true, 259.99m, "Gear", 1, 5, "Prime Ace Complete Outfit", 2 },
-                    { 42, 1, "The most advanced riding boots on the market.", "https://i.ibb.co/pzGDVTv/Gear-Tech10-Boots.jpg", true, 1099.99m, "Gear", 1, 2, "Tech10", 3 },
-                    { 43, 13, "Motocross/Enduro boots with waterproof lining and reinforced toe.", "https://i.ibb.co/34RRszr/Gear-Blitz-Thor.jpg", true, 559.99m, "Gear", 2, 6, "Blitz XR", 3 },
-                    { 44, 13, "Motocross goggles with flippers.", "https://i.ibb.co/sHzPG34/Gear-B20-Goggles.jpg", true, 129.99m, "Gear", 1, 6, "B20 Goggles", 4 },
-                    { 45, 13, "Universal offroad gloves.", "https://i.ibb.co/4Rf2r40/Gear-Element-Gloves.jpg", true, 39.99m, "Gear", 3, 11, "Element Gloves", 4 }
+                    { 36, 1, "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.", 1, 0, "https://i.ibb.co/rs2c1Pd/Gear-SM5-Helmet.jpg", true, 899.99m, "Gear", 2, "SM5" },
+                    { 37, 13, "High-quality full-face racing helmet with aerodynamic design.", 0, 0, "https://i.ibb.co/YkHnz4F/Gear-3-Series-Oneal.jpg", true, 279.99m, "Gear", 7, "3-Series" },
+                    { 38, 1, "Durable protective vest for safe riding.", 2, 1, "https://i.ibb.co/RhPrZB3/Gear-Bionic-Action.jpg", true, 319.99m, "Gear", 4, "Bionic Action V2" },
+                    { 39, 15, "Knee protection that allows for some movement while protecting the knee cap and shin.", 1, 1, "https://i.ibb.co/JrJSf2y/Gear-Asterix-Knee.jpg", true, 179.99m, "Gear", 10, "AsteriX Knee Braces" },
+                    { 40, 13, "Limited anniversary edition jersey.", 2, 2, "https://i.ibb.co/bRsz5gz/Gear-Jersey-50th.jpg", true, 79.99m, "Gear", 3, "50th Anniversary Jersey" },
+                    { 41, 15, "A complete outfit of THOR's middle-class 'Prime Ace' line.", 1, 2, "https://i.ibb.co/hcZKcsB/Gear-Thor-Outfit.jpg", true, 259.99m, "Gear", 5, "Prime Ace Complete Outfit" },
+                    { 42, 1, "The most advanced riding boots on the market.", 1, 3, "https://i.ibb.co/pzGDVTv/Gear-Tech10-Boots.jpg", true, 1099.99m, "Gear", 2, "Tech10" },
+                    { 43, 13, "Motocross/Enduro boots with waterproof lining and reinforced toe.", 2, 3, "https://i.ibb.co/34RRszr/Gear-Blitz-Thor.jpg", true, 559.99m, "Gear", 6, "Blitz XR" },
+                    { 44, 13, "Motocross goggles with flippers.", 1, 4, "https://i.ibb.co/sHzPG34/Gear-B20-Goggles.jpg", true, 129.99m, "Gear", 6, "B20 Goggles" },
+                    { 45, 13, "Universal offroad gloves.", 3, 4, "https://i.ibb.co/4Rf2r40/Gear-Element-Gloves.jpg", true, 39.99m, "Gear", 11, "Element Gloves" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "Id", "BrandId", "Description", "ImageUrl", "IsAvailable", "PackageSize", "Price", "ProductSet", "StockQuantity", "Title", "Oil_Type" },
+                columns: new[] { "Id", "BrandId", "Description", "ImageUrl", "IsAvailable", "OilType", "PackageSize", "Price", "ProductSet", "StockQuantity", "Title" },
                 values: new object[,]
                 {
-                    { 28, 9, "Premium 2-stroke oil for motorcycle engines.", "https://i.ibb.co/Cm7S8dG/Oil-Cross-Power-2-T.jpg", true, 1.0, 28.99m, "Oil", 30, "2T Cross Power", 0 },
-                    { 29, 10, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/9Nyc55B/Oil-Motul-300-V-1-L.jpg", true, 1.0, 34.99m, "Oil", 12, "300V 15W60 1L", 1 },
-                    { 30, 10, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/3ywBxpQ/Oil-Motul-300-V-4-L.jpg", true, 4.0, 114.99m, "Oil", 3, "300V 10W40 4L", 1 },
-                    { 31, 2, "Lightweight fork oil for smoother suspension stroke.", "https://i.ibb.co/W52svBD/Oil-Bel-Ray-Fork-5-W.jpg", true, 0.5, 27.00m, "Oil", 8, "Fork Oil 5W", 3 },
-                    { 32, 9, "Performance Line Oils Series is used by MXGP Factory teams.", "https://i.ibb.co/f1fW4j5/Oil-Motorex-Shock-Oil.jpg", true, 0.75, 29.99m, "Oil", 8, "Performance Line: Shock Oil", 3 },
-                    { 33, 19, "The baseline 4-stroke engine oil for motorcycles.", "https://i.ibb.co/2dRRzHy/Oil-Yamalube-10w40.jpg", true, 1.5, 26.29m, "Oil", 14, "YAMALUBE 10W40", 1 },
-                    { 34, 10, "The most efficient coolant on the market.", "https://i.ibb.co/9rgYKcv/Oil-Motul-Antifreeze.jpg", true, 1.0, 26.29m, "Oil", 14, "AutoCool -35°C 1L", 4 },
-                    { 35, 10, "More throttle, less grinding gears.", "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg", true, 1.0, 28.29m, "Oil", 4, "TransOil Expert 10W40", 2 }
+                    { 28, 9, "Premium 2-stroke oil for motorcycle engines.", "https://i.ibb.co/Cm7S8dG/Oil-Cross-Power-2-T.jpg", true, 0, 1.0, 28.99m, "Oil", 30, "2T Cross Power" },
+                    { 29, 10, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/9Nyc55B/Oil-Motul-300-V-1-L.jpg", true, 1, 1.0, 34.99m, "Oil", 12, "300V 15W60 1L" },
+                    { 30, 10, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/3ywBxpQ/Oil-Motul-300-V-4-L.jpg", true, 1, 4.0, 114.99m, "Oil", 3, "300V 10W40 4L" },
+                    { 31, 2, "Lightweight fork oil for smoother suspension stroke.", "https://i.ibb.co/W52svBD/Oil-Bel-Ray-Fork-5-W.jpg", true, 3, 0.5, 27.00m, "Oil", 8, "Fork Oil 5W" },
+                    { 32, 9, "Performance Line Oils Series is used by MXGP Factory teams.", "https://i.ibb.co/f1fW4j5/Oil-Motorex-Shock-Oil.jpg", true, 3, 0.75, 29.99m, "Oil", 8, "Performance Line: Shock Oil" },
+                    { 33, 19, "The baseline 4-stroke engine oil for motorcycles.", "https://i.ibb.co/2dRRzHy/Oil-Yamalube-10w40.jpg", true, 1, 1.5, 26.29m, "Oil", 14, "YAMALUBE 10W40" },
+                    { 34, 10, "The most efficient coolant on the market.", "https://i.ibb.co/9rgYKcv/Oil-Motul-Antifreeze.jpg", true, 4, 1.0, 26.29m, "Oil", 14, "AutoCool -35°C 1L" },
+                    { 35, 10, "More throttle, less grinding gears.", "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg", true, 2, 1.0, 28.29m, "Oil", 4, "TransOil Expert 10W40" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "Id", "BrandId", "Description", "ImageUrl", "IsAvailable", "Price", "ProductSet", "StockQuantity", "Title", "Type" },
+                columns: new[] { "Id", "BrandId", "Description", "ImageUrl", "IsAvailable", "PartType", "Price", "ProductSet", "StockQuantity", "Title" },
                 values: new object[,]
                 {
-                    { 1, 17, "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.", "https://i.ibb.co/jTnS3W0/Part-High-Comp-Piston.jpg", true, 455.00m, "Part", 11, "High-Compression Forged Piston", 0 },
-                    { 2, 18, "High-performance cast piston. Piston rings are not included.", "https://i.ibb.co/m6fQKSx/Part-Forged-Piston.jpg", true, 325.00m, "Part", 6, "Cast Piston", 0 },
-                    { 3, 7, "Protective cover for motorcycle engines made of titanium.", "https://i.ibb.co/1RXqkVy/Part-Engine-Cover.png", true, 99.99m, "Part", 4, "Engine Clutch Cover", 0 },
-                    { 4, 3, "Complete gasket set for top-end engine rebuilds and maintenance.", "https://i.ibb.co/Yj4MJ6r/Part-Top-End-Gasket.jpg", true, 89.99m, "Part", 31, "Top-End Gasket Set", 0 }
+                    { 1, 17, "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.", "https://i.ibb.co/jTnS3W0/Part-High-Comp-Piston.jpg", true, 0, 455.00m, "Part", 11, "High-Compression Forged Piston" },
+                    { 2, 18, "High-performance cast piston. Piston rings are not included.", "https://i.ibb.co/m6fQKSx/Part-Forged-Piston.jpg", true, 0, 325.00m, "Part", 6, "Cast Piston" },
+                    { 3, 7, "Protective cover for motorcycle engines made of titanium.", "https://i.ibb.co/1RXqkVy/Part-Engine-Cover.png", true, 0, 99.99m, "Part", 4, "Engine Clutch Cover" },
+                    { 4, 3, "Complete gasket set for top-end engine rebuilds and maintenance.", "https://i.ibb.co/Yj4MJ6r/Part-Top-End-Gasket.jpg", true, 0, 89.99m, "Part", 31, "Top-End Gasket Set" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "Id", "BrandId", "Description", "ImageUrl", "IsAvailable", "Price", "ProductSet", "StockQuantity", "Title", "Type" },
+                columns: new[] { "Id", "BrandId", "Description", "ImageUrl", "IsAvailable", "PartType", "Price", "ProductSet", "StockQuantity", "Title" },
                 values: new object[,]
                 {
-                    { 5, 3, "Enhanced water pump cover for improved cooling efficiency.", "https://i.ibb.co/ZHQ36hf/Part-Water-Pump-Cover.jpg", true, 87.79m, "Part", 10, "Water Pump Cover", 0 },
-                    { 6, 12, "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.", "https://i.ibb.co/dmkcV30/Part-Fuel-Injector.jpg", true, 289.99m, "Part", 3, "8-Point Fuel Injector", 0 },
-                    { 7, 17, "A set of two high-quality intake valves that exceed OEM quality.", "https://i.ibb.co/fG9XLdn/Part-Intake-Valves.jpg", true, 139.29m, "Part", 7, "Intake Valves Set", 0 },
-                    { 8, 18, "Electric fuel pump for replacing the old one. Comes with all necessary components.", "https://i.ibb.co/LnW1Y4k/Part-Fuel-Pump.jpg", true, 149.99m, "Part", 12, "Fuel Pump", 0 },
-                    { 9, 16, "Premium air filter for improved air flow and engine performance.", "https://i.ibb.co/vqg672F/Part-Air-Filter.jpg", true, 24.49m, "Part", 27, "Air Filter", 1 },
-                    { 10, 6, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/kG1KnVN/Part-Oil-Filter.jpg", true, 10.99m, "Part", 19, "Oil Filter", 1 },
-                    { 11, 16, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/V2qj6c0/Part-Oil-Filter-Cap.jpg", true, 54.29m, "Part", 8, "Aluminum Oil Filter Cap", 1 },
-                    { 12, 16, "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.", "https://i.ibb.co/s1YdYwt/Part-Fuel-Filter-Tank.jpg", true, 50.99m, "Part", 5, "Fuel Filter (Gas Tank)", 1 },
-                    { 13, 5, "Replacement brake pads offering reliable stopping performance.", "https://i.ibb.co/tc2m4jh/Part-Brake-Pads.jpg", true, 35.89m, "Part", 20, "Sintered Front Brake Pads", 3 },
-                    { 14, 11, "Comfortable and durable lever, made out of aluminum for improved control and comfort.", "https://i.ibb.co/1RqcRGm/Part-Brake-Lever.jpg", true, 71.99m, "Part", 14, "Aluminum Brake Lever", 3 },
-                    { 15, 11, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/DG6HpM4/Part-Front-Brake-Disc.jpg", true, 89.99m, "Part", 1, "Front Brake Disc", 3 },
-                    { 16, 11, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/BNPMF26/Part-Rear-Brake-Disc.jpg", true, 77.29m, "Part", 7, "Rear Brake Disc", 3 },
-                    { 17, 14, "Precision-engineered shock absorber for smooth ride experience.", "https://i.ibb.co/LRQphRW/Part-Shock-Absorber.jpg", true, 799.19m, "Part", 3, "Shock Absorber", 4 },
-                    { 18, 14, "Upgraded front fork springs for improved suspension response and handling. Set of two.", "https://i.ibb.co/yyZK9tT/Part-Fork-Springs.jpg", true, 429.99m, "Part", 5, "Front Fork Springs", 4 },
-                    { 19, 8, "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.", "https://i.ibb.co/7jy1dvG/Part-Fork-Seals.jpg", true, 44.99m, "Part", 18, "Fork Seal Kit", 4 },
-                    { 20, 8, "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.", "https://i.ibb.co/LtFwYZ3/Part-KYB-Shock.jpg", true, 1404.49m, "Part", 2, "HI-C Shock Absorber", 4 },
-                    { 21, 14, "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.", "https://i.ibb.co/VCWrYtY/Part-Steering-Bearings.jpg", true, 125.50m, "Part", 6, "Steering Stem Bearing Kit", 4 },
-                    { 22, 4, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Part-Chain.jpg", true, 119.99m, "Part", 10, "114-Links Chain", 2 },
-                    { 23, 4, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Part-Chain.jpg", true, 129.99m, "Part", 7, "120-Links Chain", 2 },
-                    { 24, 4, "Quality rear sprocked made out of aluminum.", "https://i.ibb.co/xGz2dVn/Part-Rear-Sprocket.png", true, 89.79m, "Part", 4, "52-Teeth Rear Sprocket", 2 },
-                    { 25, 4, "Standart-sized front sprocked with self-cleaning properties.", "https://i.ibb.co/9pKtqn6/Part-Front-Sprocket.jpg", true, 24.19m, "Part", 13, "13-Teeth Front Sprocket", 2 },
-                    { 26, 7, "Complete clutch kit for enhanced performance and durability.", "https://i.ibb.co/y0KwgV5/Part-Clutch-Kit.jpg", true, 2149.99m, "Part", 3, "Complete Clutch Kit", 2 },
-                    { 27, 17, "Clutch plate kit with friction plates and steel plates for smooth engagement.", "https://i.ibb.co/9qGztRG/Part-Clutch-Plates.jpg", true, 339.69m, "Part", 8, "Clutch Plate Kit", 2 }
+                    { 5, 3, "Enhanced water pump cover for improved cooling efficiency.", "https://i.ibb.co/ZHQ36hf/Part-Water-Pump-Cover.jpg", true, 0, 87.79m, "Part", 10, "Water Pump Cover" },
+                    { 6, 12, "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.", "https://i.ibb.co/dmkcV30/Part-Fuel-Injector.jpg", true, 0, 289.99m, "Part", 3, "8-Point Fuel Injector" },
+                    { 7, 17, "A set of two high-quality intake valves that exceed OEM quality.", "https://i.ibb.co/fG9XLdn/Part-Intake-Valves.jpg", true, 0, 139.29m, "Part", 7, "Intake Valves Set" },
+                    { 8, 18, "Electric fuel pump for replacing the old one. Comes with all necessary components.", "https://i.ibb.co/LnW1Y4k/Part-Fuel-Pump.jpg", true, 0, 149.99m, "Part", 12, "Fuel Pump" },
+                    { 9, 16, "Premium air filter for improved air flow and engine performance.", "https://i.ibb.co/vqg672F/Part-Air-Filter.jpg", true, 1, 24.49m, "Part", 27, "Air Filter" },
+                    { 10, 6, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/kG1KnVN/Part-Oil-Filter.jpg", true, 1, 10.99m, "Part", 19, "Oil Filter" },
+                    { 11, 16, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/V2qj6c0/Part-Oil-Filter-Cap.jpg", true, 1, 54.29m, "Part", 8, "Aluminum Oil Filter Cap" },
+                    { 12, 16, "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.", "https://i.ibb.co/s1YdYwt/Part-Fuel-Filter-Tank.jpg", true, 1, 50.99m, "Part", 5, "Fuel Filter (Gas Tank)" },
+                    { 13, 5, "Replacement brake pads offering reliable stopping performance.", "https://i.ibb.co/tc2m4jh/Part-Brake-Pads.jpg", true, 3, 35.89m, "Part", 20, "Sintered Front Brake Pads" },
+                    { 14, 11, "Comfortable and durable lever, made out of aluminum for improved control and comfort.", "https://i.ibb.co/1RqcRGm/Part-Brake-Lever.jpg", true, 3, 71.99m, "Part", 14, "Aluminum Brake Lever" },
+                    { 15, 11, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/DG6HpM4/Part-Front-Brake-Disc.jpg", true, 3, 89.99m, "Part", 1, "Front Brake Disc" },
+                    { 16, 11, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/BNPMF26/Part-Rear-Brake-Disc.jpg", true, 3, 77.29m, "Part", 7, "Rear Brake Disc" },
+                    { 17, 14, "Precision-engineered shock absorber for smooth ride experience.", "https://i.ibb.co/LRQphRW/Part-Shock-Absorber.jpg", true, 4, 799.19m, "Part", 3, "Shock Absorber" },
+                    { 18, 14, "Upgraded front fork springs for improved suspension response and handling. Set of two.", "https://i.ibb.co/yyZK9tT/Part-Fork-Springs.jpg", true, 4, 429.99m, "Part", 5, "Front Fork Springs" },
+                    { 19, 8, "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.", "https://i.ibb.co/7jy1dvG/Part-Fork-Seals.jpg", true, 4, 44.99m, "Part", 18, "Fork Seal Kit" },
+                    { 20, 8, "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.", "https://i.ibb.co/LtFwYZ3/Part-KYB-Shock.jpg", true, 4, 1404.49m, "Part", 2, "HI-C Shock Absorber" },
+                    { 21, 14, "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.", "https://i.ibb.co/VCWrYtY/Part-Steering-Bearings.jpg", true, 4, 125.50m, "Part", 6, "Steering Stem Bearing Kit" },
+                    { 22, 4, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Part-Chain.jpg", true, 2, 119.99m, "Part", 10, "114-Links Chain" },
+                    { 23, 4, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Part-Chain.jpg", true, 2, 129.99m, "Part", 7, "120-Links Chain" },
+                    { 24, 4, "Quality rear sprocked made out of aluminum.", "https://i.ibb.co/xGz2dVn/Part-Rear-Sprocket.png", true, 2, 89.79m, "Part", 4, "52-Teeth Rear Sprocket" },
+                    { 25, 4, "Standart-sized front sprocked with self-cleaning properties.", "https://i.ibb.co/9pKtqn6/Part-Front-Sprocket.jpg", true, 2, 24.19m, "Part", 13, "13-Teeth Front Sprocket" },
+                    { 26, 7, "Complete clutch kit for enhanced performance and durability.", "https://i.ibb.co/y0KwgV5/Part-Clutch-Kit.jpg", true, 2, 2149.99m, "Part", 3, "Complete Clutch Kit" },
+                    { 27, 17, "Clutch plate kit with friction plates and steel plates for smooth engagement.", "https://i.ibb.co/9qGztRG/Part-Clutch-Plates.jpg", true, 2, 339.69m, "Part", 8, "Clutch Plate Kit" }
                 });
 
             migrationBuilder.InsertData(
@@ -728,8 +1182,140 @@ namespace DirtX.Infrastructure.Migrations
                     { 4, 15 },
                     { 5, 6 },
                     { 5, 16 },
-                    { 6, 9 }
+                    { 6, 9 },
+                    { 7, 2 },
+                    { 9, 3 },
+                    { 9, 14 },
+                    { 11, 1 },
+                    { 11, 3 },
+                    { 11, 16 },
+                    { 12, 13 },
+                    { 13, 4 },
+                    { 14, 1 },
+                    { 14, 15 },
+                    { 15, 6 },
+                    { 15, 26 },
+                    { 16, 6 },
+                    { 16, 25 },
+                    { 17, 24 },
+                    { 18, 23 },
+                    { 19, 27 },
+                    { 20, 24 },
+                    { 21, 6 },
+                    { 24, 1 },
+                    { 25, 1 },
+                    { 27, 4 },
+                    { 27, 6 },
+                    { 29, 31 },
+                    { 30, 30 },
+                    { 31, 29 },
+                    { 33, 30 },
+                    { 35, 30 },
+                    { 36, 10 },
+                    { 38, 16 },
+                    { 39, 16 },
+                    { 40, 9 },
+                    { 40, 10 },
+                    { 40, 15 },
+                    { 40, 32 },
+                    { 41, 12 },
+                    { 41, 15 },
+                    { 41, 32 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "ProductsSpecifications",
+                columns: new[] { "ProductId", "SpecificationId" },
+                values: new object[] { 43, 16 });
+
+            migrationBuilder.InsertData(
+                table: "ProductsSpecifications",
+                columns: new[] { "ProductId", "SpecificationId" },
+                values: new object[] { 44, 12 });
+
+            migrationBuilder.InsertData(
+                table: "ProductsSpecifications",
+                columns: new[] { "ProductId", "SpecificationId" },
+                values: new object[] { 45, 10 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartsProducts_ProductId",
+                table: "CartsProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Motorcycles_DisplacementId",
+                table: "Motorcycles",
+                column: "DisplacementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Motorcycles_MakeId_ModelId_YearId_DisplacementId",
+                table: "Motorcycles",
+                columns: new[] { "MakeId", "ModelId", "YearId", "DisplacementId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Motorcycles_ModelId",
+                table: "Motorcycles",
+                column: "ModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Motorcycles_YearId",
+                table: "Motorcycles",
+                column: "YearId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MotorcyclesParts_PartId",
+                table: "MotorcyclesParts",
+                column: "PartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CartId",
+                table: "Orders",
+                column: "CartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_BrandId",
+                table: "Product",
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductSpecification_SpecificationsId",
@@ -745,10 +1331,64 @@ namespace DirtX.Infrastructure.Migrations
                 name: "IX_Specifications_TitleId",
                 table: "Specifications",
                 column: "TitleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrailersRents_TrailerId",
+                table: "TrailersRents",
+                column: "TrailerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsedMotorcycles_DisplacementId",
+                table: "UsedMotorcycles",
+                column: "DisplacementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsedMotorcycles_MakeId",
+                table: "UsedMotorcycles",
+                column: "MakeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsedMotorcycles_ModelId",
+                table: "UsedMotorcycles",
+                column: "ModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsedMotorcycles_YearId",
+                table: "UsedMotorcycles",
+                column: "YearId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wishlists_ProductId",
+                table: "Wishlists",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "CartsProducts");
+
+            migrationBuilder.DropTable(
+                name: "MotorcyclesParts");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
             migrationBuilder.DropTable(
                 name: "ProductSpecification");
 
@@ -756,2132 +1396,52 @@ namespace DirtX.Infrastructure.Migrations
                 name: "ProductsSpecifications");
 
             migrationBuilder.DropTable(
+                name: "TrailersRents");
+
+            migrationBuilder.DropTable(
+                name: "UsedMotorcycles");
+
+            migrationBuilder.DropTable(
+                name: "Wishlists");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Motorcycles");
+
+            migrationBuilder.DropTable(
+                name: "Carts");
+
+            migrationBuilder.DropTable(
                 name: "Specifications");
+
+            migrationBuilder.DropTable(
+                name: "Trailers");
+
+            migrationBuilder.DropTable(
+                name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "Displacements");
+
+            migrationBuilder.DropTable(
+                name: "Makes");
+
+            migrationBuilder.DropTable(
+                name: "Models");
+
+            migrationBuilder.DropTable(
+                name: "Years");
 
             migrationBuilder.DropTable(
                 name: "SpecificationTitles");
 
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 6 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 19 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 1, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 6 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 19 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 2, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 1 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 6 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 19 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 20 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 3, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 1 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 7 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 17 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 21 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 4, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 1 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 7 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 17 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 21 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 5, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 17 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 21 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 6, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 1 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 4 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 19 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 7, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 4 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 19 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 8, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 4 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 19 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 9, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 1 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 11 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 10, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 11 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 11, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 1 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 11 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 13 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 12, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 5 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 13, 27 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 5 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 14, 27 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 5 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 15, 27 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 5 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 14 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 16, 26 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 5 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 14 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 17, 26 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 5 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 14 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 18, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 8 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 19, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 2 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 3 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 8 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 9 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 10 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 12 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 15 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 16 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 18 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 22 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 23 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 24 });
-
-            migrationBuilder.DeleteData(
-                table: "MotorcyclesParts",
-                keyColumns: new[] { "MotorcycleId", "PartId" },
-                keyValues: new object[] { 20, 25 });
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 36);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 37);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 38);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 39);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 40);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 41);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 42);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 43);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 44);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 45);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 28);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 29);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 30);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 31);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 32);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 33);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 34);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 35);
-
-            migrationBuilder.DeleteData(
-                table: "UsedMotorcycles",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "UsedMotorcycles",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "UsedMotorcycles",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 8);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 9);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 10);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 11);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 12);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 13);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 14);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 15);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 17);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 18);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 19);
-
-            migrationBuilder.DeleteData(
-                table: "Motorcycles",
-                keyColumn: "Id",
-                keyValue: 20);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 8);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 9);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 10);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 11);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 12);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 13);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 14);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 15);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 17);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 18);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 19);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 20);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 21);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 22);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 23);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 24);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 25);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 26);
-
-            migrationBuilder.DeleteData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 27);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 9);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 10);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 13);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 15);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 19);
-
-            migrationBuilder.DeleteData(
-                table: "Displacements",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Displacements",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Displacements",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Makes",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Makes",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Makes",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Makes",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Makes",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Makes",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "Makes",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "Models",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Models",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Models",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Models",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Models",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Models",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "Models",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 8);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 11);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 12);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 14);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 17);
-
-            migrationBuilder.DeleteData(
-                table: "ProductBrands",
-                keyColumn: "Id",
-                keyValue: 18);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 8);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 9);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 10);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 11);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 12);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 13);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 14);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 15);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 17);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 18);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 19);
-
-            migrationBuilder.DeleteData(
-                table: "Years",
-                keyColumn: "Id",
-                keyValue: 20);
-
-            migrationBuilder.RenameColumn(
-                name: "ProductSet",
-                table: "Product",
-                newName: "product_set");
-
-            migrationBuilder.CreateTable(
-                name: "PropertyTitles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PropertyTitles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductProperties",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TitleId = table.Column<int>(type: "int", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductProperties", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductProperties_PropertyTitles_TitleId",
-                        column: x => x.TitleId,
-                        principalTable: "PropertyTitles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PropertyProductMapper",
-                columns: table => new
-                {
-                    ProductsId = table.Column<int>(type: "int", nullable: false),
-                    PropertiesId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PropertyProductMapper", x => new { x.ProductsId, x.PropertiesId });
-                    table.ForeignKey(
-                        name: "FK_PropertyProductMapper_Product_ProductsId",
-                        column: x => x.ProductsId,
-                        principalTable: "Product",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PropertyProductMapper_ProductProperties_PropertiesId",
-                        column: x => x.PropertiesId,
-                        principalTable: "ProductProperties",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductProperties_TitleId",
-                table: "ProductProperties",
-                column: "TitleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PropertyProductMapper_PropertiesId",
-                table: "PropertyProductMapper",
-                column: "PropertiesId");
+            migrationBuilder.DropTable(
+                name: "ProductBrands");
         }
     }
 }

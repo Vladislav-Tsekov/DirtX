@@ -1,5 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
+using DirtX.Infrastructure.Data.Models.Orders;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Infrastructure.Data.Models.Trailers;
 using DirtX.Infrastructure.Data.Seeders;
@@ -33,9 +34,15 @@ namespace DirtX.Web.Data
         public DbSet<Trailer> Trailers { get; set; }
         public DbSet<TrailerRent> TrailersRents { get; set; }
 
+        //TODO - ADD ORDER RELATED ENTITIES
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
+
         // MAPPING/JUNCTION TABLES
         public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
         public DbSet<ProductSpecification> ProductsSpecifications { get; set; }
+        public DbSet<CartProduct> CartsProducts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -58,6 +65,9 @@ namespace DirtX.Web.Data
 
             modelBuilder.Entity<ProductSpecification>()
                         .HasKey(ps => new { ps.ProductId, ps.SpecificationId });
+
+            modelBuilder.Entity<CartProduct>()
+                        .HasKey(cp => new { cp.CartId, cp.ProductId });
 
             modelBuilder.Entity<Product>()
                 .HasDiscriminator<string>("ProductSet")

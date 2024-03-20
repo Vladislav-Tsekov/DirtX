@@ -22,6 +22,24 @@ namespace DirtX.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartsProducts");
+                });
+
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcyclePart", b =>
                 {
                     b.Property<int>("MotorcycleId")
@@ -1567,8 +1585,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -2016,6 +2034,62 @@ namespace DirtX.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Wishlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Wishlists");
+                });
+
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -2029,6 +2103,7 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
@@ -2039,7 +2114,7 @@ namespace DirtX.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<string>("ProductSet")
                         .IsRequired()
@@ -2050,9 +2125,12 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Product");
 
@@ -2069,7 +2147,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3000)
+                        .HasColumnType("nvarchar(3000)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -2077,7 +2156,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -2232,7 +2312,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -2451,7 +2532,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.HasKey("Id");
 
@@ -2799,7 +2881,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("TrailerType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("TrailerId");
 
@@ -2808,11 +2891,11 @@ namespace DirtX.Infrastructure.Migrations
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
                 {
-                    b.Property<int>("RentalId")
+                    b.Property<int>("RentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentalId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentId"), 1L, 1);
 
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
@@ -2826,7 +2909,7 @@ namespace DirtX.Infrastructure.Migrations
                     b.Property<int>("TrailerId")
                         .HasColumnType("int");
 
-                    b.HasKey("RentalId");
+                    b.HasKey("RentId");
 
                     b.HasIndex("TrailerId");
 
@@ -3060,8 +3143,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Property<int>("GearType")
                         .HasColumnType("int");
 
-                    b.HasIndex("BrandId");
-
                     b.HasDiscriminator().HasValue("Gear");
 
                     b.HasData(
@@ -3207,8 +3288,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Property<double>("PackageSize")
                         .HasColumnType("float");
 
-                    b.HasIndex("BrandId");
-
                     b.HasDiscriminator().HasValue("Oil");
 
                     b.HasData(
@@ -3324,8 +3403,6 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<int>("PartType")
                         .HasColumnType("int");
-
-                    b.HasIndex("BrandId");
 
                     b.HasDiscriminator().HasValue("Part");
 
@@ -3656,6 +3733,25 @@ namespace DirtX.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.CartProduct", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Orders.Cart", "Cart")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcyclePart", b =>
                 {
                     b.HasOne("DirtX.Infrastructure.Data.Models.Motorcycles.Motorcycle", "Motorcycle")
@@ -3743,6 +3839,39 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Model");
 
                     b.Navigation("Year");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Order", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Orders.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Wishlist", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Specification", b =>
@@ -3852,42 +3981,21 @@ namespace DirtX.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Gear", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Oil", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
                 {
                     b.Navigation("MotorcycleParts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Cart", b =>
+                {
+                    b.Navigation("CartProducts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
+                {
+                    b.Navigation("CartProducts");
+
+                    b.Navigation("Wishlists");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>

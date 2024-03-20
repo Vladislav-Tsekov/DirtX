@@ -1,5 +1,6 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
@@ -8,6 +9,7 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public OilType OilType { get; set; }
 
         [Required]
+        [Range(OilPackageSizeMin, OilPackageSizeMax)]
         public double PackageSize { get; set; }
         //TODO - IS IT BETTER TO MOVE THE PACKAGE SIZE TO SPECIFICATIONS?
     }

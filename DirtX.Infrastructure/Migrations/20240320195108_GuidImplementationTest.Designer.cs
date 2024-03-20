@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240318213243_ProdSpecTestSeed")]
-    partial class ProdSpecTestSeed
+    [Migration("20240320195108_GuidImplementationTest")]
+    partial class GuidImplementationTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,24 @@ namespace DirtX.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartsProducts");
+                });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcyclePart", b =>
                 {
@@ -1569,8 +1587,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -2018,6 +2036,62 @@ namespace DirtX.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Wishlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Wishlists");
+                });
+
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -2031,6 +2105,7 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
@@ -2041,7 +2116,7 @@ namespace DirtX.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<string>("ProductSet")
                         .IsRequired()
@@ -2052,9 +2127,12 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Product");
 
@@ -2071,7 +2149,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3000)
+                        .HasColumnType("nvarchar(3000)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -2079,7 +2158,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -2234,7 +2314,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -2453,7 +2534,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.HasKey("Id");
 
@@ -2571,7 +2653,269 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             ProductId = 6,
                             SpecificationId = 9
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            SpecificationId = 2
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            SpecificationId = 3
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            SpecificationId = 14
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SpecificationId = 3
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            SpecificationId = 13
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            SpecificationId = 4
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            SpecificationId = 26
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            SpecificationId = 25
+                        },
+                        new
+                        {
+                            ProductId = 17,
+                            SpecificationId = 24
+                        },
+                        new
+                        {
+                            ProductId = 18,
+                            SpecificationId = 23
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            SpecificationId = 27
+                        },
+                        new
+                        {
+                            ProductId = 20,
+                            SpecificationId = 24
+                        },
+                        new
+                        {
+                            ProductId = 21,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            SpecificationId = 4
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 29,
+                            SpecificationId = 31
+                        },
+                        new
+                        {
+                            ProductId = 30,
+                            SpecificationId = 30
+                        },
+                        new
+                        {
+                            ProductId = 31,
+                            SpecificationId = 29
+                        },
+                        new
+                        {
+                            ProductId = 33,
+                            SpecificationId = 30
+                        },
+                        new
+                        {
+                            ProductId = 35,
+                            SpecificationId = 30
+                        },
+                        new
+                        {
+                            ProductId = 36,
+                            SpecificationId = 10
+                        },
+                        new
+                        {
+                            ProductId = 38,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 39,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 9
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 10
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 32
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            SpecificationId = 12
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            SpecificationId = 32
+                        },
+                        new
+                        {
+                            ProductId = 43,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 44,
+                            SpecificationId = 12
+                        },
+                        new
+                        {
+                            ProductId = 45,
+                            SpecificationId = 10
                         });
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.Trailer", b =>
+                {
+                    b.Property<int>("TrailerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrailerId"), 1L, 1);
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("CostPerDay")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MaximumLoad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TrailerType")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("TrailerId");
+
+                    b.ToTable("Trailers");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
+                {
+                    b.Property<int>("RentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentId"), 1L, 1);
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalCost")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<int>("TrailerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RentId");
+
+                    b.HasIndex("TrailerId");
+
+                    b.ToTable("TrailersRents");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -2795,14 +3139,11 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
 
-                    b.Property<int>("Size")
+                    b.Property<int>("GearSize")
                         .HasColumnType("int");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int")
-                        .HasColumnName("Gear_Type");
-
-                    b.HasIndex("BrandId");
+                    b.Property<int>("GearType")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("Gear");
 
@@ -2817,8 +3158,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 899.99m,
                             StockQuantity = 2,
                             Title = "SM5",
-                            Size = 1,
-                            Type = 0
+                            GearSize = 1,
+                            GearType = 0
                         },
                         new
                         {
@@ -2830,8 +3171,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 279.99m,
                             StockQuantity = 7,
                             Title = "3-Series",
-                            Size = 0,
-                            Type = 0
+                            GearSize = 0,
+                            GearType = 0
                         },
                         new
                         {
@@ -2843,8 +3184,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 319.99m,
                             StockQuantity = 4,
                             Title = "Bionic Action V2",
-                            Size = 2,
-                            Type = 1
+                            GearSize = 2,
+                            GearType = 1
                         },
                         new
                         {
@@ -2856,8 +3197,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 179.99m,
                             StockQuantity = 10,
                             Title = "AsteriX Knee Braces",
-                            Size = 1,
-                            Type = 1
+                            GearSize = 1,
+                            GearType = 1
                         },
                         new
                         {
@@ -2869,8 +3210,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 79.99m,
                             StockQuantity = 3,
                             Title = "50th Anniversary Jersey",
-                            Size = 2,
-                            Type = 2
+                            GearSize = 2,
+                            GearType = 2
                         },
                         new
                         {
@@ -2882,8 +3223,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 259.99m,
                             StockQuantity = 5,
                             Title = "Prime Ace Complete Outfit",
-                            Size = 1,
-                            Type = 2
+                            GearSize = 1,
+                            GearType = 2
                         },
                         new
                         {
@@ -2895,8 +3236,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 1099.99m,
                             StockQuantity = 2,
                             Title = "Tech10",
-                            Size = 1,
-                            Type = 3
+                            GearSize = 1,
+                            GearType = 3
                         },
                         new
                         {
@@ -2908,8 +3249,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 559.99m,
                             StockQuantity = 6,
                             Title = "Blitz XR",
-                            Size = 2,
-                            Type = 3
+                            GearSize = 2,
+                            GearType = 3
                         },
                         new
                         {
@@ -2921,8 +3262,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 129.99m,
                             StockQuantity = 6,
                             Title = "B20 Goggles",
-                            Size = 1,
-                            Type = 4
+                            GearSize = 1,
+                            GearType = 4
                         },
                         new
                         {
@@ -2934,8 +3275,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 39.99m,
                             StockQuantity = 11,
                             Title = "Element Gloves",
-                            Size = 3,
-                            Type = 4
+                            GearSize = 3,
+                            GearType = 4
                         });
                 });
 
@@ -2943,14 +3284,11 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
 
+                    b.Property<int>("OilType")
+                        .HasColumnType("int");
+
                     b.Property<double>("PackageSize")
                         .HasColumnType("float");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int")
-                        .HasColumnName("Oil_Type");
-
-                    b.HasIndex("BrandId");
 
                     b.HasDiscriminator().HasValue("Oil");
 
@@ -2965,8 +3303,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 28.99m,
                             StockQuantity = 30,
                             Title = "2T Cross Power",
-                            PackageSize = 1.0,
-                            Type = 0
+                            OilType = 0,
+                            PackageSize = 1.0
                         },
                         new
                         {
@@ -2978,8 +3316,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 34.99m,
                             StockQuantity = 12,
                             Title = "300V 15W60 1L",
-                            PackageSize = 1.0,
-                            Type = 1
+                            OilType = 1,
+                            PackageSize = 1.0
                         },
                         new
                         {
@@ -2991,8 +3329,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 114.99m,
                             StockQuantity = 3,
                             Title = "300V 10W40 4L",
-                            PackageSize = 4.0,
-                            Type = 1
+                            OilType = 1,
+                            PackageSize = 4.0
                         },
                         new
                         {
@@ -3004,8 +3342,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 27.00m,
                             StockQuantity = 8,
                             Title = "Fork Oil 5W",
-                            PackageSize = 0.5,
-                            Type = 3
+                            OilType = 3,
+                            PackageSize = 0.5
                         },
                         new
                         {
@@ -3017,8 +3355,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 29.99m,
                             StockQuantity = 8,
                             Title = "Performance Line: Shock Oil",
-                            PackageSize = 0.75,
-                            Type = 3
+                            OilType = 3,
+                            PackageSize = 0.75
                         },
                         new
                         {
@@ -3030,8 +3368,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 26.29m,
                             StockQuantity = 14,
                             Title = "YAMALUBE 10W40",
-                            PackageSize = 1.5,
-                            Type = 1
+                            OilType = 1,
+                            PackageSize = 1.5
                         },
                         new
                         {
@@ -3043,8 +3381,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 26.29m,
                             StockQuantity = 14,
                             Title = "AutoCool -35°C 1L",
-                            PackageSize = 1.0,
-                            Type = 4
+                            OilType = 4,
+                            PackageSize = 1.0
                         },
                         new
                         {
@@ -3056,8 +3394,8 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 28.29m,
                             StockQuantity = 4,
                             Title = "TransOil Expert 10W40",
-                            PackageSize = 1.0,
-                            Type = 2
+                            OilType = 2,
+                            PackageSize = 1.0
                         });
                 });
 
@@ -3065,10 +3403,8 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
 
-                    b.Property<int>("Type")
+                    b.Property<int>("PartType")
                         .HasColumnType("int");
-
-                    b.HasIndex("BrandId");
 
                     b.HasDiscriminator().HasValue("Part");
 
@@ -3083,7 +3419,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 455.00m,
                             StockQuantity = 11,
                             Title = "High-Compression Forged Piston",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3095,7 +3431,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 325.00m,
                             StockQuantity = 6,
                             Title = "Cast Piston",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3107,7 +3443,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 99.99m,
                             StockQuantity = 4,
                             Title = "Engine Clutch Cover",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3119,7 +3455,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 89.99m,
                             StockQuantity = 31,
                             Title = "Top-End Gasket Set",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3131,7 +3467,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 87.79m,
                             StockQuantity = 10,
                             Title = "Water Pump Cover",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3143,7 +3479,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 289.99m,
                             StockQuantity = 3,
                             Title = "8-Point Fuel Injector",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3155,7 +3491,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 139.29m,
                             StockQuantity = 7,
                             Title = "Intake Valves Set",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3167,7 +3503,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 149.99m,
                             StockQuantity = 12,
                             Title = "Fuel Pump",
-                            Type = 0
+                            PartType = 0
                         },
                         new
                         {
@@ -3179,7 +3515,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 24.49m,
                             StockQuantity = 27,
                             Title = "Air Filter",
-                            Type = 1
+                            PartType = 1
                         },
                         new
                         {
@@ -3191,7 +3527,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 10.99m,
                             StockQuantity = 19,
                             Title = "Oil Filter",
-                            Type = 1
+                            PartType = 1
                         },
                         new
                         {
@@ -3203,7 +3539,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 54.29m,
                             StockQuantity = 8,
                             Title = "Aluminum Oil Filter Cap",
-                            Type = 1
+                            PartType = 1
                         },
                         new
                         {
@@ -3215,7 +3551,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 50.99m,
                             StockQuantity = 5,
                             Title = "Fuel Filter (Gas Tank)",
-                            Type = 1
+                            PartType = 1
                         },
                         new
                         {
@@ -3227,7 +3563,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 35.89m,
                             StockQuantity = 20,
                             Title = "Sintered Front Brake Pads",
-                            Type = 3
+                            PartType = 3
                         },
                         new
                         {
@@ -3239,7 +3575,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 71.99m,
                             StockQuantity = 14,
                             Title = "Aluminum Brake Lever",
-                            Type = 3
+                            PartType = 3
                         },
                         new
                         {
@@ -3251,7 +3587,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 89.99m,
                             StockQuantity = 1,
                             Title = "Front Brake Disc",
-                            Type = 3
+                            PartType = 3
                         },
                         new
                         {
@@ -3263,7 +3599,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 77.29m,
                             StockQuantity = 7,
                             Title = "Rear Brake Disc",
-                            Type = 3
+                            PartType = 3
                         },
                         new
                         {
@@ -3275,7 +3611,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 799.19m,
                             StockQuantity = 3,
                             Title = "Shock Absorber",
-                            Type = 4
+                            PartType = 4
                         },
                         new
                         {
@@ -3287,7 +3623,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 429.99m,
                             StockQuantity = 5,
                             Title = "Front Fork Springs",
-                            Type = 4
+                            PartType = 4
                         },
                         new
                         {
@@ -3299,7 +3635,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 44.99m,
                             StockQuantity = 18,
                             Title = "Fork Seal Kit",
-                            Type = 4
+                            PartType = 4
                         },
                         new
                         {
@@ -3311,7 +3647,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 1404.49m,
                             StockQuantity = 2,
                             Title = "HI-C Shock Absorber",
-                            Type = 4
+                            PartType = 4
                         },
                         new
                         {
@@ -3323,7 +3659,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 125.50m,
                             StockQuantity = 6,
                             Title = "Steering Stem Bearing Kit",
-                            Type = 4
+                            PartType = 4
                         },
                         new
                         {
@@ -3335,7 +3671,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 119.99m,
                             StockQuantity = 10,
                             Title = "114-Links Chain",
-                            Type = 2
+                            PartType = 2
                         },
                         new
                         {
@@ -3347,7 +3683,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 129.99m,
                             StockQuantity = 7,
                             Title = "120-Links Chain",
-                            Type = 2
+                            PartType = 2
                         },
                         new
                         {
@@ -3359,7 +3695,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 89.79m,
                             StockQuantity = 4,
                             Title = "52-Teeth Rear Sprocket",
-                            Type = 2
+                            PartType = 2
                         },
                         new
                         {
@@ -3371,7 +3707,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 24.19m,
                             StockQuantity = 13,
                             Title = "13-Teeth Front Sprocket",
-                            Type = 2
+                            PartType = 2
                         },
                         new
                         {
@@ -3383,7 +3719,7 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 2149.99m,
                             StockQuantity = 3,
                             Title = "Complete Clutch Kit",
-                            Type = 2
+                            PartType = 2
                         },
                         new
                         {
@@ -3395,8 +3731,27 @@ namespace DirtX.Infrastructure.Migrations
                             Price = 339.69m,
                             StockQuantity = 8,
                             Title = "Clutch Plate Kit",
-                            Type = 2
+                            PartType = 2
                         });
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.CartProduct", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Orders.Cart", "Cart")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcyclePart", b =>
@@ -3488,6 +3843,39 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Year");
                 });
 
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Order", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Orders.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Wishlist", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+                });
+
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Specification", b =>
                 {
                     b.HasOne("DirtX.Infrastructure.Data.Models.Products.SpecificationTitle", "Title")
@@ -3516,6 +3904,17 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Specification");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Trailers.Trailer", "Trailer")
+                        .WithMany()
+                        .HasForeignKey("TrailerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Trailer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -3584,42 +3983,21 @@ namespace DirtX.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Gear", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Oil", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
                 {
                     b.Navigation("MotorcycleParts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Cart", b =>
+                {
+                    b.Navigation("CartProducts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
+                {
+                    b.Navigation("CartProducts");
+
+                    b.Navigation("Wishlists");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>

@@ -34,7 +34,6 @@ namespace DirtX.Web.Controllers
                 return new ProductIndexViewModel
                 {
                     CategoryName = category.ToString(),
-                    ImageUrl = GetImageUrlForCategoryAsync(category),
                     Brands = oilsBrands
                 };
             }).ToList();
@@ -105,23 +104,6 @@ namespace DirtX.Web.Controllers
             return View(model);
         }
 
-        private static string GetImageUrlForCategoryAsync(OilType type)
-        {
-            switch (type)
-            {
-                case OilType.Four_Stroke:
-                    return "https://i.ibb.co/56sGHHC/Oil-Motul-300-V-1-L.jpg";
-                case OilType.Two_Stroke:
-                    return "https://i.ibb.co/k58PBnC/Oil-Cross-Power-2-T.jpg";
-                case OilType.Transmission:
-                    return "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg";
-                case OilType.Suspension:
-                    return "https://i.ibb.co/g9R6Ztv/Oil-Bel-Ray-Fork-5-W.jpg";
-                case OilType.Coolant:
-                    return "https://i.ibb.co/DRWKczb/Oil-Motul-Antifreeze.jpg";
-                default:
-                    return "";
-            }
-        }
+
     }
 }

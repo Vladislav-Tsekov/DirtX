@@ -36,8 +36,6 @@ namespace DirtX.Web.Controllers
                 return new ProductIndexViewModel
                 {
                     CategoryName = category.ToString(),
-                    ImageUrl = GetImageUrlForCategoryAsync(category),
-                    //TODO - RESOLVE THE ISSUE WITH IMAGES.. HOST OR DB SOURCE?
                     Brands = partsBrands
                 };
             }).ToList();
@@ -138,25 +136,6 @@ namespace DirtX.Web.Controllers
             };
 
             return View(model);
-        }
-
-        private static string GetImageUrlForCategoryAsync(PartType type)
-        {
-            switch (type)
-            {
-                case PartType.Engine:
-                    return "https://i.ibb.co/jWNQWk2/engine.jpg";
-                case PartType.Brake:
-                    return "https://i.ibb.co/Lpnz4qR/Brakes.jpg";
-                case PartType.Suspension:
-                    return "https://i.ibb.co/CsC1t3w/Suspension.jpg";
-                case PartType.Filter:
-                    return "https://i.ibb.co/jh1vrCq/filters.png";
-                case PartType.Drivetrain:
-                    return "https://i.ibb.co/cCs6tQt/chain.jpg";
-                default:
-                    return "";
-            }
         }
     }
 }

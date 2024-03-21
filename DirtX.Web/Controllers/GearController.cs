@@ -32,7 +32,6 @@ namespace DirtX.Web.Controllers
                 return new ProductIndexViewModel
                 {
                     CategoryName = category.ToString(),
-                    ImageUrl = GetImageUrlForCategoryAsync(category),
                     Brands = gearsBrands
                 };
             }).ToList();
@@ -101,25 +100,6 @@ namespace DirtX.Web.Controllers
             };
 
             return View(model);
-        }
-
-        private static string GetImageUrlForCategoryAsync(GearType type)
-        {
-            switch (type)
-            {
-                case GearType.Helmet:
-                    return "https://i.ibb.co/pyjR9Dh/Gear-SM5-Helmet.jpg";
-                case GearType.Protective_Gear:
-                    return "https://i.ibb.co/3fW6GMp/Gear-Bionic-Action.jpg";
-                case GearType.Outfit:
-                    return "https://i.ibb.co/7QRGQvn/Gear-Thor-Outfit.jpg";
-                case GearType.Boots:
-                    return "https://i.ibb.co/pzGDVTv/Gear-Tech10-Boots.jpg";
-                case GearType.Accessory:
-                    return "https://i.ibb.co/Vm5NZBG/Gear-B20-Goggles.jpg";
-                default:
-                    return "";
-            }
         }
     }
 }

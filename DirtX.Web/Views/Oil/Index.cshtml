@@ -113,7 +113,7 @@
         <div class="category-item">
             <a href="@Url.Action("Category", "Oil", new { type = category.CategoryName })">
                 <div class="category-image">
-                    <img src="@category.ImageUrl" alt="@category.CategoryName.Replace("_", " ")" />
+                    <img src="@GetImageUrlForCategory(category.CategoryName)" alt="@category.CategoryName.Replace("_", " ")" />
                 </div>
                 <div class="category-title">
                     <span>@category.CategoryName.Replace("_", " ")</span>
@@ -139,3 +139,24 @@
         </div>
     }
 </div>
+
+@{
+    string GetImageUrlForCategory(string categoryName)
+    {
+        switch (categoryName)
+        {
+            case "Four_Stroke":
+                return "https://i.ibb.co/56sGHHC/Oil-Motul-300-V-1-L.jpg";
+            case "Two_Stroke":
+                return "https://i.ibb.co/k58PBnC/Oil-Cross-Power-2-T.jpg";
+            case "Transmission":
+                return "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg";
+            case "Suspension":
+                return "https://i.ibb.co/xH81L67/Oil-Bel-Ray-Fork-5-W.jpg";
+            case "Coolant":
+                return "https://i.ibb.co/DRWKczb/Oil-Motul-Antifreeze.jpg";
+            default:
+                return "";
+        }
+    }
+}

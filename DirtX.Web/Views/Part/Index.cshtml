@@ -113,10 +113,10 @@
         <div class="category-item">
             <a href="@Url.Action("Category", "Part", new { type = category.CategoryName })">
                 <div class="category-image">
-                    <img src="@category.ImageUrl" alt="@category.CategoryName" />
+                    <img src="@GetImageUrlForCategory(category.CategoryName)" alt="@category.CategoryName.Replace("_", " ")" />
                 </div>
                 <div class="category-title">
-                    <span>@category.CategoryName</span>
+                    <span>@category.CategoryName.Replace("_", " ")</span>
                 </div>
             </a>
         </div>
@@ -139,3 +139,24 @@
         </div>
     }
 </div>
+
+@{
+    string GetImageUrlForCategory(string categoryName)
+    {
+        switch (categoryName)
+        {
+            case "Engine":
+                return "https://i.ibb.co/jWNQWk2/engine.jpg";
+            case "Brake":
+                return "https://i.ibb.co/Lpnz4qR/Brakes.jpg";
+            case "Suspension":
+                return "https://i.ibb.co/CsC1t3w/Suspension.jpg";
+            case "Filter":
+                return "https://i.ibb.co/jh1vrCq/filters.png";
+            case "Drivetrain":
+                return "https://i.ibb.co/cCs6tQt/chain.jpg";
+            default:
+                return "";
+        }
+    }
+}

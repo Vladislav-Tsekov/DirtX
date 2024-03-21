@@ -48,8 +48,6 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Sell()
         {
-            //List<Province> provinces = Enum.GetValues(typeof(Province)).Cast<Province>().ToList();
-
             var viewModel = new SellFormViewModel
             {
                 Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),

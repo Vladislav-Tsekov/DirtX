@@ -103,7 +103,5 @@ namespace DirtX.Web.Controllers
 
             return View(model);
         }
-
-
     }
 }

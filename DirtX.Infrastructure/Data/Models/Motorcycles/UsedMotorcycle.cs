@@ -1,6 +1,7 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Motorcycles
 {
@@ -28,6 +29,7 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public int Price { get; set; }
 
         [Required]
+        //[MaxLength(UsedMotoImageMaxSize)]
         public byte[] Image { get; set; }
         //TODO - ADD AN ALBUM FOR EVERY USEDMOTO, IF PROJECT IS FINISHED EARLY
 

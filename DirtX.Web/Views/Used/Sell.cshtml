@@ -53,25 +53,25 @@
             <span asp-validation-for="Province" class="text-danger"></span>
         </div>
         <div class="col-md-3">
-            <div class="form-group">
-                <label for="priceInput">Price:</label>
-                <input type="number" name="Price" class="form-control" id="priceInput">
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label for="priceInput">Price:</label>
+                    <input asp-for="Price" class="form-control" value="" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
         </div>
         <div class="col-md-3">
-            <div class="form-group">
-                <label for="contactInput">Contact:</label>
-                <input type="text" name="Contact" class="form-control" id="contactInput">
-                <span asp-validation-for="Contact" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label for="contactInput">Contact:</label>
+                    <input asp-for="Contact" class="form-control" id="contactInput">
+                    <span asp-validation-for="Contact" class="text-danger"></span>
+                </div>
         </div>
         <div class="col-md-3">
-            <div class="form-group">
-                <label for="imageInput">Image:</label>
-                <input type="file" name="ImageFile" class="form-control-file" id="imageInput" accept="image/*">
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label for="imageInput">Image:</label>
+                    <input type="file" asp-for="ImageFile" class="form-control-file" id="imageInput" accept="image/*">
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
         </div>
     </div>
 </div>
@@ -80,7 +80,7 @@
     <div class="row">
             <div class="form-group">
                 <label for="descriptionInput">Description:</label>
-                <textarea name="Description" class="form-control" id="descriptionInput"></textarea>
+                <textarea asp-for="Description" class="form-control" id="descriptionInput"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
         <button type="submit" class="btn btn-primary">Submit</button>

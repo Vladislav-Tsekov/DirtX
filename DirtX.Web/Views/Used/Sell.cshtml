@@ -69,9 +69,11 @@
         <div class="col-md-3">
                 <div class="form-group">
                     <label for="imageInput">Image:</label>
-                    <input type="file" asp-for="ImageFile" class="form-control-file" id="imageInput" accept="image/*">
+                    <input type="file" name="ImageFile" class="form-control-file" id="imageInput" accept="image/*">
                     <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    <span id="imageSizeError" class="text-danger" style="display: none;">The file size must not exceed 1MB.</span>
                 </div>
+
         </div>
     </div>
 </div>
@@ -197,6 +199,18 @@
             $('#yearDropdown').change(function () {
                 $('#submitButton').prop('disabled', false);
             });
+        });
+
+        document.getElementById('imageInput').addEventListener('change', function () {
+            var fileSize = this.files[0].size;
+            var maxSize = 1048576; 
+
+            if (fileSize > maxSize) {
+                document.getElementById('imageSizeError').style.display = 'block';
+                this.value = '';
+            } else {
+                document.getElementById('imageSizeError').style.display = 'none';
+            }
         });
     </script>
 }

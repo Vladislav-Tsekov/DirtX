@@ -2,39 +2,50 @@
 
 <h2>Find Parts For Your Motorcycle!</h2>
 
-<div class="form-group" style="display: inline-block; margin-right: 10px;">
-    <select asp-for="SelectedMake" class="form-control select-field" id="makeDropdown">
-        <option value="">Make</option>
-        @foreach (var make in Model.Makes)
-        {
-            <option value="@make.Value">@make.Text</option>
-        }
-    </select>
-</div>
+<div class="selector-container">
+    <div class="form-group" style="display: inline-block; margin-right: 10px;">
+        <select asp-for="SelectedMake" class="form-control select-field" id="makeDropdown">
+            <option value="">Make</option>
+            @foreach (var make in Model.Makes)
+            {
+                <option value="@make.Value">@make.Text</option>
+            }
+        </select>
+    </div>
 
-<div class="form-group" style="display: inline-block; margin-right: 10px;">
-    <select asp-for="SelectedModel" class="form-control select-field" id="modelDropdown">
-        <option value="">Model</option>
-    </select>
-</div>
+    <div class="form-group" style="display: inline-block; margin-right: 10px;">
+        <select asp-for="SelectedModel" class="form-control select-field" id="modelDropdown">
+            <option value="">Model</option>
+        </select>
+    </div>
 
-<div class="form-group" style="display: inline-block; margin-right: 10px;">
-    <select asp-for="SelectedDisplacement" class="form-control select-field" id="displacementDropdown">
-        <option value="">Displacement</option>
-    </select>
-</div>
+    <div class="form-group" style="display: inline-block; margin-right: 10px;">
+        <select asp-for="SelectedDisplacement" class="form-control select-field" id="displacementDropdown">
+            <option value="">Displacement</option>
+        </select>
+    </div>
 
-<div class="form-group" style="display: inline-block; margin-right: 10px;">
-    <select asp-for="SelectedYear" class="form-control select-field" id="yearDropdown">
-        <option value="">Year</option>
-    </select>
-</div>
+    <div class="form-group" style="display: inline-block; margin-right: 10px;">
+        <select asp-for="SelectedYear" class="form-control select-field" id="yearDropdown">
+            <option value="">Year</option>
+        </select>
+    </div>
 
-<div class="form-group" style="display: inline-block;">
-    <button id="submitButton" class="btn btn-primary">Find Parts</button>
+    <div class="form-group" style="display: inline-block;">
+        <button id="submitButton" class="btn btn-primary">Find Parts</button>
+    </div>
 </div>
 
 <style>
+    .selector-container {
+        background-image: url('https://www.cycleworld.com/resizer/2ckPNGc3p52eW-eR5t78ZNu702I=/arc-photo-octane/arc3-prod/public/TDYD7PXIXRANHC7BAIY3PAL56Y.jpg');
+        background-size: cover;
+        background-position: center;
+        border: black 1px solid;
+        padding: 20px; 
+        display: inline-block;
+    }
+
     .select-field {
         width: 150px;
         padding-right: 30px;

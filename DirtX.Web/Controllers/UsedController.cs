@@ -1,4 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Web.Data;
 using DirtX.Web.Models.Home;
 using DirtX.Web.Models.Used;
@@ -53,10 +54,46 @@ namespace DirtX.Web.Controllers
                 Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
                 Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
                 Years = await context.Years.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.ManufactureYear.ToString() }).ToListAsync(),
-                //Provinces = provinces
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Sell(SellFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var imageFileError = ModelState["ImageFile"];
+
+                if (imageFileError != null && imageFileError.Errors.Count > 0)
+                {
+                    var errorMessage = imageFileError.Errors[0].ErrorMessage;
+                    return BadRequest(errorMessage);
+                }
+                else
+                {
+                    return BadRequest("The submitted data is invalid.");
+                }
+            }
+
+            var usedMotorcycle = new UsedMotorcycle
+            {
+                MakeId = model.SelectedMake,
+                ModelId = model.SelectedModel,
+                DisplacementId = model.SelectedDisplacement,
+                YearId = model.SelectedYear,
+                Price = model.Price,
+                Image = model.Image,
+                Province = (Province)model.Province,
+                Description = model.Description,
+                Contact = model.Contact
+            };
+
+            context.UsedMotorcycles.Add(usedMotorcycle);
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Used");
         }
 
         [HttpGet]

@@ -21,6 +21,7 @@ namespace DirtX.Web.Data
         public DbSet<Model> Models { get; set; }
         public DbSet<Year> Years { get; set; }
         public DbSet<Displacement> Displacements { get; set; }
+        public DbSet<Garage> Garages { get; set; }
 
         // PRODUCTS AND PRODUCT'S SPECIFICATIONS/PROPERTIES
         public DbSet<Part> Parts { get; set; }
@@ -57,23 +58,34 @@ namespace DirtX.Web.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Motorcycle>()
-                        .HasIndex(m => new { m.MakeId, m.ModelId, m.YearId, m.DisplacementId })
-                        .IsUnique(false);
+                .HasIndex(m => new { m.MakeId, m.ModelId, m.YearId, m.DisplacementId })
+                .IsUnique(false);
 
             modelBuilder.Entity<MotorcyclePart>()
-                        .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
+                .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
 
             modelBuilder.Entity<ProductSpecification>()
-                        .HasKey(ps => new { ps.ProductId, ps.SpecificationId });
+                .HasKey(ps => new { ps.ProductId, ps.SpecificationId });
 
             modelBuilder.Entity<CartProduct>()
-                        .HasKey(cp => new { cp.CartId, cp.ProductId });
+                .HasKey(cp => new { cp.CartId, cp.ProductId });
+
+            modelBuilder.Entity<Wishlist>()
+                .HasKey(w => new { w.UserId, w.ProductId });
 
             modelBuilder.Entity<Product>()
                 .HasDiscriminator<string>("ProductSet")
                 .HasValue<Part>("Part")
                 .HasValue<Oil>("Oil")
                 .HasValue<Gear>("Gear");
+
+            modelBuilder.Entity<Garage>()
+                .HasKey(g => g.UserId);
+
+            //modelBuilder.Entity<Garage>()
+            //    .HasOne(g => g.User)
+            //    .WithOne()
+            //    .HasForeignKey<Garage>(g => g.UserId);
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);

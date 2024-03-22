@@ -7,12 +7,11 @@ namespace DirtX.Infrastructure.Data.Models.Orders
     {
         public Order()
         {
-            Id = Guid.NewGuid();
             DateCreated = DateTime.Now;
         }
 
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -35,10 +34,10 @@ namespace DirtX.Infrastructure.Data.Models.Orders
 
         [ForeignKey(nameof(UserId))]
         public AppUser User { get; set; }
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey(nameof(CartId))]
         public Cart Cart { get; set; }
-        public Guid CartId { get; set; }
+        public int CartId { get; set; }
     }
 }

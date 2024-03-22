@@ -7,7 +7,7 @@ namespace DirtX.Infrastructure.Data.Models.Orders
     public class Wishlist
     {
         [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public AppUser User { get; set; }
 
         [Required]

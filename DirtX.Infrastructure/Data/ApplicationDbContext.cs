@@ -82,10 +82,10 @@ namespace DirtX.Web.Data
             modelBuilder.Entity<Garage>()
                 .HasKey(g => g.UserId);
 
-            //modelBuilder.Entity<Garage>()
-            //    .HasOne(g => g.User)
-            //    .WithOne()
-            //    .HasForeignKey<Garage>(g => g.UserId);
+            modelBuilder.Entity<Garage>()
+                .HasOne(g => g.User)
+                .WithOne(u => u.Garage)
+                .HasForeignKey<Garage>(g => g.UserId);
 
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSeeder.SeedProducts(modelBuilder);

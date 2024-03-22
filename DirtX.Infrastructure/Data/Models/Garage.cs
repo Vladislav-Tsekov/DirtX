@@ -8,7 +8,7 @@ namespace DirtX.Infrastructure.Data.Models
     {
         [Key]
         [ForeignKey(nameof(UserId))]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public AppUser User { get; set; }
 
         [Range(0, 10)]

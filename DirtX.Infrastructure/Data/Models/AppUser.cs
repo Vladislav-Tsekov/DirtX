@@ -4,17 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Infrastructure.Data.Models
 {
-    public class AppUser : IdentityUser<Guid>
+    public class AppUser : IdentityUser
     {
-        public AppUser()
-        {
-            Id = Guid.NewGuid();
-            IsAdmin = false;
-            IsReseller = false;
-            CreatedOn = DateTime.Now;
-            Orders = new HashSet<Order>();
-        }
-
         [MaxLength(50)]
         public string FirstName { get; set; }
 

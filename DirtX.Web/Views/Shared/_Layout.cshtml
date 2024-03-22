@@ -9,29 +9,28 @@
     <link rel="stylesheet" href="~/DirtX.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="header-container">
-        <div class="row" style="padding-top: 5px; padding-bottom: 5px; padding-left:20px; padding-right: 20px;">
-            <header class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <a asp-controller="Home" asp-action="Index" style="padding-right: 150px;"><img src="https://i.ibb.co/VvdNQrj/resized.jpg" title="Logo Title" alt="Logo Alt Text"></a>
-                </div>
-                <div class="contact">
-                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/Kj5V9Hk/contact.jpg" alt="Phone Icon"> Contact Us</a>
-                </div>
-                <div class="sell">
-                    <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/JqdLjFn/money.jpg" alt="Sale Icon"> Sell Your Motorcycle</a>
-                </div>
-                <div class="garage">
-                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/zVNqWBk/db2.jpg" alt="Garage Icon"> My Garage</a>
-                </div>
-                <div class="wishlist">
-                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/G5fLHhG/heart2.jpg" alt="heart2" alt="Wishlist Icon"> My Wishlist</a>
-                </div>
-                <div class="trailer">
-                    <a asp-controller="" asp-action=""><img src="https://i.ibb.co/vLX3rqn/trailer.jpg" alt="Trailer Icon"> Rent a Trailer</a>
-                </div>
-            </header>
-        </div>
+    <div class="row" style="padding-top: 5px; padding-bottom: 5px; max-width: 100%;">
+        <header class="d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index"><img src="https://i.ibb.co/VvdNQrj/resized.jpg" title="Logo Title" alt="Logo Alt Text"></a>
+            </div>
+            <div class="contact">
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/Kj5V9Hk/contact.jpg" alt="Phone Icon"> Contact Us</a>
+            </div>
+            <div class="sell">
+                <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/JqdLjFn/money.jpg" alt="Sale Icon"> Sell Your Motorcycle</a>
+            </div>
+            <div class="garage">
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/zVNqWBk/db2.jpg" alt="Garage Icon"> My Garage</a>
+            </div>
+            <div class="wishlist">
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/G5fLHhG/heart2.jpg" alt="heart2" alt="Wishlist Icon"> My Wishlist</a>
+            </div>
+            <div class="trailer">
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/vLX3rqn/trailer.jpg" alt="Trailer Icon"> Rent a Trailer</a>
+            </div>
+        </header>
+    </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"

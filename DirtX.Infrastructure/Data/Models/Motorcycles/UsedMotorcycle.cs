@@ -29,7 +29,7 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public int Price { get; set; }
 
         [Required]
-        //[MaxLength(UsedMotoImageMaxSize)]
+        [MaxLength(UsedMotoImageMaxSize)]
         public byte[] Image { get; set; }
         //TODO - ADD AN ALBUM FOR EVERY USEDMOTO, IF PROJECT IS FINISHED EARLY
 

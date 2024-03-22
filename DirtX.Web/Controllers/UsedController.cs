@@ -1,11 +1,13 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
+using DirtX.Core.Validation;
 using DirtX.Web.Data;
 using DirtX.Web.Models.Home;
 using DirtX.Web.Models.Used;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace DirtX.Web.Controllers
 {
@@ -64,18 +66,10 @@ namespace DirtX.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var imageFileError = ModelState["ImageFile"];
-
-                if (imageFileError != null && imageFileError.Errors.Count > 0)
-                {
-                    var errorMessage = imageFileError.Errors[0].ErrorMessage;
-                    return BadRequest(errorMessage);
-                }
-                else
-                {
-                    return BadRequest("The submitted data is invalid.");
-                }
+                return View(model);
             }
+
+            model.Image = FormFileConverter.ConvertToByteArray(model.ImageFile);
 
             var usedMotorcycle = new UsedMotorcycle
             {

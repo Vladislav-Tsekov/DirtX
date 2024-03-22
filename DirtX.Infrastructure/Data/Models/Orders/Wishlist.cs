@@ -6,20 +6,13 @@ namespace DirtX.Infrastructure.Data.Models.Orders
 {
     public class Wishlist
     {
-        [Key]
-        public int Id { get; set; }
-
-        //[Required]
-        //[ForeignKey(nameof(UserId))]
-        //public ApplicationUser User { get; set; }
-        //public string UserId { get; set; }
-
-        //TODO - IMPLEMENT USER
+        [ForeignKey(nameof(User))]
+        public Guid UserId { get; set; }
+        public AppUser User { get; set; }
 
         [Required]
-        [ForeignKey(nameof(ProductId))]
-        public Product Product { get; set; }
+        [ForeignKey(nameof(Product))]
         public int ProductId { get; set; }
-
+        public Product Product { get; set; }
     }
 }

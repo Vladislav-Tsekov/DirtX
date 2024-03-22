@@ -13,7 +13,7 @@ namespace DirtX.Infrastructure.Data.Models
 
         [ForeignKey(nameof(CartId))]
         public Cart Cart { get; set; }
-        public int CartId { get; set; }
+        public Guid CartId { get; set; }
 
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; }

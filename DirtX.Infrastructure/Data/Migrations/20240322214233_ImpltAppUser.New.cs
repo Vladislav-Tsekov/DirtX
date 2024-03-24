@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DirtX.Infrastructure.Migrations
 {
-    public partial class GuidImplementationTest : Migration
+    public partial class ImpltAppUserNew : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,17 @@ namespace DirtX.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PostCode = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    ProfilePicture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: true),
+                    IsReseller = table.Column<bool>(type: "bit", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -46,19 +57,6 @@ namespace DirtX.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Carts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Carts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -265,21 +263,39 @@ namespace DirtX.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Carts",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CartId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_Carts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Carts_CartId",
-                        column: x => x.CartId,
-                        principalTable: "Carts",
+                        name: "FK_Carts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Garages",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MotoCount = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Garages", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Garages_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -342,6 +358,8 @@ namespace DirtX.Infrastructure.Migrations
                     RentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TrailerId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Duration = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalCost = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
@@ -350,50 +368,15 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_TrailersRents", x => x.RentId);
                     table.ForeignKey(
+                        name: "FK_TrailersRents_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_TrailersRents_Trailers_TrailerId",
                         column: x => x.TrailerId,
                         principalTable: "Trailers",
                         principalColumn: "TrailerId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Motorcycles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MakeId = table.Column<int>(type: "int", nullable: false),
-                    ModelId = table.Column<int>(type: "int", nullable: false),
-                    YearId = table.Column<int>(type: "int", nullable: false),
-                    DisplacementId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Motorcycles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Displacements_DisplacementId",
-                        column: x => x.DisplacementId,
-                        principalTable: "Displacements",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Makes_MakeId",
-                        column: x => x.MakeId,
-                        principalTable: "Makes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Years_YearId",
-                        column: x => x.YearId,
-                        principalTable: "Years",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -408,7 +391,7 @@ namespace DirtX.Infrastructure.Migrations
                     DisplacementId = table.Column<int>(type: "int", nullable: false),
                     YearId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", maxLength: 1048576, nullable: false),
                     Province = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Contact = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -436,6 +419,83 @@ namespace DirtX.Infrastructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UsedMotorcycles_Years_YearId",
+                        column: x => x.YearId,
+                        principalTable: "Years",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CartId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Motorcycles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MakeId = table.Column<int>(type: "int", nullable: false),
+                    ModelId = table.Column<int>(type: "int", nullable: false),
+                    YearId = table.Column<int>(type: "int", nullable: false),
+                    DisplacementId = table.Column<int>(type: "int", nullable: false),
+                    GarageUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Motorcycles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Displacements_DisplacementId",
+                        column: x => x.DisplacementId,
+                        principalTable: "Displacements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Garages_GarageUserId",
+                        column: x => x.GarageUserId,
+                        principalTable: "Garages",
+                        principalColumn: "UserId");
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Makes_MakeId",
+                        column: x => x.MakeId,
+                        principalTable: "Makes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Models_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "Models",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Years_YearId",
                         column: x => x.YearId,
                         principalTable: "Years",
                         principalColumn: "Id",
@@ -471,13 +531,18 @@ namespace DirtX.Infrastructure.Migrations
                 name: "Wishlists",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Wishlists", x => x.Id);
+                    table.PrimaryKey("PK_Wishlists", x => new { x.UserId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_Wishlists_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Wishlists_Product_ProductId",
                         column: x => x.ProductId,
@@ -669,29 +734,29 @@ namespace DirtX.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Motorcycles",
-                columns: new[] { "Id", "DisplacementId", "MakeId", "ModelId", "YearId" },
+                columns: new[] { "Id", "DisplacementId", "GarageUserId", "MakeId", "ModelId", "YearId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, 1 },
-                    { 2, 1, 1, 1, 2 },
-                    { 3, 3, 1, 1, 3 },
-                    { 4, 3, 2, 2, 4 },
-                    { 5, 3, 2, 2, 5 },
-                    { 6, 1, 2, 2, 6 },
-                    { 7, 3, 3, 3, 7 },
-                    { 8, 1, 3, 3, 8 },
-                    { 9, 1, 3, 3, 9 },
-                    { 10, 3, 4, 4, 10 },
-                    { 11, 1, 4, 4, 11 },
-                    { 12, 3, 4, 4, 12 },
-                    { 13, 1, 5, 5, 13 },
-                    { 14, 2, 5, 5, 14 },
-                    { 15, 3, 5, 5, 15 },
-                    { 16, 1, 6, 6, 16 },
-                    { 17, 1, 6, 6, 17 },
-                    { 18, 3, 6, 6, 18 },
-                    { 19, 1, 7, 7, 19 },
-                    { 20, 3, 7, 7, 20 }
+                    { 1, 1, null, 1, 1, 1 },
+                    { 2, 1, null, 1, 1, 2 },
+                    { 3, 3, null, 1, 1, 3 },
+                    { 4, 3, null, 2, 2, 4 },
+                    { 5, 3, null, 2, 2, 5 },
+                    { 6, 1, null, 2, 2, 6 },
+                    { 7, 3, null, 3, 3, 7 },
+                    { 8, 1, null, 3, 3, 8 },
+                    { 9, 1, null, 3, 3, 9 },
+                    { 10, 3, null, 4, 4, 10 },
+                    { 11, 1, null, 4, 4, 11 },
+                    { 12, 3, null, 4, 4, 12 },
+                    { 13, 1, null, 5, 5, 13 },
+                    { 14, 2, null, 5, 5, 14 },
+                    { 15, 3, null, 5, 5, 15 },
+                    { 16, 1, null, 6, 6, 16 },
+                    { 17, 1, null, 6, 6, 17 },
+                    { 18, 3, null, 6, 6, 18 },
+                    { 19, 1, null, 7, 7, 19 },
+                    { 20, 3, null, 7, 7, 20 }
                 });
 
             migrationBuilder.InsertData(
@@ -1278,6 +1343,11 @@ namespace DirtX.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Carts_UserId",
+                table: "Carts",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CartsProducts_ProductId",
                 table: "CartsProducts",
                 column: "ProductId");
@@ -1286,6 +1356,11 @@ namespace DirtX.Infrastructure.Migrations
                 name: "IX_Motorcycles_DisplacementId",
                 table: "Motorcycles",
                 column: "DisplacementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Motorcycles_GarageUserId",
+                table: "Motorcycles",
+                column: "GarageUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Motorcycles_MakeId_ModelId_YearId_DisplacementId",
@@ -1313,6 +1388,11 @@ namespace DirtX.Infrastructure.Migrations
                 column: "CartId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Product_BrandId",
                 table: "Product",
                 column: "BrandId");
@@ -1336,6 +1416,11 @@ namespace DirtX.Infrastructure.Migrations
                 name: "IX_TrailersRents_TrailerId",
                 table: "TrailersRents",
                 column: "TrailerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrailersRents_UserId",
+                table: "TrailersRents",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UsedMotorcycles_DisplacementId",
@@ -1408,9 +1493,6 @@ namespace DirtX.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Motorcycles");
 
             migrationBuilder.DropTable(
@@ -1429,6 +1511,9 @@ namespace DirtX.Infrastructure.Migrations
                 name: "Displacements");
 
             migrationBuilder.DropTable(
+                name: "Garages");
+
+            migrationBuilder.DropTable(
                 name: "Makes");
 
             migrationBuilder.DropTable(
@@ -1442,6 +1527,9 @@ namespace DirtX.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductBrands");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

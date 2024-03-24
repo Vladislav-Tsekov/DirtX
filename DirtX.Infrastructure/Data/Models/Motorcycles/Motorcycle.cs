@@ -24,12 +24,11 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public Displacement Displacement { get; set; }
         public int DisplacementId { get; set; }
 
-        public List<MotorcyclePart> MotorcycleParts { get; set; }
+        //TODO - CHECK COMPATIBILITY WITH GARAGE?
+        //[ForeignKey(nameof(GarageId))]
+        //public Garage Garage { get; set; }
+        //public int GarageId { get; set; }
 
-        //TODO - CHECK WHETHER ADDITIONAL VALIDATIONS WILL BE REQUIRED FOR MAKE/MODEL RELATIONSHIP.
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) 
-        //{
-        
-        //}
+        public List<MotorcyclePart> MotorcycleParts { get; set; }
     }
 }

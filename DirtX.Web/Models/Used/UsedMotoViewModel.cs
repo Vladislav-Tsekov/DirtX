@@ -1,7 +1,5 @@
 ﻿namespace DirtX.Web.Models.Used;
-using DirtX.Infrastructure.Data.Models.Enums;
-
-public class UsedIndexViewModel
+public class UsedMotoViewModel
 {
     public int Id { get; set; }
     public string Make { get; set; }

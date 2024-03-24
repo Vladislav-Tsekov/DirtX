@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Infrastructure.Data.Models.Orders
 {
@@ -7,9 +8,9 @@ namespace DirtX.Infrastructure.Data.Models.Orders
         [Key]
         public int Id { get; set; }
 
-        //[ForeignKey(nameof(UserId))]
-        //public ApplicationUser User { get; set; }
-        //public string UserId { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public AppUser User { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public DateTime DateCreated { get; set; }

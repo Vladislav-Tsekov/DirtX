@@ -34,13 +34,11 @@ public class SellFormViewModel
     [Required(ErrorMessage = "Please enter a contact.")]
     public string Contact { get; set; }
 
-    [Required(ErrorMessage = "Please select an image.")]
     [MaxFileSize(1048576, ErrorMessage = "The file size must not exceed 1MB.")]
-    [DataType(DataType.Upload)]
     public IFormFile ImageFile { get; set; }
 
     public IEnumerable<SelectListItem> Makes { get; set; }
-    public IEnumerable<SelectListItem> Models { get; set; }
-    public IEnumerable<SelectListItem> Displacements { get; set; }
-    public IEnumerable<SelectListItem> Years { get; set; }
+    //public IEnumerable<SelectListItem> Models { get; set; }
+    //public IEnumerable<SelectListItem> Displacements { get; set; }
+    //public IEnumerable<SelectListItem> Years { get; set; }
 }

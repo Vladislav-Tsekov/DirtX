@@ -31,7 +31,7 @@ namespace DirtX.Web.Controllers
                 .Include(um => um.Displacement)
                 .ToListAsync();
 
-            List<UsedIndexViewModel> models = usedMotorcycles.Select(m => new UsedIndexViewModel
+            List<UsedMotoViewModel> models = usedMotorcycles.Select(m => new UsedMotoViewModel
             {
                 Id = m.Id,
                 Make = m.Make.Title,
@@ -54,8 +54,8 @@ namespace DirtX.Web.Controllers
             var viewModel = new SellFormViewModel
             {
                 Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
-                Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
-                Years = await context.Years.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.ManufactureYear.ToString() }).ToListAsync(),
+                //Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
+                //Years = await context.Years.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.ManufactureYear.ToString() }).ToListAsync(),
             };
 
             return View(viewModel);
@@ -64,12 +64,23 @@ namespace DirtX.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Sell(SellFormViewModel model)
         {
+            if (model.ImageFile != null)
+            {
+                model.Image = FormFileConverter.ConvertToByteArray(model.ImageFile);
+            }
+            else
+            {
+                string currentDir = Directory.GetCurrentDirectory();
+                string parentDir = Directory.GetParent(currentDir).FullName;
+                //TODO-CHANGE DIRECTORY
+                string defaultImgPath = Path.Combine(parentDir, @"DirtX.Infrastructure\Data\Seeders\Images\default-img.jpg");
+                model.Image = System.IO.File.ReadAllBytes(defaultImgPath);
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
-            model.Image = FormFileConverter.ConvertToByteArray(model.ImageFile);
 
             var usedMotorcycle = new UsedMotorcycle
             {
@@ -88,6 +99,11 @@ namespace DirtX.Web.Controllers
             await context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Used");
+        }
+
+        public async Task<IActionResult> Details(int id) 
+        {
+            return Ok();
         }
 
         [HttpGet]

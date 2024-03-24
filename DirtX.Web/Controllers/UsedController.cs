@@ -1,13 +1,12 @@
-﻿using DirtX.Infrastructure.Data.Models.Enums;
+﻿using DirtX.Core.Validation;
+using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
-using DirtX.Core.Validation;
 using DirtX.Web.Data;
 using DirtX.Web.Models.Home;
 using DirtX.Web.Models.Used;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
 
 namespace DirtX.Web.Controllers
 {
@@ -103,7 +102,41 @@ namespace DirtX.Web.Controllers
 
         public async Task<IActionResult> Details(int id) 
         {
-            return Ok();
+            //TODO - FIXE WHEN SERVICE IS IMPLEMENTED
+            //TODO - LIMIT IMAGE SIZE WHEN OPENING THE VIEW
+            //var motorcycleDetails = await usedService.GetMotorcycleDetailsById(id);
+
+            UsedMotorcycle motoDetails = await context.UsedMotorcycles
+                .Include(um => um.Make)
+                .Include(um => um.Model)
+                .Include(um => um.Year)
+                .Include(um => um.Displacement)
+                .Where(um => um.Id == id).FirstOrDefaultAsync();
+
+            if (motoDetails == null)
+            {
+                return NotFound(); 
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new UsedMotoViewModel
+            {
+                Make = motoDetails.Make.Title,
+                Model = motoDetails.Model.Title,
+                Displacement = motoDetails.Displacement.Volume,
+                Year = motoDetails.Year.ManufactureYear,
+                Image = motoDetails.Image,
+                Province = motoDetails.Province.ToString(),
+                Description = motoDetails.Description,
+                Price = motoDetails.Price,
+                Contact = motoDetails.Contact
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]

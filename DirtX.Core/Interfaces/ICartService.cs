@@ -8,12 +8,12 @@
 
         Task CreateCartAsync(string userId);
 
-        Task AddItemToCartAsync(int itemId, string cartId, string userId);
+        Task AddProductToCartAsync(int productId, int cartId, string userId);
 
-        Task RemoveItemFromCartAsync(int cartItemId, string cartId);
+        Task RemoveProductFromCartAsync(int cartProductId, int cartId);
 
-        Task IncreaseItemQuantityAsync(int itemId, string cartId);
+        Task IncreaseProductQuantityAsync(int productId, int cartId);
 
-        Task DecreaseItemQuantityAsync(int itemId, string cartId);
+        Task DecreaseProductQuantityAsync(int productId, int cartId);
     }
 }

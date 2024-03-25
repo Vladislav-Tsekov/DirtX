@@ -1,10 +1,12 @@
-﻿namespace DirtX.Core.Interfaces
+﻿using DirtX.Web.Models;
+
+namespace DirtX.Core.Interfaces
 {
     public interface ICartService
     {
-        //Task<CartFormViewModel> GetCartByUserIdAsync(string userId);
+        Task<CartFormViewModel> GetCartByUserIdAsync(string userId);
 
-        //Task<CartFormViewModel> GetCartByOrderIdAsync(int orderId);
+        Task<CartFormViewModel> GetCartByOrderIdAsync(int orderId);
 
         Task CreateCartAsync(string userId);
 

@@ -1,6 +1,7 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Infrastructure.Data.Models.Orders;
 using DirtX.Web.Data;
+using DirtX.Web.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Core.Services
@@ -14,6 +15,62 @@ namespace DirtX.Core.Services
             context = _context;
         }
 
+        public async Task<CartFormViewModel> GetCartByUserIdAsync(string userId)
+        {
+            CartFormViewModel cart = await context
+                .Carts
+                .OrderByDescending(c => c.DateCreated)
+                .Where(c => c.UserId == userId)
+                .Select(c => new CartFormViewModel()
+                {
+                    Id = c.Id,
+                    Products = c.CartProducts
+                    .Select(cp => new CartProductViewModel()
+                    {
+                        ProductId = cp.ProductId,
+                        Title = cp.Product.Title,
+                        Image = cp.Product.ImageUrl,
+                        Price = cp.Product.Price,
+                        Quantity = cp.Quantity,
+                        TotalPrice = cp.Quantity * cp.Product.Price
+                    })
+                    .ToArray()
+                })
+                .FirstOrDefaultAsync();
+
+            if (cart != null)
+                cart.TotalPrice += cart.Products.Select(p => p.TotalPrice).Sum();
+
+            return cart;
+        }
+
+        public async Task<CartFormViewModel> GetCartByOrderIdAsync(int orderId)
+        {
+            CartFormViewModel cart = await context
+                .Orders
+                .Where(o => o.Id == orderId)
+                .Select(o => new CartFormViewModel()
+                {
+                    Id = o.CartId,
+                    Products = o.Cart.CartProducts
+                    .Select(cp => new CartProductViewModel()
+                    {
+                        ProductId = cp.ProductId,
+                        Title = cp.Product.Title,
+                        Image = cp.Product.ImageUrl,
+                        Price = cp.Product.Price,
+                        Quantity = cp.Quantity,
+                        TotalPrice = cp.Quantity * cp.Product.Price
+                    })
+                    .ToArray()
+                })
+                .FirstAsync();
+
+            //TODO - POSSIBLE NULL REFERENCE?
+
+            return cart;
+        }
+
         public async Task CreateCartAsync(string userId)
         {
             Cart cart = new()
@@ -23,6 +80,11 @@ namespace DirtX.Core.Services
 
             context.Carts.Add(cart);
             await context.SaveChangesAsync();
+        }
+
+        public async Task AddProductToCartAsync(int productId, int cartId, string userId)
+        {
+            //TODO - IN ORDER TO IMPLEMENT THIS METHOD A SERIOUS DATABASE REMODELLING IS REQUIRED - INSTEAD OF TPH APPROACH ONE TABLE FOR PRODUCTS MUST BE USED
         }
 
         public async Task RemoveProductFromCartAsync(int productId, int cartId)
@@ -51,26 +113,16 @@ namespace DirtX.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task DecreaseProductQuantityAsync(int productId, string cartId)
+        public async Task DecreaseProductQuantityAsync(int productId, int cartId)
         {
             var cartProduct = await context
                 .CartsProducts
-                .Where(ci => ci.ProductId == productId && ci.CartId.ToString() == cartId)
+                .Where(cp => cp.ProductId == productId && cp.CartId == cartId)
                 .FirstAsync();
 
             cartProduct.Quantity--;
 
             await context.SaveChangesAsync();
-        }
-
-        public Task AddProductToCartAsync(int productId, int cartId, string userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DecreaseProductQuantityAsync(int productId, int cartId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

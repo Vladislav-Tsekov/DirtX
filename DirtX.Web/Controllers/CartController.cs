@@ -1,5 +1,6 @@
 ﻿using DirtX.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DirtX.Web.Controllers
 {
@@ -12,21 +13,20 @@ namespace DirtX.Web.Controllers
             this.cartService = cartService;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Index()
-        //{
-        //    try
-        //    {
-        //        //TODO = IMPLEMENT USER FIRST
-        //        var userId =
-        //        var cart = await cartService.GetCartByUserIdAsync(userId);
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var cart = await cartService.GetCartByUserIdAsync(userId);
 
-        //        return View(cart);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return GeneralErrorMessage();
-        //    }
-        //}
+                return View(cart);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

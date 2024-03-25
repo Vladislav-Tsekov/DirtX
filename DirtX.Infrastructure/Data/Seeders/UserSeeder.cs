@@ -5,7 +5,7 @@ namespace DirtX.Infrastructure.Data.Seeders
 {
     public class UserSeeder
     {
-        public async Task SeedUsersAsync(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedUsersAsync(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             string[] roles = new[] { "Admin", "Reseller", "User" };
 

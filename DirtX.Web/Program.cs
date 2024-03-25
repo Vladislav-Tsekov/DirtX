@@ -3,10 +3,10 @@ using DirtX.Core.Services;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Seeders;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using static DirtX.Infrastructure.Data.Seeders.UserSeeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,8 +52,7 @@ using (var scope = app.Services.CreateScope())
     {
         var userManager = services.GetRequiredService<UserManager<AppUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        var dataSeeder = new UserSeeder();
-        await dataSeeder.SeedUsersAsync(userManager, roleManager);
+        await SeedUsersAsync(userManager, roleManager);
     }
     catch (Exception ex)
     {

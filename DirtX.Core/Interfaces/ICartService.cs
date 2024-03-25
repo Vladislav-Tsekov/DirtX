@@ -2,9 +2,9 @@
 {
     public interface ICartService
     {
-        //Task<CartFormViewModel?> GetCurrCartByUserIdAsync(string userId);
+        //Task<CartFormViewModel> GetCartByUserIdAsync(string userId);
 
-        //Task<CartFormViewModel> GetCartByOrderIdAsync(string orderId);
+        //Task<CartFormViewModel> GetCartByOrderIdAsync(int orderId);
 
         Task CreateCartAsync(string userId);
 

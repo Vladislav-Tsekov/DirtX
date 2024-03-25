@@ -27,56 +27,58 @@ namespace DirtX.Infrastructure.Data.Seeders
 
             AppUser admin = new()
             {
-                UserName = "Admin",
+                UserName = "admin@dirtx.com",
                 Email = "admin@dirtx.com",
                 FirstName = "Eli",
                 LastName = "Tomac",
-                Address = "Center",
-                City = "Sofia",
+                Address = "The Ranch 3",
+                City = "Colorado",
+                Country = "USA",
                 IsAdmin = true,
                 IsReseller = false,
                 NormalizedEmail = "admin@dirtx.com",
-                NormalizedUserName = "admin"
+                NormalizedUserName = "admin",
+                EmailConfirmed = true
             };
             admin.PasswordHash = hasher.HashPassword(admin, "AdminUser111");
 
             AppUser reseller = new()
             {
-                UserName = "Reseller",
+                UserName = "reseller@dirtx.com",
                 Email = "reseller@dirtx.com",
                 FirstName = "Ken",
                 LastName = "Roczen",
-                Address = "Center",
-                City = "Plovdiv",
+                Address = "Downtown",
+                City = "Miami",
+                Country = "USA",
                 IsAdmin = false,
                 IsReseller = true,
                 NormalizedEmail = "reseller@dirtx.com",
-                NormalizedUserName = "reseller"
+                NormalizedUserName = "reseller",
+                EmailConfirmed = true
             };
             reseller.PasswordHash = hasher.HashPassword(reseller, "Reseller222");
 
             AppUser user = new()
             {
-                UserName = "User",
+                UserName = "user@dirtx.com",
                 Email = "user@dirtx.com",
                 FirstName = "Jett",
                 LastName = "Lawrence",
-                Address = "Center",
-                City = "Ruse",
+                Address = "7th Avenue",
+                City = "New York",
+                Country = "USA",
                 IsAdmin = false,
                 IsReseller = false,
                 NormalizedEmail = "user@dirtx.com",
                 NormalizedUserName = "user",
+                EmailConfirmed = true
             };
             user.PasswordHash = hasher.HashPassword(user, "NormalUser333");
 
             admin.Id = Guid.NewGuid().ToString();
             reseller.Id = Guid.NewGuid().ToString();
             user.Id = Guid.NewGuid().ToString();
-
-            string adminRoleId = (await roleManager.FindByNameAsync("Admin")).Id;
-            string resellerRoleId = (await roleManager.FindByNameAsync("Reseller")).Id;
-            string userRoleId = (await roleManager.FindByNameAsync("User")).Id;
 
             await userManager.CreateAsync(admin);
             await userManager.AddToRoleAsync(admin, "Admin");

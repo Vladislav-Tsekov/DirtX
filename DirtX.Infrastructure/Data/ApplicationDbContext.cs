@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         //TODO - ADD COMMENTS TO THE DB ELEMENTS
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
@@ -56,6 +56,8 @@ namespace DirtX.Web.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AppUser>().ToTable("AspNetUsers");
 
             modelBuilder.Entity<Motorcycle>()
                 .HasIndex(m => new { m.MakeId, m.ModelId, m.YearId, m.DisplacementId })

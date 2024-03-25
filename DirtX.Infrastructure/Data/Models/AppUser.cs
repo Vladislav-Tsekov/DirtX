@@ -21,9 +21,6 @@ namespace DirtX.Infrastructure.Data.Models
         [MaxLength(100)]
         public string Address { get; set; }
 
-        [MaxLength(15)]
-        public string PostCode { get; set; }
-
         public byte[] ProfilePicture { get; set; }
 
         public bool IsAdmin { get; set; }
@@ -32,10 +29,10 @@ namespace DirtX.Infrastructure.Data.Models
 
         public DateTime CreatedOn { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
 
-        public ICollection<Cart> Carts { get; set; }
+        public ICollection<Cart> Carts { get; set; } = new List<Cart>();
 
-        public Garage Garage { get; set; }
+        public Garage Garage { get; set; } = new Garage();
     }
 }

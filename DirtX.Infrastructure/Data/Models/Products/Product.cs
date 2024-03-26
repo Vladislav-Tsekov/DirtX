@@ -6,7 +6,7 @@ using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
-    public abstract class Product
+    public class Product
     {
         [Key]
         public int Id { get; set; }

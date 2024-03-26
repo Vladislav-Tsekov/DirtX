@@ -1,5 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.User;
+using DirtX.Infrastructure.Data.Models.Users;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

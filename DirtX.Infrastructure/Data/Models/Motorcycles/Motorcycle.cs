@@ -29,6 +29,6 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         //public Garage Garage { get; set; }
         //public int GarageId { get; set; }
 
-        public List<MotorcyclePart> MotorcycleParts { get; set; }
+        public List<MotorcycleProduct> MotorcycleParts { get; set; }
     }
 }

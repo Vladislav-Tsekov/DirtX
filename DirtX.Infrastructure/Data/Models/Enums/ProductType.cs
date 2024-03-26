@@ -2,15 +2,18 @@
 {
     public enum ProductType
     {
+        // PARTS
         Engine,
         Filters,
         Drivetrain,
         Braking_System,
         Suspension,
+        // OILS
         Two_Stroke,
         Four_Stroke,
         Transmission,
         Fork_and_Shock,
+        // RIDING GEAR
         Coolant,
         Helmet,
         Protective_Gear,

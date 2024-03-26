@@ -1,4 +1,4 @@
-﻿using DirtX.Infrastructure.Data.Models;
+﻿using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
 
 namespace DirtX.Core.Interfaces

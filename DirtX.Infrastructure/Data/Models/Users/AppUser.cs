@@ -1,8 +1,7 @@
-﻿using DirtX.Infrastructure.Data.Models.Orders;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace DirtX.Infrastructure.Data.Models
+namespace DirtX.Infrastructure.Data.Models.Users
 {
     public class AppUser : IdentityUser
     {

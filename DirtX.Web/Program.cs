@@ -1,8 +1,8 @@
 using DirtX.Core.Interfaces;
 using DirtX.Core.Services;
-using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Products;
+using DirtX.Infrastructure.Data.Models.User;
 using DirtX.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

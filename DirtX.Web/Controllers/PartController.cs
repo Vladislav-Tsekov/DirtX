@@ -2,6 +2,7 @@
 using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;

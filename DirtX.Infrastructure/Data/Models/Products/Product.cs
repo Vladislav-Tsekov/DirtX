@@ -1,5 +1,5 @@
 ﻿using DirtX.Infrastructure.Data.Models.Enums;
-using DirtX.Infrastructure.Data.Models.Orders;
+using DirtX.Infrastructure.Data.Models.Mappings;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static DirtX.Infrastructure.Shared.ValidationConstants;

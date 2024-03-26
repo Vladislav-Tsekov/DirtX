@@ -1,8 +1,10 @@
 ﻿using DirtX.Infrastructure.Data.Models;
+using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Orders;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Infrastructure.Data.Models.Trailers;
+using DirtX.Infrastructure.Data.Models.User;
 using DirtX.Infrastructure.Data.Seeders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

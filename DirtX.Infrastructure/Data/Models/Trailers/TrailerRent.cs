@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DirtX.Infrastructure.Data.Models.User;
 using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Trailers

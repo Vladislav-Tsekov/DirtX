@@ -15,19 +15,22 @@
                 <a asp-controller="Home" asp-action="Index"><img src="https://i.ibb.co/VvdNQrj/resized.jpg" title="Logo Title" alt="Logo Alt Text"></a>
             </div>
             <div class="contact">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/Kj5V9Hk/contact.jpg" alt="Phone Icon"> Contact Us</a>
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/XsgDt50/contact.png" alt="Phone Icon"> Contact Us</a>
             </div>
             <div class="sell">
-                <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/JqdLjFn/money.jpg" alt="Sale Icon"> Sell Your Motorcycle</a>
-            </div>
-            <div class="garage">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/zVNqWBk/db2.jpg" alt="Garage Icon"> My Garage</a>
-            </div>
-            <div class="wishlist">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/G5fLHhG/heart2.jpg" alt="heart2" alt="Wishlist Icon"> My Wishlist</a>
+                <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/hB4QC3J/money.png" alt="Sale Icon"> Sell Your Motorcycle</a>
             </div>
             <div class="trailer">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/vLX3rqn/trailer.jpg" alt="Trailer Icon"> Rent a Trailer</a>
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/DgZ6x1b/trailer.png" alt="Trailer Icon"> Rent a Trailer</a>
+            </div>
+            <div class="garage">
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/zVZpJfk/dirtbike.png" alt="Garage Icon"> My Garage</a>
+            </div>
+            <div class="wishlist">
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/6DMXFC0/heart.png" alt="Heart Icon" alt="Wishlist Icon"> My Wishlist</a>
+            </div>
+            <div class="cart">
+                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/61BjcxW/cart.png" alt="Trailer Icon"> Cart</a>
             </div>
         </header>
     </div>
@@ -100,7 +103,8 @@
     .sell a,
     .garage a,
     .wishlist a,
-    .trailer a{
+    .trailer a,
+    .cart a{
         text-decoration: none; 
         color: black;
     }
@@ -109,7 +113,8 @@
     .sell a:hover,
     .garage a:hover,
     .wishlist a:hover,
-    .trailer a:hover{
+    .trailer a:hover,
+    .cart a:hover{
         color: darkorange;
         transition: 0.3s ;
     }

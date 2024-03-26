@@ -109,7 +109,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> CompatibleParts(int makeId, int modelId, int displacementId, int yearId)
         {
-            List<MotorcyclePart> compatibleParts = await context.MotorcyclesParts
+            List<MotorcycleProduct> compatibleParts = await context.MotorcyclesParts
                 .Include(mp => mp.Motorcycle)
                 .Include(mp => mp.Motorcycle.Make)
                 .Include(mp => mp.Motorcycle.Model)

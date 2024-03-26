@@ -41,7 +41,7 @@ namespace DirtX.Web.Data
         public DbSet<Wishlist> Wishlists { get; set; }
 
         // MAPPING/JUNCTION TABLES
-        public DbSet<MotorcyclePart> MotorcyclesParts { get; set; }
+        public DbSet<MotorcycleProduct> MotorcyclesParts { get; set; }
         public DbSet<ProductSpecification> ProductsSpecifications { get; set; }
         public DbSet<CartProduct> CartsProducts { get; set; }
 
@@ -63,7 +63,7 @@ namespace DirtX.Web.Data
                 .HasIndex(m => new { m.MakeId, m.ModelId, m.YearId, m.DisplacementId })
                 .IsUnique(false);
 
-            modelBuilder.Entity<MotorcyclePart>()
+            modelBuilder.Entity<MotorcycleProduct>()
                 .HasKey(mp => new { mp.MotorcycleId, mp.PartId });
 
             modelBuilder.Entity<ProductSpecification>()

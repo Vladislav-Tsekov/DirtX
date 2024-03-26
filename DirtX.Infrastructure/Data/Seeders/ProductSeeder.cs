@@ -7,6 +7,8 @@ namespace DirtX.Infrastructure.Data.Seeders
 {
     public static class ProductSeeder
     {
+        //TODO - PACKAGE SIZE FOR OILS MUST BE MADE A PROPERTY
+        //TODO - SIZE FOR RIDING GEAR MUST BE MADE A PROPERTY
         public static void SeedProducts(ModelBuilder modelBuilder)
         {
             SeedProductBrands(modelBuilder);

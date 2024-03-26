@@ -56,6 +56,7 @@ namespace DirtX.Web.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            //TODO - IS THIS REALLY NECESSARY?
             modelBuilder.Entity<AppUser>().ToTable("AspNetUsers");
 
             modelBuilder.Entity<Motorcycle>()

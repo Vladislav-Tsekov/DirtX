@@ -1,5 +1,5 @@
 ﻿using DirtX.Core.Interfaces;
-using DirtX.Infrastructure.Data.Models.Orders;
+using DirtX.Infrastructure.Data.Models.Users;
 using DirtX.Web.Data;
 using DirtX.Web.Models;
 using Microsoft.EntityFrameworkCore;

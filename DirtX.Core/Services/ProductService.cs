@@ -1,43 +1,64 @@
 ﻿using DirtX.Core.Interfaces;
-using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
-using DirtX.Infrastructure.Data.Models.Mappings;
 
 namespace DirtX.Core.Services
 {
-    public class OilService : IProductService<Oil, OilType>
+    public class ProductService : IProductService
     {
         private readonly ApplicationDbContext context;
 
-        public OilService(ApplicationDbContext _context)
+        public ProductService(ApplicationDbContext _context)
         {
             context = _context;
         }
 
-        public async Task<Oil> GetProductAsync(int id)
+        public async Task<Product> GetProductAsync(int id)
         {
-            Oil oil = await context.Oils
+            Product part = await context.Products
                 .AsNoTracking()
                 .Include(p => p.Brand)
                 .Where(p => p.Id == id)
                 .FirstOrDefaultAsync();
 
-            return oil;
+            return part;
         }
 
-        public async Task<List<Oil>> GetAllProductsAsync() => await context.Oils.AsNoTracking().ToListAsync();
+        public async Task<List<Product>> GetAllProductsAsync()
+        {
+            return await context.Products
+                .AsNoTracking()
+                .ToListAsync();
+        }
 
-        public async Task<ProductBrand> GetProductBrandAsync(string brandName) => await context.ProductBrands.AsNoTracking().FirstOrDefaultAsync(b => b.Name == brandName);
+        public async Task<ProductBrand> GetProductBrandAsync(string brandName)
+        {
+            return await context.ProductBrands
+                .AsNoTracking()
+                .FirstOrDefaultAsync(b => b.Name == brandName);
+        }
 
-        public async Task<List<Oil>> GetProductsByBrandAsync(ProductBrand brand) => await context.Oils.Where(p => p.BrandId == brand.Id).AsNoTracking().ToListAsync();
+        public async Task<List<Product>> GetProductsByBrandAsync(ProductBrand brand)
+        {
+            return await context.Products
+                .Where(p => p.BrandId == brand.Id)
+                .AsNoTracking()
+                .ToListAsync();
+        }
 
-        public async Task<List<Oil>> GetAllProductsByTypeAsync(OilType type) => await context.Oils.Where(p => p.OilType == type).AsNoTracking().ToListAsync();
+        public async Task<List<Product>> GetAllProductsByCategoryAsync(string category)
+        {
+            return await context.Products
+                .Where(p => p.Category.ToString() == category)
+                .AsNoTracking()
+                .ToListAsync();
+        }
 
         public async Task<List<ProductBrand>> GetDistinctProductBrandsAsync()
         {
-            List<int> distinctBrands = await context.Oils
+            List<int> distinctBrands = await context.Products
                 .AsNoTracking()
                 .Select(p => p.BrandId)
                 .Distinct()
@@ -50,7 +71,7 @@ namespace DirtX.Core.Services
 
             return brands;
         }
-
+       
         public async Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id)
         {
             List<ProductSpecification> specs = await context.ProductsSpecifications

@@ -3,14 +3,14 @@ using DirtX.Infrastructure.Data.Models.Products;
 
 namespace DirtX.Core.Interfaces
 {
-    public interface IProductService<T, TEnum> where TEnum : Enum
+    public interface IProductService
     {
-        Task<T> GetProductAsync(int id);
-        Task<List<T>> GetAllProductsAsync();
-        Task<List<T>> GetAllProductsByTypeAsync(TEnum type);
+        Task<Product> GetProductAsync(int id);
+        Task<List<Product>> GetAllProductsAsync();
+        Task<List<Product>> GetAllProductsByCategoryAsync(string category);
         Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id);
         Task<ProductBrand> GetProductBrandAsync(string brandName);
-        Task<List<T>> GetProductsByBrandAsync(ProductBrand brand);
+        Task<List<Product>> GetProductsByBrandAsync(ProductBrand brand);
         Task<List<ProductBrand>> GetDistinctProductBrandsAsync();
     }
 }

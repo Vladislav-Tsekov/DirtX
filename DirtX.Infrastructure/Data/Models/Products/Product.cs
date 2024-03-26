@@ -49,5 +49,6 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public ICollection<CartProduct> CartProducts { get; set; }
         public ICollection<Wishlist> Wishlists { get; set; }
         public ICollection<MotorcycleProduct> MotorcycleParts { get; set; }
+        public object ProductType { get; set; }
     }
 }

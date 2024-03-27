@@ -14,8 +14,5 @@ namespace DirtX.Infrastructure.Data.Models.Products
         [Required]
         [MaxLength(1000)]
         public string Description { get; set; }
-
-        [Required]
-        public string ImageUrl { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240327201510_DbOverhaul.1")]
+    partial class DbOverhaul1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,28 +234,13 @@ namespace DirtX.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 28,
-                            SpecificationId = 34
-                        },
-                        new
-                        {
                             ProductId = 29,
                             SpecificationId = 31
                         },
                         new
                         {
-                            ProductId = 29,
-                            SpecificationId = 34
-                        },
-                        new
-                        {
                             ProductId = 30,
                             SpecificationId = 30
-                        },
-                        new
-                        {
-                            ProductId = 30,
-                            SpecificationId = 35
                         },
                         new
                         {
@@ -262,53 +249,18 @@ namespace DirtX.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 31,
-                            SpecificationId = 34
-                        },
-                        new
-                        {
-                            ProductId = 32,
-                            SpecificationId = 37
-                        },
-                        new
-                        {
                             ProductId = 33,
                             SpecificationId = 30
                         },
                         new
                         {
-                            ProductId = 33,
-                            SpecificationId = 34
-                        },
-                        new
-                        {
-                            ProductId = 34,
-                            SpecificationId = 34
-                        },
-                        new
-                        {
                             ProductId = 35,
                             SpecificationId = 30
-                        },
-                        new
-                        {
-                            ProductId = 35,
-                            SpecificationId = 34
                         },
                         new
                         {
                             ProductId = 36,
                             SpecificationId = 10
-                        },
-                        new
-                        {
-                            ProductId = 36,
-                            SpecificationId = 39
-                        },
-                        new
-                        {
-                            ProductId = 37,
-                            SpecificationId = 40
                         },
                         new
                         {
@@ -342,11 +294,6 @@ namespace DirtX.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 40,
-                            SpecificationId = 38
-                        },
-                        new
-                        {
                             ProductId = 41,
                             SpecificationId = 12
                         },
@@ -362,23 +309,8 @@ namespace DirtX.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 41,
-                            SpecificationId = 39
-                        },
-                        new
-                        {
-                            ProductId = 42,
-                            SpecificationId = 41
-                        },
-                        new
-                        {
                             ProductId = 43,
                             SpecificationId = 16
-                        },
-                        new
-                        {
-                            ProductId = 43,
-                            SpecificationId = 42
                         },
                         new
                         {
@@ -389,11 +321,6 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             ProductId = 45,
                             SpecificationId = 10
-                        },
-                        new
-                        {
-                            ProductId = 45,
-                            SpecificationId = 40
                         });
                 });
 
@@ -2465,7 +2392,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 1,
                             BrandId = 17,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.",
                             ImageUrl = "https://i.ibb.co/jTnS3W0/Product-High-Comp-Piston.jpg",
                             IsAvailable = true,
@@ -2478,7 +2405,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 2,
                             BrandId = 18,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "High-performance cast piston. Piston rings are not included.",
                             ImageUrl = "https://i.ibb.co/m6fQKSx/Product-Forged-Piston.jpg",
                             IsAvailable = true,
@@ -2491,7 +2418,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 3,
                             BrandId = 7,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Protective cover for motorcycle engines made of titanium.",
                             ImageUrl = "https://i.ibb.co/1RXqkVy/Product-Engine-Cover.png",
                             IsAvailable = true,
@@ -2504,7 +2431,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 4,
                             BrandId = 3,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Complete gasket set for top-end engine rebuilds and maintenance.",
                             ImageUrl = "https://i.ibb.co/Yj4MJ6r/Product-Top-End-Gasket.jpg",
                             IsAvailable = true,
@@ -2517,7 +2444,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 5,
                             BrandId = 3,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Enhanced water pump cover for improved cooling efficiency.",
                             ImageUrl = "https://i.ibb.co/ZHQ36hf/Product-Water-Pump-Cover.jpg",
                             IsAvailable = true,
@@ -2530,7 +2457,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 6,
                             BrandId = 12,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.",
                             ImageUrl = "https://i.ibb.co/dmkcV30/Product-Fuel-Injector.jpg",
                             IsAvailable = true,
@@ -2543,7 +2470,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 7,
                             BrandId = 17,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "A set of two high-quality intake valves that exceed OEM quality.",
                             ImageUrl = "https://i.ibb.co/fG9XLdn/Product-Intake-Valves.jpg",
                             IsAvailable = true,
@@ -2556,7 +2483,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 8,
                             BrandId = 18,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Electric fuel pump for replacing the old one. Comes with all necessary components.",
                             ImageUrl = "https://i.ibb.co/LnW1Y4k/Product-Fuel-Pump.jpg",
                             IsAvailable = true,
@@ -2569,7 +2496,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 9,
                             BrandId = 16,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Premium air filter for improved air flow and engine performance.",
                             ImageUrl = "https://i.ibb.co/vqg672F/Product-Air-Filter.jpg",
                             IsAvailable = true,
@@ -2582,7 +2509,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 10,
                             BrandId = 6,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "High-quality oil filter for efficient filtration and engine longevity.",
                             ImageUrl = "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg",
                             IsAvailable = true,
@@ -2595,7 +2522,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 11,
                             BrandId = 16,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "High-quality oil filter for efficient filtration and engine longevity.",
                             ImageUrl = "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg",
                             IsAvailable = true,
@@ -2608,7 +2535,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 12,
                             BrandId = 16,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.",
                             ImageUrl = "https://i.ibb.co/s1YdYwt/Product-Fuel-Filter-Tank.jpg",
                             IsAvailable = true,
@@ -2621,7 +2548,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 13,
                             BrandId = 5,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Replacement brake pads offering reliable stopping performance.",
                             ImageUrl = "https://i.ibb.co/tc2m4jh/Product-Brake-Pads.jpg",
                             IsAvailable = true,
@@ -2634,7 +2561,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 14,
                             BrandId = 11,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Comfortable and durable lever, made out of aluminum for improved control and comfort.",
                             ImageUrl = "https://i.ibb.co/1RqcRGm/Product-Brake-Lever.jpg",
                             IsAvailable = true,
@@ -2647,7 +2574,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 15,
                             BrandId = 11,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "High-performance brake disc for superior stopping power.",
                             ImageUrl = "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg",
                             IsAvailable = true,
@@ -2660,7 +2587,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 16,
                             BrandId = 11,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "High-performance brake disc for superior stopping power.",
                             ImageUrl = "https://i.ibb.co/BNPMF26/Product-Rear-Brake-Disc.jpg",
                             IsAvailable = true,
@@ -2673,7 +2600,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 17,
                             BrandId = 14,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Precision-engineered shock absorber for smooth ride experience.",
                             ImageUrl = "https://i.ibb.co/LRQphRW/Product-Shock-Absorber.jpg",
                             IsAvailable = true,
@@ -2686,7 +2613,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 18,
                             BrandId = 14,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Upgraded front fork springs for improved suspension response and handling. Set of two.",
                             ImageUrl = "https://i.ibb.co/yyZK9tT/Product-Fork-Springs.jpg",
                             IsAvailable = true,
@@ -2699,7 +2626,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 19,
                             BrandId = 8,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.",
                             ImageUrl = "https://i.ibb.co/7jy1dvG/Product-Fork-Seals.jpg",
                             IsAvailable = true,
@@ -2712,7 +2639,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 20,
                             BrandId = 8,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.",
                             ImageUrl = "https://i.ibb.co/LtFwYZ3/Product-KYB-Shock.jpg",
                             IsAvailable = true,
@@ -2725,7 +2652,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 21,
                             BrandId = 14,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.",
                             ImageUrl = "https://i.ibb.co/VCWrYtY/Product-Steering-Bearings.jpg",
                             IsAvailable = true,
@@ -2738,7 +2665,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 22,
                             BrandId = 4,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Durable motorcycle chain for smooth power transfer.",
                             ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg",
                             IsAvailable = true,
@@ -2751,7 +2678,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 23,
                             BrandId = 4,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Durable motorcycle chain for smooth power transfer.",
                             ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg",
                             IsAvailable = true,
@@ -2764,7 +2691,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 24,
                             BrandId = 4,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Quality rear sprocked made out of aluminum.",
                             ImageUrl = "https://i.ibb.co/xGz2dVn/Product-Rear-Sprocket.png",
                             IsAvailable = true,
@@ -2777,7 +2704,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 25,
                             BrandId = 4,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Standart-sized front sprocked with self-cleaning properties.",
                             ImageUrl = "https://i.ibb.co/9pKtqn6/Product-Front-Sprocket.jpg",
                             IsAvailable = true,
@@ -2790,7 +2717,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 26,
                             BrandId = 7,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Complete clutch kit for enhanced performance and durability.",
                             ImageUrl = "https://i.ibb.co/y0KwgV5/Product-Clutch-Kit.jpg",
                             IsAvailable = true,
@@ -2803,7 +2730,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 27,
                             BrandId = 17,
-                            CategoryId = 1,
+                            CategoryId = 0,
                             Description = "Clutch plate kit with friction plates and steel plates for smooth engagement.",
                             ImageUrl = "https://i.ibb.co/9qGztRG/Product-Clutch-Plates.jpg",
                             IsAvailable = true,
@@ -2816,7 +2743,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 28,
                             BrandId = 9,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "Premium 2-stroke oil for motorcycle engines.",
                             ImageUrl = "https://i.ibb.co/Cm7S8dG/Product-Cross-Power-2-T.jpg",
                             IsAvailable = true,
@@ -2829,7 +2756,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 29,
                             BrandId = 10,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "Ester Core Premium 4-stroke oil for motorcycle engines.",
                             ImageUrl = "https://i.ibb.co/9Nyc55B/Product-Motul-300-V-1-L.jpg",
                             IsAvailable = true,
@@ -2842,7 +2769,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 30,
                             BrandId = 10,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "Ester Core Premium 4-stroke oil for motorcycle engines.",
                             ImageUrl = "https://i.ibb.co/3ywBxpQ/Product-Motul-300-V-4-L.jpg",
                             IsAvailable = true,
@@ -2855,7 +2782,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 31,
                             BrandId = 2,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "Lightweight fork oil for smoother suspension stroke.",
                             ImageUrl = "https://i.ibb.co/W52svBD/Product-Bel-Ray-Fork-5-W.jpg",
                             IsAvailable = true,
@@ -2868,7 +2795,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 32,
                             BrandId = 9,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "Performance Line Products Series is used by MXGP Factory teams.",
                             ImageUrl = "https://i.ibb.co/f1fW4j5/Product-Motorex-Shock-Product.jpg",
                             IsAvailable = true,
@@ -2881,7 +2808,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 33,
                             BrandId = 19,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "The baseline 4-stroke engine oil for motorcycles.",
                             ImageUrl = "https://i.ibb.co/2dRRzHy/Product-Yamalube-10w40.jpg",
                             IsAvailable = true,
@@ -2894,7 +2821,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 34,
                             BrandId = 10,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "The most efficient coolant on the market.",
                             ImageUrl = "https://i.ibb.co/9rgYKcv/Product-Motul-Antifreeze.jpg",
                             IsAvailable = true,
@@ -2907,7 +2834,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 35,
                             BrandId = 10,
-                            CategoryId = 2,
+                            CategoryId = 0,
                             Description = "More throttle, less grinding gears.",
                             ImageUrl = "https://i.ibb.co/zntBCFg/Product-Transmission-Motul.jpg",
                             IsAvailable = true,
@@ -2920,7 +2847,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 36,
                             BrandId = 1,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.",
                             ImageUrl = "https://i.ibb.co/rs2c1Pd/Product-SM5-Helmet.jpg",
                             IsAvailable = true,
@@ -2933,7 +2860,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 37,
                             BrandId = 13,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "High-quality full-face racing helmet with aerodynamic design.",
                             ImageUrl = "https://i.ibb.co/YkHnz4F/Product-3-Series-Oneal.jpg",
                             IsAvailable = true,
@@ -2946,7 +2873,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 38,
                             BrandId = 1,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "Durable protective vest for safe riding.",
                             ImageUrl = "https://i.ibb.co/RhPrZB3/Product-Bionic-Action.jpg",
                             IsAvailable = true,
@@ -2959,7 +2886,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 39,
                             BrandId = 15,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "Knee protection that allows for some movement while protecting the knee cap and shin.",
                             ImageUrl = "https://i.ibb.co/JrJSf2y/Product-Asterix-Knee.jpg",
                             IsAvailable = true,
@@ -2972,7 +2899,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 40,
                             BrandId = 13,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "Limited anniversary edition jersey.",
                             ImageUrl = "https://i.ibb.co/bRsz5gz/Product-Jersey-50th.jpg",
                             IsAvailable = true,
@@ -2985,7 +2912,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 41,
                             BrandId = 15,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "A complete outfit of THOR's middle-class 'Prime Ace' line.",
                             ImageUrl = "https://i.ibb.co/hcZKcsB/Product-Thor-Outfit.jpg",
                             IsAvailable = true,
@@ -2998,7 +2925,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 42,
                             BrandId = 1,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "The most advanced riding boots on the market.",
                             ImageUrl = "https://i.ibb.co/pzGDVTv/Product-Tech10-Boots.jpg",
                             IsAvailable = true,
@@ -3011,7 +2938,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 43,
                             BrandId = 13,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "Motocross/Enduro boots with waterproof lining and reinforced toe.",
                             ImageUrl = "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg",
                             IsAvailable = true,
@@ -3024,7 +2951,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 44,
                             BrandId = 13,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "Motocross goggles with flippers.",
                             ImageUrl = "https://i.ibb.co/sHzPG34/Product-B20-Goggles.jpg",
                             IsAvailable = true,
@@ -3037,7 +2964,7 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 45,
                             BrandId = 13,
-                            CategoryId = 3,
+                            CategoryId = 0,
                             Description = "Universal offroad gloves.",
                             ImageUrl = "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg",
                             IsAvailable = true,
@@ -3223,6 +3150,10 @@ namespace DirtX.Infrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -3230,27 +3161,7 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Welcome to our dirt bike parts section, your destination for all your off-road riding needs! Whether you're in need of replacement parts or looking to upgrade your dirt bike's performance, we've got you covered. Browse through our extensive collection of high-quality parts, including pistons, chains, sprockets, suspension components, and brake elements. Each product is carefully selected to ensure durability, reliability, and compatibility with a wide range of dirt bike models. With our comprehensive selection and competitive prices, maintaining and enhancing your dirt bike has never been easier. Shop now and get ready to take your off-road adventures to the next level!",
-                            Name = "Part"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Welcome to our motorcycle oils and lubricants section, your destination for keeping your bike running smoothly and efficiently! Whether you're a weekend cruiser or a seasoned racer, maintaining your motorcycle's performance is essential, and we're here to help. Explore our wide range of high-quality motor oils, suspension oils, coolants, and lubricants, meticulously crafted to meet the demands of your machine. From premium synthetic blends to specialized formulas designed for specific applications, we have everything you need to keep your engine running at its best. Our selection of lubricants ensures smooth operation of vital components, while our range of coolants helps regulate engine temperature for optimal performance. With our products, you can trust that your motorcycle is in good hands, allowing you to focus on the thrill of the ride. Browse our collection now and experience the difference that quality oils and lubricants can make for your motorcycle.",
-                            Name = "Oil"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Step into the world of riding equipment, where safety meets style! Our riding gear section is your go-to destination for all things moto-apparel and accessories. We've got you covered from head to toe. Explore our collection of outfits, helmets, protective gear, boots, and accessories designed to enhance your riding experience. Choose from a variety of helmets, each engineered for maximum safety and performance, while our selection of protective gear ensures you ride with confidence. Slip into a pair of premium riding boots, crafted for superior grip and stability, and accessorize with our range of must-have extras, from gloves to goggles. With our riding gear, you can ride in style while staying safe and comfortable on every journey. Explore our collection today and gear up for your next adventure on two wheels!",
-                            Name = "Gear"
-                        });
+                    b.ToTable("ProductCategory");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Specification", b =>
@@ -3473,60 +3384,6 @@ namespace DirtX.Infrastructure.Migrations
                             Id = 33,
                             TitleId = 1,
                             Value = "Cotton"
-                        },
-                        new
-                        {
-                            Id = 34,
-                            TitleId = 8,
-                            Value = "1L"
-                        },
-                        new
-                        {
-                            Id = 35,
-                            TitleId = 8,
-                            Value = "4L"
-                        },
-                        new
-                        {
-                            Id = 36,
-                            TitleId = 8,
-                            Value = "0.5L"
-                        },
-                        new
-                        {
-                            Id = 37,
-                            TitleId = 8,
-                            Value = "0.75L"
-                        },
-                        new
-                        {
-                            Id = 38,
-                            TitleId = 8,
-                            Value = "S"
-                        },
-                        new
-                        {
-                            Id = 39,
-                            TitleId = 8,
-                            Value = "M"
-                        },
-                        new
-                        {
-                            Id = 40,
-                            TitleId = 8,
-                            Value = "L"
-                        },
-                        new
-                        {
-                            Id = 41,
-                            TitleId = 8,
-                            Value = "43"
-                        },
-                        new
-                        {
-                            Id = 42,
-                            TitleId = 8,
-                            Value = "45"
                         });
                 });
 
@@ -3582,16 +3439,6 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 7,
                             Title = "Viscosity"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Title = "Package"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Title = "Size"
                         });
                 });
 

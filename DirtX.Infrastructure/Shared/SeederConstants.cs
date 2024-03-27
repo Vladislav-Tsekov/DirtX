@@ -2,6 +2,7 @@
 {
     public static class SeederConstants
     {
+        // BRAND IMAGES
         public const string AlpinestarsImage = "https://i.ibb.co/pRBhwQL/Brand-Alpinestars.jpg";
         public const string BelRayImage = "https://i.ibb.co/QJVYPT5/Brand-Belray.png";
         public const string BoyesenImage = "https://i.ibb.co/d6VvnbP/Brand-Boyesen.png";
@@ -22,6 +23,7 @@
         public const string WisecoImage = "https://i.ibb.co/c2BQ2n7/Brand-Wiseco.gif";
         public const string YamalubeImage = "https://i.ibb.co/8403f2t/Brand-Yamalube.jpg";
 
+        // BRAND DESCRIPTIONS
         public const string AlpinestarsDescription = "Alpinestars is an Italian motorsports and action sports safety equipment manufacturer based in Asolo, Italy.";
         public const string BelRayDescription = "A leader in lubrication technology, Bel-Ray has engineered products to protect, while delivering superior business value for application in automotive, motorcycle, powersports, steel, textile and other industries.";
         public const string BoyesenDescription = "Boyesen has captured the attention of Racing teams, leveraging their engineering and manufacturing mastery to create water pump covers and impellers, ignition and clutch covers.";
@@ -41,5 +43,11 @@
         public const string VertexDescription = "Vertex is considered the premier brand of OEM replacement pistons and is the OEM supplier to KTM and numerous European motorcycle and go-kart manufacturers.";
         public const string WisecoDescription = "Wiseco was born 80 years ago from a passion for the performance and racing lifestyle and evolved from garage-made pistons to an industry leader in aftermarket performance.";
         public const string YamalubeDescription = "YAMALUBE is an engine oil developed in-house by Yamaha specifically for motorcycles.";
+
+        // PRODUCTCATEGORY DESCRIPTIONS
+        public const string PartCategoryDescription = "Welcome to our dirt bike parts section, your destination for all your off-road riding needs! Whether you're in need of replacement parts or looking to upgrade your dirt bike's performance, we've got you covered. Browse through our extensive collection of high-quality parts, including pistons, chains, sprockets, suspension components, and brake elements. Each product is carefully selected to ensure durability, reliability, and compatibility with a wide range of dirt bike models. With our comprehensive selection and competitive prices, maintaining and enhancing your dirt bike has never been easier. Shop now and get ready to take your off-road adventures to the next level!";
+        public const string OilCategoryDescription = "Welcome to our motorcycle oils and lubricants section, your destination for keeping your bike running smoothly and efficiently! Whether you're a weekend cruiser or a seasoned racer, maintaining your motorcycle's performance is essential, and we're here to help. Explore our wide range of high-quality motor oils, suspension oils, coolants, and lubricants, meticulously crafted to meet the demands of your machine. From premium synthetic blends to specialized formulas designed for specific applications, we have everything you need to keep your engine running at its best. Our selection of lubricants ensures smooth operation of vital components, while our range of coolants helps regulate engine temperature for optimal performance. With our products, you can trust that your motorcycle is in good hands, allowing you to focus on the thrill of the ride. Browse our collection now and experience the difference that quality oils and lubricants can make for your motorcycle.";
+
+        public const string GearCategoryDescription = "Step into the world of riding equipment, where safety meets style! Our riding gear section is your go-to destination for all things moto-apparel and accessories. We've got you covered from head to toe. Explore our collection of outfits, helmets, protective gear, boots, and accessories designed to enhance your riding experience. Choose from a variety of helmets, each engineered for maximum safety and performance, while our selection of protective gear ensures you ride with confidence. Slip into a pair of premium riding boots, crafted for superior grip and stability, and accessorize with our range of must-have extras, from gloves to goggles. With our riding gear, you can ride in style while staying safe and comfortable on every journey. Explore our collection today and gear up for your next adventure on two wheels!";
     }
 }

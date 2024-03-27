@@ -1,4 +1,4 @@
-﻿namespace DirtX.Web.Models.Part;
+﻿namespace DirtX.Web.Models;
 using DirtX.Infrastructure.Data.Models.Products;
 
 public class CompatiblePartsViewModel

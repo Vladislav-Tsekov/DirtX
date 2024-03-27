@@ -5,7 +5,7 @@ using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
-using DirtX.Web.Models.Part;
+using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,7 +48,7 @@ namespace DirtX.Web.Controllers
         {
             List<Product> parts = await productService.GetAllProductsByCategoryAsync(category);
 
-            var model = new ProductCategoryViewModel<Product>
+            var model = new ProductCategoryViewModel
             {
                 CategoryName = category.ToString(),
                 Products = parts
@@ -69,7 +69,7 @@ namespace DirtX.Web.Controllers
 
             var parts = await productService.GetProductsByBrandAsync(brand);
 
-            var model = new ProductBrandViewModel<Product>
+            var model = new ProductBrandViewModel
             {
                 Name = brand.Name,
                 Description = brand.Description,

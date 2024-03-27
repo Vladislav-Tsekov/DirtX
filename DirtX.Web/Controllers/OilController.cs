@@ -45,7 +45,7 @@ namespace DirtX.Web.Controllers
         {
             List<Product> oils = await productService.GetAllProductsByCategoryAsync(category);
 
-            var model = new ProductCategoryViewModel<Product>
+            var model = new ProductCategoryViewModel
             {
                 CategoryName = category.ToString(),
                 Products = oils
@@ -66,7 +66,7 @@ namespace DirtX.Web.Controllers
 
             var oils = await productService.GetProductsByBrandAsync(brand);
 
-            var model = new ProductBrandViewModel<Product>
+            var model = new ProductBrandViewModel
             {
                 Name = brand.Name,
                 Description = brand.Description,

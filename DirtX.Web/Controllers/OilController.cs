@@ -1,5 +1,6 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models;
+using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
@@ -22,18 +23,16 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = await context.Products.Where(p => p.Category.Name == "Oil").ToListAsync();
+            List<Product> oils = await productService.GetAllPartsAsync();
+            List<ProductBrand> oilBrands = await productService.GetDistinctProductBrandsAsync(oils);
+            List<ProductType> oilTypes = productService.GetProductTypes(oils);
 
-            List<Product> oils = await productService.GetAllOilsAsync();
-
-            List<ProductBrand> oilsBrands = await productService.GetDistinctProductBrandsAsync(oils);
-
-            var model = categories.Select(category =>
+            var model = oilTypes.Select(testTypes =>
             {
                 return new ProductIndexViewModel
                 {
-                    CategoryName = category.ToString(),
-                    Brands = oilsBrands
+                    CategoryName = testTypes.ToString(),
+                    Brands = oilBrands
                 };
             }).ToList();
 

@@ -31,7 +31,7 @@ namespace DirtX.Web.Controllers
             {
                 return new ProductIndexViewModel
                 {
-                    ProductType = types.ToString(),
+                    ProductCategory = types.ToString(),
                     Brands = gearBrands
                 };
             }).ToList();
@@ -42,15 +42,20 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Category(string category)
         {
-            List<Product> gears = await productService.GetAllProductsByCategoryAsync(category);
-
-            var model = new ProductCategoryViewModel
+            if (Enum.TryParse(category, out ProductCategory currCategory))
             {
-                CategoryName = category,
-                Products = gears
-            };
+                List<Product> gears = await productService.GetAllProductsByCategoryAsync(currCategory);
 
-            return View(model);
+                var model = new ProductCategoryViewModel
+                {
+                    ProductCategory = category.ToString(),
+                    Products = gears
+                };
+
+                return View(model);
+            }
+            else
+                return BadRequest();
         }
 
         [HttpGet]

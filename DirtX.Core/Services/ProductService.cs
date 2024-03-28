@@ -66,10 +66,10 @@ namespace DirtX.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<List<Product>> GetAllProductsByCategoryAsync(string category)
+        public async Task<List<Product>> GetAllProductsByCategoryAsync(ProductCategory category)
         {
             return await context.Products
-                .Where(p => p.Type.ToString() == category)
+                .Where(p => p.Category == category)
                 .AsNoTracking()
                 .ToListAsync();
         }

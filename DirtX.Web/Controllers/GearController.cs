@@ -27,11 +27,11 @@ namespace DirtX.Web.Controllers
             List<ProductBrand> gearBrands = await productService.GetDistinctProductBrandsAsync(gears);
             List<ProductType> gearTypes = productService.GetProductTypes(gears);
 
-            var model = gearTypes.Select(testTypes =>
+            var model = gearTypes.Select(types =>
             {
                 return new ProductIndexViewModel
                 {
-                    CategoryName = testTypes.ToString(),
+                    CategoryName = types.ToString(),
                     Brands = gearBrands
                 };
             }).ToList();

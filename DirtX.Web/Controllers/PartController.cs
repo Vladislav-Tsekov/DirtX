@@ -34,7 +34,7 @@ namespace DirtX.Web.Controllers
             {
                 return new ProductIndexViewModel
                 {
-                    CategoryName = types.ToString(),
+                    ProductType = types.ToString(),
                     Brands = partBrands
                 };
             }).ToList();

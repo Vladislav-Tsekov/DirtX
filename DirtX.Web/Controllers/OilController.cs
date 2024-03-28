@@ -23,7 +23,7 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Product> oils = await productService.GetAllPartsAsync();
+            List<Product> oils = await productService.GetAllOilsAsync();
             List<ProductBrand> oilBrands = await productService.GetDistinctProductBrandsAsync(oils);
             List<ProductType> oilTypes = productService.GetProductTypes(oils);
 
@@ -31,7 +31,7 @@ namespace DirtX.Web.Controllers
             {
                 return new ProductIndexViewModel
                 {
-                    CategoryName = types.ToString(),
+                    ProductType = types.ToString(),
                     Brands = oilBrands
                 };
             }).ToList();

@@ -4,16 +4,16 @@
     <link rel="stylesheet" href="~/css/product-index.css" asp-append-version="true" />
 </head>
 
-<div class="category-list">
-    @foreach (var category in Model)
+<div class="type-list">
+    @foreach (var type in Model)
     {
-        <div class="category-item">
-            <a href="@Url.Action("Category", "Oil", new { type = category.CategoryName })">
-                <div class="category-image">
-                    <img src="@GetImageUrlForCategory(category.CategoryName)" alt="@category.CategoryName.Replace("_", " ")" />
+        <div class="type-item">
+            <a href="@Url.Action("Category", "Oil", new { type = type.ProductType })">
+                <div class="type-image">
+                    <img src="@GetImageUrlForCategory(type.ProductType)" alt="@type.ProductType.Replace("_", " ")" />
                 </div>
-                <div class="category-title">
-                    <span>@category.CategoryName.Replace("_", " ")</span>
+                <div class="type-title">
+                    <span>@type.ProductType.Replace("_", " ")</span>
                 </div>
             </a>
         </div>
@@ -38,9 +38,9 @@
 </div>
 
 @{
-    string GetImageUrlForCategory(string categoryName)
+    string GetImageUrlForCategory(string typeName)
     {
-        switch (categoryName)
+        switch (typeName)
         {
             case "Four_Stroke":
                 return "https://i.ibb.co/56sGHHC/Oil-Motul-300-V-1-L.jpg";

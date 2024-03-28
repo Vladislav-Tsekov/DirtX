@@ -24,9 +24,9 @@ namespace DirtX.Web.Controllers
         {
             var categories = await context.Products.Where(p => p.Category.Name == "Oil").ToListAsync();
 
-            List<Product> oils = await productService.GetAllProductsAsync();
+            List<Product> oils = await productService.GetAllOilsAsync();
 
-            List<ProductBrand> oilsBrands = await productService.GetDistinctProductBrandsAsync();
+            List<ProductBrand> oilsBrands = await productService.GetDistinctProductBrandsAsync(oils);
 
             var model = categories.Select(category =>
             {

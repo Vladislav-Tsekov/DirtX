@@ -26,18 +26,16 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = await context.Products.Where(p => p.Category.Name == "Part").ToListAsync();
-            IEnumerable<ProductType> types = Enum.GetValues(typeof(ProductType)).Cast<ProductType>();
-            var testTypes = categories.Select(c => c.Type).Distinct().ToList();
+            List<Product> parts = await productService.GetAllPartsAsync();
+            List<ProductBrand> partBrands = await productService.GetDistinctProductBrandsAsync(parts);
+            List<ProductType> partTypes = productService.GetProductTypes(parts);
 
-            List<ProductBrand> partsBrands = await productService.GetDistinctProductBrandsAsync();
-
-            var model = testTypes.Select(testTypes =>
+            var model = partTypes.Select(testTypes =>
             {
                 return new ProductIndexViewModel
                 {
                     CategoryName = testTypes.ToString(),
-                    Brands = partsBrands
+                    Brands = partBrands
                 };
             }).ToList();
 

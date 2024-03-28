@@ -1,4 +1,5 @@
 ﻿using DirtX.Core.Interfaces;
+using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
@@ -26,9 +27,26 @@ namespace DirtX.Core.Services
             return part;
         }
 
-        public async Task<List<Product>> GetAllProductsAsync()
+        public async Task<List<Product>> GetAllPartsAsync()
         {
             return await context.Products
+                .Where(p => p.Category.Name == "Part")
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<List<Product>> GetAllOilsAsync()
+        {
+            return await context.Products
+                .Where(p => p.Category.Name == "Oil")
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<List<Product>> GetAllGearsAsync()
+        {
+            return await context.Products
+                .Where(p => p.Category.Name == "Gear")
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -56,13 +74,12 @@ namespace DirtX.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<List<ProductBrand>> GetDistinctProductBrandsAsync()
+        public async Task<List<ProductBrand>> GetDistinctProductBrandsAsync(List<Product> products)
         {
-            List<int> distinctBrands = await context.Products
-                .AsNoTracking()
+            List<int> distinctBrands = products
                 .Select(p => p.BrandId)
                 .Distinct()
-                .ToListAsync();
+                .ToList();
 
             List<ProductBrand> brands = await context.ProductBrands
                 .AsNoTracking()
@@ -71,7 +88,17 @@ namespace DirtX.Core.Services
 
             return brands;
         }
-       
+
+        public List<ProductType> GetProductTypes(List<Product> products)
+        {
+            List<ProductType> productTypes = products
+                .Select(p => p.Type)
+                .Distinct()
+                .ToList();
+
+            return productTypes;
+        }
+
         public async Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id)
         {
             List<ProductSpecification> specs = await context.ProductsSpecifications

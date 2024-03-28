@@ -25,9 +25,9 @@ namespace DirtX.Web.Controllers
 
             var categories = await applicationDbContext.Products.Where(p => p.Category.Name == "Gear").ToListAsync();
 
-            List<Product> gears = await productService.GetAllProductsAsync();
+            List<Product> gears = await productService.GetAllGearsAsync();
 
-            List<ProductBrand> gearsBrands = await productService.GetDistinctProductBrandsAsync();
+            List<ProductBrand> gearsBrands = await productService.GetDistinctProductBrandsAsync(gears);
 
             var model = categories.Select(category =>
             {

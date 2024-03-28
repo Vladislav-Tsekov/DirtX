@@ -25,7 +25,7 @@ namespace DirtX.Web.Controllers
         {
             List<Product> gears = await productService.GetAllGearsAsync();
             List<ProductBrand> gearBrands = await productService.GetDistinctProductBrandsAsync(gears);
-            List<ProductType> gearTypes = productService.GetProductTypes(gears);
+            List<ProductCategory> gearTypes = productService.GetProductCategories(gears);
 
             var model = gearTypes.Select(types =>
             {

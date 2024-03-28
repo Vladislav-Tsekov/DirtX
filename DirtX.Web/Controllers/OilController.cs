@@ -25,7 +25,7 @@ namespace DirtX.Web.Controllers
         {
             List<Product> oils = await productService.GetAllOilsAsync();
             List<ProductBrand> oilBrands = await productService.GetDistinctProductBrandsAsync(oils);
-            List<ProductType> oilTypes = productService.GetProductTypes(oils);
+            List<ProductCategory> oilTypes = productService.GetProductCategories(oils);
 
             var model = oilTypes.Select(types =>
             {

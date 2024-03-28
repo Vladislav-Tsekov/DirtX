@@ -89,10 +89,10 @@ namespace DirtX.Core.Services
             return brands;
         }
 
-        public List<ProductType> GetProductTypes(List<Product> products)
+        public List<ProductCategory> GetProductCategories(List<Product> products)
         {
-            List<ProductType> productTypes = products
-                .Select(p => p.Type)
+            List<ProductCategory> productTypes = products
+                .Select(p => p.Category)
                 .Distinct()
                 .ToList();
 

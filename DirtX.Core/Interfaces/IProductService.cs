@@ -11,7 +11,7 @@ namespace DirtX.Core.Interfaces
         Task<List<Product>> GetAllOilsAsync();
         Task<List<Product>> GetAllGearsAsync();
         Task<List<ProductBrand>> GetDistinctProductBrandsAsync(List<Product> products);
-        List<ProductType> GetProductTypes(List<Product> products);
+        List<ProductCategory> GetProductCategories(List<Product> products);
         Task<List<Product>> GetAllProductsByCategoryAsync(string category);
         Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id);
         Task<ProductBrand> GetProductBrandAsync(string brandName);

@@ -30,7 +30,7 @@ namespace DirtX.Core.Services
         public async Task<List<Product>> GetAllPartsAsync()
         {
             return await context.Products
-                .Where(p => p.Category.Name == "Part")
+                .Where(p => p.Type.Name == "Part")
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -38,7 +38,7 @@ namespace DirtX.Core.Services
         public async Task<List<Product>> GetAllOilsAsync()
         {
             return await context.Products
-                .Where(p => p.Category.Name == "Oil")
+                .Where(p => p.Type.Name == "Oil")
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -46,7 +46,7 @@ namespace DirtX.Core.Services
         public async Task<List<Product>> GetAllGearsAsync()
         {
             return await context.Products
-                .Where(p => p.Category.Name == "Gear")
+                .Where(p => p.Type.Name == "Gear")
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -69,7 +69,7 @@ namespace DirtX.Core.Services
         public async Task<List<Product>> GetAllProductsByCategoryAsync(string category)
         {
             return await context.Products
-                .Where(p => p.Category.ToString() == category)
+                .Where(p => p.Type.ToString() == category)
                 .AsNoTracking()
                 .ToListAsync();
         }

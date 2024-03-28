@@ -26,7 +26,7 @@ namespace DirtX.Web.Data
         // PRODUCTS AND PRODUCT'S SPECIFICATIONS/PROPERTIES
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductType> ProductCategories { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationTitle> SpecificationTitles { get; set; }
         
@@ -84,11 +84,11 @@ namespace DirtX.Web.Data
                 .WithOne(u => u.Garage)
                 .HasForeignKey<Garage>(g => g.UserId);
 
-            modelBuilder.Entity<Product>()
-                 .HasOne(p => p.Category)
-                 .WithMany()
-                 .HasForeignKey(p => p.CategoryId)
-                 .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Product>()
+            //     .HasOne(p => p.Type)
+            //     .WithMany()
+            //     .HasForeignKey(p => p.TypeId)
+            //     .OnDelete(DeleteBehavior.Restrict);
 
             ProductSeeder.SeedProducts(modelBuilder);
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);

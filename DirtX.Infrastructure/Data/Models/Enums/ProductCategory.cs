@@ -1,6 +1,6 @@
 ﻿namespace DirtX.Infrastructure.Data.Models.Enums
 {
-    public enum ProductType
+    public enum ProductCategory
     {
         // PARTS
         Engine,

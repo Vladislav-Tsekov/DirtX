@@ -15,12 +15,12 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public ProductBrand Brand { get; set; }
         public int BrandId { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
-        public ProductCategory Category { get; set; }
-        public int CategoryId { get; set; }
+        [ForeignKey(nameof(TypeId))]
+        public ProductType Type { get; set; }
+        public int TypeId { get; set; }
 
         [Required]
-        public ProductType Type { get; set; }
+        public ProductCategory Category { get; set; }
 
         [Required]
         [MaxLength(ProductTitleMaxLength)]

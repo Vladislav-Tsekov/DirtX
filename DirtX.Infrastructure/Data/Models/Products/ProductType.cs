@@ -2,7 +2,7 @@
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
-    public class ProductCategory
+    public class ProductType
     {
         [Key]
         public int Id { get; set; }

@@ -7,8 +7,6 @@ namespace DirtX.Infrastructure.Data.Seeders
 {
     public static class ProductSeeder
     {
-        //TODO - PACKAGE SIZE FOR OILS MUST BE MADE A PROPERTY
-        //TODO - SIZE FOR RIDING GEAR MUST BE MADE A PROPERTY
         public static void SeedProducts(ModelBuilder modelBuilder)
         {
             SeedProductCategories(modelBuilder);
@@ -25,7 +23,7 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new ProductCategory { Id = 1, Name = "Part", Description = PartCategoryDescription },
                 new ProductCategory { Id = 2, Name = "Oil", Description = OilCategoryDescription },
                 new ProductCategory { Id = 3, Name = "Gear", Description = GearCategoryDescription }
-                );
+            );
         }
 
         private static void SeedProductBrands(ModelBuilder modelBuilder)

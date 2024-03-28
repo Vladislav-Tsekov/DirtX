@@ -1,6 +1,7 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models;
+using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
@@ -26,16 +27,16 @@ namespace DirtX.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var categories = await context.Products.Where(p => p.Category.Name == "Part").ToListAsync();
-
-            List<Product> parts = await productService.GetAllProductsAsync();
+            IEnumerable<ProductType> types = Enum.GetValues(typeof(ProductType)).Cast<ProductType>();
+            var testTypes = categories.Select(c => c.Type).Distinct().ToList();
 
             List<ProductBrand> partsBrands = await productService.GetDistinctProductBrandsAsync();
 
-            var model = categories.Select(category =>
+            var model = testTypes.Select(testTypes =>
             {
                 return new ProductIndexViewModel
                 {
-                    CategoryName = category.ToString(),
+                    CategoryName = testTypes.ToString(),
                     Brands = partsBrands
                 };
             }).ToList();

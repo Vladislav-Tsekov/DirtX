@@ -84,8 +84,14 @@ namespace DirtX.Web.Data
                 .WithOne(u => u.Garage)
                 .HasForeignKey<Garage>(g => g.UserId);
 
-            MotorcycleSeeder.SeedMotorcycles(modelBuilder);
+            modelBuilder.Entity<Product>()
+                 .HasOne(p => p.Category)
+                 .WithMany()
+                 .HasForeignKey(p => p.CategoryId)
+                 .OnDelete(DeleteBehavior.Restrict);
+
             ProductSeeder.SeedProducts(modelBuilder);
+            MotorcycleSeeder.SeedMotorcycles(modelBuilder);
             ProductSpecificationSeeder.SeedProductsSpecifications(modelBuilder);
             MotorcyclePartSeeder.SeedMotorcyclesParts(modelBuilder);
         }

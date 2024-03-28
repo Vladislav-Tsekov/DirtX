@@ -2,7 +2,6 @@
 using DirtX.Infrastructure.Data.Models.Mappings;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
 using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Products

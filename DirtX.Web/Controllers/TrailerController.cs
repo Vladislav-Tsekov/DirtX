@@ -33,6 +33,7 @@ namespace DirtX.Web.Controllers
             var model = trailers.Select(trailer => new TrailerIndexViewModel
             {
                 Id = trailer.Id,
+                Title = trailer.Title,
                 CostPerDay = trailer.CostPerDay,
                 Capacity = trailer.Capacity,
                 MaximumLoad = trailer.MaximumLoad,

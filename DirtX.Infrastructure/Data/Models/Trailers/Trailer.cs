@@ -10,6 +10,9 @@ namespace DirtX.Infrastructure.Data.Models.Trailers
         public int Id { get; set; }
 
         [Required]
+        public string Title { get; set; }
+
+        [Required]
         [Column(TypeName = "decimal(5, 2)")]
         [Range(typeof(decimal), TrailerMinCostPerDay, TrailerMaxCostPerDay, ConvertValueInInvariantCulture = true)]
         public decimal CostPerDay { get; set; }

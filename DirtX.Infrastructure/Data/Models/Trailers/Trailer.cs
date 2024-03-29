@@ -7,11 +7,7 @@ namespace DirtX.Infrastructure.Data.Models.Trailers
     public class Trailer
     {
         [Key]
-        public int TrailerId { get; set; }
-
-        [Required]
-        [MaxLength(TrailerTypeMaxLength)]
-        public string TrailerType { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(5, 2)")]
@@ -28,5 +24,8 @@ namespace DirtX.Infrastructure.Data.Models.Trailers
 
         [Required]
         public bool IsAvailable { get; set; }
+
+        [Required]
+        public string ImageUrl { get; set; }
     }
 }

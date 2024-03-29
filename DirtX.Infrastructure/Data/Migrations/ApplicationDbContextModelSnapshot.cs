@@ -3597,11 +3597,11 @@ namespace DirtX.Infrastructure.Migrations
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.Trailer", b =>
                 {
-                    b.Property<int>("TrailerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrailerId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
@@ -3609,20 +3609,48 @@ namespace DirtX.Infrastructure.Migrations
                     b.Property<decimal>("CostPerDay")
                         .HasColumnType("decimal(5,2)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.Property<int>("MaximumLoad")
                         .HasColumnType("int");
 
-                    b.Property<string>("TrailerType")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.HasKey("TrailerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Trailers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Capacity = 1,
+                            CostPerDay = 30m,
+                            ImageUrl = "https://i.ibb.co/3zZVXNd/capacity-1.jpg",
+                            IsAvailable = true,
+                            MaximumLoad = 200
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Capacity = 2,
+                            CostPerDay = 45m,
+                            ImageUrl = "https://i.ibb.co/Fxnr737/capacity-2.jpg",
+                            IsAvailable = true,
+                            MaximumLoad = 450
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Capacity = 3,
+                            CostPerDay = 60m,
+                            ImageUrl = "https://i.ibb.co/TR8jdFq/capacity-3.jpg",
+                            IsAvailable = true,
+                            MaximumLoad = 750
+                        });
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>

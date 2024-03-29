@@ -1,4 +1,5 @@
-﻿using DirtX.Infrastructure.Data.Models.Enums;
+﻿using DirtX.Infrastructure.Data.Models;
+using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
 
@@ -16,5 +17,6 @@ namespace DirtX.Core.Interfaces
         Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id);
         Task<ProductBrand> GetProductBrandAsync(string brandName);
         Task<List<Product>> GetProductsByBrandAsync(ProductBrand brand);
+        Task<List<MotorcycleProduct>> GetCompatiblePartsAsync(int makeId, int modelId, int displacementId, int yearId);
     }
 }

@@ -1,0 +1,33 @@
+﻿@model TrailerAvailabilityViewModel
+
+<h1>Check Availability for @Model.TrailerTitle</h1>
+
+<form asp-action="Rent" method="post">
+    <div>
+        <label for="StartDate">Start Date:</label>
+        <input type="date" id="StartDate" name="StartDate" required />
+    </div>
+    <div>
+        <label for="ReturnDate">Return Date:</label>
+        <input type="date" id="ReturnDate" name="ReturnDate" required />
+    </div>
+    <input type="hidden" name="TrailerId" value="@Model.TrailerId" />
+    <input type="hidden" name="UserId" value="UserIdHere" />
+    <button type="submit">Rent</button>
+</form>
+
+<h2>Existing Rents</h2>
+
+@if (Model.Rents.Any())
+{
+    <ul>
+        @foreach (var reservation in Model.Rents)
+        {
+            <li>@reservation.StartDate.ToShortDateString() - @reservation.ReturnDate.ToShortDateString()</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No rents found for this trailer.</p>
+}

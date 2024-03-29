@@ -21,9 +21,9 @@
 @if (Model.Rents.Any())
 {
     <ul>
-        @foreach (var reservation in Model.Rents)
+        @foreach (var rent in Model.Rents)
         {
-            <li>@reservation.StartDate.ToShortDateString() - @reservation.ReturnDate.ToShortDateString()</li>
+            <li>@rent.StartDate.ToShortDateString() - @rent.ReturnDate.ToShortDateString()</li>
         }
     </ul>
 }

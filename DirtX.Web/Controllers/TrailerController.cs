@@ -98,11 +98,11 @@ namespace DirtX.Web.Controllers
                     context.TrailersRents.Add(rent);
                     await context.SaveChangesAsync();
 
-                    return RedirectToAction("Index", "Home"); // Redirect to home or any other page
+                    return RedirectToAction("Index", "Trailer");
                 }
             }
 
-            return RedirectToAction("CheckAvailability", new { trailerId = model.TrailerId });
+            return RedirectToAction("Availability", new { trailerId = model.TrailerId });
         }
     }
 }

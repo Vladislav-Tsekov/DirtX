@@ -1,7 +1,7 @@
 ﻿using DirtX.Core.Validation;
+using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
-using DirtX.Web.Data;
 using DirtX.Web.Models.Home;
 using DirtX.Web.Models.Used;
 using Microsoft.AspNetCore.Mvc;

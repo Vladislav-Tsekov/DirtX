@@ -1,4 +1,4 @@
-﻿using DirtX.Web.Data;
+﻿using DirtX.Infrastructure.Data;
 using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

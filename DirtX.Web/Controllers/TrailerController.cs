@@ -1,5 +1,5 @@
-﻿using DirtX.Infrastructure.Data;
-using DirtX.Web.Models;
+﻿using DirtX.Core.Models;
+using DirtX.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,9 +20,9 @@ namespace DirtX.Web.Controllers
         {
             var trailers = await context.Trailers.ToListAsync();
 
-            if (trailers is null)
+            if (trailers == null || trailers.Count == 0)
             {
-
+                return NotFound();
             }
 
             if (!ModelState.IsValid)
@@ -30,12 +30,27 @@ namespace DirtX.Web.Controllers
 
             }
 
-            var model = new TrailerIndexViewModel() 
-            { 
-                
-            };
+            var model = trailers.Select(trailer => new TrailerIndexViewModel
+            {
+                Id = trailer.Id,
+                CostPerDay = trailer.CostPerDay,
+                Capacity = trailer.Capacity,
+                MaximumLoad = trailer.MaximumLoad,
+                IsAvailable = trailer.IsAvailable,
+                ImageUrl = trailer.ImageUrl
+            }).ToList();
 
             return View(model);
         }
+
+        //public IActionResult CheckAvailability(int trailerId)
+        //{
+        //    return RedirectToAction("Availability", new { trailerId = trailerId });
+        //}
+
+        //public IActionResult Availability(int trailerId)
+        //{
+        //    return View();
+        //}
     }
 }

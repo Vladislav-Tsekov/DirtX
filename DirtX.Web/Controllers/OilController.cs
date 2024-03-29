@@ -3,21 +3,17 @@ using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Web.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Controllers
 {
     public class OilController : Controller
     {
         private readonly IProductService productService;
-        private readonly ApplicationDbContext context;
 
-        public OilController(IProductService _oilService, ApplicationDbContext context)
+        public OilController(IProductService _oilService)
         {
             productService = _oilService;
-            this.context = context;
         }
 
         [HttpGet]
@@ -26,6 +22,8 @@ namespace DirtX.Web.Controllers
             List<Product> oils = await productService.GetAllOilsAsync();
             List<ProductBrand> oilBrands = await productService.GetDistinctProductBrandsAsync(oils);
             List<ProductCategory> oilTypes = productService.GetProductCategories(oils);
+
+            //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
 
             var model = oilTypes.Select(types =>
             {
@@ -46,6 +44,8 @@ namespace DirtX.Web.Controllers
             {
                 List<Product> oils = await productService.GetAllProductsByCategoryAsync(currCategory);
 
+                //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
+
                 var model = new ProductCategoryViewModel
                 {
                     ProductCategory = category.ToString(),
@@ -64,13 +64,11 @@ namespace DirtX.Web.Controllers
             ProductBrand brand = await productService.GetProductBrandAsync(brandName);
 
             if (brand is null)
-            {
                 return NotFound();
-            }
 
-            var oils = await productService.GetProductsByBrandAsync(brand);
+            List<Product> oils = await productService.GetProductsByBrandAsync(brand);
 
-            var model = new ProductBrandViewModel
+            ProductBrandViewModel model = new()
             {
                 Name = brand.Name,
                 Description = brand.Description,

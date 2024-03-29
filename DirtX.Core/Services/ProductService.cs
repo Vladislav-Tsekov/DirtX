@@ -1,8 +1,9 @@
 ﻿using DirtX.Core.Interfaces;
+using DirtX.Infrastructure.Data;
+using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Core.Services
@@ -18,13 +19,11 @@ namespace DirtX.Core.Services
 
         public async Task<Product> GetProductAsync(int id)
         {
-            Product part = await context.Products
+            return await context.Products
                 .AsNoTracking()
                 .Include(p => p.Brand)
                 .Where(p => p.Id == id)
                 .FirstOrDefaultAsync();
-
-            return part;
         }
 
         public async Task<List<Product>> GetAllPartsAsync()
@@ -81,34 +80,44 @@ namespace DirtX.Core.Services
                 .Distinct()
                 .ToList();
 
-            List<ProductBrand> brands = await context.ProductBrands
+            return await context.ProductBrands
                 .AsNoTracking()
                 .Where(brand => distinctBrands.Contains(brand.Id))
                 .ToListAsync();
-
-            return brands;
         }
 
         public List<ProductCategory> GetProductCategories(List<Product> products)
         {
-            List<ProductCategory> productTypes = products
+            return products
                 .Select(p => p.Category)
                 .Distinct()
                 .ToList();
-
-            return productTypes;
         }
 
         public async Task<List<ProductSpecification>> GetProductSpecificationsAsync(int id)
         {
-            List<ProductSpecification> specs = await context.ProductsSpecifications
+            return await context.ProductsSpecifications
                 .AsNoTracking()
                 .Include(p => p.Specification)
                 .ThenInclude(pp => pp.Title)
                 .Where(p => p.ProductId == id)
                 .ToListAsync();
+        }
 
-            return specs;
+        public async Task<List<MotorcycleProduct>> GetCompatiblePartsAsync(int makeId, int modelId, int displacementId, int yearId)
+        {
+            return await context.MotorcyclesParts
+                .Include(mp => mp.Motorcycle)
+                .Include(mp => mp.Motorcycle.Make)
+                .Include(mp => mp.Motorcycle.Model)
+                .Include(mp => mp.Motorcycle.Displacement)
+                .Include(mp => mp.Motorcycle.Year)
+                .Include(mp => mp.Product.Brand)
+                .Where(mp => mp.Motorcycle.MakeId == makeId &&
+                             mp.Motorcycle.ModelId == modelId &&
+                             mp.Motorcycle.DisplacementId == displacementId &&
+                             mp.Motorcycle.YearId == yearId)
+                .ToListAsync();
         }
     }
 }

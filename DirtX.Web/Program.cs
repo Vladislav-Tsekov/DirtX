@@ -1,7 +1,7 @@
 using DirtX.Core.Interfaces;
 using DirtX.Core.Services;
+using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models.Users;
-using DirtX.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static DirtX.Infrastructure.Data.Seeders.UserSeeder;

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DirtX.Infrastructure.Migrations
 {
-    public partial class Test1 : Migration
+    public partial class ServiceUpdt1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -319,8 +319,8 @@ namespace DirtX.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BrandId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
+                    TypeId = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
@@ -338,8 +338,8 @@ namespace DirtX.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_ProductCategories_CategoryId",
-                        column: x => x.CategoryId,
+                        name: "FK_Products_ProductCategories_TypeId",
+                        column: x => x.TypeId,
                         principalTable: "ProductCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -790,61 +790,61 @@ namespace DirtX.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "BrandId", "CategoryId", "Description", "ImageUrl", "IsAvailable", "Price", "StockQuantity", "Title", "Type" },
+                columns: new[] { "Id", "BrandId", "Category", "Description", "ImageUrl", "IsAvailable", "Price", "StockQuantity", "Title", "TypeId" },
                 values: new object[,]
                 {
-                    { 1, 17, 1, "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.", "https://i.ibb.co/jTnS3W0/Product-High-Comp-Piston.jpg", true, 455.00m, 11, "High-Compression Forged Piston", 0 },
-                    { 2, 18, 1, "High-performance cast piston. Piston rings are not included.", "https://i.ibb.co/m6fQKSx/Product-Forged-Piston.jpg", true, 325.00m, 6, "Cast Piston", 0 },
-                    { 3, 7, 1, "Protective cover for motorcycle engines made of titanium.", "https://i.ibb.co/1RXqkVy/Product-Engine-Cover.png", true, 99.99m, 4, "Engine Clutch Cover", 0 },
-                    { 4, 3, 1, "Complete gasket set for top-end engine rebuilds and maintenance.", "https://i.ibb.co/Yj4MJ6r/Product-Top-End-Gasket.jpg", true, 89.99m, 31, "Top-End Gasket Set", 0 },
-                    { 5, 3, 1, "Enhanced water pump cover for improved cooling efficiency.", "https://i.ibb.co/ZHQ36hf/Product-Water-Pump-Cover.jpg", true, 87.79m, 10, "Water Pump Cover", 0 },
-                    { 6, 12, 1, "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.", "https://i.ibb.co/dmkcV30/Product-Fuel-Injector.jpg", true, 289.99m, 3, "8-Point Fuel Injector", 0 },
-                    { 7, 17, 1, "A set of two high-quality intake valves that exceed OEM quality.", "https://i.ibb.co/fG9XLdn/Product-Intake-Valves.jpg", true, 139.29m, 7, "Intake Valves Set", 0 },
-                    { 8, 18, 1, "Electric fuel pump for replacing the old one. Comes with all necessary components.", "https://i.ibb.co/LnW1Y4k/Product-Fuel-Pump.jpg", true, 149.99m, 12, "Fuel Pump", 0 },
+                    { 1, 17, 0, "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.", "https://i.ibb.co/jTnS3W0/Product-High-Comp-Piston.jpg", true, 455.00m, 11, "High-Compression Forged Piston", 1 },
+                    { 2, 18, 0, "High-performance cast piston. Piston rings are not included.", "https://i.ibb.co/m6fQKSx/Product-Forged-Piston.jpg", true, 325.00m, 6, "Cast Piston", 1 },
+                    { 3, 7, 0, "Protective cover for motorcycle engines made of titanium.", "https://i.ibb.co/1RXqkVy/Product-Engine-Cover.png", true, 99.99m, 4, "Engine Clutch Cover", 1 },
+                    { 4, 3, 0, "Complete gasket set for top-end engine rebuilds and maintenance.", "https://i.ibb.co/Yj4MJ6r/Product-Top-End-Gasket.jpg", true, 89.99m, 31, "Top-End Gasket Set", 1 },
+                    { 5, 3, 0, "Enhanced water pump cover for improved cooling efficiency.", "https://i.ibb.co/ZHQ36hf/Product-Water-Pump-Cover.jpg", true, 87.79m, 10, "Water Pump Cover", 1 },
+                    { 6, 12, 0, "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.", "https://i.ibb.co/dmkcV30/Product-Fuel-Injector.jpg", true, 289.99m, 3, "8-Point Fuel Injector", 1 },
+                    { 7, 17, 0, "A set of two high-quality intake valves that exceed OEM quality.", "https://i.ibb.co/fG9XLdn/Product-Intake-Valves.jpg", true, 139.29m, 7, "Intake Valves Set", 1 },
+                    { 8, 18, 0, "Electric fuel pump for replacing the old one. Comes with all necessary components.", "https://i.ibb.co/LnW1Y4k/Product-Fuel-Pump.jpg", true, 149.99m, 12, "Fuel Pump", 1 },
                     { 9, 16, 1, "Premium air filter for improved air flow and engine performance.", "https://i.ibb.co/vqg672F/Product-Air-Filter.jpg", true, 24.49m, 27, "Air Filter", 1 },
                     { 10, 6, 1, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg", true, 10.99m, 19, "Product Filter", 1 },
                     { 11, 16, 1, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg", true, 54.29m, 8, "Aluminum Product Filter Cap", 1 },
                     { 12, 16, 1, "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.", "https://i.ibb.co/s1YdYwt/Product-Fuel-Filter-Tank.jpg", true, 50.99m, 5, "Fuel Filter (Gas Tank)", 1 },
-                    { 13, 5, 1, "Replacement brake pads offering reliable stopping performance.", "https://i.ibb.co/tc2m4jh/Product-Brake-Pads.jpg", true, 35.89m, 20, "Sintered Front Brake Pads", 3 },
-                    { 14, 11, 1, "Comfortable and durable lever, made out of aluminum for improved control and comfort.", "https://i.ibb.co/1RqcRGm/Product-Brake-Lever.jpg", true, 71.99m, 14, "Aluminum Brake Lever", 3 },
-                    { 15, 11, 1, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg", true, 89.99m, 1, "Front Brake Disc", 3 },
-                    { 16, 11, 1, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/BNPMF26/Product-Rear-Brake-Disc.jpg", true, 77.29m, 7, "Rear Brake Disc", 3 },
-                    { 17, 14, 1, "Precision-engineered shock absorber for smooth ride experience.", "https://i.ibb.co/LRQphRW/Product-Shock-Absorber.jpg", true, 799.19m, 3, "Shock Absorber", 4 },
-                    { 18, 14, 1, "Upgraded front fork springs for improved suspension response and handling. Set of two.", "https://i.ibb.co/yyZK9tT/Product-Fork-Springs.jpg", true, 429.99m, 5, "Front Fork Springs", 4 },
-                    { 19, 8, 1, "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.", "https://i.ibb.co/7jy1dvG/Product-Fork-Seals.jpg", true, 44.99m, 18, "Fork Seal Kit", 4 },
-                    { 20, 8, 1, "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.", "https://i.ibb.co/LtFwYZ3/Product-KYB-Shock.jpg", true, 1404.49m, 2, "HI-C Shock Absorber", 4 },
-                    { 21, 14, 1, "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.", "https://i.ibb.co/VCWrYtY/Product-Steering-Bearings.jpg", true, 125.50m, 6, "Steering Stem Bearing Kit", 4 },
-                    { 22, 4, 1, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", true, 119.99m, 10, "114-Links Chain", 2 }
+                    { 13, 5, 3, "Replacement brake pads offering reliable stopping performance.", "https://i.ibb.co/tc2m4jh/Product-Brake-Pads.jpg", true, 35.89m, 20, "Sintered Front Brake Pads", 1 },
+                    { 14, 11, 3, "Comfortable and durable lever, made out of aluminum for improved control and comfort.", "https://i.ibb.co/1RqcRGm/Product-Brake-Lever.jpg", true, 71.99m, 14, "Aluminum Brake Lever", 1 },
+                    { 15, 11, 3, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg", true, 89.99m, 1, "Front Brake Disc", 1 },
+                    { 16, 11, 3, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/BNPMF26/Product-Rear-Brake-Disc.jpg", true, 77.29m, 7, "Rear Brake Disc", 1 },
+                    { 17, 14, 4, "Precision-engineered shock absorber for smooth ride experience.", "https://i.ibb.co/LRQphRW/Product-Shock-Absorber.jpg", true, 799.19m, 3, "Shock Absorber", 1 },
+                    { 18, 14, 4, "Upgraded front fork springs for improved suspension response and handling. Set of two.", "https://i.ibb.co/yyZK9tT/Product-Fork-Springs.jpg", true, 429.99m, 5, "Front Fork Springs", 1 },
+                    { 19, 8, 4, "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.", "https://i.ibb.co/7jy1dvG/Product-Fork-Seals.jpg", true, 44.99m, 18, "Fork Seal Kit", 1 },
+                    { 20, 8, 4, "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.", "https://i.ibb.co/LtFwYZ3/Product-KYB-Shock.jpg", true, 1404.49m, 2, "HI-C Shock Absorber", 1 },
+                    { 21, 14, 4, "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.", "https://i.ibb.co/VCWrYtY/Product-Steering-Bearings.jpg", true, 125.50m, 6, "Steering Stem Bearing Kit", 1 },
+                    { 22, 4, 2, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", true, 119.99m, 10, "114-Links Chain", 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "BrandId", "CategoryId", "Description", "ImageUrl", "IsAvailable", "Price", "StockQuantity", "Title", "Type" },
+                columns: new[] { "Id", "BrandId", "Category", "Description", "ImageUrl", "IsAvailable", "Price", "StockQuantity", "Title", "TypeId" },
                 values: new object[,]
                 {
-                    { 23, 4, 1, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", true, 129.99m, 7, "120-Links Chain", 2 },
-                    { 24, 4, 1, "Quality rear sprocked made out of aluminum.", "https://i.ibb.co/xGz2dVn/Product-Rear-Sprocket.png", true, 89.79m, 4, "52-Teeth Rear Sprocket", 2 },
-                    { 25, 4, 1, "Standart-sized front sprocked with self-cleaning properties.", "https://i.ibb.co/9pKtqn6/Product-Front-Sprocket.jpg", true, 24.19m, 13, "13-Teeth Front Sprocket", 2 },
-                    { 26, 7, 1, "Complete clutch kit for enhanced performance and durability.", "https://i.ibb.co/y0KwgV5/Product-Clutch-Kit.jpg", true, 2149.99m, 3, "Complete Clutch Kit", 2 },
-                    { 27, 17, 1, "Clutch plate kit with friction plates and steel plates for smooth engagement.", "https://i.ibb.co/9qGztRG/Product-Clutch-Plates.jpg", true, 339.69m, 8, "Clutch Plate Kit", 2 },
-                    { 28, 9, 2, "Premium 2-stroke oil for motorcycle engines.", "https://i.ibb.co/Cm7S8dG/Product-Cross-Power-2-T.jpg", true, 28.99m, 30, "2T Cross Power", 5 },
-                    { 29, 10, 2, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/9Nyc55B/Product-Motul-300-V-1-L.jpg", true, 34.99m, 12, "300V 15W60 1L", 6 },
-                    { 30, 10, 2, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/3ywBxpQ/Product-Motul-300-V-4-L.jpg", true, 114.99m, 3, "300V 10W40 4L", 6 },
-                    { 31, 2, 2, "Lightweight fork oil for smoother suspension stroke.", "https://i.ibb.co/W52svBD/Product-Bel-Ray-Fork-5-W.jpg", true, 27.00m, 8, "Fork Product 5W", 4 },
-                    { 32, 9, 2, "Performance Line Products Series is used by MXGP Factory teams.", "https://i.ibb.co/f1fW4j5/Product-Motorex-Shock-Product.jpg", true, 29.99m, 8, "Performance Line: Shock Product", 4 },
-                    { 33, 19, 2, "The baseline 4-stroke engine oil for motorcycles.", "https://i.ibb.co/2dRRzHy/Product-Yamalube-10w40.jpg", true, 26.29m, 14, "YAMALUBE 10W40", 6 },
-                    { 34, 10, 2, "The most efficient coolant on the market.", "https://i.ibb.co/9rgYKcv/Product-Motul-Antifreeze.jpg", true, 26.29m, 14, "AutoCool -35°C 1L", 9 },
-                    { 35, 10, 2, "More throttle, less grinding gears.", "https://i.ibb.co/zntBCFg/Product-Transmission-Motul.jpg", true, 28.29m, 4, "TransProduct Expert 10W40", 7 },
-                    { 36, 1, 3, "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.", "https://i.ibb.co/rs2c1Pd/Product-SM5-Helmet.jpg", true, 899.99m, 2, "SM5", 10 },
-                    { 37, 13, 3, "High-quality full-face racing helmet with aerodynamic design.", "https://i.ibb.co/YkHnz4F/Product-3-Series-Oneal.jpg", true, 279.99m, 7, "3-Series", 10 },
-                    { 38, 1, 3, "Durable protective vest for safe riding.", "https://i.ibb.co/RhPrZB3/Product-Bionic-Action.jpg", true, 319.99m, 4, "Bionic Action V2", 11 },
-                    { 39, 15, 3, "Knee protection that allows for some movement while protecting the knee cap and shin.", "https://i.ibb.co/JrJSf2y/Product-Asterix-Knee.jpg", true, 179.99m, 10, "AsteriX Knee Braces", 11 },
-                    { 40, 13, 3, "Limited anniversary edition jersey.", "https://i.ibb.co/bRsz5gz/Product-Jersey-50th.jpg", true, 79.99m, 3, "50th Anniversary Jersey", 12 },
-                    { 41, 15, 3, "A complete outfit of THOR's middle-class 'Prime Ace' line.", "https://i.ibb.co/hcZKcsB/Product-Thor-Outfit.jpg", true, 259.99m, 5, "Prime Ace Complete Outfit", 12 },
-                    { 42, 1, 3, "The most advanced riding boots on the market.", "https://i.ibb.co/pzGDVTv/Product-Tech10-Boots.jpg", true, 1099.99m, 2, "Tech10", 13 },
-                    { 43, 13, 3, "Motocross/Enduro boots with waterproof lining and reinforced toe.", "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg", true, 559.99m, 6, "Blitz XR", 13 },
-                    { 44, 13, 3, "Motocross goggles with flippers.", "https://i.ibb.co/sHzPG34/Product-B20-Goggles.jpg", true, 129.99m, 6, "B20 Goggles", 14 },
-                    { 45, 13, 3, "Universal offroad gloves.", "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg", true, 39.99m, 11, "Element Gloves", 14 }
+                    { 23, 4, 2, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", true, 129.99m, 7, "120-Links Chain", 1 },
+                    { 24, 4, 2, "Quality rear sprocked made out of aluminum.", "https://i.ibb.co/xGz2dVn/Product-Rear-Sprocket.png", true, 89.79m, 4, "52-Teeth Rear Sprocket", 1 },
+                    { 25, 4, 2, "Standart-sized front sprocked with self-cleaning properties.", "https://i.ibb.co/9pKtqn6/Product-Front-Sprocket.jpg", true, 24.19m, 13, "13-Teeth Front Sprocket", 1 },
+                    { 26, 7, 2, "Complete clutch kit for enhanced performance and durability.", "https://i.ibb.co/y0KwgV5/Product-Clutch-Kit.jpg", true, 2149.99m, 3, "Complete Clutch Kit", 1 },
+                    { 27, 17, 2, "Clutch plate kit with friction plates and steel plates for smooth engagement.", "https://i.ibb.co/9qGztRG/Product-Clutch-Plates.jpg", true, 339.69m, 8, "Clutch Plate Kit", 1 },
+                    { 28, 9, 5, "Premium 2-stroke oil for motorcycle engines.", "https://i.ibb.co/Cm7S8dG/Product-Cross-Power-2-T.jpg", true, 28.99m, 30, "2T Cross Power", 2 },
+                    { 29, 10, 6, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/9Nyc55B/Product-Motul-300-V-1-L.jpg", true, 34.99m, 12, "300V 15W60 1L", 2 },
+                    { 30, 10, 6, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/3ywBxpQ/Product-Motul-300-V-4-L.jpg", true, 114.99m, 3, "300V 10W40 4L", 2 },
+                    { 31, 2, 4, "Lightweight fork oil for smoother suspension stroke.", "https://i.ibb.co/W52svBD/Product-Bel-Ray-Fork-5-W.jpg", true, 27.00m, 8, "Fork Product 5W", 2 },
+                    { 32, 9, 4, "Performance Line Products Series is used by MXGP Factory teams.", "https://i.ibb.co/f1fW4j5/Product-Motorex-Shock-Product.jpg", true, 29.99m, 8, "Performance Line: Shock Product", 2 },
+                    { 33, 19, 6, "The baseline 4-stroke engine oil for motorcycles.", "https://i.ibb.co/2dRRzHy/Product-Yamalube-10w40.jpg", true, 26.29m, 14, "YAMALUBE 10W40", 2 },
+                    { 34, 10, 9, "The most efficient coolant on the market.", "https://i.ibb.co/9rgYKcv/Product-Motul-Antifreeze.jpg", true, 26.29m, 14, "AutoCool -35°C 1L", 2 },
+                    { 35, 10, 7, "More throttle, less grinding gears.", "https://i.ibb.co/zntBCFg/Product-Transmission-Motul.jpg", true, 28.29m, 4, "TransProduct Expert 10W40", 2 },
+                    { 36, 1, 10, "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.", "https://i.ibb.co/rs2c1Pd/Product-SM5-Helmet.jpg", true, 899.99m, 2, "SM5", 3 },
+                    { 37, 13, 10, "High-quality full-face racing helmet with aerodynamic design.", "https://i.ibb.co/YkHnz4F/Product-3-Series-Oneal.jpg", true, 279.99m, 7, "3-Series", 3 },
+                    { 38, 1, 11, "Durable protective vest for safe riding.", "https://i.ibb.co/RhPrZB3/Product-Bionic-Action.jpg", true, 319.99m, 4, "Bionic Action V2", 3 },
+                    { 39, 15, 11, "Knee protection that allows for some movement while protecting the knee cap and shin.", "https://i.ibb.co/JrJSf2y/Product-Asterix-Knee.jpg", true, 179.99m, 10, "AsteriX Knee Braces", 3 },
+                    { 40, 13, 12, "Limited anniversary edition jersey.", "https://i.ibb.co/bRsz5gz/Product-Jersey-50th.jpg", true, 79.99m, 3, "50th Anniversary Jersey", 3 },
+                    { 41, 15, 12, "A complete outfit of THOR's middle-class 'Prime Ace' line.", "https://i.ibb.co/hcZKcsB/Product-Thor-Outfit.jpg", true, 259.99m, 5, "Prime Ace Complete Outfit", 3 },
+                    { 42, 1, 13, "The most advanced riding boots on the market.", "https://i.ibb.co/pzGDVTv/Product-Tech10-Boots.jpg", true, 1099.99m, 2, "Tech10", 3 },
+                    { 43, 13, 13, "Motocross/Enduro boots with waterproof lining and reinforced toe.", "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg", true, 559.99m, 6, "Blitz XR", 3 },
+                    { 44, 13, 14, "Motocross goggles with flippers.", "https://i.ibb.co/sHzPG34/Product-B20-Goggles.jpg", true, 129.99m, 6, "B20 Goggles", 3 },
+                    { 45, 13, 14, "Universal offroad gloves.", "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg", true, 39.99m, 11, "Element Gloves", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -914,6 +914,341 @@ namespace DirtX.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "MotorcyclesParts",
+                columns: new[] { "MotorcycleId", "ProductId" },
+                values: new object[,]
+                {
+                    { 1, 2 },
+                    { 1, 6 },
+                    { 1, 9 },
+                    { 1, 10 },
+                    { 1, 12 },
+                    { 1, 13 },
+                    { 1, 15 },
+                    { 1, 16 },
+                    { 1, 18 },
+                    { 1, 19 },
+                    { 1, 22 },
+                    { 1, 23 },
+                    { 1, 24 },
+                    { 1, 25 },
+                    { 2, 2 },
+                    { 2, 6 },
+                    { 2, 9 },
+                    { 2, 10 },
+                    { 2, 12 },
+                    { 2, 13 },
+                    { 2, 15 },
+                    { 2, 16 },
+                    { 2, 18 },
+                    { 2, 19 },
+                    { 2, 22 },
+                    { 2, 23 },
+                    { 2, 24 },
+                    { 2, 25 },
+                    { 3, 1 },
+                    { 3, 2 },
+                    { 3, 6 },
+                    { 3, 9 },
+                    { 3, 10 },
+                    { 3, 12 },
+                    { 3, 13 },
+                    { 3, 15 },
+                    { 3, 16 },
+                    { 3, 18 },
+                    { 3, 19 },
+                    { 3, 20 },
+                    { 3, 22 },
+                    { 3, 23 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MotorcyclesParts",
+                columns: new[] { "MotorcycleId", "ProductId" },
+                values: new object[,]
+                {
+                    { 3, 24 },
+                    { 3, 25 },
+                    { 4, 1 },
+                    { 4, 2 },
+                    { 4, 7 },
+                    { 4, 9 },
+                    { 4, 10 },
+                    { 4, 12 },
+                    { 4, 13 },
+                    { 4, 15 },
+                    { 4, 16 },
+                    { 4, 17 },
+                    { 4, 18 },
+                    { 4, 21 },
+                    { 4, 22 },
+                    { 4, 23 },
+                    { 4, 24 },
+                    { 4, 25 },
+                    { 5, 1 },
+                    { 5, 2 },
+                    { 5, 7 },
+                    { 5, 9 },
+                    { 5, 10 },
+                    { 5, 12 },
+                    { 5, 13 },
+                    { 5, 15 },
+                    { 5, 16 },
+                    { 5, 17 },
+                    { 5, 18 },
+                    { 5, 21 },
+                    { 5, 22 },
+                    { 5, 23 },
+                    { 5, 24 },
+                    { 5, 25 },
+                    { 6, 2 },
+                    { 6, 9 },
+                    { 6, 10 },
+                    { 6, 12 },
+                    { 6, 13 },
+                    { 6, 15 },
+                    { 6, 16 },
+                    { 6, 17 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MotorcyclesParts",
+                columns: new[] { "MotorcycleId", "ProductId" },
+                values: new object[,]
+                {
+                    { 6, 18 },
+                    { 6, 21 },
+                    { 6, 22 },
+                    { 6, 23 },
+                    { 6, 24 },
+                    { 6, 25 },
+                    { 7, 1 },
+                    { 7, 2 },
+                    { 7, 4 },
+                    { 7, 9 },
+                    { 7, 10 },
+                    { 7, 12 },
+                    { 7, 13 },
+                    { 7, 15 },
+                    { 7, 16 },
+                    { 7, 18 },
+                    { 7, 19 },
+                    { 7, 22 },
+                    { 7, 23 },
+                    { 7, 24 },
+                    { 7, 25 },
+                    { 8, 2 },
+                    { 8, 4 },
+                    { 8, 9 },
+                    { 8, 10 },
+                    { 8, 12 },
+                    { 8, 13 },
+                    { 8, 15 },
+                    { 8, 16 },
+                    { 8, 18 },
+                    { 8, 19 },
+                    { 8, 22 },
+                    { 8, 23 },
+                    { 8, 24 },
+                    { 8, 25 },
+                    { 9, 2 },
+                    { 9, 4 },
+                    { 9, 9 },
+                    { 9, 10 },
+                    { 9, 12 },
+                    { 9, 13 },
+                    { 9, 15 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MotorcyclesParts",
+                columns: new[] { "MotorcycleId", "ProductId" },
+                values: new object[,]
+                {
+                    { 9, 16 },
+                    { 9, 18 },
+                    { 9, 19 },
+                    { 9, 22 },
+                    { 9, 23 },
+                    { 9, 24 },
+                    { 9, 25 },
+                    { 10, 1 },
+                    { 10, 2 },
+                    { 10, 9 },
+                    { 10, 10 },
+                    { 10, 11 },
+                    { 10, 12 },
+                    { 10, 13 },
+                    { 10, 15 },
+                    { 10, 16 },
+                    { 10, 18 },
+                    { 10, 22 },
+                    { 10, 23 },
+                    { 10, 24 },
+                    { 10, 25 },
+                    { 11, 2 },
+                    { 11, 9 },
+                    { 11, 10 },
+                    { 11, 11 },
+                    { 11, 12 },
+                    { 11, 13 },
+                    { 11, 15 },
+                    { 11, 16 },
+                    { 11, 18 },
+                    { 11, 22 },
+                    { 11, 23 },
+                    { 11, 24 },
+                    { 11, 25 },
+                    { 12, 1 },
+                    { 12, 2 },
+                    { 12, 9 },
+                    { 12, 10 },
+                    { 12, 11 },
+                    { 12, 12 },
+                    { 12, 13 },
+                    { 12, 15 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MotorcyclesParts",
+                columns: new[] { "MotorcycleId", "ProductId" },
+                values: new object[,]
+                {
+                    { 12, 16 },
+                    { 12, 18 },
+                    { 12, 22 },
+                    { 12, 23 },
+                    { 12, 24 },
+                    { 12, 25 },
+                    { 13, 2 },
+                    { 13, 3 },
+                    { 13, 5 },
+                    { 13, 9 },
+                    { 13, 10 },
+                    { 13, 12 },
+                    { 13, 15 },
+                    { 13, 16 },
+                    { 13, 18 },
+                    { 13, 22 },
+                    { 13, 23 },
+                    { 13, 24 },
+                    { 13, 25 },
+                    { 13, 27 },
+                    { 14, 2 },
+                    { 14, 3 },
+                    { 14, 5 },
+                    { 14, 9 },
+                    { 14, 10 },
+                    { 14, 12 },
+                    { 14, 15 },
+                    { 14, 16 },
+                    { 14, 18 },
+                    { 14, 22 },
+                    { 14, 23 },
+                    { 14, 24 },
+                    { 14, 25 },
+                    { 14, 27 },
+                    { 15, 2 },
+                    { 15, 3 },
+                    { 15, 5 },
+                    { 15, 9 },
+                    { 15, 10 },
+                    { 15, 12 },
+                    { 15, 15 },
+                    { 15, 16 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MotorcyclesParts",
+                columns: new[] { "MotorcycleId", "ProductId" },
+                values: new object[,]
+                {
+                    { 15, 18 },
+                    { 15, 22 },
+                    { 15, 23 },
+                    { 15, 24 },
+                    { 15, 25 },
+                    { 15, 27 },
+                    { 16, 2 },
+                    { 16, 3 },
+                    { 16, 5 },
+                    { 16, 9 },
+                    { 16, 10 },
+                    { 16, 12 },
+                    { 16, 14 },
+                    { 16, 15 },
+                    { 16, 16 },
+                    { 16, 18 },
+                    { 16, 22 },
+                    { 16, 23 },
+                    { 16, 24 },
+                    { 16, 25 },
+                    { 16, 26 },
+                    { 17, 2 },
+                    { 17, 3 },
+                    { 17, 5 },
+                    { 17, 9 },
+                    { 17, 10 },
+                    { 17, 12 },
+                    { 17, 14 },
+                    { 17, 15 },
+                    { 17, 16 },
+                    { 17, 18 },
+                    { 17, 22 },
+                    { 17, 23 },
+                    { 17, 24 },
+                    { 17, 25 },
+                    { 17, 26 },
+                    { 18, 2 },
+                    { 18, 3 },
+                    { 18, 5 },
+                    { 18, 9 },
+                    { 18, 10 },
+                    { 18, 12 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MotorcyclesParts",
+                columns: new[] { "MotorcycleId", "ProductId" },
+                values: new object[,]
+                {
+                    { 18, 14 },
+                    { 18, 15 },
+                    { 18, 16 },
+                    { 18, 18 },
+                    { 18, 22 },
+                    { 18, 23 },
+                    { 18, 24 },
+                    { 18, 25 },
+                    { 19, 2 },
+                    { 19, 3 },
+                    { 19, 8 },
+                    { 19, 9 },
+                    { 19, 10 },
+                    { 19, 12 },
+                    { 19, 15 },
+                    { 19, 16 },
+                    { 19, 18 },
+                    { 19, 22 },
+                    { 19, 23 },
+                    { 19, 24 },
+                    { 19, 25 },
+                    { 20, 2 },
+                    { 20, 3 },
+                    { 20, 8 },
+                    { 20, 9 },
+                    { 20, 10 },
+                    { 20, 12 },
+                    { 20, 15 },
+                    { 20, 16 },
+                    { 20, 18 },
+                    { 20, 22 },
+                    { 20, 23 },
+                    { 20, 24 },
+                    { 20, 25 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "ProductsSpecifications",
                 columns: new[] { "ProductId", "SpecificationId" },
                 values: new object[,]
@@ -925,7 +1260,14 @@ namespace DirtX.Infrastructure.Migrations
                     { 2, 7 },
                     { 2, 19 },
                     { 3, 2 },
-                    { 3, 15 },
+                    { 3, 15 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductsSpecifications",
+                columns: new[] { "ProductId", "SpecificationId" },
+                values: new object[,]
+                {
                     { 4, 15 },
                     { 5, 6 },
                     { 5, 16 },
@@ -959,14 +1301,7 @@ namespace DirtX.Infrastructure.Migrations
                     { 30, 30 },
                     { 30, 35 },
                     { 31, 29 },
-                    { 31, 34 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ProductsSpecifications",
-                columns: new[] { "ProductId", "SpecificationId" },
-                values: new object[,]
-                {
+                    { 31, 34 },
                     { 32, 37 },
                     { 33, 30 },
                     { 33, 34 },
@@ -974,7 +1309,14 @@ namespace DirtX.Infrastructure.Migrations
                     { 35, 30 },
                     { 35, 34 },
                     { 36, 10 },
-                    { 36, 39 },
+                    { 36, 39 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductsSpecifications",
+                columns: new[] { "ProductId", "SpecificationId" },
+                values: new object[,]
+                {
                     { 37, 40 },
                     { 38, 16 },
                     { 39, 16 },
@@ -1090,9 +1432,9 @@ namespace DirtX.Infrastructure.Migrations
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryId",
+                name: "IX_Products_TypeId",
                 table: "Products",
-                column: "CategoryId");
+                column: "TypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductSpecification_SpecificationsId",

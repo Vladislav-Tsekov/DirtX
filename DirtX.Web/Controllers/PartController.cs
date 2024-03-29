@@ -5,21 +5,16 @@ using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Web.Data;
-using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Controllers
 {
     public class PartController : Controller
     {
-        private readonly ApplicationDbContext context;
         private readonly IProductService productService;
 
-        public PartController(ApplicationDbContext _context, IProductService _productService)
+        public PartController(IProductService _productService)
         {
-            context = _context;
             productService = _productService;
         }
 
@@ -30,7 +25,9 @@ namespace DirtX.Web.Controllers
             List<ProductBrand> partBrands = await productService.GetDistinctProductBrandsAsync(parts);
             List<ProductCategory> partTypes = productService.GetProductCategories(parts);
 
-            var model = partTypes.Select(types =>
+            //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
+
+            List<ProductIndexViewModel> model = partTypes.Select(types =>
             {
                 return new ProductIndexViewModel
                 {
@@ -49,7 +46,9 @@ namespace DirtX.Web.Controllers
             {
                 List<Product> parts = await productService.GetAllProductsByCategoryAsync(currCategory);
 
-                var model = new ProductCategoryViewModel
+                //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
+
+                ProductCategoryViewModel model = new()
                 {
                     ProductCategory = category.ToString(),
                     Products = parts
@@ -67,13 +66,11 @@ namespace DirtX.Web.Controllers
             ProductBrand brand = await productService.GetProductBrandAsync(brandName);
 
             if (brand is null)
-            {
                 return NotFound();
-            }
 
-            var parts = await productService.GetProductsByBrandAsync(brand);
+            List<Product> parts = await productService.GetProductsByBrandAsync(brand);
 
-            var model = new ProductBrandViewModel
+            ProductBrandViewModel model = new()
             {
                 Name = brand.Name,
                 Description = brand.Description,
@@ -113,22 +110,12 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> CompatibleParts(int makeId, int modelId, int displacementId, int yearId)
         {
-            List<MotorcycleProduct> compatibleParts = await context.MotorcyclesParts
-                .Include(mp => mp.Motorcycle)
-                .Include(mp => mp.Motorcycle.Make)
-                .Include(mp => mp.Motorcycle.Model)
-                .Include(mp => mp.Motorcycle.Displacement)
-                .Include(mp => mp.Motorcycle.Year)
-                .Include(mp => mp.Product.Brand)
-                .Where(mp => mp.Motorcycle.MakeId == makeId &&
-                             mp.Motorcycle.ModelId == modelId &&
-                             mp.Motorcycle.DisplacementId == displacementId &&
-                             mp.Motorcycle.YearId == yearId)
-                .ToListAsync();
+            List<MotorcycleProduct> compatibleParts = await productService.GetCompatiblePartsAsync(makeId, modelId, displacementId, yearId);
+
+            if (compatibleParts == null || !compatibleParts.Any())
+                return NotFound();
 
             Motorcycle motorcycle = compatibleParts.FirstOrDefault().Motorcycle;
-
-            //TODO - ERROR HANDLING
 
             CompatiblePartsViewModel model = new()
             {

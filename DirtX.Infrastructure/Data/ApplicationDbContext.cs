@@ -8,7 +8,7 @@ using DirtX.Infrastructure.Data.Seeders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace DirtX.Web.Data
+namespace DirtX.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {

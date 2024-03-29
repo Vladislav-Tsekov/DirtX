@@ -1,4 +1,4 @@
-﻿namespace DirtX.Web.Models.Home;
+﻿namespace DirtX.Core.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class MotoSelectionViewModel

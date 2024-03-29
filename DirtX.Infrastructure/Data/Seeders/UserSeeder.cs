@@ -1,4 +1,4 @@
-﻿using DirtX.Infrastructure.Data.Models;
+﻿using DirtX.Infrastructure.Data.Models.Users;
 using Microsoft.AspNetCore.Identity;
 
 namespace DirtX.Infrastructure.Data.Seeders

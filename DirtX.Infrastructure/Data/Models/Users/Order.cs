@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DirtX.Infrastructure.Data.Models.Orders
+namespace DirtX.Infrastructure.Data.Models.Users
 {
     public class Order
     {

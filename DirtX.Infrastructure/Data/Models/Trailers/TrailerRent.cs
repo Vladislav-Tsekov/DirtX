@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DirtX.Infrastructure.Data.Models.Users;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static DirtX.Infrastructure.Shared.ValidationConstants;
 
@@ -23,7 +24,6 @@ namespace DirtX.Infrastructure.Data.Models.Trailers
         [Required]
         public DateTime StartDate { get; set; }
 
-        [Required]
         public DateTime ReturnDate { get; set; }
 
         [Required]

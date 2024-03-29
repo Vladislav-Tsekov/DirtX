@@ -1,11 +1,12 @@
-﻿using DirtX.Infrastructure.Data.Models.Orders;
+﻿using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.Mappings;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
-    public abstract class Product
+    public class Product
     {
         [Key]
         public int Id { get; set; }
@@ -14,17 +15,22 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public ProductBrand Brand { get; set; }
         public int BrandId { get; set; }
 
+        [ForeignKey(nameof(TypeId))]
+        public ProductType Type { get; set; }
+        public int TypeId { get; set; }
+
+        [Required]
+        public ProductCategory Category { get; set; }
+
         [Required]
         [MaxLength(ProductTitleMaxLength)]
         public string Title { get; set; }
 
+        //TODO - TROUBLESHOOT THE CONVERT IN THIS SCENARIO
         [Required]
         [Column(TypeName = "decimal(9, 2)")]
         [Range(typeof(decimal), ProductMinPrice, ProductMaxPrice, ConvertValueInInvariantCulture = true)]
-        //TODO - TROUBLESHOOT THE CONVERT IN THIS SCENARIO
         public decimal Price { get; set; }
-
-        //TODO - PROPERTY bool IsOnSale? / SalePercentage
 
         [Required]
         [MaxLength(ProductDescriptionMaxLength)]
@@ -42,5 +48,6 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public ICollection<Specification> Specifications { get; set; }
         public ICollection<CartProduct> CartProducts { get; set; }
         public ICollection<Wishlist> Wishlists { get; set; }
+        public ICollection<MotorcycleProduct> MotorcycleParts { get; set; }
     }
 }

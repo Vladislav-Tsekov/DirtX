@@ -1,38 +1,38 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models;
-using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
-using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Controllers
 {
     public class GearController : Controller
     {
-        private readonly IProductService<Gear, GearType> gearService;
+        private readonly IProductService productService;
+        private readonly ApplicationDbContext applicationDbContext;
 
-        public GearController(IProductService<Gear, GearType> _gearService)
+        public GearController(IProductService _gearService, ApplicationDbContext applicationDbContext)
         {
-            gearService = _gearService;
+            productService = _gearService;
+            this.applicationDbContext = applicationDbContext;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<GearType> categories = Enum.GetValues(typeof(GearType)).Cast<GearType>();
+            List<Product> gears = await productService.GetAllGearsAsync();
+            List<ProductBrand> gearBrands = await productService.GetDistinctProductBrandsAsync(gears);
+            List<ProductCategory> gearTypes = productService.GetProductCategories(gears);
 
-            List<Gear> gears = await gearService.GetAllProductsAsync();
-
-            List<ProductBrand> gearsBrands = await gearService.GetDistinctProductBrandsAsync();
-
-            var model = categories.Select(category =>
+            var model = gearTypes.Select(types =>
             {
                 return new ProductIndexViewModel
                 {
-                    CategoryName = category.ToString(),
-                    Brands = gearsBrands
+                    ProductCategory = types.ToString(),
+                    Brands = gearBrands
                 };
             }).ToList();
 
@@ -40,32 +40,37 @@ namespace DirtX.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Category(GearType type)
+        public async Task<IActionResult> Category(string category)
         {
-            List<Gear> gears = await gearService.GetAllProductsByTypeAsync(type);
-
-            var model = new ProductCategoryViewModel<Gear>
+            if (Enum.TryParse(category, out ProductCategory currCategory))
             {
-                CategoryName = type.ToString(),
-                Products = gears
-            };
+                List<Product> gears = await productService.GetAllProductsByCategoryAsync(currCategory);
 
-            return View(model);
+                var model = new ProductCategoryViewModel
+                {
+                    ProductCategory = category.ToString(),
+                    Products = gears
+                };
+
+                return View(model);
+            }
+            else
+                return BadRequest();
         }
 
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            ProductBrand brand = await gearService.GetProductBrandAsync(brandName);
+            ProductBrand brand = await productService.GetProductBrandAsync(brandName);
 
             if (brand is null)
             {
                 return NotFound();
             }
 
-            var gears = await gearService.GetProductsByBrandAsync(brand);
+            var gears = await productService.GetProductsByBrandAsync(brand);
 
-            var model = new ProductBrandViewModel<Gear>
+            var model = new ProductBrandViewModel
             {
                 Name = brand.Name,
                 Description = brand.Description,
@@ -79,14 +84,14 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Gear gear = gearService.GetProductAsync(id).Result;
+            Product gear = productService.GetProductAsync(id).Result;
 
             if (gear == null)
             {
                 return NotFound();
             }
 
-            List<ProductSpecification> gearSpecs = await gearService.GetProductSpecificationsAsync(id);
+            List<ProductSpecification> gearSpecs = await productService.GetProductSpecificationsAsync(id);
 
             ProductDetailsViewModel model = new()
             {

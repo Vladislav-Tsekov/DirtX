@@ -8,12 +8,12 @@
     @foreach (var category in Model)
     {
         <div class="category-item">
-            <a href="@Url.Action("Category", "Gear", new { type = category.CategoryName })">
+            <a href="@Url.Action("Category", "Gear", new { category = category.ProductCategory })">
                 <div class="category-image">
-                    <img src="@GetImageUrlForCategory(category.CategoryName)" alt="@category.CategoryName.Replace("_", " ")" />
+                    <img src="@GetImageUrlForCategory(category.ProductCategory)" alt="@category.ProductCategory.Replace("_", " ")" />
                 </div>
                 <div class="category-title">
-                    <span>@category.CategoryName.Replace("_", " ")</span>
+                    <span>@category.ProductCategory.Replace("_", " ")</span>
                 </div>
             </a>
         </div>

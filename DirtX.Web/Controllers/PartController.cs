@@ -2,10 +2,11 @@
 using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
+using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Web.Data;
-using DirtX.Web.Models.Part;
+using DirtX.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,29 +15,27 @@ namespace DirtX.Web.Controllers
     public class PartController : Controller
     {
         private readonly ApplicationDbContext context;
-        private readonly IProductService<Part, PartType> partService;
+        private readonly IProductService productService;
 
-        public PartController(ApplicationDbContext _context, IProductService<Part, PartType> _partService)
+        public PartController(ApplicationDbContext _context, IProductService _productService)
         {
             context = _context;
-            partService = _partService;
+            productService = _productService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<PartType> categories = Enum.GetValues(typeof(PartType)).Cast<PartType>();
+            List<Product> parts = await productService.GetAllPartsAsync();
+            List<ProductBrand> partBrands = await productService.GetDistinctProductBrandsAsync(parts);
+            List<ProductCategory> partTypes = productService.GetProductCategories(parts);
 
-            List<Part> parts = await partService.GetAllProductsAsync();
-
-            List<ProductBrand> partsBrands = await partService.GetDistinctProductBrandsAsync();
-
-            var model = categories.Select(category =>
+            var model = partTypes.Select(types =>
             {
                 return new ProductIndexViewModel
                 {
-                    CategoryName = category.ToString(),
-                    Brands = partsBrands
+                    ProductCategory = types.ToString(),
+                    Brands = partBrands
                 };
             }).ToList();
 
@@ -44,32 +43,37 @@ namespace DirtX.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Category(PartType type)
+        public async Task<IActionResult> Category(string category)
         {
-            List<Part> parts = await partService.GetAllProductsByTypeAsync(type);
-
-            var model = new ProductCategoryViewModel<Part>
+            if (Enum.TryParse(category, out ProductCategory currCategory))
             {
-                CategoryName = type.ToString(),
-                Products = parts
-            };
+                List<Product> parts = await productService.GetAllProductsByCategoryAsync(currCategory);
 
-            return View(model);
+                var model = new ProductCategoryViewModel
+                {
+                    ProductCategory = category.ToString(),
+                    Products = parts
+                };
+
+                return View(model);
+            }
+            else
+                return BadRequest();
         }
 
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            ProductBrand brand = await partService.GetProductBrandAsync(brandName);
+            ProductBrand brand = await productService.GetProductBrandAsync(brandName);
 
             if (brand is null)
             {
                 return NotFound();
             }
 
-            var parts = await partService.GetProductsByBrandAsync(brand);
+            var parts = await productService.GetProductsByBrandAsync(brand);
 
-            var model = new ProductBrandViewModel<Part>
+            var model = new ProductBrandViewModel
             {
                 Name = brand.Name,
                 Description = brand.Description,
@@ -83,14 +87,14 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Part part = partService.GetProductAsync(id).Result;
+            Product part = productService.GetProductAsync(id).Result;
 
             if (part == null)
             {
                 return NotFound();
             }
 
-            List<ProductSpecification> partSpecs = await partService.GetProductSpecificationsAsync(id);
+            List<ProductSpecification> partSpecs = await productService.GetProductSpecificationsAsync(id);
 
             ProductDetailsViewModel model = new()
             {
@@ -109,13 +113,13 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> CompatibleParts(int makeId, int modelId, int displacementId, int yearId)
         {
-            List<MotorcyclePart> compatibleParts = await context.MotorcyclesParts
+            List<MotorcycleProduct> compatibleParts = await context.MotorcyclesParts
                 .Include(mp => mp.Motorcycle)
                 .Include(mp => mp.Motorcycle.Make)
                 .Include(mp => mp.Motorcycle.Model)
                 .Include(mp => mp.Motorcycle.Displacement)
                 .Include(mp => mp.Motorcycle.Year)
-                .Include(mp => mp.Part.Brand)
+                .Include(mp => mp.Product.Brand)
                 .Where(mp => mp.Motorcycle.MakeId == makeId &&
                              mp.Motorcycle.ModelId == modelId &&
                              mp.Motorcycle.DisplacementId == displacementId &&
@@ -132,7 +136,7 @@ namespace DirtX.Web.Controllers
                 Model = motorcycle.Model.Title,
                 Displacement = motorcycle.Displacement.Volume.ToString(),
                 Year = motorcycle.Year.ManufactureYear.ToString(),
-                Parts = compatibleParts.Select(cp => cp.Part).ToList(),
+                Parts = compatibleParts.Select(cp => cp.Product).ToList(),
             };
 
             return View(model);

@@ -4,7 +4,7 @@ namespace DirtX.Core.Models
 {
     public class ProductIndexViewModel
     {
-        public string CategoryName { get; set; }
+        public string ProductCategory { get; set; }
         public List<ProductBrand> Brands { get; set; }
     }
 }

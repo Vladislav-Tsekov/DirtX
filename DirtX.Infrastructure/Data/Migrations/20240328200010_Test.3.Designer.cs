@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240322214233_ImpltAppUser.New")]
-    partial class ImpltAppUserNew
+    [Migration("20240328200010_Test.3")]
+    partial class Test3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace DirtX.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.CartProduct", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.CartProduct", b =>
                 {
                     b.Property<int>("CartId")
                         .HasColumnType("int");
@@ -42,33 +42,389 @@ namespace DirtX.Infrastructure.Migrations
                     b.ToTable("CartsProducts");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Garage", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.ProductSpecification", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "SpecificationId");
+
+                    b.HasIndex("SpecificationId");
+
+                    b.ToTable("ProductsSpecifications");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 1,
+                            SpecificationId = 8
+                        },
+                        new
+                        {
+                            ProductId = 1,
+                            SpecificationId = 17
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            SpecificationId = 7
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            SpecificationId = 19
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            SpecificationId = 2
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            SpecificationId = 9
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            SpecificationId = 2
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            SpecificationId = 3
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            SpecificationId = 14
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SpecificationId = 3
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            SpecificationId = 13
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            SpecificationId = 4
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            SpecificationId = 26
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            SpecificationId = 25
+                        },
+                        new
+                        {
+                            ProductId = 17,
+                            SpecificationId = 24
+                        },
+                        new
+                        {
+                            ProductId = 18,
+                            SpecificationId = 23
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            SpecificationId = 27
+                        },
+                        new
+                        {
+                            ProductId = 20,
+                            SpecificationId = 24
+                        },
+                        new
+                        {
+                            ProductId = 21,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            SpecificationId = 1
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            SpecificationId = 4
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            SpecificationId = 6
+                        },
+                        new
+                        {
+                            ProductId = 28,
+                            SpecificationId = 34
+                        },
+                        new
+                        {
+                            ProductId = 29,
+                            SpecificationId = 31
+                        },
+                        new
+                        {
+                            ProductId = 29,
+                            SpecificationId = 34
+                        },
+                        new
+                        {
+                            ProductId = 30,
+                            SpecificationId = 30
+                        },
+                        new
+                        {
+                            ProductId = 30,
+                            SpecificationId = 35
+                        },
+                        new
+                        {
+                            ProductId = 31,
+                            SpecificationId = 29
+                        },
+                        new
+                        {
+                            ProductId = 31,
+                            SpecificationId = 34
+                        },
+                        new
+                        {
+                            ProductId = 32,
+                            SpecificationId = 37
+                        },
+                        new
+                        {
+                            ProductId = 33,
+                            SpecificationId = 30
+                        },
+                        new
+                        {
+                            ProductId = 33,
+                            SpecificationId = 34
+                        },
+                        new
+                        {
+                            ProductId = 34,
+                            SpecificationId = 34
+                        },
+                        new
+                        {
+                            ProductId = 35,
+                            SpecificationId = 30
+                        },
+                        new
+                        {
+                            ProductId = 35,
+                            SpecificationId = 34
+                        },
+                        new
+                        {
+                            ProductId = 36,
+                            SpecificationId = 10
+                        },
+                        new
+                        {
+                            ProductId = 36,
+                            SpecificationId = 39
+                        },
+                        new
+                        {
+                            ProductId = 37,
+                            SpecificationId = 40
+                        },
+                        new
+                        {
+                            ProductId = 38,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 39,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 9
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 10
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 32
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            SpecificationId = 38
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            SpecificationId = 12
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            SpecificationId = 15
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            SpecificationId = 32
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            SpecificationId = 39
+                        },
+                        new
+                        {
+                            ProductId = 42,
+                            SpecificationId = 41
+                        },
+                        new
+                        {
+                            ProductId = 43,
+                            SpecificationId = 16
+                        },
+                        new
+                        {
+                            ProductId = 43,
+                            SpecificationId = 42
+                        },
+                        new
+                        {
+                            ProductId = 44,
+                            SpecificationId = 12
+                        },
+                        new
+                        {
+                            ProductId = 45,
+                            SpecificationId = 10
+                        },
+                        new
+                        {
+                            ProductId = 45,
+                            SpecificationId = 40
+                        });
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.Wishlist", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("MotoCount")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId");
+                    b.HasKey("UserId", "ProductId");
 
-                    b.ToTable("Garages");
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Wishlists");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcyclePart", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcycleProduct", b =>
                 {
                     b.Property<int>("MotorcycleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PartId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("MotorcycleId", "PartId");
+                    b.HasKey("MotorcycleId", "ProductId");
 
-                    b.HasIndex("PartId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("MotorcyclesParts");
 
@@ -76,1432 +432,1432 @@ namespace DirtX.Infrastructure.Migrations
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 1
+                            ProductId = 1
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 1
+                            ProductId = 1
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 1
+                            ProductId = 1
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 1
+                            ProductId = 1
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 1
+                            ProductId = 1
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 1
+                            ProductId = 1
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 2
+                            ProductId = 2
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 3
+                            ProductId = 3
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 4
+                            ProductId = 4
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 4
+                            ProductId = 4
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 4
+                            ProductId = 4
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 5
+                            ProductId = 5
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 5
+                            ProductId = 5
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 5
+                            ProductId = 5
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 5
+                            ProductId = 5
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 5
+                            ProductId = 5
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 5
+                            ProductId = 5
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 6
+                            ProductId = 6
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 6
+                            ProductId = 6
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 6
+                            ProductId = 6
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 7
+                            ProductId = 7
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 7
+                            ProductId = 7
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 8
+                            ProductId = 8
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 8
+                            ProductId = 8
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 9
+                            ProductId = 9
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 10
+                            ProductId = 10
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 11
+                            ProductId = 11
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 11
+                            ProductId = 11
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 11
+                            ProductId = 11
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 12
+                            ProductId = 12
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 13
+                            ProductId = 13
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 14
+                            ProductId = 14
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 14
+                            ProductId = 14
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 14
+                            ProductId = 14
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 15
+                            ProductId = 15
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 16
+                            ProductId = 16
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 17
+                            ProductId = 17
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 17
+                            ProductId = 17
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 17
+                            ProductId = 17
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 18
+                            ProductId = 18
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 19
+                            ProductId = 19
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 19
+                            ProductId = 19
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 19
+                            ProductId = 19
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 19
+                            ProductId = 19
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 19
+                            ProductId = 19
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 19
+                            ProductId = 19
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 20
+                            ProductId = 20
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 21
+                            ProductId = 21
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 21
+                            ProductId = 21
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 21
+                            ProductId = 21
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 22
+                            ProductId = 22
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 23
+                            ProductId = 23
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 24
+                            ProductId = 24
                         },
                         new
                         {
                             MotorcycleId = 1,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 2,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 3,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 4,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 5,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 6,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 7,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 8,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 9,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 10,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 11,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 12,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 18,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 19,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 20,
-                            PartId = 25
+                            ProductId = 25
                         },
                         new
                         {
                             MotorcycleId = 16,
-                            PartId = 26
+                            ProductId = 26
                         },
                         new
                         {
                             MotorcycleId = 17,
-                            PartId = 26
+                            ProductId = 26
                         },
                         new
                         {
                             MotorcycleId = 13,
-                            PartId = 27
+                            ProductId = 27
                         },
                         new
                         {
                             MotorcycleId = 14,
-                            PartId = 27
+                            ProductId = 27
                         },
                         new
                         {
                             MotorcycleId = 15,
-                            PartId = 27
+                            ProductId = 27
                         });
                 });
 
@@ -2058,87 +2414,6 @@ namespace DirtX.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Cart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Wishlist", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Wishlists");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -2148,6 +2423,9 @@ namespace DirtX.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Category")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -2165,10 +2443,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(9,2)");
 
-                    b.Property<string>("ProductSet")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
@@ -2177,13 +2451,603 @@ namespace DirtX.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Product");
+                    b.HasIndex("TypeId");
 
-                    b.HasDiscriminator<string>("ProductSet").HasValue("Product");
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BrandId = 17,
+                            Category = 0,
+                            Description = "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.",
+                            ImageUrl = "https://i.ibb.co/jTnS3W0/Product-High-Comp-Piston.jpg",
+                            IsAvailable = true,
+                            Price = 455.00m,
+                            StockQuantity = 11,
+                            Title = "High-Compression Forged Piston",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BrandId = 18,
+                            Category = 0,
+                            Description = "High-performance cast piston. Piston rings are not included.",
+                            ImageUrl = "https://i.ibb.co/m6fQKSx/Product-Forged-Piston.jpg",
+                            IsAvailable = true,
+                            Price = 325.00m,
+                            StockQuantity = 6,
+                            Title = "Cast Piston",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BrandId = 7,
+                            Category = 0,
+                            Description = "Protective cover for motorcycle engines made of titanium.",
+                            ImageUrl = "https://i.ibb.co/1RXqkVy/Product-Engine-Cover.png",
+                            IsAvailable = true,
+                            Price = 99.99m,
+                            StockQuantity = 4,
+                            Title = "Engine Clutch Cover",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BrandId = 3,
+                            Category = 0,
+                            Description = "Complete gasket set for top-end engine rebuilds and maintenance.",
+                            ImageUrl = "https://i.ibb.co/Yj4MJ6r/Product-Top-End-Gasket.jpg",
+                            IsAvailable = true,
+                            Price = 89.99m,
+                            StockQuantity = 31,
+                            Title = "Top-End Gasket Set",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BrandId = 3,
+                            Category = 0,
+                            Description = "Enhanced water pump cover for improved cooling efficiency.",
+                            ImageUrl = "https://i.ibb.co/ZHQ36hf/Product-Water-Pump-Cover.jpg",
+                            IsAvailable = true,
+                            Price = 87.79m,
+                            StockQuantity = 10,
+                            Title = "Water Pump Cover",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BrandId = 12,
+                            Category = 0,
+                            Description = "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.",
+                            ImageUrl = "https://i.ibb.co/dmkcV30/Product-Fuel-Injector.jpg",
+                            IsAvailable = true,
+                            Price = 289.99m,
+                            StockQuantity = 3,
+                            Title = "8-Point Fuel Injector",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BrandId = 17,
+                            Category = 0,
+                            Description = "A set of two high-quality intake valves that exceed OEM quality.",
+                            ImageUrl = "https://i.ibb.co/fG9XLdn/Product-Intake-Valves.jpg",
+                            IsAvailable = true,
+                            Price = 139.29m,
+                            StockQuantity = 7,
+                            Title = "Intake Valves Set",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BrandId = 18,
+                            Category = 0,
+                            Description = "Electric fuel pump for replacing the old one. Comes with all necessary components.",
+                            ImageUrl = "https://i.ibb.co/LnW1Y4k/Product-Fuel-Pump.jpg",
+                            IsAvailable = true,
+                            Price = 149.99m,
+                            StockQuantity = 12,
+                            Title = "Fuel Pump",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BrandId = 16,
+                            Category = 1,
+                            Description = "Premium air filter for improved air flow and engine performance.",
+                            ImageUrl = "https://i.ibb.co/vqg672F/Product-Air-Filter.jpg",
+                            IsAvailable = true,
+                            Price = 24.49m,
+                            StockQuantity = 27,
+                            Title = "Air Filter",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BrandId = 6,
+                            Category = 1,
+                            Description = "High-quality oil filter for efficient filtration and engine longevity.",
+                            ImageUrl = "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg",
+                            IsAvailable = true,
+                            Price = 10.99m,
+                            StockQuantity = 19,
+                            Title = "Product Filter",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            BrandId = 16,
+                            Category = 1,
+                            Description = "High-quality oil filter for efficient filtration and engine longevity.",
+                            ImageUrl = "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg",
+                            IsAvailable = true,
+                            Price = 54.29m,
+                            StockQuantity = 8,
+                            Title = "Aluminum Product Filter Cap",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            BrandId = 16,
+                            Category = 1,
+                            Description = "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.",
+                            ImageUrl = "https://i.ibb.co/s1YdYwt/Product-Fuel-Filter-Tank.jpg",
+                            IsAvailable = true,
+                            Price = 50.99m,
+                            StockQuantity = 5,
+                            Title = "Fuel Filter (Gas Tank)",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            BrandId = 5,
+                            Category = 3,
+                            Description = "Replacement brake pads offering reliable stopping performance.",
+                            ImageUrl = "https://i.ibb.co/tc2m4jh/Product-Brake-Pads.jpg",
+                            IsAvailable = true,
+                            Price = 35.89m,
+                            StockQuantity = 20,
+                            Title = "Sintered Front Brake Pads",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            BrandId = 11,
+                            Category = 3,
+                            Description = "Comfortable and durable lever, made out of aluminum for improved control and comfort.",
+                            ImageUrl = "https://i.ibb.co/1RqcRGm/Product-Brake-Lever.jpg",
+                            IsAvailable = true,
+                            Price = 71.99m,
+                            StockQuantity = 14,
+                            Title = "Aluminum Brake Lever",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            BrandId = 11,
+                            Category = 3,
+                            Description = "High-performance brake disc for superior stopping power.",
+                            ImageUrl = "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg",
+                            IsAvailable = true,
+                            Price = 89.99m,
+                            StockQuantity = 1,
+                            Title = "Front Brake Disc",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            BrandId = 11,
+                            Category = 3,
+                            Description = "High-performance brake disc for superior stopping power.",
+                            ImageUrl = "https://i.ibb.co/BNPMF26/Product-Rear-Brake-Disc.jpg",
+                            IsAvailable = true,
+                            Price = 77.29m,
+                            StockQuantity = 7,
+                            Title = "Rear Brake Disc",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            BrandId = 14,
+                            Category = 4,
+                            Description = "Precision-engineered shock absorber for smooth ride experience.",
+                            ImageUrl = "https://i.ibb.co/LRQphRW/Product-Shock-Absorber.jpg",
+                            IsAvailable = true,
+                            Price = 799.19m,
+                            StockQuantity = 3,
+                            Title = "Shock Absorber",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            BrandId = 14,
+                            Category = 4,
+                            Description = "Upgraded front fork springs for improved suspension response and handling. Set of two.",
+                            ImageUrl = "https://i.ibb.co/yyZK9tT/Product-Fork-Springs.jpg",
+                            IsAvailable = true,
+                            Price = 429.99m,
+                            StockQuantity = 5,
+                            Title = "Front Fork Springs",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            BrandId = 8,
+                            Category = 4,
+                            Description = "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.",
+                            ImageUrl = "https://i.ibb.co/7jy1dvG/Product-Fork-Seals.jpg",
+                            IsAvailable = true,
+                            Price = 44.99m,
+                            StockQuantity = 18,
+                            Title = "Fork Seal Kit",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            BrandId = 8,
+                            Category = 4,
+                            Description = "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.",
+                            ImageUrl = "https://i.ibb.co/LtFwYZ3/Product-KYB-Shock.jpg",
+                            IsAvailable = true,
+                            Price = 1404.49m,
+                            StockQuantity = 2,
+                            Title = "HI-C Shock Absorber",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            BrandId = 14,
+                            Category = 4,
+                            Description = "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.",
+                            ImageUrl = "https://i.ibb.co/VCWrYtY/Product-Steering-Bearings.jpg",
+                            IsAvailable = true,
+                            Price = 125.50m,
+                            StockQuantity = 6,
+                            Title = "Steering Stem Bearing Kit",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            BrandId = 4,
+                            Category = 2,
+                            Description = "Durable motorcycle chain for smooth power transfer.",
+                            ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg",
+                            IsAvailable = true,
+                            Price = 119.99m,
+                            StockQuantity = 10,
+                            Title = "114-Links Chain",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            BrandId = 4,
+                            Category = 2,
+                            Description = "Durable motorcycle chain for smooth power transfer.",
+                            ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg",
+                            IsAvailable = true,
+                            Price = 129.99m,
+                            StockQuantity = 7,
+                            Title = "120-Links Chain",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            BrandId = 4,
+                            Category = 2,
+                            Description = "Quality rear sprocked made out of aluminum.",
+                            ImageUrl = "https://i.ibb.co/xGz2dVn/Product-Rear-Sprocket.png",
+                            IsAvailable = true,
+                            Price = 89.79m,
+                            StockQuantity = 4,
+                            Title = "52-Teeth Rear Sprocket",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            BrandId = 4,
+                            Category = 2,
+                            Description = "Standart-sized front sprocked with self-cleaning properties.",
+                            ImageUrl = "https://i.ibb.co/9pKtqn6/Product-Front-Sprocket.jpg",
+                            IsAvailable = true,
+                            Price = 24.19m,
+                            StockQuantity = 13,
+                            Title = "13-Teeth Front Sprocket",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            BrandId = 7,
+                            Category = 2,
+                            Description = "Complete clutch kit for enhanced performance and durability.",
+                            ImageUrl = "https://i.ibb.co/y0KwgV5/Product-Clutch-Kit.jpg",
+                            IsAvailable = true,
+                            Price = 2149.99m,
+                            StockQuantity = 3,
+                            Title = "Complete Clutch Kit",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            BrandId = 17,
+                            Category = 2,
+                            Description = "Clutch plate kit with friction plates and steel plates for smooth engagement.",
+                            ImageUrl = "https://i.ibb.co/9qGztRG/Product-Clutch-Plates.jpg",
+                            IsAvailable = true,
+                            Price = 339.69m,
+                            StockQuantity = 8,
+                            Title = "Clutch Plate Kit",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            BrandId = 9,
+                            Category = 5,
+                            Description = "Premium 2-stroke oil for motorcycle engines.",
+                            ImageUrl = "https://i.ibb.co/Cm7S8dG/Product-Cross-Power-2-T.jpg",
+                            IsAvailable = true,
+                            Price = 28.99m,
+                            StockQuantity = 30,
+                            Title = "2T Cross Power",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 29,
+                            BrandId = 10,
+                            Category = 6,
+                            Description = "Ester Core Premium 4-stroke oil for motorcycle engines.",
+                            ImageUrl = "https://i.ibb.co/9Nyc55B/Product-Motul-300-V-1-L.jpg",
+                            IsAvailable = true,
+                            Price = 34.99m,
+                            StockQuantity = 12,
+                            Title = "300V 15W60 1L",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 30,
+                            BrandId = 10,
+                            Category = 6,
+                            Description = "Ester Core Premium 4-stroke oil for motorcycle engines.",
+                            ImageUrl = "https://i.ibb.co/3ywBxpQ/Product-Motul-300-V-4-L.jpg",
+                            IsAvailable = true,
+                            Price = 114.99m,
+                            StockQuantity = 3,
+                            Title = "300V 10W40 4L",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 31,
+                            BrandId = 2,
+                            Category = 4,
+                            Description = "Lightweight fork oil for smoother suspension stroke.",
+                            ImageUrl = "https://i.ibb.co/W52svBD/Product-Bel-Ray-Fork-5-W.jpg",
+                            IsAvailable = true,
+                            Price = 27.00m,
+                            StockQuantity = 8,
+                            Title = "Fork Product 5W",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 32,
+                            BrandId = 9,
+                            Category = 4,
+                            Description = "Performance Line Products Series is used by MXGP Factory teams.",
+                            ImageUrl = "https://i.ibb.co/f1fW4j5/Product-Motorex-Shock-Product.jpg",
+                            IsAvailable = true,
+                            Price = 29.99m,
+                            StockQuantity = 8,
+                            Title = "Performance Line: Shock Product",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 33,
+                            BrandId = 19,
+                            Category = 6,
+                            Description = "The baseline 4-stroke engine oil for motorcycles.",
+                            ImageUrl = "https://i.ibb.co/2dRRzHy/Product-Yamalube-10w40.jpg",
+                            IsAvailable = true,
+                            Price = 26.29m,
+                            StockQuantity = 14,
+                            Title = "YAMALUBE 10W40",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 34,
+                            BrandId = 10,
+                            Category = 9,
+                            Description = "The most efficient coolant on the market.",
+                            ImageUrl = "https://i.ibb.co/9rgYKcv/Product-Motul-Antifreeze.jpg",
+                            IsAvailable = true,
+                            Price = 26.29m,
+                            StockQuantity = 14,
+                            Title = "AutoCool -35°C 1L",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 35,
+                            BrandId = 10,
+                            Category = 7,
+                            Description = "More throttle, less grinding gears.",
+                            ImageUrl = "https://i.ibb.co/zntBCFg/Product-Transmission-Motul.jpg",
+                            IsAvailable = true,
+                            Price = 28.29m,
+                            StockQuantity = 4,
+                            Title = "TransProduct Expert 10W40",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 36,
+                            BrandId = 1,
+                            Category = 10,
+                            Description = "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.",
+                            ImageUrl = "https://i.ibb.co/rs2c1Pd/Product-SM5-Helmet.jpg",
+                            IsAvailable = true,
+                            Price = 899.99m,
+                            StockQuantity = 2,
+                            Title = "SM5",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 37,
+                            BrandId = 13,
+                            Category = 10,
+                            Description = "High-quality full-face racing helmet with aerodynamic design.",
+                            ImageUrl = "https://i.ibb.co/YkHnz4F/Product-3-Series-Oneal.jpg",
+                            IsAvailable = true,
+                            Price = 279.99m,
+                            StockQuantity = 7,
+                            Title = "3-Series",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 38,
+                            BrandId = 1,
+                            Category = 11,
+                            Description = "Durable protective vest for safe riding.",
+                            ImageUrl = "https://i.ibb.co/RhPrZB3/Product-Bionic-Action.jpg",
+                            IsAvailable = true,
+                            Price = 319.99m,
+                            StockQuantity = 4,
+                            Title = "Bionic Action V2",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 39,
+                            BrandId = 15,
+                            Category = 11,
+                            Description = "Knee protection that allows for some movement while protecting the knee cap and shin.",
+                            ImageUrl = "https://i.ibb.co/JrJSf2y/Product-Asterix-Knee.jpg",
+                            IsAvailable = true,
+                            Price = 179.99m,
+                            StockQuantity = 10,
+                            Title = "AsteriX Knee Braces",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 40,
+                            BrandId = 13,
+                            Category = 12,
+                            Description = "Limited anniversary edition jersey.",
+                            ImageUrl = "https://i.ibb.co/bRsz5gz/Product-Jersey-50th.jpg",
+                            IsAvailable = true,
+                            Price = 79.99m,
+                            StockQuantity = 3,
+                            Title = "50th Anniversary Jersey",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 41,
+                            BrandId = 15,
+                            Category = 12,
+                            Description = "A complete outfit of THOR's middle-class 'Prime Ace' line.",
+                            ImageUrl = "https://i.ibb.co/hcZKcsB/Product-Thor-Outfit.jpg",
+                            IsAvailable = true,
+                            Price = 259.99m,
+                            StockQuantity = 5,
+                            Title = "Prime Ace Complete Outfit",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 42,
+                            BrandId = 1,
+                            Category = 13,
+                            Description = "The most advanced riding boots on the market.",
+                            ImageUrl = "https://i.ibb.co/pzGDVTv/Product-Tech10-Boots.jpg",
+                            IsAvailable = true,
+                            Price = 1099.99m,
+                            StockQuantity = 2,
+                            Title = "Tech10",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 43,
+                            BrandId = 13,
+                            Category = 13,
+                            Description = "Motocross/Enduro boots with waterproof lining and reinforced toe.",
+                            ImageUrl = "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg",
+                            IsAvailable = true,
+                            Price = 559.99m,
+                            StockQuantity = 6,
+                            Title = "Blitz XR",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 44,
+                            BrandId = 13,
+                            Category = 14,
+                            Description = "Motocross goggles with flippers.",
+                            ImageUrl = "https://i.ibb.co/sHzPG34/Product-B20-Goggles.jpg",
+                            IsAvailable = true,
+                            Price = 129.99m,
+                            StockQuantity = 6,
+                            Title = "B20 Goggles",
+                            TypeId = 3
+                        },
+                        new
+                        {
+                            Id = 45,
+                            BrandId = 13,
+                            Category = 14,
+                            Description = "Universal offroad gloves.",
+                            ImageUrl = "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg",
+                            IsAvailable = true,
+                            Price = 39.99m,
+                            StockQuantity = 11,
+                            Title = "Element Gloves",
+                            TypeId = 3
+                        });
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.ProductBrand", b =>
@@ -2345,6 +3209,49 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "YAMALUBE is an engine oil developed in-house by Yamaha specifically for motorcycles.",
                             ImageUrl = "https://i.ibb.co/8403f2t/Brand-Yamalube.jpg",
                             Name = "YAMALUBE"
+                        });
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Welcome to our dirt bike parts section, your destination for all your off-road riding needs! Whether you're in need of replacement parts or looking to upgrade your dirt bike's performance, we've got you covered. Browse through our extensive collection of high-quality parts, including pistons, chains, sprockets, suspension components, and brake elements. Each product is carefully selected to ensure durability, reliability, and compatibility with a wide range of dirt bike models. With our comprehensive selection and competitive prices, maintaining and enhancing your dirt bike has never been easier. Shop now and get ready to take your off-road adventures to the next level!",
+                            Name = "Part"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Welcome to our motorcycle oils and lubricants section, your destination for keeping your bike running smoothly and efficiently! Whether you're a weekend cruiser or a seasoned racer, maintaining your motorcycle's performance is essential, and we're here to help. Explore our wide range of high-quality motor oils, suspension oils, coolants, and lubricants, meticulously crafted to meet the demands of your machine. From premium synthetic blends to specialized formulas designed for specific applications, we have everything you need to keep your engine running at its best. Our selection of lubricants ensures smooth operation of vital components, while our range of coolants helps regulate engine temperature for optimal performance. With our products, you can trust that your motorcycle is in good hands, allowing you to focus on the thrill of the ride. Browse our collection now and experience the difference that quality oils and lubricants can make for your motorcycle.",
+                            Name = "Oil"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Step into the world of riding equipment, where safety meets style! Our riding gear section is your go-to destination for all things moto-apparel and accessories. We've got you covered from head to toe. Explore our collection of outfits, helmets, protective gear, boots, and accessories designed to enhance your riding experience. Choose from a variety of helmets, each engineered for maximum safety and performance, while our selection of protective gear ensures you ride with confidence. Slip into a pair of premium riding boots, crafted for superior grip and stability, and accessorize with our range of must-have extras, from gloves to goggles. With our riding gear, you can ride in style while staying safe and comfortable on every journey. Explore our collection today and gear up for your next adventure on two wheels!",
+                            Name = "Gear"
                         });
                 });
 
@@ -2568,6 +3475,60 @@ namespace DirtX.Infrastructure.Migrations
                             Id = 33,
                             TitleId = 1,
                             Value = "Cotton"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            TitleId = 8,
+                            Value = "1L"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            TitleId = 8,
+                            Value = "4L"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            TitleId = 8,
+                            Value = "0.5L"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            TitleId = 8,
+                            Value = "0.75L"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            TitleId = 8,
+                            Value = "S"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            TitleId = 8,
+                            Value = "M"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            TitleId = 8,
+                            Value = "L"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            TitleId = 8,
+                            Value = "43"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            TitleId = 8,
+                            Value = "45"
                         });
                 });
 
@@ -2623,288 +3584,16 @@ namespace DirtX.Infrastructure.Migrations
                         {
                             Id = 7,
                             Title = "Viscosity"
-                        });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductSpecification", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpecificationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "SpecificationId");
-
-                    b.HasIndex("SpecificationId");
-
-                    b.ToTable("ProductsSpecifications");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            SpecificationId = 1
                         },
                         new
                         {
-                            ProductId = 1,
-                            SpecificationId = 8
+                            Id = 8,
+                            Title = "Package"
                         },
                         new
                         {
-                            ProductId = 1,
-                            SpecificationId = 17
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            SpecificationId = 1
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            SpecificationId = 7
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            SpecificationId = 19
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            SpecificationId = 2
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            SpecificationId = 15
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            SpecificationId = 15
-                        },
-                        new
-                        {
-                            ProductId = 5,
-                            SpecificationId = 6
-                        },
-                        new
-                        {
-                            ProductId = 5,
-                            SpecificationId = 16
-                        },
-                        new
-                        {
-                            ProductId = 6,
-                            SpecificationId = 9
-                        },
-                        new
-                        {
-                            ProductId = 7,
-                            SpecificationId = 2
-                        },
-                        new
-                        {
-                            ProductId = 9,
-                            SpecificationId = 3
-                        },
-                        new
-                        {
-                            ProductId = 9,
-                            SpecificationId = 14
-                        },
-                        new
-                        {
-                            ProductId = 11,
-                            SpecificationId = 1
-                        },
-                        new
-                        {
-                            ProductId = 11,
-                            SpecificationId = 3
-                        },
-                        new
-                        {
-                            ProductId = 11,
-                            SpecificationId = 16
-                        },
-                        new
-                        {
-                            ProductId = 12,
-                            SpecificationId = 13
-                        },
-                        new
-                        {
-                            ProductId = 13,
-                            SpecificationId = 4
-                        },
-                        new
-                        {
-                            ProductId = 14,
-                            SpecificationId = 1
-                        },
-                        new
-                        {
-                            ProductId = 14,
-                            SpecificationId = 15
-                        },
-                        new
-                        {
-                            ProductId = 15,
-                            SpecificationId = 6
-                        },
-                        new
-                        {
-                            ProductId = 15,
-                            SpecificationId = 26
-                        },
-                        new
-                        {
-                            ProductId = 16,
-                            SpecificationId = 6
-                        },
-                        new
-                        {
-                            ProductId = 16,
-                            SpecificationId = 25
-                        },
-                        new
-                        {
-                            ProductId = 17,
-                            SpecificationId = 24
-                        },
-                        new
-                        {
-                            ProductId = 18,
-                            SpecificationId = 23
-                        },
-                        new
-                        {
-                            ProductId = 19,
-                            SpecificationId = 27
-                        },
-                        new
-                        {
-                            ProductId = 20,
-                            SpecificationId = 24
-                        },
-                        new
-                        {
-                            ProductId = 21,
-                            SpecificationId = 6
-                        },
-                        new
-                        {
-                            ProductId = 24,
-                            SpecificationId = 1
-                        },
-                        new
-                        {
-                            ProductId = 25,
-                            SpecificationId = 1
-                        },
-                        new
-                        {
-                            ProductId = 27,
-                            SpecificationId = 4
-                        },
-                        new
-                        {
-                            ProductId = 27,
-                            SpecificationId = 6
-                        },
-                        new
-                        {
-                            ProductId = 29,
-                            SpecificationId = 31
-                        },
-                        new
-                        {
-                            ProductId = 30,
-                            SpecificationId = 30
-                        },
-                        new
-                        {
-                            ProductId = 31,
-                            SpecificationId = 29
-                        },
-                        new
-                        {
-                            ProductId = 33,
-                            SpecificationId = 30
-                        },
-                        new
-                        {
-                            ProductId = 35,
-                            SpecificationId = 30
-                        },
-                        new
-                        {
-                            ProductId = 36,
-                            SpecificationId = 10
-                        },
-                        new
-                        {
-                            ProductId = 38,
-                            SpecificationId = 16
-                        },
-                        new
-                        {
-                            ProductId = 39,
-                            SpecificationId = 16
-                        },
-                        new
-                        {
-                            ProductId = 40,
-                            SpecificationId = 9
-                        },
-                        new
-                        {
-                            ProductId = 40,
-                            SpecificationId = 10
-                        },
-                        new
-                        {
-                            ProductId = 40,
-                            SpecificationId = 15
-                        },
-                        new
-                        {
-                            ProductId = 40,
-                            SpecificationId = 32
-                        },
-                        new
-                        {
-                            ProductId = 41,
-                            SpecificationId = 12
-                        },
-                        new
-                        {
-                            ProductId = 41,
-                            SpecificationId = 15
-                        },
-                        new
-                        {
-                            ProductId = 41,
-                            SpecificationId = 32
-                        },
-                        new
-                        {
-                            ProductId = 43,
-                            SpecificationId = 16
-                        },
-                        new
-                        {
-                            ProductId = 44,
-                            SpecificationId = 12
-                        },
-                        new
-                        {
-                            ProductId = 45,
-                            SpecificationId = 10
+                            Id = 9,
+                            Title = "Size"
                         });
                 });
 
@@ -2973,6 +3662,185 @@ namespace DirtX.Infrastructure.Migrations
                     b.ToTable("TrailersRents");
                 });
 
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsReseller")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("ProfilePicture")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Garage", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("MotoCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Garages");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -3023,77 +3891,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -3196,652 +3993,9 @@ namespace DirtX.Infrastructure.Migrations
                     b.ToTable("ProductSpecification");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.AppUser", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.CartProduct", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("City")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Country")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsReseller")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PostCode")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasDiscriminator().HasValue("AppUser");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Gear", b =>
-                {
-                    b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
-
-                    b.Property<int>("GearSize")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GearType")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Gear");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 36,
-                            BrandId = 1,
-                            Description = "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.",
-                            ImageUrl = "https://i.ibb.co/rs2c1Pd/Gear-SM5-Helmet.jpg",
-                            IsAvailable = true,
-                            Price = 899.99m,
-                            StockQuantity = 2,
-                            Title = "SM5",
-                            GearSize = 1,
-                            GearType = 0
-                        },
-                        new
-                        {
-                            Id = 37,
-                            BrandId = 13,
-                            Description = "High-quality full-face racing helmet with aerodynamic design.",
-                            ImageUrl = "https://i.ibb.co/YkHnz4F/Gear-3-Series-Oneal.jpg",
-                            IsAvailable = true,
-                            Price = 279.99m,
-                            StockQuantity = 7,
-                            Title = "3-Series",
-                            GearSize = 0,
-                            GearType = 0
-                        },
-                        new
-                        {
-                            Id = 38,
-                            BrandId = 1,
-                            Description = "Durable protective vest for safe riding.",
-                            ImageUrl = "https://i.ibb.co/RhPrZB3/Gear-Bionic-Action.jpg",
-                            IsAvailable = true,
-                            Price = 319.99m,
-                            StockQuantity = 4,
-                            Title = "Bionic Action V2",
-                            GearSize = 2,
-                            GearType = 1
-                        },
-                        new
-                        {
-                            Id = 39,
-                            BrandId = 15,
-                            Description = "Knee protection that allows for some movement while protecting the knee cap and shin.",
-                            ImageUrl = "https://i.ibb.co/JrJSf2y/Gear-Asterix-Knee.jpg",
-                            IsAvailable = true,
-                            Price = 179.99m,
-                            StockQuantity = 10,
-                            Title = "AsteriX Knee Braces",
-                            GearSize = 1,
-                            GearType = 1
-                        },
-                        new
-                        {
-                            Id = 40,
-                            BrandId = 13,
-                            Description = "Limited anniversary edition jersey.",
-                            ImageUrl = "https://i.ibb.co/bRsz5gz/Gear-Jersey-50th.jpg",
-                            IsAvailable = true,
-                            Price = 79.99m,
-                            StockQuantity = 3,
-                            Title = "50th Anniversary Jersey",
-                            GearSize = 2,
-                            GearType = 2
-                        },
-                        new
-                        {
-                            Id = 41,
-                            BrandId = 15,
-                            Description = "A complete outfit of THOR's middle-class 'Prime Ace' line.",
-                            ImageUrl = "https://i.ibb.co/hcZKcsB/Gear-Thor-Outfit.jpg",
-                            IsAvailable = true,
-                            Price = 259.99m,
-                            StockQuantity = 5,
-                            Title = "Prime Ace Complete Outfit",
-                            GearSize = 1,
-                            GearType = 2
-                        },
-                        new
-                        {
-                            Id = 42,
-                            BrandId = 1,
-                            Description = "The most advanced riding boots on the market.",
-                            ImageUrl = "https://i.ibb.co/pzGDVTv/Gear-Tech10-Boots.jpg",
-                            IsAvailable = true,
-                            Price = 1099.99m,
-                            StockQuantity = 2,
-                            Title = "Tech10",
-                            GearSize = 1,
-                            GearType = 3
-                        },
-                        new
-                        {
-                            Id = 43,
-                            BrandId = 13,
-                            Description = "Motocross/Enduro boots with waterproof lining and reinforced toe.",
-                            ImageUrl = "https://i.ibb.co/34RRszr/Gear-Blitz-Thor.jpg",
-                            IsAvailable = true,
-                            Price = 559.99m,
-                            StockQuantity = 6,
-                            Title = "Blitz XR",
-                            GearSize = 2,
-                            GearType = 3
-                        },
-                        new
-                        {
-                            Id = 44,
-                            BrandId = 13,
-                            Description = "Motocross goggles with flippers.",
-                            ImageUrl = "https://i.ibb.co/sHzPG34/Gear-B20-Goggles.jpg",
-                            IsAvailable = true,
-                            Price = 129.99m,
-                            StockQuantity = 6,
-                            Title = "B20 Goggles",
-                            GearSize = 1,
-                            GearType = 4
-                        },
-                        new
-                        {
-                            Id = 45,
-                            BrandId = 13,
-                            Description = "Universal offroad gloves.",
-                            ImageUrl = "https://i.ibb.co/4Rf2r40/Gear-Element-Gloves.jpg",
-                            IsAvailable = true,
-                            Price = 39.99m,
-                            StockQuantity = 11,
-                            Title = "Element Gloves",
-                            GearSize = 3,
-                            GearType = 4
-                        });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Oil", b =>
-                {
-                    b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
-
-                    b.Property<int>("OilType")
-                        .HasColumnType("int");
-
-                    b.Property<double>("PackageSize")
-                        .HasColumnType("float");
-
-                    b.HasDiscriminator().HasValue("Oil");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 28,
-                            BrandId = 9,
-                            Description = "Premium 2-stroke oil for motorcycle engines.",
-                            ImageUrl = "https://i.ibb.co/Cm7S8dG/Oil-Cross-Power-2-T.jpg",
-                            IsAvailable = true,
-                            Price = 28.99m,
-                            StockQuantity = 30,
-                            Title = "2T Cross Power",
-                            OilType = 0,
-                            PackageSize = 1.0
-                        },
-                        new
-                        {
-                            Id = 29,
-                            BrandId = 10,
-                            Description = "Ester Core Premium 4-stroke oil for motorcycle engines.",
-                            ImageUrl = "https://i.ibb.co/9Nyc55B/Oil-Motul-300-V-1-L.jpg",
-                            IsAvailable = true,
-                            Price = 34.99m,
-                            StockQuantity = 12,
-                            Title = "300V 15W60 1L",
-                            OilType = 1,
-                            PackageSize = 1.0
-                        },
-                        new
-                        {
-                            Id = 30,
-                            BrandId = 10,
-                            Description = "Ester Core Premium 4-stroke oil for motorcycle engines.",
-                            ImageUrl = "https://i.ibb.co/3ywBxpQ/Oil-Motul-300-V-4-L.jpg",
-                            IsAvailable = true,
-                            Price = 114.99m,
-                            StockQuantity = 3,
-                            Title = "300V 10W40 4L",
-                            OilType = 1,
-                            PackageSize = 4.0
-                        },
-                        new
-                        {
-                            Id = 31,
-                            BrandId = 2,
-                            Description = "Lightweight fork oil for smoother suspension stroke.",
-                            ImageUrl = "https://i.ibb.co/W52svBD/Oil-Bel-Ray-Fork-5-W.jpg",
-                            IsAvailable = true,
-                            Price = 27.00m,
-                            StockQuantity = 8,
-                            Title = "Fork Oil 5W",
-                            OilType = 3,
-                            PackageSize = 0.5
-                        },
-                        new
-                        {
-                            Id = 32,
-                            BrandId = 9,
-                            Description = "Performance Line Oils Series is used by MXGP Factory teams.",
-                            ImageUrl = "https://i.ibb.co/f1fW4j5/Oil-Motorex-Shock-Oil.jpg",
-                            IsAvailable = true,
-                            Price = 29.99m,
-                            StockQuantity = 8,
-                            Title = "Performance Line: Shock Oil",
-                            OilType = 3,
-                            PackageSize = 0.75
-                        },
-                        new
-                        {
-                            Id = 33,
-                            BrandId = 19,
-                            Description = "The baseline 4-stroke engine oil for motorcycles.",
-                            ImageUrl = "https://i.ibb.co/2dRRzHy/Oil-Yamalube-10w40.jpg",
-                            IsAvailable = true,
-                            Price = 26.29m,
-                            StockQuantity = 14,
-                            Title = "YAMALUBE 10W40",
-                            OilType = 1,
-                            PackageSize = 1.5
-                        },
-                        new
-                        {
-                            Id = 34,
-                            BrandId = 10,
-                            Description = "The most efficient coolant on the market.",
-                            ImageUrl = "https://i.ibb.co/9rgYKcv/Oil-Motul-Antifreeze.jpg",
-                            IsAvailable = true,
-                            Price = 26.29m,
-                            StockQuantity = 14,
-                            Title = "AutoCool -35°C 1L",
-                            OilType = 4,
-                            PackageSize = 1.0
-                        },
-                        new
-                        {
-                            Id = 35,
-                            BrandId = 10,
-                            Description = "More throttle, less grinding gears.",
-                            ImageUrl = "https://i.ibb.co/zntBCFg/Oil-Transmission-Motul.jpg",
-                            IsAvailable = true,
-                            Price = 28.29m,
-                            StockQuantity = 4,
-                            Title = "TransOil Expert 10W40",
-                            OilType = 2,
-                            PackageSize = 1.0
-                        });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>
-                {
-                    b.HasBaseType("DirtX.Infrastructure.Data.Models.Products.Product");
-
-                    b.Property<int>("PartType")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Part");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BrandId = 17,
-                            Description = "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.",
-                            ImageUrl = "https://i.ibb.co/jTnS3W0/Part-High-Comp-Piston.jpg",
-                            IsAvailable = true,
-                            Price = 455.00m,
-                            StockQuantity = 11,
-                            Title = "High-Compression Forged Piston",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BrandId = 18,
-                            Description = "High-performance cast piston. Piston rings are not included.",
-                            ImageUrl = "https://i.ibb.co/m6fQKSx/Part-Forged-Piston.jpg",
-                            IsAvailable = true,
-                            Price = 325.00m,
-                            StockQuantity = 6,
-                            Title = "Cast Piston",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BrandId = 7,
-                            Description = "Protective cover for motorcycle engines made of titanium.",
-                            ImageUrl = "https://i.ibb.co/1RXqkVy/Part-Engine-Cover.png",
-                            IsAvailable = true,
-                            Price = 99.99m,
-                            StockQuantity = 4,
-                            Title = "Engine Clutch Cover",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BrandId = 3,
-                            Description = "Complete gasket set for top-end engine rebuilds and maintenance.",
-                            ImageUrl = "https://i.ibb.co/Yj4MJ6r/Part-Top-End-Gasket.jpg",
-                            IsAvailable = true,
-                            Price = 89.99m,
-                            StockQuantity = 31,
-                            Title = "Top-End Gasket Set",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BrandId = 3,
-                            Description = "Enhanced water pump cover for improved cooling efficiency.",
-                            ImageUrl = "https://i.ibb.co/ZHQ36hf/Part-Water-Pump-Cover.jpg",
-                            IsAvailable = true,
-                            Price = 87.79m,
-                            StockQuantity = 10,
-                            Title = "Water Pump Cover",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BrandId = 12,
-                            Description = "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.",
-                            ImageUrl = "https://i.ibb.co/dmkcV30/Part-Fuel-Injector.jpg",
-                            IsAvailable = true,
-                            Price = 289.99m,
-                            StockQuantity = 3,
-                            Title = "8-Point Fuel Injector",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BrandId = 17,
-                            Description = "A set of two high-quality intake valves that exceed OEM quality.",
-                            ImageUrl = "https://i.ibb.co/fG9XLdn/Part-Intake-Valves.jpg",
-                            IsAvailable = true,
-                            Price = 139.29m,
-                            StockQuantity = 7,
-                            Title = "Intake Valves Set",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BrandId = 18,
-                            Description = "Electric fuel pump for replacing the old one. Comes with all necessary components.",
-                            ImageUrl = "https://i.ibb.co/LnW1Y4k/Part-Fuel-Pump.jpg",
-                            IsAvailable = true,
-                            Price = 149.99m,
-                            StockQuantity = 12,
-                            Title = "Fuel Pump",
-                            PartType = 0
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BrandId = 16,
-                            Description = "Premium air filter for improved air flow and engine performance.",
-                            ImageUrl = "https://i.ibb.co/vqg672F/Part-Air-Filter.jpg",
-                            IsAvailable = true,
-                            Price = 24.49m,
-                            StockQuantity = 27,
-                            Title = "Air Filter",
-                            PartType = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BrandId = 6,
-                            Description = "High-quality oil filter for efficient filtration and engine longevity.",
-                            ImageUrl = "https://i.ibb.co/kG1KnVN/Part-Oil-Filter.jpg",
-                            IsAvailable = true,
-                            Price = 10.99m,
-                            StockQuantity = 19,
-                            Title = "Oil Filter",
-                            PartType = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            BrandId = 16,
-                            Description = "High-quality oil filter for efficient filtration and engine longevity.",
-                            ImageUrl = "https://i.ibb.co/V2qj6c0/Part-Oil-Filter-Cap.jpg",
-                            IsAvailable = true,
-                            Price = 54.29m,
-                            StockQuantity = 8,
-                            Title = "Aluminum Oil Filter Cap",
-                            PartType = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            BrandId = 16,
-                            Description = "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.",
-                            ImageUrl = "https://i.ibb.co/s1YdYwt/Part-Fuel-Filter-Tank.jpg",
-                            IsAvailable = true,
-                            Price = 50.99m,
-                            StockQuantity = 5,
-                            Title = "Fuel Filter (Gas Tank)",
-                            PartType = 1
-                        },
-                        new
-                        {
-                            Id = 13,
-                            BrandId = 5,
-                            Description = "Replacement brake pads offering reliable stopping performance.",
-                            ImageUrl = "https://i.ibb.co/tc2m4jh/Part-Brake-Pads.jpg",
-                            IsAvailable = true,
-                            Price = 35.89m,
-                            StockQuantity = 20,
-                            Title = "Sintered Front Brake Pads",
-                            PartType = 3
-                        },
-                        new
-                        {
-                            Id = 14,
-                            BrandId = 11,
-                            Description = "Comfortable and durable lever, made out of aluminum for improved control and comfort.",
-                            ImageUrl = "https://i.ibb.co/1RqcRGm/Part-Brake-Lever.jpg",
-                            IsAvailable = true,
-                            Price = 71.99m,
-                            StockQuantity = 14,
-                            Title = "Aluminum Brake Lever",
-                            PartType = 3
-                        },
-                        new
-                        {
-                            Id = 15,
-                            BrandId = 11,
-                            Description = "High-performance brake disc for superior stopping power.",
-                            ImageUrl = "https://i.ibb.co/DG6HpM4/Part-Front-Brake-Disc.jpg",
-                            IsAvailable = true,
-                            Price = 89.99m,
-                            StockQuantity = 1,
-                            Title = "Front Brake Disc",
-                            PartType = 3
-                        },
-                        new
-                        {
-                            Id = 16,
-                            BrandId = 11,
-                            Description = "High-performance brake disc for superior stopping power.",
-                            ImageUrl = "https://i.ibb.co/BNPMF26/Part-Rear-Brake-Disc.jpg",
-                            IsAvailable = true,
-                            Price = 77.29m,
-                            StockQuantity = 7,
-                            Title = "Rear Brake Disc",
-                            PartType = 3
-                        },
-                        new
-                        {
-                            Id = 17,
-                            BrandId = 14,
-                            Description = "Precision-engineered shock absorber for smooth ride experience.",
-                            ImageUrl = "https://i.ibb.co/LRQphRW/Part-Shock-Absorber.jpg",
-                            IsAvailable = true,
-                            Price = 799.19m,
-                            StockQuantity = 3,
-                            Title = "Shock Absorber",
-                            PartType = 4
-                        },
-                        new
-                        {
-                            Id = 18,
-                            BrandId = 14,
-                            Description = "Upgraded front fork springs for improved suspension response and handling. Set of two.",
-                            ImageUrl = "https://i.ibb.co/yyZK9tT/Part-Fork-Springs.jpg",
-                            IsAvailable = true,
-                            Price = 429.99m,
-                            StockQuantity = 5,
-                            Title = "Front Fork Springs",
-                            PartType = 4
-                        },
-                        new
-                        {
-                            Id = 19,
-                            BrandId = 8,
-                            Description = "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.",
-                            ImageUrl = "https://i.ibb.co/7jy1dvG/Part-Fork-Seals.jpg",
-                            IsAvailable = true,
-                            Price = 44.99m,
-                            StockQuantity = 18,
-                            Title = "Fork Seal Kit",
-                            PartType = 4
-                        },
-                        new
-                        {
-                            Id = 20,
-                            BrandId = 8,
-                            Description = "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.",
-                            ImageUrl = "https://i.ibb.co/LtFwYZ3/Part-KYB-Shock.jpg",
-                            IsAvailable = true,
-                            Price = 1404.49m,
-                            StockQuantity = 2,
-                            Title = "HI-C Shock Absorber",
-                            PartType = 4
-                        },
-                        new
-                        {
-                            Id = 21,
-                            BrandId = 14,
-                            Description = "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.",
-                            ImageUrl = "https://i.ibb.co/VCWrYtY/Part-Steering-Bearings.jpg",
-                            IsAvailable = true,
-                            Price = 125.50m,
-                            StockQuantity = 6,
-                            Title = "Steering Stem Bearing Kit",
-                            PartType = 4
-                        },
-                        new
-                        {
-                            Id = 22,
-                            BrandId = 4,
-                            Description = "Durable motorcycle chain for smooth power transfer.",
-                            ImageUrl = "https://i.ibb.co/9tCHFWY/Part-Chain.jpg",
-                            IsAvailable = true,
-                            Price = 119.99m,
-                            StockQuantity = 10,
-                            Title = "114-Links Chain",
-                            PartType = 2
-                        },
-                        new
-                        {
-                            Id = 23,
-                            BrandId = 4,
-                            Description = "Durable motorcycle chain for smooth power transfer.",
-                            ImageUrl = "https://i.ibb.co/9tCHFWY/Part-Chain.jpg",
-                            IsAvailable = true,
-                            Price = 129.99m,
-                            StockQuantity = 7,
-                            Title = "120-Links Chain",
-                            PartType = 2
-                        },
-                        new
-                        {
-                            Id = 24,
-                            BrandId = 4,
-                            Description = "Quality rear sprocked made out of aluminum.",
-                            ImageUrl = "https://i.ibb.co/xGz2dVn/Part-Rear-Sprocket.png",
-                            IsAvailable = true,
-                            Price = 89.79m,
-                            StockQuantity = 4,
-                            Title = "52-Teeth Rear Sprocket",
-                            PartType = 2
-                        },
-                        new
-                        {
-                            Id = 25,
-                            BrandId = 4,
-                            Description = "Standart-sized front sprocked with self-cleaning properties.",
-                            ImageUrl = "https://i.ibb.co/9pKtqn6/Part-Front-Sprocket.jpg",
-                            IsAvailable = true,
-                            Price = 24.19m,
-                            StockQuantity = 13,
-                            Title = "13-Teeth Front Sprocket",
-                            PartType = 2
-                        },
-                        new
-                        {
-                            Id = 26,
-                            BrandId = 7,
-                            Description = "Complete clutch kit for enhanced performance and durability.",
-                            ImageUrl = "https://i.ibb.co/y0KwgV5/Part-Clutch-Kit.jpg",
-                            IsAvailable = true,
-                            Price = 2149.99m,
-                            StockQuantity = 3,
-                            Title = "Complete Clutch Kit",
-                            PartType = 2
-                        },
-                        new
-                        {
-                            Id = 27,
-                            BrandId = 17,
-                            Description = "Clutch plate kit with friction plates and steel plates for smooth engagement.",
-                            ImageUrl = "https://i.ibb.co/9qGztRG/Part-Clutch-Plates.jpg",
-                            IsAvailable = true,
-                            Price = 339.69m,
-                            StockQuantity = 8,
-                            Title = "Clutch Plate Kit",
-                            PartType = 2
-                        });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.CartProduct", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Orders.Cart", "Cart")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.Cart", "Cart")
                         .WithMany("CartProducts")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3858,18 +4012,45 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Garage", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.ProductSpecification", b =>
                 {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.AppUser", "User")
-                        .WithOne("Garage")
-                        .HasForeignKey("DirtX.Infrastructure.Data.Models.Garage", "UserId")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Specification", "Specification")
+                        .WithMany()
+                        .HasForeignKey("SpecificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Specification");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.Wishlist", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcyclePart", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcycleProduct", b =>
                 {
                     b.HasOne("DirtX.Infrastructure.Data.Models.Motorcycles.Motorcycle", "Motorcycle")
                         .WithMany("MotorcycleParts")
@@ -3877,15 +4058,15 @@ namespace DirtX.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Part", "Part")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
                         .WithMany("MotorcycleParts")
-                        .HasForeignKey("PartId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Motorcycle");
 
-                    b.Navigation("Part");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
@@ -3896,7 +4077,7 @@ namespace DirtX.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Garage", null)
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.Garage", null)
                         .WithMany("Motorcycles")
                         .HasForeignKey("GarageUserId");
 
@@ -3962,51 +4143,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Year");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Cart", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.AppUser", "User")
-                        .WithMany("Carts")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Order", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Orders.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DirtX.Infrastructure.Data.Models.AppUser", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Wishlist", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
-                        .WithMany("Wishlists")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DirtX.Infrastructure.Data.Models.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
                 {
                     b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductBrand", "Brand")
@@ -4015,7 +4151,15 @@ namespace DirtX.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.ProductType", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Brand");
+
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Specification", b =>
@@ -4029,25 +4173,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Title");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.ProductSpecification", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Specification", "Specification")
-                        .WithMany()
-                        .HasForeignKey("SpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Specification");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
                 {
                     b.HasOne("DirtX.Infrastructure.Data.Models.Trailers.Trailer", "Trailer")
@@ -4056,11 +4181,48 @@ namespace DirtX.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DirtX.Infrastructure.Data.Models.AppUser", "User")
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("Trailer");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Cart", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
+                        .WithMany("Carts")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Garage", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
+                        .WithOne("Garage")
+                        .HasForeignKey("DirtX.Infrastructure.Data.Models.Users.Garage", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Order", b =>
+                {
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Cart");
 
                     b.Navigation("User");
                 });
@@ -4076,7 +4238,7 @@ namespace DirtX.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4085,7 +4247,7 @@ namespace DirtX.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4100,7 +4262,7 @@ namespace DirtX.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4109,7 +4271,7 @@ namespace DirtX.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4131,29 +4293,21 @@ namespace DirtX.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Garage", b =>
-                {
-                    b.Navigation("Motorcycles");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
                 {
                     b.Navigation("MotorcycleParts");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Orders.Cart", b =>
-                {
-                    b.Navigation("CartProducts");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Product", b =>
                 {
                     b.Navigation("CartProducts");
 
+                    b.Navigation("MotorcycleParts");
+
                     b.Navigation("Wishlists");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.AppUser", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.AppUser", b =>
                 {
                     b.Navigation("Carts");
 
@@ -4162,9 +4316,14 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Part", b =>
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Cart", b =>
                 {
-                    b.Navigation("MotorcycleParts");
+                    b.Navigation("CartProducts");
+                });
+
+            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Garage", b =>
+                {
+                    b.Navigation("Motorcycles");
                 });
 #pragma warning restore 612, 618
         }

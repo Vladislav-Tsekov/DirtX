@@ -1,4 +1,4 @@
-﻿namespace DirtX.Web.Models.Part;
+﻿namespace DirtX.Web.Models;
 using DirtX.Infrastructure.Data.Models.Products;
 
 public class CompatiblePartsViewModel
@@ -7,5 +7,5 @@ public class CompatiblePartsViewModel
     public string Model { get; set; }
     public string Displacement { get; set; }
     public string Year { get; set; }
-    public IEnumerable<Part> Parts { get; set; }
+    public IEnumerable<Product> Parts { get; set; }
 }

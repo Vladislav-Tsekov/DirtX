@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Infrastructure.Data.Models
 {
-    public class MotorcyclePart
+    public class MotorcycleProduct
     {
         [ForeignKey(nameof(MotorcycleId))]
         public Motorcycle Motorcycle { get; set; }
         public int MotorcycleId { get; set; }
 
-        [ForeignKey(nameof(PartId))]
-        public Part Part { get; set; }
-        public int PartId { get; set; }
+        [ForeignKey(nameof(ProductId))]
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
     }
 }

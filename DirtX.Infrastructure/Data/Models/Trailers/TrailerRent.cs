@@ -24,6 +24,7 @@ namespace DirtX.Infrastructure.Data.Models.Trailers
         [Required]
         public DateTime StartDate { get; set; }
 
+        [Required]
         public DateTime ReturnDate { get; set; }
 
         [Required]

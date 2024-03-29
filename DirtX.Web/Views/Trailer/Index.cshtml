@@ -23,7 +23,7 @@
                     Cost Per Day: $@trailer.CostPerDay
                 </div>
                 <div style="margin-top: 10px;">
-                    <form asp-controller="Trailer" asp-action="CheckAvailability" method="post">
+                    <form asp-controller="Trailer" asp-action="Availability" method="get">
                         <input type="hidden" name="trailerId" value="@trailer.Id" />
                         <button type="submit" style="font-weight: bold;">Check Availability</button>
                     </form>

@@ -31,3 +31,22 @@ else
 {
     <p>No rents found for this trailer.</p>
 }
+
+<script>
+    var today = new Date().toISOString().split('T')[0];
+
+    document.getElementById('StartDate').setAttribute('min', today);
+    document.getElementById('ReturnDate').setAttribute('min', today);
+
+    function validateForm() {
+        var startDate = document.getElementById('StartDate').value;
+        var returnDate = document.getElementById('ReturnDate').value;
+
+        if (startDate < today || returnDate < today) {
+            alert('Please select dates starting from today or later.');
+            return false;
+        }
+
+        return true;
+    }
+</script>

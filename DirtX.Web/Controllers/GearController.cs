@@ -1,4 +1,5 @@
-﻿using DirtX.Core.Interfaces;
+﻿using DirtX.Core.Enums;
+using DirtX.Core.Interfaces;
 using DirtX.Core.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
@@ -38,11 +39,26 @@ namespace DirtX.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Category(string category)
+        public async Task<IActionResult> Category(string category, ProductSorting sorting = ProductSorting.Name_Ascending)
         {
             if (Enum.TryParse(category, out ProductCategory currCategory))
             {
                 List<Product> gears = await productService.GetAllProductsByCategoryAsync(currCategory);
+
+                switch (sorting)
+                {
+                    case ProductSorting.Name_Descending:
+                        gears = gears.OrderByDescending(o => o.Title).ToList();
+                        break;
+                    case ProductSorting.Price_Ascending:
+                        gears = gears.OrderBy(o => o.Price).ToList();
+                        break;
+                    case ProductSorting.Price_Descending:
+                        gears = gears.OrderByDescending(o => o.Price).ToList();
+                        break;
+                    default:
+                        break;
+                }
 
                 //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
 

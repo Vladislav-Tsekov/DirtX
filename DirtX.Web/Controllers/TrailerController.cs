@@ -102,6 +102,7 @@ namespace DirtX.Web.Controllers
                 }
             }
 
+            //TODO - MUST LINK WITH USER AND REDIRECT TO PROFILE / RENTS OR JUST SEND AN ERROR
             return RedirectToAction("Availability", new { trailerId = model.TrailerId });
         }
     }

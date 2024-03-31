@@ -1,58 +1,11 @@
 ﻿@model ProductBrandViewModel
 
-<style>
-    .brand-container {
-        display: flex;
-        align-items: flex-start;
-    }
+<head>
+    <link rel="stylesheet" href="~/css/product-brand.css" />
+</head>
 
-    .brand-image {
-        border: 1px solid #ccc;
-        width: 150px;
-        height: 150px;
-        margin-right: 20px;
-    }
-
-    .brand-details {
-        flex: 1;
-    }
-
-    .gears-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .gear {
-        width: calc(33.33% - 20px);
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
-</style>
-
-<div class="brand-container">
-    <div class="brand-image">
-        <img src="@Model.ImageUrl" alt="@Model.Name" style="width: 150px; height: 150px; border: solid 1px black" />
-    </div>
-    <div class="brand-details">
-        <h4>@Model.Name</h4>
-        <p>@Model.Description</p>
-    </div>
-</div>
-
-<hr />
-
-@*TODO - SECTIONS?*@
+<partial name="_BrandDetailsPartial" model="Model" />
 
 <h1>Products from this manufacturer:</h1>
 
-<div class="gears-container">
-    @foreach (var gear in Model.Products)
-    {
-        <div class="oil">
-            <h2>@gear.Title</h2>
-            <p>@gear.Description</p>
-            <p>Price: @gear.Price</p>
-            <a href="@Url.Action("Details", "Gear", new { id = gear.Id })">View Details</a>
-        </div>
-    }
-</div>
+<partial name="_ProductListPartial" model="Model" />

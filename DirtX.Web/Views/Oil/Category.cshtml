@@ -1,53 +1,9 @@
 ﻿@model ProductCategoryViewModel
 
-<div style="display: flex; align-items: center;">
-    <h1>@Model.ProductCategory.Replace("_", " ")</h1>
+<head>
+    <link rel="stylesheet" href="~/css/product-category.css" />
+</head>
 
-    <form method="get" asp-action="Category" style="margin-left: auto;">
-        <input type="hidden" name="category" value="@Model.ProductCategory" />
-        <select name="sorting">
-            <option value="Name_Ascending">Name (A-Z)</option>
-            <option value="Name_Descending">Name (Z-A)</option>
-            <option value="Price_Ascending">Price (Low to High)</option>
-            <option value="Price_Descending">Price (High to Low)</option>
-        </select>
-        <button type="submit">Sort</button>
-    </form>
-</div>
+<partial name="_ProductSortingPartial" model="Model" />
 
-@foreach (var oil in Model.Products)
-{
-    <div>
-        <h2>@oil.Title</h2>
-        <p>@oil.Description</p>
-        <p>Price: @oil.Price</p>
-        <a href="@Url.Action("Details", "Oil", new { id = oil.Id })">View Details</a>
-    </div>
-}
-
-<style>
-    select[name="sorting"] {
-        padding: 8px;
-        border: 1px solid black;
-        border-radius: 4px;
-        font-size: 14px;
-        background-color: white;
-        margin-right: 10px; 
-    }
-
-    button[type="submit"] {
-        padding: 8px 16px;
-        border: solid 1px black;
-        border-radius: 4px;
-        background-color: darkblue;
-        color: white;
-        font-size: 14px;
-        cursor: pointer;
-    }
-
-    button[type="submit"]:hover {
-        background-color: darkorange;
-        color: black;
-        border: solid 1px black;
-    }
-</style>
+<partial name="_ProductCategoryPartial" model="Model" />

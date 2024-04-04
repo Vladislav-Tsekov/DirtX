@@ -1,0 +1,24 @@
+﻿select[name="sorting"] {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    padding: 8px 16px;
+    border: solid 1px black;
+    border-radius: 4px;
+    background-color: darkblue;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: darkorange;
+    color: black;
+    border: solid 1px black;
+}

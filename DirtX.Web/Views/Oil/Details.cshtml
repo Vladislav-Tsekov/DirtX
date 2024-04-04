@@ -1,20 +1,7 @@
 ﻿@model ProductDetailsViewModel
 
-<h3>PART DETAILS</h3>
+<head>
+    <link rel="stylesheet" href="~/css/product-details.css" />
+</head>
 
-<div>
-    <h4>Brand: @Model.BrandName</h4>
-    <h4>Title: @Model.Title</h4>
-    <h4>Price: @Model.Price</h4>
-    <h4>Description: @Model.Description</h4>
-    @if (Model.Specs.Any())
-    {
-        <h4>
-            Properties: @foreach (var spec in Model.Specs)
-            {
-                <p>@spec.Specification.Title.Title - @spec.Specification.Value</p>
-            }
-        </h4>
-    }
-    <img src="@Model.ImageUrl" style="width: 75px; height: 75px;" />
-</div>
+<partial name="_ProductDetailsPartial" model="Model" />

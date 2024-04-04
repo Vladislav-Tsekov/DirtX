@@ -13,8 +13,8 @@
         Four_Stroke,
         Transmission,
         Fork_and_Shock,
-        // RIDING GEAR
         Coolant,
+        // RIDING GEAR
         Helmet,
         Protective_Gear,
         Outfit,

@@ -1,0 +1,26 @@
+.brand-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.brand-image {
+    border: 1px solid #ccc;
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.brand-details {
+    flex: 1;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: calc(33.33% - 20px);
+    margin-right: 20px;
+    margin-bottom: 20px;
+}

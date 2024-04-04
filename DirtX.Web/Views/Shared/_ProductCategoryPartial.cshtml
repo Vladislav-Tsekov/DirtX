@@ -1,0 +1,25 @@
+﻿@model ProductCategoryViewModel
+
+<div class="products-container">
+    @foreach (var product in Model.Products)
+    {
+        <div class="product">
+            <h2>@product.Title</h2>
+            <p>@product.Description</p>
+            <p>Price: @product.Price</p>
+
+            @if (product.TypeId == 1)
+            {
+                <a href="@Url.Action("Details", "Part", new { id = product.Id })">View Details</a>
+            }
+            else if (product.TypeId == 2)
+            {
+                <a href="@Url.Action("Details", "Oil", new { id = product.Id })">View Details</a>
+            }
+            else if (product.TypeId == 3)
+            {
+                <a href="@Url.Action("Details", "Gear", new { id = product.Id })">View Details</a>
+            }
+        </div>
+    }
+</div>

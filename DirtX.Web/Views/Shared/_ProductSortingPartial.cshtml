@@ -1,0 +1,14 @@
+﻿<div style="display: flex; align-items: center;">
+    <h1>@Model.ProductCategory.Replace("_", " ")</h1>
+
+    <form method="get" asp-action="Category" style="margin-left: auto;">
+        <input type="hidden" name="category" value="@Model.ProductCategory" />
+        <select name="sorting">
+            <option value="Name_Ascending">Name (A-Z)</option>
+            <option value="Name_Descending">Name (Z-A)</option>
+            <option value="Price_Ascending">Price (Low to High)</option>
+            <option value="Price_Descending">Price (High to Low)</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+</div>

@@ -106,11 +106,11 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new Specification { Id = 35, TitleId = 8, Value = "4L" },
                 new Specification { Id = 36, TitleId = 8, Value = "0.5L" },
                 new Specification { Id = 37, TitleId = 8, Value = "0.75L" },
-                new Specification { Id = 38, TitleId = 8, Value = "S" },
-                new Specification { Id = 39, TitleId = 8, Value = "M" },
-                new Specification { Id = 40, TitleId = 8, Value = "L" },
-                new Specification { Id = 41, TitleId = 8, Value = "43" },
-                new Specification { Id = 42, TitleId = 8, Value = "45" }
+                new Specification { Id = 38, TitleId = 9, Value = "S" },
+                new Specification { Id = 39, TitleId = 9, Value = "M" },
+                new Specification { Id = 40, TitleId = 9, Value = "L" },
+                new Specification { Id = 41, TitleId = 9, Value = "43" },
+                new Specification { Id = 42, TitleId = 9, Value = "45" }
             );
         }
 

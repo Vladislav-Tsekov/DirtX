@@ -6,12 +6,4 @@
 
 <partial name="_ProductSortingPartial" model="Model" />
 
-@foreach (var part in Model.Products)
-{
-    <div>
-        <h2>@part.Title</h2>
-        <p>@part.Description</p>
-        <p>Price: @part.Price</p>
-        <a href="@Url.Action("Details", "Part", new { id = part.Id })">View Details</a>
-    </div>
-}
+<partial name="_BrandCategoryPartial" model="Model" />

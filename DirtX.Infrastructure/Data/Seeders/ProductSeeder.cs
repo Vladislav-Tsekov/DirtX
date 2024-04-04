@@ -129,8 +129,8 @@ namespace DirtX.Infrastructure.Data.Seeders
 
                 // Filter
                 new Product { Id = 9, BrandId = 16, TypeId = 1, Title = "Air Filter", Price = 24.49m, Description = "Premium air filter for improved air flow and engine performance.", IsAvailable = true, StockQuantity = 27, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/vqg672F/Product-Air-Filter.jpg" },
-                new Product { Id = 10, BrandId = 6, TypeId = 1, Title = "Product Filter", Price = 10.99m, Description = "High-quality oil filter for efficient filtration and engine longevity.", IsAvailable = true, StockQuantity = 19, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg" },
-                new Product { Id = 11, BrandId = 16, TypeId = 1, Title = "Aluminum Product Filter Cap", Price = 54.29m, Description = "High-quality oil filter for efficient filtration and engine longevity.", IsAvailable = true, StockQuantity = 8, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg" },
+                new Product { Id = 10, BrandId = 6, TypeId = 1, Title = "Oil Filter", Price = 10.99m, Description = "High-quality oil filter for efficient filtration and engine longevity.", IsAvailable = true, StockQuantity = 19, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg" },
+                new Product { Id = 11, BrandId = 16, TypeId = 1, Title = "Oil Filter Cap", Price = 54.29m, Description = "High-quality oil filter for efficient filtration and engine longevity.", IsAvailable = true, StockQuantity = 8, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg" },
                 new Product { Id = 12, BrandId = 16, TypeId = 1, Title = "Fuel Filter (Gas Tank)", Price = 50.99m, Description = "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.", IsAvailable = true, StockQuantity = 5, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/s1YdYwt/Product-Fuel-Filter-Tank.jpg" },
 
                 // Brake

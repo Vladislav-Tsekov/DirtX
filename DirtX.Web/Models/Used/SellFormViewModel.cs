@@ -38,7 +38,4 @@ public class SellFormViewModel
     public IFormFile ImageFile { get; set; }
 
     public IEnumerable<SelectListItem> Makes { get; set; }
-    //public IEnumerable<SelectListItem> Models { get; set; }
-    //public IEnumerable<SelectListItem> Displacements { get; set; }
-    //public IEnumerable<SelectListItem> Years { get; set; }
 }

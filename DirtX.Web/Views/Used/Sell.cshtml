@@ -148,7 +148,7 @@
                 yearDropdown.empty();
                 yearDropdown.append($('<option></option>').attr('value', '').text('Year'));
 
-                $.getJSON('@Url.Action("GetMotorcycle", "Used")', { make: selectedMake }, function (models) {
+                $.getJSON('@Url.Action("GetModel", "Used")', { makeId: selectedMake }, function (models) {
                     $.each(models, function (index, model) {
                         modelDropdown.append($('<option></option>').attr('value', model.value).text(model.text));
                     });
@@ -165,7 +165,7 @@
                 displacementDropdown.empty();
                 displacementDropdown.append($('<option></option>').attr('value', '').text('Displacement'));
 
-                $.getJSON('@Url.Action("GetDisplacement", "Used")', { make: selectedMake, model: selectedModel }, function (displacements) {
+                $.getJSON('@Url.Action("GetDisplacement", "Used")', { makeId: selectedMake, modelId: selectedModel }, function (displacements) {
                     $.each(displacements, function (index, displacement) {
                         displacementDropdown.append($('<option></option>').attr('value', displacement.value).text(displacement.text));
                     });
@@ -183,7 +183,7 @@
                 yearDropdown.empty();
                 yearDropdown.append($('<option></option>').attr('value', '').text('Year'));
 
-                $.getJSON('@Url.Action("GetYear", "Used")', { make: selectedMake, model: selectedModel, displacement: selectedDisplacement }, function (years) {
+                $.getJSON('@Url.Action("GetYear", "Used")', { makeId: selectedMake, modelId: selectedModel, displacementId: selectedDisplacement }, function (years) {
                     $.each(years, function (index, year) {
                         yearDropdown.append($('<option></option>').attr('value', year.value).text(year.text));
                     });

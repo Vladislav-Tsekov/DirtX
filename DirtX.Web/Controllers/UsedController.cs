@@ -1,4 +1,5 @@
-﻿using DirtX.Core.Validation;
+﻿using DirtX.Core.Interfaces;
+using DirtX.Core.Validation;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
@@ -6,29 +7,23 @@ using DirtX.Web.Models.Home;
 using DirtX.Web.Models.Used;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Web.Controllers
 {
     public class UsedController : Controller
     {
         //private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext context;
+        private readonly IMotorcycleService motorcycleService;
 
-        public UsedController(ApplicationDbContext _context/*ILogger<HomeController> logger*/)
+        public UsedController(ApplicationDbContext _context/*ILogger<HomeController> logger*/, IMotorcycleService _motorcycleService)
         {
             //_logger = logger;
-            context = _context;
+            motorcycleService = _motorcycleService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var usedMotorcycles = await context.UsedMotorcycles
-                .Include(um => um.Make)
-                .Include(um => um.Model)
-                .Include(um => um.Year)
-                .Include(um => um.Displacement)
-                .ToListAsync();
+            List<UsedMotorcycle> usedMotorcycles = await motorcycleService.GetAllUsedMotorcyclesAsync();
 
             List<UsedMotoViewModel> models = usedMotorcycles.Select(m => new UsedMotoViewModel
             {
@@ -48,16 +43,73 @@ namespace DirtX.Web.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Details(int id) 
+        {
+            //TODO - FIXE WHEN SERVICE IS IMPLEMENTED
+            //TODO - LIMIT IMAGE SIZE WHEN OPENING THE VIEW
+            //var motorcycleDetails = await usedService.GetMotorcycleDetailsById(id);
+
+            UsedMotorcycle motoDetails = await motorcycleService.GetUsedMotorcycleAsync(id);
+
+            if (motoDetails == null)
+            {
+                return NotFound(); 
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new UsedMotoViewModel
+            {
+                Make = motoDetails.Make.Title,
+                Model = motoDetails.Model.Title,
+                Displacement = motoDetails.Displacement.Volume,
+                Year = motoDetails.Year.ManufactureYear,
+                Image = motoDetails.Image,
+                Province = motoDetails.Province.ToString(),
+                Description = motoDetails.Description,
+                Price = motoDetails.Price,
+                Contact = motoDetails.Contact
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Sell()
         {
             var viewModel = new SellFormViewModel
             {
-                Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
-                //Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
-                //Years = await context.Years.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.ManufactureYear.ToString() }).ToListAsync(),
+                Makes = await motorcycleService.GetMotorcycleMake()
             };
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetModel(int makeId)
+        {
+            List<SelectListItem> models = await motorcycleService.GetMotorcycleModel(makeId);
+
+            return Json(models);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetDisplacement(int makeId, int modelId)
+        {
+            List<SelectListItem> displacements = await motorcycleService.GetMotorcycleDisplacement(makeId, modelId);
+
+            return Json(displacements);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetYear(int makeId, int modelId, int displacementId)
+        {
+            var years = await motorcycleService.GetMotorcycleYears(makeId, modelId, displacementId);
+
+            return Json(years);
         }
 
         [HttpPost]
@@ -94,88 +146,9 @@ namespace DirtX.Web.Controllers
                 Contact = model.Contact
             };
 
-            context.UsedMotorcycles.Add(usedMotorcycle);
-            await context.SaveChangesAsync();
+            await motorcycleService.AddUsedMotorcycleAsync(usedMotorcycle);
 
             return RedirectToAction("Index", "Used");
-        }
-
-        public async Task<IActionResult> Details(int id) 
-        {
-            //TODO - FIXE WHEN SERVICE IS IMPLEMENTED
-            //TODO - LIMIT IMAGE SIZE WHEN OPENING THE VIEW
-            //var motorcycleDetails = await usedService.GetMotorcycleDetailsById(id);
-
-            UsedMotorcycle motoDetails = await context.UsedMotorcycles
-                .Include(um => um.Make)
-                .Include(um => um.Model)
-                .Include(um => um.Year)
-                .Include(um => um.Displacement)
-                .Where(um => um.Id == id).FirstOrDefaultAsync();
-
-            if (motoDetails == null)
-            {
-                return NotFound(); 
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return NotFound();
-            }
-
-            var viewModel = new UsedMotoViewModel
-            {
-                Make = motoDetails.Make.Title,
-                Model = motoDetails.Model.Title,
-                Displacement = motoDetails.Displacement.Volume,
-                Year = motoDetails.Year.ManufactureYear,
-                Image = motoDetails.Image,
-                Province = motoDetails.Province.ToString(),
-                Description = motoDetails.Description,
-                Price = motoDetails.Price,
-                Contact = motoDetails.Contact
-            };
-
-            return View(viewModel);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetMotorcycle(int make)
-        {
-            var motorcycles = await context.Motorcycles
-                .Include(m => m.Model)
-                .Where(m => m.MakeId == make)
-                .Select(m => m.Model)
-                .Distinct()
-                .ToListAsync();
-
-            var makesAndModels = motorcycles.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title });
-
-            return Json(makesAndModels);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetDisplacement(int make, int model)
-        {
-            var displacements = await context.Motorcycles
-                .Where(m => m.MakeId == make && m.ModelId == model)
-                .Select(m => new SelectListItem { Value = m.DisplacementId.ToString(), Text = m.Displacement.Volume.ToString() })
-                .Distinct()
-                .ToListAsync();
-
-            return Json(displacements);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetYear(int make, int model, int displacement)
-        {
-            var years = await context.Motorcycles
-                .Where(m => m.MakeId == make && m.ModelId == model && m.DisplacementId == displacement)
-                .Select(m => new SelectListItem { Value = m.YearId.ToString(), Text = m.Year.ManufactureYear.ToString() })
-                .Distinct()
-                .ToListAsync();
-
-            return Json(years);
         }
     }
 }

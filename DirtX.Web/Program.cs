@@ -37,6 +37,8 @@ builder.Services.AddControllersWithViews();
 //CUSTOM SERVICES
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
+builder.Services.AddScoped<ITrailerService, TrailerService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,44 @@
+﻿.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.selector-container {
+    background-image: url('https://www.cycleworld.com/resizer/2ckPNGc3p52eW-eR5t78ZNu702I=/arc-photo-octane/arc3-prod/public/TDYD7PXIXRANHC7BAIY3PAL56Y.jpg');
+    background-size: cover;
+    background-position: center;
+    border: black 1px solid;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-field {
+    width: 150px;
+    padding-right: 30px;
+    background-image: url('https://i.ibb.co/pXFZPR7/drop-down-arrow-4.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    box-sizing: border-box;
+}
+
+#submitButton {
+    background-color: darkblue;
+    border-color: white;
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+    #submitButton:hover {
+        background-color: darkorange;
+        border-color: black;
+        color: black;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }

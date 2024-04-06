@@ -46,6 +46,7 @@ namespace DirtX.Core.Services
         public async Task<List<SelectListItem>> GetMotorcycleMake()
         {
             return await context.Makes
+                .AsNoTracking()
                 .Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title })
                 .ToListAsync();
         }
@@ -53,6 +54,7 @@ namespace DirtX.Core.Services
         public async Task<List<SelectListItem>> GetMotorcycleModel(int makeId)
         {
             return await context.Motorcycles
+                .AsNoTracking()
                 .Where(m => m.MakeId == makeId)
                 .Select(m => new SelectListItem { Value = m.ModelId.ToString(), Text = m.Model.Title.ToString() })
                 .Distinct()
@@ -62,6 +64,7 @@ namespace DirtX.Core.Services
         public async Task<List<SelectListItem>> GetMotorcycleDisplacement(int makeId, int modelId)
         {
             return await context.Motorcycles
+                .AsNoTracking()
                 .Where(m => m.MakeId == makeId && m.ModelId == modelId)
                 .Select(m => new SelectListItem { Value = m.DisplacementId.ToString(), Text = m.Displacement.Volume.ToString() })
                 .Distinct()
@@ -71,6 +74,7 @@ namespace DirtX.Core.Services
         public async Task<List<SelectListItem>> GetMotorcycleYears(int makeId, int modelId, int displacementId)
         {
             return await context.Motorcycles
+                .AsNoTracking()
                 .Where(m => m.MakeId == makeId && m.ModelId == modelId && m.DisplacementId == displacementId)
                 .Select(m => new SelectListItem { Value = m.YearId.ToString(), Text = m.Year.ManufactureYear.ToString() })
                 .Distinct()

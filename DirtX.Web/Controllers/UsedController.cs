@@ -3,7 +3,6 @@ using DirtX.Core.Validation;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
-using DirtX.Web.Models.Home;
 using DirtX.Web.Models.Used;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -80,12 +79,12 @@ namespace DirtX.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Sell()
         {
-            var viewModel = new SellFormViewModel
+            var makes = new SellFormViewModel
             {
                 Makes = await motorcycleService.GetMotorcycleMake()
             };
 
-            return View(viewModel);
+            return View(makes);
         }
 
         [HttpGet]

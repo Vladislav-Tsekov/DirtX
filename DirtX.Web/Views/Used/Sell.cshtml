@@ -1,5 +1,9 @@
 ﻿@model SellFormViewModel
 
+<head>
+    <link rel="stylesheet" href="~/css/used-sell.css" />
+</head>
+
 <h1>Sell Your Motorcycle</h1>
 <form asp-action="Sell" asp-controller="Used" method="post" enctype="multipart/form-data">
     <div class="container">
@@ -86,45 +90,6 @@
         </div>
     </div>
 </form>
-
-<style>
-    .form-control {
-        box-sizing: border-box;
-    }
-
-    #dropdown {
-        background-image: url('https://i.ibb.co/pXFZPR7/drop-down-arrow-4.png');
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        background-size: 20px;
-    }
-
-    .form-control:focus {
-        border-color: darkorange;
-        box-shadow: blue;
-    }
-
-    .container {
-        margin-top: 3px;
-        margin-bottom: 20px;
-    }
-
-    .btn-primary {
-        margin-top: 20px;
-        background-color: darkblue;
-        border-color: white;
-        color: white;
-        font-weight: bold;
-    }
-
-    .btn-primary:hover {
-        background-color: darkorange;
-        border-color: black;
-        color: black;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
-</style>
 
 @section scripts {
     <script>

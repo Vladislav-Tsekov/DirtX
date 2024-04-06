@@ -1,4 +1,4 @@
-﻿namespace DirtX.Web.Models.Home;
+﻿namespace DirtX.Web.Models.Used;
 
 using DirtX.Core.Validation;
 using DirtX.Infrastructure.Data.Models.Enums;

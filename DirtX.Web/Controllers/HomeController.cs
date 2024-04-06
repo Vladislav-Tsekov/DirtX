@@ -1,9 +1,8 @@
-﻿using DirtX.Core.Models;
+﻿using DirtX.Core.Interfaces;
+using DirtX.Core.Models;
 using DirtX.Infrastructure.Data;
 using DirtX.Web.Models.Home;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DirtX.Web.Controllers
@@ -11,57 +10,43 @@ namespace DirtX.Web.Controllers
     public class HomeController : Controller
     {
         //private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext context;
+        private readonly IMotorcycleService motorcycleService;
 
-        public HomeController(ApplicationDbContext _context/*ILogger<HomeController> logger*/)
+        public HomeController(ApplicationDbContext _context/*ILogger<HomeController> logger*/, IMotorcycleService _motorcycleService)
         {
             //_logger = logger;
-            context = _context;
+            motorcycleService = _motorcycleService;
         }
 
         //TODO - MODELSTATE VALIDATION EVERYWHERE!
-        //TODO - DROPDOWN JS - SELECT 2 LIBRARY
 
         public async Task<IActionResult> Index()
         {
-            var viewModel = new MotoSelectionViewModel
+            var makes = new MotoSelectionViewModel
             {
-                Makes = await context.Makes.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
-                Models = await context.Models.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title }).ToListAsync(),
-                Years = await context.Years.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.ManufactureYear.ToString() }).ToListAsync()
+                Makes = await motorcycleService.GetMotorcycleMake()
             };
 
-            return View(viewModel);
+            return View(makes);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMotorcycle(int make)
+        public async Task<IActionResult> GetModel(int makeId)
         {
-            var motorcycles = await context.Motorcycles
-                .Include(m => m.Model)
-                .Where(m => m.MakeId == make)
-                .Select(m => m.Model)
-                .Distinct()
-                .ToListAsync();
+            var models = await motorcycleService.GetMotorcycleModel(makeId);
 
             if (!ModelState.IsValid)
             {
                 return Error();
             }
 
-            var makesAndModels = motorcycles.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Title });
-
-            return Json(makesAndModels);
+            return Json(models);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDisplacement(int make, int model)
+        public async Task<IActionResult> GetDisplacement(int makeId, int modelId)
         {
-            var displacements = await context.Motorcycles
-                .Where(m => m.MakeId == make && m.ModelId == model)
-                .Select(m => new SelectListItem { Value = m.DisplacementId.ToString(), Text = m.Displacement.Volume.ToString() })
-                .Distinct()
-                .ToListAsync();
+            var displacements = await motorcycleService.GetMotorcycleDisplacement(makeId, modelId);
 
             if (!ModelState.IsValid)
             {
@@ -72,13 +57,9 @@ namespace DirtX.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetYear(int make, int model, int displacement)
+        public async Task<IActionResult> GetYear(int makeId, int modelId, int displacementId)
         {
-            var years = await context.Motorcycles
-                .Where(m => m.MakeId == make && m.ModelId == model && m.DisplacementId == displacement)
-                .Select(m => new SelectListItem { Value = m.YearId.ToString(), Text = m.Year.ManufactureYear.ToString() })
-                .Distinct()
-                .ToListAsync();
+            var years = await motorcycleService.GetMotorcycleYears(makeId, modelId, displacementId);
 
             if (!ModelState.IsValid)
             {

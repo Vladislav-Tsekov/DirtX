@@ -1,15 +1,14 @@
-﻿namespace DirtX.Core.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-public class MotoSelectionViewModel
+namespace DirtX.Core.Models
 {
-    public int SelectedMake { get; set; }
-    public int SelectedModel { get; set; }
-    public int SelectedYear { get; set; }
-    public int SelectedDisplacement { get; set; }
+    public class MotoSelectionViewModel
+    {
+        public int SelectedMake { get; set; }
+        public int SelectedModel { get; set; }
+        public int SelectedYear { get; set; }
+        public int SelectedDisplacement { get; set; }
 
-    public IEnumerable<SelectListItem> Makes { get; set; }
-    public IEnumerable<SelectListItem> Models { get; set; }
-    public IEnumerable<SelectListItem> Displacements { get; set; }
-    public IEnumerable<SelectListItem> Years { get; set; }
+        public IEnumerable<SelectListItem> Makes { get; set; }
+    }
 }

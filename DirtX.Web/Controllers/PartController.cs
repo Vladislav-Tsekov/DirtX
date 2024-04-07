@@ -12,137 +12,194 @@ namespace DirtX.Web.Controllers
 {
     public class PartController : Controller
     {
+        private readonly ILogger<PartController> logger;
         private readonly IProductService productService;
 
-        public PartController(IProductService _productService)
+        public PartController(ILogger<PartController> _logger, IProductService _productService)
         {
+            logger = _logger;
             productService = _productService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Product> parts = await productService.GetAllPartsAsync();
-            List<ProductBrand> partBrands = await productService.GetDistinctProductBrandsAsync(parts);
-            List<ProductCategory> partTypes = productService.GetProductCategories(parts);
-
-            //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
-
-            List<ProductIndexViewModel> model = partTypes.Select(types =>
+            try
             {
-                return new ProductIndexViewModel
-                {
-                    ProductCategory = types.ToString(),
-                    Brands = partBrands
-                };
-            }).ToList();
+                List<Product> parts = await productService.GetAllPartsAsync();
+                List<ProductBrand> partBrands = await productService.GetDistinctProductBrandsAsync(parts);
+                List<ProductCategory> partTypes =  productService.GetProductCategories(parts);
 
-            return View(model);
+                if (parts is null || partBrands is null || partTypes is null)
+                {
+                    logger.LogError("An error occurred in the Part/Index action. At least one out of three collections is null.");
+                    return NotFound();
+                }
+
+                List<ProductIndexViewModel> model = partTypes.Select(types =>
+                {
+                    return new ProductIndexViewModel
+                    {
+                        ProductCategory = types.ToString(),
+                        Brands = partBrands
+                    };
+                }).ToList();
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in the Part/Index action. Debug for more information.");
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Category(string category, ProductSorting sorting = ProductSorting.Name_Ascending)
         {
-            if (Enum.TryParse(category, out ProductCategory currCategory))
+            try
             {
-                List<Product> parts = await productService.GetAllProductsByCategoryAsync(currCategory);
-
-                switch (sorting)
+                if (Enum.TryParse(category, out ProductCategory currCategory))
                 {
-                    case ProductSorting.Name_Descending:
-                        parts = parts.OrderByDescending(o => o.Title).ToList();
-                        break;
-                    case ProductSorting.Price_Ascending:
-                        parts = parts.OrderBy(o => o.Price).ToList();
-                        break;
-                    case ProductSorting.Price_Descending:
-                        parts = parts.OrderByDescending(o => o.Price).ToList();
-                        break;
-                    default:
-                        break;
+                    List<Product> parts = await productService.GetAllProductsByCategoryAsync(currCategory, sorting);
+
+                    if (parts is null)
+                    {
+                        logger.LogError($"An error occurred in the Part/Category action. '{currCategory}' category may not exists.");
+                        return NotFound();
+                    }
+
+                    ProductCategoryViewModel model = new()
+                    {
+                        ProductCategory = category.ToString(),
+                        Products = parts
+                    };
+
+                    return View(model);
                 }
-
-                //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
-
-                ProductCategoryViewModel model = new()
+                else
                 {
-                    ProductCategory = category.ToString(),
-                    Products = parts
-                };
-
-                return View(model);
+                    logger.LogError($"Enum parsing failed in the Part/Category action, while trying to parse {category}.");
+                    return View("Error");
+                }
             }
-            else
-                return BadRequest();
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in the Part/Category action. Debug for more information.");
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            ProductBrand brand = await productService.GetProductBrandAsync(brandName);
-
-            if (brand is null)
-                return NotFound();
-
-            List<Product> parts = await productService.GetProductsByBrandAsync(brand);
-
-            ProductBrandViewModel model = new()
+            try
             {
-                Name = brand.Name,
-                Description = brand.Description,
-                ImageUrl = brand.ImageUrl,
-                Products = parts
-            };
+                ProductBrand brand = await productService.GetProductBrandAsync(brandName);
 
-            return View(model);
+                if (brand is null)
+                {
+                    logger.LogError($"An error occurred in the Part/Brand action. Brand with name '{brandName}' could not be found.");
+                    return NotFound();
+                }
+
+                List<Product> parts = await productService.GetProductsByBrandAsync(brand);
+
+                if (parts is null)
+                {
+                    logger.LogError($"An error occurred in the Part/Brand action. Parts collection for '{brandName}' is null.");
+                    return NotFound();
+                }
+
+                ProductBrandViewModel model = new()
+                {
+                    Name = brand.Name,
+                    Description = brand.Description,
+                    ImageUrl = brand.ImageUrl,
+                    Products = parts
+                };
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in the Part/Brand action. Debug for more information.");
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Product part = productService.GetProductAsync(id).Result;
-
-            if (part == null)
+            try
             {
-                return NotFound();
+                Product part = await productService.GetProductAsync(id);
+
+                if (part is null)
+                {
+                    logger.LogError($"An error occurred in the Part/Details action. Product with ID '{id}' could not be found.");
+                    return NotFound();
+                }
+
+                List<ProductSpecification> partSpecs = await productService.GetProductSpecificationsAsync(id);
+
+                ProductDetailsViewModel model = new()
+                {
+                    Id = part.Id,
+                    BrandName = part.Brand.Name,
+                    Title = part.Title,
+                    Price = part.Price,
+                    Description = part.Description,
+                    ImageUrl = part.ImageUrl,
+                    Specs = partSpecs
+                };
+
+                return View(model);
             }
-
-            List<ProductSpecification> partSpecs = await productService.GetProductSpecificationsAsync(id);
-
-            ProductDetailsViewModel model = new()
+            catch (Exception ex)
             {
-                Id = part.Id,
-                BrandName = part.Brand.Name,
-                Title = part.Title,
-                Price = part.Price,
-                Description = part.Description,
-                ImageUrl = part.ImageUrl,
-                Specs = partSpecs
-            };
-
-            return View(model);
+                logger.LogError(ex, "An error occurred in the Part/Details action. Debug for more information.");
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> CompatibleParts(int makeId, int modelId, int displacementId, int yearId)
         {
-            List<MotorcycleProduct> compatibleParts = await productService.GetCompatiblePartsAsync(makeId, modelId, displacementId, yearId);
-
-            if (compatibleParts == null || !compatibleParts.Any())
-                return NotFound();
-
-            Motorcycle motorcycle = compatibleParts.FirstOrDefault().Motorcycle;
-
-            CompatiblePartsViewModel model = new()
+            try
             {
-                Make = motorcycle.Make.Title,
-                Model = motorcycle.Model.Title,
-                Displacement = motorcycle.Displacement.Volume.ToString(),
-                Year = motorcycle.Year.ManufactureYear.ToString(),
-                Parts = compatibleParts.Select(cp => cp.Product).ToList(),
-            };
+                List<MotorcycleProduct> compatibleParts = await productService.GetCompatiblePartsAsync(makeId, modelId, displacementId, yearId);
 
-            return View(model);
+                if (compatibleParts is null)
+                {
+                    logger.LogError($"An error occurred in the Part/CompatibleParts action. No compatible parts found for Make: {makeId}, Model: {modelId}, Displacement: {displacementId}, Year: {yearId}.");
+                    return NotFound();
+                }
+
+                Motorcycle motorcycle = compatibleParts.FirstOrDefault().Motorcycle;
+
+                if (motorcycle is null)
+                {
+                    logger.LogError($"An error occurred in the Part/CompatibleParts action. Motorcycle details not found for Make: {makeId}, Model: {modelId}, Displacement: {displacementId}, Year: {yearId}.");
+                    return NotFound();
+                }
+
+                CompatiblePartsViewModel model = new()
+                {
+                    Make = motorcycle.Make.Title,
+                    Model = motorcycle.Model.Title,
+                    Displacement = motorcycle.Displacement.Volume.ToString(),
+                    Year = motorcycle.Year.ManufactureYear.ToString(),
+                    Parts = compatibleParts.Select(cp => cp.Product).ToList(),
+                };
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in the Part/CompatibleParts action. Debug for more information.");
+                return View("Error");
+            }
         }
     }
 }

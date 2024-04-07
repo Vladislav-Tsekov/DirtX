@@ -67,7 +67,6 @@ namespace DirtX.Web.Controllers
                 logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle displacements. Debug the Home/GetDisplacement action for more details.");
                 return View("Error");
             }
-
         }
 
         [HttpGet]

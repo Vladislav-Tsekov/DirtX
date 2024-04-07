@@ -10,115 +10,155 @@ namespace DirtX.Web.Controllers
 {
     public class GearController : Controller
     {
+        private readonly ILogger<GearController> logger;
         private readonly IProductService productService;
 
-        public GearController(IProductService _gearService)
+        public GearController(ILogger<GearController> _logger, IProductService _productService)
         {
-            productService = _gearService;
+            logger = _logger;
+            productService = _productService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Product> gears = await productService.GetAllGearsAsync();
-            List<ProductBrand> gearBrands = await productService.GetDistinctProductBrandsAsync(gears);
-            List<ProductCategory> gearTypes = productService.GetProductCategories(gears);
-
-            //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
-
-            var model = gearTypes.Select(types =>
+            try
             {
-                return new ProductIndexViewModel
-                {
-                    ProductCategory = types.ToString(),
-                    Brands = gearBrands
-                };
-            }).ToList();
+                List<Product> gears = await productService.GetAllGearsAsync();
+                List<ProductBrand> gearBrands = await productService.GetDistinctProductBrandsAsync(gears);
+                List<ProductCategory> gearTypes = productService.GetProductCategories(gears);
 
-            return View(model);
+                if (gears is null || gearBrands is null || gearTypes is null)
+                {
+                    logger.LogError("An error occurred in the Gear/Index action. At least one out of three collections is null.");
+                    return NotFound();
+                }
+
+                List<ProductIndexViewModel> model = gearTypes.Select(types =>
+                {
+                    return new ProductIndexViewModel
+                    {
+                        ProductCategory = types.ToString(),
+                        Brands = gearBrands
+                    };
+                }).ToList();
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in the Gear/Index action. Debug for more information.");
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Category(string category, ProductSorting sorting = ProductSorting.Name_Ascending)
         {
-            if (Enum.TryParse(category, out ProductCategory currCategory))
+            try
             {
-                List<Product> gears = await productService.GetAllProductsByCategoryAsync(currCategory);
-
-                switch (sorting)
+                if (Enum.TryParse(category, out ProductCategory currCategory))
                 {
-                    case ProductSorting.Name_Descending:
-                        gears = gears.OrderByDescending(o => o.Title).ToList();
-                        break;
-                    case ProductSorting.Price_Ascending:
-                        gears = gears.OrderBy(o => o.Price).ToList();
-                        break;
-                    case ProductSorting.Price_Descending:
-                        gears = gears.OrderByDescending(o => o.Price).ToList();
-                        break;
-                    default:
-                        break;
+                    List<Product> gears = await productService.GetAllProductsByCategoryAsync(currCategory, sorting);
+
+                    if (gears is null)
+                    {
+                        logger.LogError($"An error occurred in the Gear/Category action. '{currCategory}' category may not exists.");
+                        return NotFound();
+                    }
+
+                    ProductCategoryViewModel model = new()
+                    {
+                        ProductCategory = category.ToString(),
+                        Products = gears
+                    };
+
+                    return View(model);
                 }
-
-                //TODO - ERROR HANDLING, NULL HANDLING, AWAIT MULTIPLE ASYNC OPERATIONS BEFORE RETURNING MODEL?
-
-                var model = new ProductCategoryViewModel
+                else
                 {
-                    ProductCategory = category.ToString(),
-                    Products = gears
-                };
-
-                return View(model);
+                    logger.LogError($"Enum parsing failed in the Gear/Category action, while trying to parse {category}.");
+                    return View("Error");
+                }
             }
-            else
-                return BadRequest();
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in the Gear/Category action. Debug for more information.");
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Brand(string brandName)
         {
-            ProductBrand brand = await productService.GetProductBrandAsync(brandName);
-
-            if (brand is null)
-                return NotFound();
-
-            List<Product> gears = await productService.GetProductsByBrandAsync(brand);
-
-            ProductBrandViewModel model = new()
+            try
             {
-                Name = brand.Name,
-                Description = brand.Description,
-                ImageUrl = brand.ImageUrl,
-                Products = gears
-            };
+                ProductBrand brand = await productService.GetProductBrandAsync(brandName);
 
-            return View(model);
+                if (brand is null)
+                {
+                    logger.LogError($"An error occurred in the Gear/Brand action. Brand with name '{brandName}' could not be found.");
+                    return NotFound();
+                }
+
+                List<Product> gears = await productService.GetProductsByBrandAsync(brand);
+
+                if (gears is null)
+                {
+                    logger.LogError($"An error occurred in the Gear/Brand action. Gears collection for '{brandName}' is null.");
+                    return NotFound();
+                }
+
+                ProductBrandViewModel model = new()
+                {
+                    Name = brand.Name,
+                    Description = brand.Description,
+                    ImageUrl = brand.ImageUrl,
+                    Products = gears
+                };
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred in the Gear/Brand action. Debug for more information.");
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            Product gear = productService.GetProductAsync(id).Result;
-
-            if (gear == null)
+            try
             {
-                return NotFound();
+                Product gear = await productService.GetProductAsync(id);
+
+                if (gear is null)
+                {
+                    logger.LogError($"An error occurred in the Gear/Details action. Product with ID '{id}' could not be found.");
+                    return NotFound();
+                }
+
+                List<ProductSpecification> gearSpecs = await productService.GetProductSpecificationsAsync(id);
+
+                ProductDetailsViewModel model = new()
+                {
+                    Id = gear.Id,
+                    BrandName = gear.Brand.Name,
+                    Title = gear.Title,
+                    Price = gear.Price,
+                    Description = gear.Description,
+                    ImageUrl = gear.ImageUrl,
+                    Specs = gearSpecs
+                };
+
+                return View(model);
             }
-
-            List<ProductSpecification> gearSpecs = await productService.GetProductSpecificationsAsync(id);
-
-            ProductDetailsViewModel model = new()
+            catch (Exception ex)
             {
-                Id = gear.Id,
-                BrandName = gear.Brand.Name,
-                Title = gear.Title,
-                Price = gear.Price,
-                Description = gear.Description,
-                ImageUrl = gear.ImageUrl,
-                Specs = gearSpecs
-            };
-
-            return View(model);
+                logger.LogError(ex, "An error occurred in the Gear/Details action. Debug for more information.");
+                return View("Error");
+            }
         }
     }
 }

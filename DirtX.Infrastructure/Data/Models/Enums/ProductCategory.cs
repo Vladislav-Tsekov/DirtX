@@ -8,12 +8,14 @@
         Drivetrain,
         Braking_System,
         Suspension,
+
         // OILS
         Two_Stroke,
         Four_Stroke,
         Transmission,
         Fork_and_Shock,
         Coolant,
+
         // RIDING GEAR
         Helmet,
         Protective_Gear,

@@ -1,4 +1,5 @@
-﻿using DirtX.Core.Interfaces;
+﻿using DirtX.Core.Enums;
+using DirtX.Core.Interfaces;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
@@ -65,12 +66,26 @@ namespace DirtX.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<List<Product>> GetAllProductsByCategoryAsync(ProductCategory category)
+        public async Task<List<Product>> GetAllProductsByCategoryAsync(ProductCategory category, ProductSorting sorting = ProductSorting.Name_Ascending)
         {
-            return await context.Products
-                .Where(p => p.Category == category)
-                .AsNoTracking()
-                .ToListAsync();
+            IQueryable<Product> products = context.Products.Where(p => p.Category == category).AsNoTracking();
+
+            switch (sorting)
+            {
+                case ProductSorting.Name_Descending:
+                    products = products.OrderByDescending(o => o.Title);
+                    break;
+                case ProductSorting.Price_Ascending:
+                    products = products.OrderBy(o => o.Price);
+                    break;
+                case ProductSorting.Price_Descending:
+                    products = products.OrderByDescending(o => o.Price);
+                    break;
+                default:
+                    break;
+            }
+
+            return await products.ToListAsync();
         }
 
         public async Task<List<ProductBrand>> GetDistinctProductBrandsAsync(List<Product> products)

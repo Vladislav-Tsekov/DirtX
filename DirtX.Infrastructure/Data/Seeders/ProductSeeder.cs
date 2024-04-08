@@ -20,9 +20,9 @@ namespace DirtX.Infrastructure.Data.Seeders
         private static void SeedProductCategories(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductType>().HasData(
-                new ProductType { Id = 1, Name = "Part", Description = PartCategoryDescription },
-                new ProductType { Id = 2, Name = "Oil", Description = OilCategoryDescription },
-                new ProductType { Id = 3, Name = "Gear", Description = GearCategoryDescription }
+                new ProductType { Id = 1, Name = "Part", Description = PartTypeDescription },
+                new ProductType { Id = 2, Name = "Oil", Description = OilTypeDescription },
+                new ProductType { Id = 3, Name = "Gear", Description = GearTypeDescription }
             );
         }
 

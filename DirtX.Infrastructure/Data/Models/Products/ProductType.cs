@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
@@ -10,12 +11,12 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(ProductTypeTitleMaxLength)]
         [Comment("The name of the product type.")]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(1000)]
+        [MaxLength(ProductTypeDescriptionMaxLength)]
         [Comment("Description providing information about the product type.")]
         public string Description { get; set; }
     }

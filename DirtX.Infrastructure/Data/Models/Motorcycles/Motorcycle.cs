@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DirtX.Infrastructure.Data.Models.Users;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -30,12 +31,12 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public Year Year { get; set; }
         public int YearId { get; set; }
 
-        //TODO - CHECK COMPATIBILITY WITH GARAGE?
         //[ForeignKey(nameof(GarageId))]
+        //[Comment("Indicates whether the current motorcycle is part of the user's garage.")]
         //public Garage Garage { get; set; }
-        //public int GarageId { get; set; }
+        //public int? GarageId { get; set; }
 
         [Comment("A list of compatible parts, fitting a specific motorcycle.")]
-        public ICollection<MotorcycleProduct> MotorcycleParts { get; set; }
+        public ICollection<MotorcycleProduct> MotorcycleParts { get; set; } = new List<MotorcycleProduct>();
     }
 }

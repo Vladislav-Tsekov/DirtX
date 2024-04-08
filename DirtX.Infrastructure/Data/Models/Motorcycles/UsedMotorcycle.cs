@@ -33,7 +33,7 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public int YearId { get; set; }
 
         [Required]
-        [Range(100, 99999)]
+        [Range(UsedMotoMinPrice, UsedMotoMaxPrice)]
         [Comment("Represents the price of the used motorcycle and is set by the user.")]
         public int Price { get; set; }
 
@@ -46,7 +46,7 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public Province Province { get; set; }
 
         [Required]
-        [MaxLength(3000)]
+        [MaxLength(UsedMotoDescriptionMaxLength)]
         [Comment("Used motorcycle description, containing information about the vehicle's condition.")]
         public string Description { get; set; }
 

@@ -4,6 +4,7 @@ using DirtX.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407184040_AddedCommentsForAll")]
+    partial class AddedCommentsForAll
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2231,8 +2233,8 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(3000)
+                        .HasColumnType("nvarchar(3000)")
                         .HasComment("Used motorcycle description, containing information about the vehicle's condition.");
 
                     b.Property<int>("DisplacementId")

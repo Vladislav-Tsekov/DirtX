@@ -1,31 +1,33 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Users
 {
     public class AppUser : IdentityUser
     {
-        [MaxLength(50)]
+        [MaxLength(UserFirstNameMaxLength)]
         [Comment("First name of the user.")]
         public string FirstName { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(UserLastNameMaxLength)]
         [Comment("Last name of the user.")]
         public string LastName { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(UserCountryMaxLength)]
         [Comment("Country where the user resides.")]
         public string Country { get; set; }
 
-        [MaxLength(300)]
+        [MaxLength(UserCityMaxLength)]
         [Comment("City where the user resides.")]
         public string City { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(UserAddressMaxLength)]
         [Comment("Address of the user.")]
         public string Address { get; set; }
 
+        [MaxLength(ImageMaxSize)]
         [Comment("Profile picture of the user.")]
         public byte[] ProfilePicture { get; set; }
 

@@ -37,7 +37,7 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         [Comment("Represents the price of the used motorcycle and is set by the user.")]
         public int Price { get; set; }
 
-        [MaxLength(UsedMotoImageMaxSize)]
+        [MaxLength(ImageMaxSize)]
         [Comment("Visual representation of the used motorcycle.")]
         public byte[] Image { get; set; }
 

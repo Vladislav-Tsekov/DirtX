@@ -5,6 +5,9 @@ namespace DirtX.Infrastructure.Shared
 {
     public static class ValidationConstants
     {
+        // COMMON
+        public const int ImageMaxSize = 1048576;
+
         // MOTORCYCLE AND USED MOTORCYCLE CONSTANTS
         public const int MakeTitleMinLength = 2;
         public const int MakeTitleMaxLength = 100;
@@ -20,7 +23,6 @@ namespace DirtX.Infrastructure.Shared
 
         public const int UsedMotoMinPrice = 100;
         public const int UsedMotoMaxPrice = 99999;
-        public const int UsedMotoImageMaxSize = 1048576;
         public const int UsedMotoDescriptionMinLength = 25;
         public const int UsedMotoDescriptionMaxLength = 5000;
         public const string UsedMotoContactRegEx = @"^08\d{8}$";
@@ -74,5 +76,17 @@ namespace DirtX.Infrastructure.Shared
         // GARAGE CONSTANTS
         public const int GarageMinCapacity = 0;
         public const int GarageMaxCapacity = 10;
+
+        // USER AND ORDER CONSTANTS
+        public const int UserFirstNameMinLength = 1;
+        public const int UserFirstNameMaxLength = 99;
+        public const int UserLastNameMinLength = 1;
+        public const int UserLastNameMaxLength = 99;
+        public const int UserCountryMinLength = 1;
+        public const int UserCountryMaxLength = 99;
+        public const int UserCityMinLength = 1;
+        public const int UserCityMaxLength = 99;
+        public const int UserAddressMinLength = 1;
+        public const int UserAddressMaxLength = 300;
     }
 }

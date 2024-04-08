@@ -1,5 +1,4 @@
-﻿using DirtX.Infrastructure.Data.Models.Users;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

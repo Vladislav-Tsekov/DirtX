@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Infrastructure.Data.Models.Users
 {
@@ -16,18 +17,22 @@ namespace DirtX.Infrastructure.Data.Models.Users
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(UserFirstNameMaxLength)]
         [Comment("First name of the customer.")]
         public string FirstName { get; set; }
 
         [Required]
+        [MaxLength(UserLastNameMaxLength)]
         [Comment("Last name of the customer.")]
         public string LastName { get; set; }
 
         [Required]
+        [MaxLength(UserAddressMaxLength)]
         [Comment("Address where the order is to be delivered.")]
         public string Address { get; set; }
 
         [Required]
+        [MaxLength(UserCityMaxLength)]
         [Comment("City where the order is to be delivered.")]
         public string City { get; set; }
 
@@ -37,6 +42,7 @@ namespace DirtX.Infrastructure.Data.Models.Users
 
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
+        [Range(typeof(decimal), ProductMinPrice, ProductMaxPrice, ConvertValueInInvariantCulture = true)]
         [Comment("Total price of the order.")]
         public decimal TotalPrice { get; set; }
 

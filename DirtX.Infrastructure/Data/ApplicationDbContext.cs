@@ -12,7 +12,6 @@ namespace DirtX.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
-        //TODO - ADD COMMENTS TO THE DB ELEMENTS
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
 
         // MOTORCYCLE AND MOTORCYCLE RELATED TABLES

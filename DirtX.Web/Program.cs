@@ -8,7 +8,7 @@ using static DirtX.Infrastructure.Data.Seeders.UserSeeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//DATABASE SERVICE
+// DATABASE SERVICE
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -19,30 +19,38 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<AppUser>(options =>
-    {
-        options.SignIn.RequireConfirmedAccount = false;
+{
+    options.SignIn.RequireConfirmedAccount = false;
 
-        options.Password.RequireLowercase = true;
-        options.Password.RequireUppercase = true;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequiredLength = 5;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 5;
 
-        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);
-    })
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);
+})
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
 
-//CUSTOM SERVICES
+// SESSION
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".DirtX.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
+
+// CUSTOM SERVICES
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
 builder.Services.AddScoped<ITrailerService, TrailerService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
-//TRY TO SEED USERS
+// SEED USERS
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -55,6 +63,7 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         Console.WriteLine(ex.Message);
+        throw new ApplicationException();
     }
 }
 
@@ -72,6 +81,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

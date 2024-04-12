@@ -11,6 +11,7 @@ namespace DirtX.Core.Interfaces
     {
         Task<Product> AddProductAsync(ProductFormViewModel model);
         Task<List<Product>> GetAllProductsAsync();
+        Task<List<Product>> QueryAllProductsAsync(ProductsQueryModel model, ProductSorting sorting);
 
 
 

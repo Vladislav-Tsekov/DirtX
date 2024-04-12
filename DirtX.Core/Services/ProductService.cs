@@ -142,6 +142,40 @@ namespace DirtX.Core.Services
             throw new NotImplementedException();
         }
 
+        public async Task<List<Product>> QueryAllProductsAsync(ProductsQueryModel model, ProductSorting sorting = ProductSorting.Name_Ascending)
+        {
+            IQueryable<Product> products = context.Products
+                .Include(p => p.Brand)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(model.Search))
+            {
+                string input = $"%{model.Search.ToLower()}%";
+
+                products = products
+                    .Where(i => EF.Functions.Like(i.Title, input) ||
+                                EF.Functions.Like(i.Brand.Name, input) ||
+                                EF.Functions.Like(i.Description, input));
+            }
+
+            switch (sorting)
+            {
+                case ProductSorting.Name_Descending:
+                    products = products.OrderByDescending(o => o.Title);
+                    break;
+                case ProductSorting.Price_Ascending:
+                    products = products.OrderBy(o => o.Price);
+                    break;
+                case ProductSorting.Price_Descending:
+                    products = products.OrderByDescending(o => o.Price);
+                    break;
+                default:
+                    break;
+            }
+
+            return await products.ToListAsync();
+        }
+
         public async Task<List<Product>> GetAllProductsAsync()
         {
             return await context.Products.ToListAsync();

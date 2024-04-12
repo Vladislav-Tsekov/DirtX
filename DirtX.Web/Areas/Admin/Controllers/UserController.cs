@@ -10,7 +10,7 @@
         private readonly IUserService userService;
         //private readonly SignInManager<AppUser> signInManager;
 
-        public UserController(IUserService _userService /*SignInManager<AppUser> _signInManager*/)
+        public UserController(IUserService _userService, /*SignInManager<AppUser> _signInManager*/)
         {
             userService = _userService;
             //signInManager = _signInManager;

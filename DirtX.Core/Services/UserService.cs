@@ -16,7 +16,7 @@ namespace DirtX.Core.Services
             context = _context;
         }
 
-        public async Task<ICollection<UserViewModel>> GetAllUsersAsync()
+        public async Task<IEnumerable<UserViewModel>> GetAllUsersAsync()
         {
             return await context.Users
                 .Select(u => new UserViewModel()
@@ -82,18 +82,6 @@ namespace DirtX.Core.Services
                 .FirstAsync();
 
             user.IsAdmin = true;
-
-            await context.SaveChangesAsync();
-        }
-
-        public async Task DemoteUser(string userId)
-        {
-            AppUser user = await context.Users
-                .Where(u => u.Id.ToString() == userId)
-                .FirstAsync();
-
-            user.IsAdmin = false;
-            user.IsReseller = false;
 
             await context.SaveChangesAsync();
         }

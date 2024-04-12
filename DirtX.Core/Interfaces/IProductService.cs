@@ -1,5 +1,4 @@
 ﻿using DirtX.Core.Enums;
-using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
@@ -9,11 +8,6 @@ namespace DirtX.Core.Interfaces
 {
     public interface IProductService
     {
-        Task<Product> AddProductAsync(ProductFormViewModel model);
-        Task<List<Product>> GetAllProductsAsync();
-
-
-
         Task<Product> GetProductAsync(int id);
         Task<List<Product>> GetAllPartsAsync();
         Task<List<Product>> GetAllOilsAsync();

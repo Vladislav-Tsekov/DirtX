@@ -44,10 +44,6 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public string Description { get; set; }
 
         [Required]
-        [Comment("Shows whether the product is available or out of stock.")]
-        public bool IsAvailable { get; set; }
-
-        [Required]
         [Comment("Product's stock quantity shows how many of the same product are left on stock.")]
         public int StockQuantity { get; set; }
 

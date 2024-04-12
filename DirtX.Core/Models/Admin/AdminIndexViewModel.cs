@@ -1,9 +1,10 @@
-﻿namespace DirtX.Core.Models.Admin
+﻿using DirtX.Infrastructure.Data.Models.Products;
+
+namespace DirtX.Core.Models.Admin
 {
     public class AdminIndexViewModel
     {
-        public IEnumerable<UserViewModel> Users { get; set; }
-
-        public IEnumerable<ProductViewModel> Products { get; set; }
+        public ICollection<UserViewModel> Users { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DirtX.Core.Enums;
 using DirtX.Core.Interfaces;
+using DirtX.Core.Models;
 using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models;
@@ -142,43 +143,23 @@ namespace DirtX.Core.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<Product>> QueryAllProductsAsync(ProductsQueryModel model, ProductSorting sorting = ProductSorting.Name_Ascending)
+        public async Task<List<ProductViewModel>> GetAllProductsAsync()
         {
-            IQueryable<Product> products = context.Products
-                .Include(p => p.Brand)
-                .AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(model.Search))
-            {
-                string input = $"%{model.Search.ToLower()}%";
-
-                products = products
-                    .Where(i => EF.Functions.Like(i.Title, input) ||
-                                EF.Functions.Like(i.Brand.Name, input) ||
-                                EF.Functions.Like(i.Description, input));
-            }
-
-            switch (sorting)
-            {
-                case ProductSorting.Name_Descending:
-                    products = products.OrderByDescending(o => o.Title);
-                    break;
-                case ProductSorting.Price_Ascending:
-                    products = products.OrderBy(o => o.Price);
-                    break;
-                case ProductSorting.Price_Descending:
-                    products = products.OrderByDescending(o => o.Price);
-                    break;
-                default:
-                    break;
-            }
-
-            return await products.ToListAsync();
-        }
-
-        public async Task<List<Product>> GetAllProductsAsync()
-        {
-            return await context.Products.ToListAsync();
+            return await context.Products
+                .AsNoTracking()
+                .Select(p => new ProductViewModel() 
+                { 
+                    Id = p.Id,
+                    Title = p.Title,
+                    Type = p.Type.ToString(),
+                    Category = p.Category.ToString(),
+                    Brand = p.Brand.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    StockQuantity = p.StockQuantity,
+                    ImageUrl = p.ImageUrl,
+                })
+                .ToListAsync();
         }
     }
 }

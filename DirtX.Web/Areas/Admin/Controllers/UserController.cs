@@ -23,13 +23,13 @@
             {
                 await userService.DeleteUserAsync(id);
 
-                var previousUrl = Request.Headers["Referer"].ToString();
+                string previousUrl = Request.Headers["Referer"].ToString();
 
                 return Redirect(previousUrl);
             }
             catch (Exception)
             {
-                //TempData error msg?
+                TempData["ErrorMessage"] = "Delete was unsuccessful!";
 
                 var previousUrl = Request.Headers["Referer"].ToString();
 

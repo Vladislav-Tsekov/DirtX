@@ -10,8 +10,7 @@ namespace DirtX.Core.Interfaces
     public interface IProductService
     {
         Task<Product> AddProductAsync(ProductFormViewModel model);
-        Task<List<Product>> GetAllProductsAsync();
-        Task<List<Product>> QueryAllProductsAsync(ProductsQueryModel model, ProductSorting sorting);
+        Task<List<ProductViewModel>> GetAllProductsAsync();
 
 
 

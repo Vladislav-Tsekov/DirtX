@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <None Include="Areas\Admin\Views\Admin\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Admin\Items.cshtml" />
     <None Include="Areas\Admin\Views\Admin\Users.cshtml" />
     <None Include="Areas\Admin\Views\Product\Add.cshtml" />
     <None Include="Areas\Admin\Views\Product\Edit.cshtml" />

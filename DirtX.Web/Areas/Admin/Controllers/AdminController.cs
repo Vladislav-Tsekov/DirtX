@@ -1,5 +1,7 @@
-﻿using DirtX.Core.Interfaces;
+﻿using DirtX.Core.Enums;
+using DirtX.Core.Interfaces;
 using DirtX.Core.Models.Admin;
+using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Infrastructure.Data.Models.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,17 +21,18 @@ namespace DirtX.Web.Areas.Admin.Controllers
             userManager = _userManager;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             try
             {
-                var allProducts = await productService.GetAllProductsAsync();
-                var allUsers = await userService.GetAllUsersAsync();
+                var users = await userService.GetAllUsersAsync();
+                var products = await productService.GetAllProductsAsync();
 
                 AdminIndexViewModel model = new()
                 {
-                    Users = allUsers,
-                    Products = allProducts,
+                    Users = users,
+                    Products = products,
                 };
 
                 return View(model);
@@ -40,48 +43,38 @@ namespace DirtX.Web.Areas.Admin.Controllers
             }
         }
 
-        //public async Task<IActionResult> Products([FromQuery] AllProductsQueryModel queryModel)
-        //{
-        //    try
-        //    {
-        //        var allProducts = await productService.AllIVisibletemsQueryAsync(queryModel);
+        [HttpGet]
+        public async Task<IActionResult> Products()
+        {
+            try
+            {
+                List<ProductViewModel> products = await productService.GetAllProductsAsync();
 
-        //        queryModel.Products = allProducts.Products;
-        //        queryModel.TotalProducts = allProducts.TotalProductsCount;
-        //        queryModel.Categories = await categoryService.AllCategoriesNameAsync();
+                return View(products);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
 
-        //        foreach (var product in allProducts.Products)
-        //        {
-        //            await imageService.DownloadImageAsync(product.Image);
-        //        }
+        [HttpGet]
+        public async Task<IActionResult> Users()
+        {
+            try
+            {
+                var users = await userService.GetAllUsersAsync();
 
-        //        return View(queryModel);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return GeneralErrorMessage();
-        //    }
-        //}
-
-        //public async Task<IActionResult> Users([FromQuery] AllUsersQueryModel queryModel)
-        //{
-        //    try
-        //    {
-        //        var allUsers = await userService.AllUsersQueryAsync(queryModel);
-
-        //        queryModel.Users = allUsers.Users;
-        //        queryModel.TotalUsers = allUsers.TotalUsersCount;
-
-        //        return View(queryModel);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return GeneralErrorMessage();
-        //    }
-        //}
+                return View(users);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
 
         [HttpPost]
-        public async Task<IActionResult> SetRole(string userId)
+        public async Task<IActionResult> ToggleReseller(string userId)
         {
             var user = await userManager.FindByIdAsync(userId);
             var roles = await userManager.GetRolesAsync(user);
@@ -98,7 +91,35 @@ namespace DirtX.Web.Areas.Admin.Controllers
                     await userManager.RemoveFromRoleAsync(user, "Reseller");
                 }
 
-                var previousUrl = Request.Headers["Referer"].ToString();
+                string previousUrl = Request.Headers["Referer"].ToString();
+
+                return Redirect(previousUrl);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleAdmin(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            var roles = await userManager.GetRolesAsync(user);
+            bool isAdmin = roles.Any(r => r.Contains("Admin"));
+
+            try
+            {
+                if (!isAdmin)
+                {
+                    await userManager.AddToRoleAsync(user, "Admin");
+                }
+                else if (isAdmin)
+                {
+                    await userManager.RemoveFromRoleAsync(user, "Admin");
+                }
+
+                string previousUrl = Request.Headers["Referer"].ToString();
 
                 return Redirect(previousUrl);
             }
@@ -112,7 +133,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
         {
             TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
 
-            var previousUrl = Request.Headers["Referer"].ToString();
+            string previousUrl = Request.Headers["Referer"].ToString();
 
             return Redirect(previousUrl);
         }

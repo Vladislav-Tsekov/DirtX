@@ -64,36 +64,30 @@ namespace DirtX.Core.Services
             return Task.CompletedTask;
         }
 
-        public async Task PromoteUserToReseller(string userId)
+        public async Task ToggleUserReseller(string userId)
         {
             AppUser user = await context.Users
                 .Where(u => u.Id.ToString() == userId)
                 .FirstAsync();
 
-            user.IsReseller = true;
+            if (user.IsReseller is true)
+                user.IsReseller = false;
+            else
+                user.IsReseller = true;
 
             await context.SaveChangesAsync();
         }
 
-        public async Task PromoteUserToAdmin(string userId)
+        public async Task ToggleUserAdmin(string userId)
         {
             AppUser user = await context.Users
                 .Where(u => u.Id.ToString() == userId)
                 .FirstAsync();
 
-            user.IsAdmin = true;
-
-            await context.SaveChangesAsync();
-        }
-
-        public async Task DemoteUser(string userId)
-        {
-            AppUser user = await context.Users
-                .Where(u => u.Id.ToString() == userId)
-                .FirstAsync();
-
-            user.IsAdmin = false;
-            user.IsReseller = false;
+            if (user.IsAdmin is true)
+                user.IsAdmin = false;
+            else
+                user.IsAdmin = true;
 
             await context.SaveChangesAsync();
         }

@@ -8,8 +8,7 @@ namespace DirtX.Core.Interfaces
         public Task<ICollection<UserViewModel>> GetAllUsersAsync();
         public Task EditProfileAsync(string userId, EditProfileViewModel model);
         public Task DeleteUserAsync(string userId);
-        public Task PromoteUserToReseller(string userId);
-        public Task PromoteUserToAdmin(string userId);
-        public Task DemoteUser(string userId);
+        public Task ToggleUserReseller(string userId);
+        public Task ToggleUserAdmin(string userId);
     }
 }

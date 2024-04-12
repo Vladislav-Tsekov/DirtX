@@ -1,5 +1,6 @@
 ﻿using DirtX.Core.Enums;
 using DirtX.Core.Interfaces;
+using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
@@ -30,24 +31,24 @@ namespace DirtX.Core.Services
         public async Task<List<Product>> GetAllPartsAsync()
         {
             return await context.Products
-                .Where(p => p.Type.Name == "Part")
                 .AsNoTracking()
+                .Where(p => p.Type.Name == "Part")
                 .ToListAsync();
         }
 
         public async Task<List<Product>> GetAllOilsAsync()
         {
             return await context.Products
-                .Where(p => p.Type.Name == "Oil")
                 .AsNoTracking()
+                .Where(p => p.Type.Name == "Oil")
                 .ToListAsync();
         }
 
         public async Task<List<Product>> GetAllGearsAsync()
         {
             return await context.Products
-                .Where(p => p.Type.Name == "Gear")
                 .AsNoTracking()
+                .Where(p => p.Type.Name == "Gear")
                 .ToListAsync();
         }
 
@@ -61,8 +62,8 @@ namespace DirtX.Core.Services
         public async Task<List<Product>> GetProductsByBrandAsync(ProductBrand brand)
         {
             return await context.Products
-                .Where(p => p.BrandId == brand.Id)
                 .AsNoTracking()
+                .Where(p => p.BrandId == brand.Id)
                 .ToListAsync();
         }
 
@@ -122,6 +123,7 @@ namespace DirtX.Core.Services
         public async Task<List<MotorcycleProduct>> GetCompatiblePartsAsync(int makeId, int modelId, int displacementId, int yearId)
         {
             return await context.MotorcyclesParts
+                .AsNoTracking()
                 .Include(mp => mp.Motorcycle)
                 .Include(mp => mp.Motorcycle.Make)
                 .Include(mp => mp.Motorcycle.Model)
@@ -133,6 +135,16 @@ namespace DirtX.Core.Services
                              mp.Motorcycle.DisplacementId == displacementId &&
                              mp.Motorcycle.YearId == yearId)
                 .ToListAsync();
+        }
+
+        public Task<Product> AddProductAsync(ProductFormViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<Product>> GetAllProductsAsync()
+        {
+            return await context.Products.ToListAsync();
         }
     }
 }

@@ -85,8 +85,6 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new Motorcycle { Id = 19, MakeId = 7, ModelId = 7, YearId = 19, DisplacementId = 1 },
                 new Motorcycle { Id = 20, MakeId = 7, ModelId = 7, YearId = 20, DisplacementId = 3 }
             );
-
-            //TODO - ADD MORE MOTORCYCLES, IF PROJECT IS FINISHED EARLY
         }
 
         private static void SeedUsedMotorcycles(ModelBuilder modelBuilder)

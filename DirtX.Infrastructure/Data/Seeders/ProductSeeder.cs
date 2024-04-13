@@ -9,15 +9,14 @@ namespace DirtX.Infrastructure.Data.Seeders
     {
         public static void SeedProducts(ModelBuilder modelBuilder)
         {
-            SeedProductCategories(modelBuilder);
+            SeedProductTypes(modelBuilder);
             SeedProductBrands(modelBuilder);
             SeedPropertyTitles(modelBuilder);
             SeedProductProperties(modelBuilder);
-
             SeedAllProducts(modelBuilder);
         }
 
-        private static void SeedProductCategories(ModelBuilder modelBuilder)
+        private static void SeedProductTypes(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductType>().HasData(
                 new ProductType { Id = 1, Name = "Part", Description = PartTypeDescription },
@@ -128,15 +127,15 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new Product { Id = 8, BrandId = 18, TypeId = 1, Title = "Fuel Pump", Price = 149.99m, Description = "Electric fuel pump for replacing the old one. Comes with all necessary components.", StockQuantity = 12, Category = ProductCategory.Engine, ImageUrl = "https://i.ibb.co/LnW1Y4k/Product-Fuel-Pump.jpg" },
 
                 // Filter
-                new Product { Id = 9, BrandId = 16, TypeId = 9, Title = "Air Filter", Price = 24.49m, Description = "Premium air filter for improved air flow and engine performance.", StockQuantity = 27, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/vqg672F/Product-Air-Filter.jpg" },
-                new Product { Id = 10, BrandId = 6, TypeId = 10, Title = "Oil Filter", Price = 10.99m, Description = "High-quality oil filter for efficient filtration and engine longevity.", StockQuantity = 19, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg" },
-                new Product { Id = 11, BrandId = 16, TypeId = 11, Title = "Oil Filter Cap", Price = 54.29m, Description = "High-quality oil filter for efficient filtration and engine longevity.", StockQuantity = 8, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg" },
-                new Product { Id = 12, BrandId = 16, TypeId = 12, Title = "Fuel Filter (Gas Tank)", Price = 50.99m, Description = "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.", StockQuantity = 5, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/s1YdYwt/Product-Fuel-Filter-Tank.jpg" },
+                new Product { Id = 9, BrandId = 16, TypeId = 1, Title = "Air Filter", Price = 24.49m, Description = "Premium air filter for improved air flow and engine performance.", StockQuantity = 27, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/vqg672F/Product-Air-Filter.jpg" },
+                new Product { Id = 10, BrandId = 6, TypeId = 1, Title = "Oil Filter", Price = 10.99m, Description = "High-quality oil filter for efficient filtration and engine longevity.", StockQuantity = 19, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg" },
+                new Product { Id = 11, BrandId = 16, TypeId = 1, Title = "Oil Filter Cap", Price = 54.29m, Description = "High-quality oil filter for efficient filtration and engine longevity.", StockQuantity = 8, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg" },
+                new Product { Id = 12, BrandId = 16, TypeId = 1, Title = "Fuel Filter (Gas Tank)", Price = 50.99m, Description = "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.", StockQuantity = 5, Category = ProductCategory.Filters, ImageUrl = "https://i.ibb.co/s1YdYwt/Product-Fuel-Filter-Tank.jpg" },
 
                 // Brake
-                new Product { Id = 13, BrandId = 5, TypeId = 13, Title = "Sintered Front Brake Pads", Price = 35.89m, Description = "Replacement brake pads offering reliable stopping performance.", StockQuantity = 20, Category = ProductCategory.Braking_System, ImageUrl = "https://i.ibb.co/tc2m4jh/Product-Brake-Pads.jpg" },
-                new Product { Id = 14, BrandId = 11, TypeId = 14, Title = "Aluminum Brake Lever", Price = 71.99m, Description = "Comfortable and durable lever, made out of aluminum for improved control and comfort.", StockQuantity = 14, Category = ProductCategory.Braking_System, ImageUrl = "https://i.ibb.co/1RqcRGm/Product-Brake-Lever.jpg" },
-                new Product { Id = 15, BrandId = 11, TypeId = 15, Title = "Front Brake Disc", Price = 89.99m, Description = "High-performance brake disc for superior stopping power.", StockQuantity = 1, Category = ProductCategory.Braking_System, ImageUrl = "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg" },
+                new Product { Id = 13, BrandId = 5, TypeId = 1, Title = "Sintered Front Brake Pads", Price = 35.89m, Description = "Replacement brake pads offering reliable stopping performance.", StockQuantity = 20, Category = ProductCategory.Braking_System, ImageUrl = "https://i.ibb.co/tc2m4jh/Product-Brake-Pads.jpg" },
+                new Product { Id = 14, BrandId = 11, TypeId = 1, Title = "Aluminum Brake Lever", Price = 71.99m, Description = "Comfortable and durable lever, made out of aluminum for improved control and comfort.", StockQuantity = 14, Category = ProductCategory.Braking_System, ImageUrl = "https://i.ibb.co/1RqcRGm/Product-Brake-Lever.jpg" },
+                new Product { Id = 15, BrandId = 11, TypeId = 1, Title = "Front Brake Disc", Price = 89.99m, Description = "High-performance brake disc for superior stopping power.", StockQuantity = 1, Category = ProductCategory.Braking_System, ImageUrl = "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg" },
                 new Product { Id = 16, BrandId = 11, TypeId = 1, Title = "Rear Brake Disc", Price = 77.29m, Description = "High-performance brake disc for superior stopping power.", StockQuantity = 7, Category = ProductCategory.Braking_System, ImageUrl = "https://i.ibb.co/BNPMF26/Product-Rear-Brake-Disc.jpg" },
 
                 // Suspension

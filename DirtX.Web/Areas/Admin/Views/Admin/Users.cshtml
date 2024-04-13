@@ -1,1 +1,41 @@
-﻿
+﻿@model List<UserViewModel>
+
+<form method="get">
+    <partial name="_AdministrationPartial" />
+</form>
+
+<h2>All Users</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username:</th>
+            <th>Created On:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.CreatedOn</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (ViewBag.TotalCount > 12)
+{
+    var pageCount = (int)Math.Ceiling((double)ViewBag.TotalCount / 12);
+    var currentPage = ViewBag.Page != null ? (int)ViewBag.Page : 1;
+
+    <nav aria-label="User navigation">
+        <ul class="pagination">
+            @for (var i = 1; i <= pageCount; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" href="?page=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

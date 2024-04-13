@@ -24,9 +24,13 @@ namespace DirtX.Core.Models.Admin
         public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "Please select the product's brand.")]
+        public ICollection<ProductBrand> Brands { get; set; }
+
         public ProductBrand Brand { get; set; }
 
         [Required(ErrorMessage = "Please select the product's type.")]
+        public ICollection<ProductType> Types { get; set; }
+
         public ProductType Type { get; set; }
 
         [Required(ErrorMessage = "Please select the product's category.")]

@@ -3,15 +3,8 @@
     public class ProductViewModel
     {
         public int Id { get; set; }
-
-        //public ProductBrand Brand { get; set; }
         public string Brand { get; set; }
-
-        //public ProductType Type { get; set; }
-
         public string Type { get; set; }
-        //public ProductCategory Category { get; set; }
-
         public string Category { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }

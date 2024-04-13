@@ -44,11 +44,25 @@ namespace DirtX.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Products()
+        public async Task<IActionResult> Products(int page = 1)
         {
             try
             {
-                List<ProductViewModel> products = await productService.GetAllProductsAsync();
+                List<ProductViewModel> allProducts = await productService.GetAllProductsAsync();
+
+                var pageSize = 12;
+                var totalProductCount = allProducts.Count();
+                var pageCount = (int)Math.Ceiling((double)totalProductCount / pageSize);
+
+                if (page < 1)
+                    page = 1;
+                else if (page > pageCount)
+                    page = pageCount;
+
+                List<ProductViewModel> products = allProducts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                ViewBag.Page = page;
+                ViewBag.TotalCount = totalProductCount;
 
                 return View(products);
             }
@@ -59,11 +73,25 @@ namespace DirtX.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Users()
+        public async Task<IActionResult> Users(int page = 1)
         {
             try
             {
-                var users = await userService.GetAllUsersAsync();
+                List<UserViewModel> allUsers = await userService.GetAllUsersAsync();
+
+                var pageSize = 12;
+                var totalUserCount = allUsers.Count();
+                var pageCount = (int)Math.Ceiling((double)totalUserCount / pageSize);
+
+                if (page < 1)
+                    page = 1;
+                else if (page > pageCount)
+                    page = pageCount;
+
+                List<UserViewModel> users = allUsers.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                ViewBag.Page = page;
+                ViewBag.TotalCount = totalUserCount;
 
                 return View(users);
             }
@@ -72,6 +100,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
                 return GeneralErrorMessage();
             }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> ToggleReseller(string userId)

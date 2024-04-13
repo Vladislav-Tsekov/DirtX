@@ -86,59 +86,42 @@ namespace DirtX.Web.Areas.Admin.Controllers
             }
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(int id, ProductFormViewModel model)
-        //{
-        //    //TODO - CHECK IF TYPE, CATEGORY, ETC EXIST AND THEN ADD MODEL ERROR IF NECESSARY
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, ProductFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
+                return View(model);
+            }
 
-        //    if (!isCategoryExist)
-        //    {
-        //        ModelState.AddModelError(nameof(model.CategoryId), "Invalid Category");
-        //    }
+            try
+            {
+                await productService.EditProductAsync(id, model);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
 
-        //    if (model.ImageFile != null)
-        //    {
-        //        var fileResult = await imageService.SaveImage(model.ImageFile);
-        //        if (fileResult.Item1 == 1)
-        //        {
-        //            model.UploadPicture = fileResult.Item2; // getting name of image
-        //        }
-        //    }
+            TempData["SuccessMessage"] = "You edited the product successfully.";
+            return RedirectToAction("Products", "Admin");
+        }
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        model.Categories = await categoryService.AllCateagoriesAsync();
-        //        TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
-        //        return View(model);
-        //    }
-
-        //    try
-        //    {
-        //        await productService.EditProductAsync(id, model);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return GeneralErrorMessage();
-        //    }
-
-        //    TempData["SuccessMessage"] = "You edited the product successfully.";
-        //    return RedirectToAction("Products", "Admin");
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    try
-        //    {
-        //        await productService.SoftDeleteItemAsync(id);
-        //        TempData["SuccessMessage"] = "You deleted the product successfully.";
-        //        return RedirectToAction("Products", "Admin");
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return GeneralErrorMessage();
-        //    }
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await productService.DeleteProductAsync(id);
+                TempData["SuccessMessage"] = "You deleted the product successfully.";
+                return RedirectToAction("Products", "Admin");
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
 
         private IActionResult GeneralErrorMessage()
         {

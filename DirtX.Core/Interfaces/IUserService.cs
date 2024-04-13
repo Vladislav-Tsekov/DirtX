@@ -5,7 +5,7 @@ namespace DirtX.Core.Interfaces
 {
     public interface IUserService
     {
-        public Task<ICollection<UserViewModel>> GetAllUsersAsync();
+        public Task<List<UserViewModel>> GetAllUsersAsync();
         public Task EditProfileAsync(string userId, EditProfileViewModel model);
         public Task DeleteUserAsync(string userId);
         public Task ToggleUserReseller(string userId);

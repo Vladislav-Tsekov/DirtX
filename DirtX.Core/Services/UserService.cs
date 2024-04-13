@@ -16,7 +16,7 @@ namespace DirtX.Core.Services
             context = _context;
         }
 
-        public async Task<ICollection<UserViewModel>> GetAllUsersAsync()
+        public async Task<List<UserViewModel>> GetAllUsersAsync()
         {
             return await context.Users
                 .Select(u => new UserViewModel()

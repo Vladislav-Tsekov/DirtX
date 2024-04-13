@@ -25,7 +25,7 @@ namespace DirtX.Infrastructure.Data
         // PRODUCTS AND PRODUCT'S SPECIFICATIONS/PROPERTIES
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<ProductType> ProductCategories { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationTitle> SpecificationTitles { get; set; }
         

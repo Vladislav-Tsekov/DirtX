@@ -138,11 +138,6 @@ namespace DirtX.Core.Services
                 .ToListAsync();
         }
 
-        public Task<Product> AddProductAsync(ProductFormViewModel model)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<ProductViewModel>> GetAllProductsAsync()
         {
             return await context.Products
@@ -151,7 +146,7 @@ namespace DirtX.Core.Services
                 { 
                     Id = p.Id,
                     Title = p.Title,
-                    Type = p.Type.ToString(),
+                    Type = p.Type.Name,
                     Category = p.Category.ToString(),
                     Brand = p.Brand.Name,
                     Description = p.Description,
@@ -160,6 +155,81 @@ namespace DirtX.Core.Services
                     ImageUrl = p.ImageUrl,
                 })
                 .ToListAsync();
+        }
+
+        public Task<Product> AddProductAsync(ProductFormViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<ProductFormViewModel> GetProductEditFormAsync(int id)
+        {
+            var product = await context.Products
+                .AsNoTracking()
+                .Include(p => p.Brand)
+                .Include(p => p.Type)
+                .Include(p => p.Specifications)
+                .Include(p => p.MotorcycleParts)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            var brands = await context.ProductBrands.ToListAsync();
+            var types = await context.ProductTypes.ToListAsync();
+
+            if (product == null || brands == null || types == null)
+            {
+                throw new InvalidOperationException("Product not found");
+            }
+
+            var productFormViewModel = new ProductFormViewModel
+            {
+                Title = product.Title,
+                Description = product.Description,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                StockQuantity = product.StockQuantity,
+                Category = product.Category,
+                Brand = product.Brand,
+                Type = product.Type,
+                Specifications = product.Specifications,
+                MotorcycleParts = product.MotorcycleParts,
+            };
+
+            productFormViewModel.Brands = brands;
+            productFormViewModel.Types = types;
+
+            return productFormViewModel;
+        }
+
+        public async Task EditProductAsync(int id, ProductFormViewModel model)
+        {
+            try
+            {
+                var product = await context.Products.FindAsync(id);
+                if (product == null)
+                {
+                    throw new InvalidOperationException("Product not found");
+                }
+
+                product.Title = model.Title;
+                product.Description = model.Description;
+                product.Price = model.Price;
+                product.ImageUrl = model.ImageUrl;
+                product.StockQuantity = model.StockQuantity;
+
+                // ADD PROPS
+
+                context.Products.Update(product);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error editing product", ex);
+            }
+        }
+
+        public Task DeleteProductAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

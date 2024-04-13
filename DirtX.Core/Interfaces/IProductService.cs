@@ -11,7 +11,9 @@ namespace DirtX.Core.Interfaces
     {
         Task<Product> AddProductAsync(ProductFormViewModel model);
         Task<List<ProductViewModel>> GetAllProductsAsync();
-
+        Task<ProductFormViewModel> GetProductEditFormAsync(int id);
+        Task EditProductAsync(int id, ProductFormViewModel model);
+        Task DeleteProductAsync(int id);
 
 
         Task<Product> GetProductAsync(int id);

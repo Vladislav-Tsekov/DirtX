@@ -16,19 +16,67 @@ namespace DirtX.Web.Areas.Admin.Controllers
 
         //TODO - ADD NEW PRODUCT SPECIFICATIONS / PROD.SPEC.TITLES
         //TODO - ADD PRODUCT SPECIFICATIONS FOR EXISTING PRODUCT
-        //TODO - ADD BRAND
         //TODO - ADD COMPATIBLE MOTORCYCLES IF THE PRODUCT TYPE IS "PART"
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public IActionResult AddBrand()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddBrand(BrandFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Invalid model.";
+                return View(model);
+            }
+
+            try
+            {
+                productService.AddProductBrandAsync(model);
+
+                return RedirectToAction("Index", "Admin");
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "An unexpected error occurred. Please try again.";
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AddSpecification()
+        {
+            var viewModel = new SpecificationFormViewModel();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddSpecification(SpecificationFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            productService.AddSpecificationAsync(model);
+
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddProduct()
         {
             try
             {
-                var model = new ProductFormViewModel()
+                ProductFormViewModel model = new()
                 {
-                    //TODO - ADD LOGIC
+                    Brands = await productService.GetAllProductBrandsAsync(),
+                    Types = await productService.GetAllProductTypesAsync()
                 };
-
                 return View(model);
             }
             catch (Exception)
@@ -38,38 +86,24 @@ namespace DirtX.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ProductFormViewModel model)
+        public async Task<IActionResult> AddProduct(ProductFormViewModel model)
         {
-            //TODO - MUST CHOOSE PRODUCT TYPE AND THEN CATEGORY SOMEHOW FIRST
-
-            if (/*type exists*/false)
-            {
-                ModelState.AddModelError(nameof(model/*.Type*/), "Invalid Product Type");
-            }
-
-            //TODO - ADMIN MUST CHOOSE EXISTING BRAND/BRANDID LIKE I DID IN THE USED/SELL OR ADD A NEW BRAND (REDIRECT)
-
             if (!ModelState.IsValid)
             {
                 TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
-
                 return View(model);
             }
 
             try
             {
                 await productService.AddProductAsync(model);
+                return RedirectToAction("Index", "Admin");
             }
             catch (Exception)
             {
                 TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
-
                 return View(model);
             }
-
-            TempData["SuccessMessage"] = "Your product have been added successfully.";
-            //TODO - WHERE TO REDIRECT?
-            return Redirect("");
         }
 
         [HttpGet]
@@ -77,7 +111,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
         {
             try
             {
-                var currProduct = await productService.GetProductAsync(id);
+                var currProduct = await productService.GetProductEditFormAsync(id);
                 return View(currProduct);
             }
             catch (Exception)
@@ -104,7 +138,6 @@ namespace DirtX.Web.Areas.Admin.Controllers
                 return GeneralErrorMessage();
             }
 
-            TempData["SuccessMessage"] = "You edited the product successfully.";
             return RedirectToAction("Products", "Admin");
         }
 
@@ -114,7 +147,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
             try
             {
                 await productService.DeleteProductAsync(id);
-                TempData["SuccessMessage"] = "You deleted the product successfully.";
+
                 return RedirectToAction("Products", "Admin");
             }
             catch (Exception)

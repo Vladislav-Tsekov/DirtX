@@ -9,11 +9,18 @@ namespace DirtX.Core.Interfaces
 {
     public interface IProductService
     {
-        Task<Product> AddProductAsync(ProductFormViewModel model);
+        Task AddProductAsync(ProductFormViewModel model);
         Task<List<ProductViewModel>> GetAllProductsAsync();
         Task<ProductFormViewModel> GetProductEditFormAsync(int id);
         Task EditProductAsync(int id, ProductFormViewModel model);
         Task DeleteProductAsync(int id);
+        Task<List<ProductBrand>> GetAllProductBrandsAsync();
+        Task<List<ProductType>> GetAllProductTypesAsync();
+        Task<List<Specification>> GetAllSpecificationsAsync();
+        Task AddProductBrandAsync(BrandFormViewModel model);
+        Task AddSpecificationAsync(SpecificationFormViewModel model);
+
+
 
 
         Task<Product> GetProductAsync(int id);

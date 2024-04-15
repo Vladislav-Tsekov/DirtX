@@ -1,6 +1,5 @@
 ﻿using DirtX.Core.Enums;
 using DirtX.Core.Interfaces;
-using DirtX.Core.Models;
 using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models;
@@ -25,6 +24,8 @@ namespace DirtX.Core.Services
             return await context.Products
                 .AsNoTracking()
                 .Include(p => p.Brand)
+                .Include(p => p.Type)
+                .Include(p => p.Specifications)
                 .Where(p => p.Id == id)
                 .FirstOrDefaultAsync();
         }
@@ -157,9 +158,22 @@ namespace DirtX.Core.Services
                 .ToListAsync();
         }
 
-        public Task<Product> AddProductAsync(ProductFormViewModel model)
+        public async Task AddProductAsync(ProductFormViewModel model)
         {
-            throw new NotImplementedException();
+            Product product = new()
+            {
+                BrandId = model.BrandId,
+                TypeId = model.TypeId,
+                Category = model.Category.Value,
+                Title = model.Title,
+                Description = model.Description,
+                Price = model.Price,
+                StockQuantity = model.StockQuantity,
+                ImageUrl = model.ImageUrl,
+            };
+
+            context.Products.Add(product);
+            await context.SaveChangesAsync();
         }
 
         public async Task<ProductFormViewModel> GetProductEditFormAsync(int id)
@@ -180,7 +194,7 @@ namespace DirtX.Core.Services
                 throw new InvalidOperationException("Product not found");
             }
 
-            var productFormViewModel = new ProductFormViewModel
+            ProductFormViewModel productFormViewModel = new()
             {
                 Title = product.Title,
                 Description = product.Description,
@@ -188,14 +202,13 @@ namespace DirtX.Core.Services
                 ImageUrl = product.ImageUrl,
                 StockQuantity = product.StockQuantity,
                 Category = product.Category,
-                Brand = product.Brand,
-                Type = product.Type,
+                BrandId = product.Brand.Id,
+                TypeId = product.Type.Id,
                 Specifications = product.Specifications,
                 MotorcycleParts = product.MotorcycleParts,
+                Brands = brands,
+                Types = types
             };
-
-            productFormViewModel.Brands = brands;
-            productFormViewModel.Types = types;
 
             return productFormViewModel;
         }
@@ -204,32 +217,95 @@ namespace DirtX.Core.Services
         {
             try
             {
-                var product = await context.Products.FindAsync(id);
-                if (product == null)
-                {
-                    throw new InvalidOperationException("Product not found");
-                }
+                Product product = await context.Products.FindAsync(id) ?? throw new InvalidOperationException("Product not found");
 
                 product.Title = model.Title;
                 product.Description = model.Description;
                 product.Price = model.Price;
                 product.ImageUrl = model.ImageUrl;
                 product.StockQuantity = model.StockQuantity;
-
-                // ADD PROPS
+                product.BrandId = model.BrandId;
+                product.TypeId = model.TypeId;
+                product.Specifications = model.Specifications;
+                product.Category = (ProductCategory)Enum.Parse(typeof(ProductCategory), model.Category.ToString());
 
                 context.Products.Update(product);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error editing product", ex);
+                throw new Exception("Error editing product.", ex);
             }
         }
 
-        public Task DeleteProductAsync(int id)
+        public async Task DeleteProductAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Product product = await context.Products.FindAsync(id) ?? throw new InvalidOperationException("Product not found");
+
+                context.Products.Remove(product);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting product.", ex);
+            }
         }
+
+        public async Task<List<ProductBrand>> GetAllProductBrandsAsync()
+        {
+            return await context.ProductBrands
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<List<ProductType>> GetAllProductTypesAsync()
+        {
+            return await context.ProductTypes
+                .AsNoTracking()
+                .ToListAsync(); 
+        }
+
+        public async Task<List<Specification>> GetAllSpecificationsAsync()
+        {
+            return await context.Specifications
+                .AsNoTracking()
+                .Include(s => s.Title)
+                .ToListAsync();
+        }
+
+        public async Task AddProductBrandAsync(BrandFormViewModel model)
+        {
+            ProductBrand brand = new()
+            {
+                Name = model.Name,
+                Description = model.Description,
+                ImageUrl = model.ImageUrl,
+            };
+
+            context.ProductBrands.Add(brand);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task AddSpecificationAsync(SpecificationFormViewModel model)
+        {
+            try
+            {
+                Specification specification = new()
+                {
+                    Title = model.Title,
+                    Value = model.Value
+                };
+
+                await context.Specifications.AddAsync(specification);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding specification.", ex);
+            }
+        }
+
     }
 }

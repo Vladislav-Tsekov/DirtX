@@ -21,6 +21,8 @@
             <th>Title</th>
             <th>Price</th>
             <th>Stock</th>
+            <th>Specs</th>
+            <th>Fitment</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -36,6 +38,16 @@
                 <td>@product.Title</td>
                 <td>@product.Price</td>
                 <td>@product.StockQuantity</td>
+                <td>
+                    <a href="@Url.Action("LinkWithSpecification", "Product", new { productId = product.Id })">
+                        <button type="submit" class="btn btn-info">Specs</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("LinkWithMotorcycle", "Product", new { productId = product.Id })">
+                        <button type="submit" class="btn btn-success">Fitment</button>
+                    </a>
+                </td>
                 <td>
                     <a href="@Url.Action("Edit", "Product", new { id = product.Id })">                        
                         <button type="submit" class="btn btn-primary">Edit</button>

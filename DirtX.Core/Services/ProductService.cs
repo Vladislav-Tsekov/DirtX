@@ -117,7 +117,6 @@ namespace DirtX.Core.Services
             return await context.ProductsSpecifications
                 .AsNoTracking()
                 .Include(p => p.Specification)
-                .ThenInclude(pp => pp.Title)
                 .Where(p => p.ProductId == id)
                 .ToListAsync();
         }
@@ -271,7 +270,6 @@ namespace DirtX.Core.Services
         {
             return await context.Specifications
                 .AsNoTracking()
-                .Include(s => s.Title)
                 .ToListAsync();
         }
 
@@ -307,5 +305,28 @@ namespace DirtX.Core.Services
             }
         }
 
+        public async Task LinkProductMotorcycleAsync(int productId, int motorcycleId)
+        {
+            MotorcycleProduct productMoto = new()
+            {
+                ProductId = productId,
+                MotorcycleId = motorcycleId
+            };
+
+            context.MotorcyclesParts.Add(productMoto);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task LinkProductSpecificationAsync(int productId, int specificationId)
+        {
+            ProductSpecification productSpec = new()
+            {
+                ProductId = productId,
+                SpecificationId = specificationId
+            };
+
+            context.ProductsSpecifications.Add(productSpec);
+            await context.SaveChangesAsync();
+        }
     }
 }

@@ -21,9 +21,21 @@ namespace DirtX.Core.Services
             return await context.SaveChangesAsync();
         }
 
+        public async Task<List<Motorcycle>> GetAllMotorcyclesAsync() 
+        {
+            return await context.Motorcycles
+                .AsNoTracking()
+                .Include(um => um.Make)
+                .Include(um => um.Model)
+                .Include(um => um.Year)
+                .Include(um => um.Displacement)
+                .ToListAsync();
+        }
+
         public async Task<UsedMotorcycle> GetUsedMotorcycleAsync(int id)
         {
             return await context.UsedMotorcycles
+                .AsNoTracking()
                 .Include(um => um.Make)
                 .Include(um => um.Model)
                 .Include(um => um.Year)

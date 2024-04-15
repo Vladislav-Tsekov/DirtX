@@ -1,5 +1,8 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models.Admin;
+using DirtX.Core.Services;
+using DirtX.Infrastructure.Data.Models.Motorcycles;
+using DirtX.Infrastructure.Data.Models.Products;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DirtX.Web.Areas.Admin.Controllers
@@ -8,15 +11,13 @@ namespace DirtX.Web.Areas.Admin.Controllers
     {
         //TODO - ADD LOGGER
         private readonly IProductService productService;
+        private readonly IMotorcycleService motorcycleService;
 
-        public ProductController(IProductService _productService)
+        public ProductController(IProductService _productService, IMotorcycleService _motorcycleService)
         {
             productService = _productService;
+            motorcycleService = _motorcycleService;
         }
-
-        //TODO - ADD NEW PRODUCT SPECIFICATIONS / PROD.SPEC.TITLES
-        //TODO - ADD PRODUCT SPECIFICATIONS FOR EXISTING PRODUCT
-        //TODO - ADD COMPATIBLE MOTORCYCLES IF THE PRODUCT TYPE IS "PART"
 
         [HttpGet]
         public IActionResult AddBrand()
@@ -148,6 +149,76 @@ namespace DirtX.Web.Areas.Admin.Controllers
             {
                 await productService.DeleteProductAsync(id);
 
+                return RedirectToAction("Products", "Admin");
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> LinkWithMotorcycle(int productId)
+        {
+            try
+            {
+                List<Motorcycle> motorcycles = await motorcycleService.GetAllMotorcyclesAsync();
+                
+                LinkMotoProductViewModel model = new() 
+                {
+                    ProductId = productId,
+                    Motorcycles = motorcycles
+                };
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LinkWithMotorcycle(int productId, int motorcycleId)
+        {
+            try
+            {
+                await productService.LinkProductMotorcycleAsync(productId, motorcycleId);
+                return RedirectToAction("Products", "Admin");
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> LinkWithSpecification(int productId)
+        {
+            try
+            {
+                List<Specification> specs = await productService.GetAllSpecificationsAsync();
+
+                LinkSpecProductViewModel model = new()
+                {
+                    ProductId = productId,
+                    Specifications = specs
+                };
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LinkWithSpecification(int productId, int specificationId)
+        {
+            try
+            {
+                await productService.LinkProductSpecificationAsync(productId, specificationId);
                 return RedirectToAction("Products", "Admin");
             }
             catch (Exception)

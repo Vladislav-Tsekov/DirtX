@@ -19,7 +19,8 @@ namespace DirtX.Core.Interfaces
         Task<List<Specification>> GetAllSpecificationsAsync();
         Task AddProductBrandAsync(BrandFormViewModel model);
         Task AddSpecificationAsync(SpecificationFormViewModel model);
-
+        Task LinkProductMotorcycleAsync(int productId, int motorcycleId);
+        Task LinkProductSpecificationAsync(int productId, int specificationId);
 
 
 

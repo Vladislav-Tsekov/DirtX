@@ -1,6 +1,4 @@
-﻿using DirtX.Infrastructure.Data.Models.Products;
-
-namespace DirtX.Core.Models.Admin
+﻿namespace DirtX.Core.Models.Admin
 {
     public class SpecificationFormViewModel
     {

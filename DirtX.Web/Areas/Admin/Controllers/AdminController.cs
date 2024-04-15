@@ -1,7 +1,5 @@
-﻿using DirtX.Core.Enums;
-using DirtX.Core.Interfaces;
+﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models.Admin;
-using DirtX.Infrastructure.Data.Models.Products;
 using DirtX.Infrastructure.Data.Models.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

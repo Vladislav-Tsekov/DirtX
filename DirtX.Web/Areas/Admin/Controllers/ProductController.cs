@@ -1,6 +1,5 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models.Admin;
-using DirtX.Core.Services;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
 using Microsoft.AspNetCore.Mvc;
@@ -163,8 +162,8 @@ namespace DirtX.Web.Areas.Admin.Controllers
             try
             {
                 List<Motorcycle> motorcycles = await motorcycleService.GetAllMotorcyclesAsync();
-                
-                LinkMotoProductViewModel model = new() 
+
+                LinkMotoProductViewModel model = new()
                 {
                     ProductId = productId,
                     Motorcycles = motorcycles

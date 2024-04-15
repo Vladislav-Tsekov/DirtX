@@ -1,5 +1,4 @@
 ﻿using DirtX.Infrastructure.Data.Models.Motorcycles;
-using DirtX.Infrastructure.Data.Models.Products;
 
 namespace DirtX.Core.Models.Admin
 {

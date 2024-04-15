@@ -142,8 +142,8 @@ namespace DirtX.Core.Services
         {
             return await context.Products
                 .AsNoTracking()
-                .Select(p => new ProductViewModel() 
-                { 
+                .Select(p => new ProductViewModel()
+                {
                     Id = p.Id,
                     Title = p.Title,
                     Type = p.Type.Name,
@@ -263,7 +263,7 @@ namespace DirtX.Core.Services
         {
             return await context.ProductTypes
                 .AsNoTracking()
-                .ToListAsync(); 
+                .ToListAsync();
         }
 
         public async Task<List<Specification>> GetAllSpecificationsAsync()

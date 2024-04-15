@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-
-namespace DirtX.Infrastructure.Shared
+﻿namespace DirtX.Infrastructure.Shared
 {
     public static class ValidationConstants
     {

@@ -45,9 +45,9 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new ProductBrand { Id = 16, Name = "Twin Air", Description = TwinAirDescription, ImageUrl = TwinAirImage },
                 new ProductBrand { Id = 17, Name = "Vertex", Description = VertexDescription, ImageUrl = VertexImage },
                 new ProductBrand { Id = 18, Name = "Wiseco", Description = WisecoDescription, ImageUrl = WisecoImage },
-                new ProductBrand { Id = 19, Name = "YAMALUBE", Description = YamalubeDescription, ImageUrl = YamalubeImage } 
+                new ProductBrand { Id = 19, Name = "YAMALUBE", Description = YamalubeDescription, ImageUrl = YamalubeImage }
             );
-        }  
+        }
         private static void SeedProductProperties(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Specification>().HasData(
@@ -129,7 +129,7 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new Product { Id = 21, BrandId = 14, TypeId = 1, Title = "Steering Stem Bearing Kit", Price = 125.50m, Description = "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.", StockQuantity = 6, Category = ProductCategory.Suspension, ImageUrl = "https://i.ibb.co/VCWrYtY/Product-Steering-Bearings.jpg" },
 
                 // Drivetrain
-                new Product { Id = 22, BrandId = 4, TypeId = 1, Title = "114-Links Chain", Price = 119.99m, Description = "Durable motorcycle chain for smooth power transfer.", StockQuantity = 10, Category = ProductCategory.Drivetrain, ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg",  },
+                new Product { Id = 22, BrandId = 4, TypeId = 1, Title = "114-Links Chain", Price = 119.99m, Description = "Durable motorcycle chain for smooth power transfer.", StockQuantity = 10, Category = ProductCategory.Drivetrain, ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", },
                 new Product { Id = 23, BrandId = 4, TypeId = 1, Title = "120-Links Chain", Price = 129.99m, Description = "Durable motorcycle chain for smooth power transfer.", StockQuantity = 7, Category = ProductCategory.Drivetrain, ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg" },
                 new Product { Id = 24, BrandId = 4, TypeId = 1, Title = "52-Teeth Rear Sprocket", Price = 89.79m, Description = "Quality rear sprocked made out of aluminum.", StockQuantity = 4, Category = ProductCategory.Drivetrain, ImageUrl = "https://i.ibb.co/xGz2dVn/Product-Rear-Sprocket.png" },
                 new Product { Id = 25, BrandId = 4, TypeId = 1, Title = "13-Teeth Front Sprocket", Price = 24.19m, Description = "Standart-sized front sprocked with self-cleaning properties.", StockQuantity = 13, Category = ProductCategory.Drivetrain, ImageUrl = "https://i.ibb.co/9pKtqn6/Product-Front-Sprocket.jpg" },

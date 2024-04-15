@@ -178,7 +178,7 @@ namespace DirtX.Web.Controllers
                 return View(model);
             }
 
-            UsedMotorcycle usedMotorcycle = new() 
+            UsedMotorcycle usedMotorcycle = new()
             {
                 MakeId = model.SelectedMake,
                 ModelId = model.SelectedModel,

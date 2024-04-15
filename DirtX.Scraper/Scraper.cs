@@ -12,7 +12,7 @@ namespace DirtX.Scraper
         public async Task Run(string vehicleClass)
         {
             Config();
-            
+
             string motoClass = vehicleClass.ToLower();
 
             List<string> makes = new();

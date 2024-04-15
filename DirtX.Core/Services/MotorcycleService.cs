@@ -21,7 +21,7 @@ namespace DirtX.Core.Services
             return await context.SaveChangesAsync();
         }
 
-        public async Task<List<Motorcycle>> GetAllMotorcyclesAsync() 
+        public async Task<List<Motorcycle>> GetAllMotorcyclesAsync()
         {
             return await context.Motorcycles
                 .AsNoTracking()

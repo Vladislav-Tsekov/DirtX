@@ -1,7 +1,6 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models;
 using DirtX.Web.Models.Home;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
@@ -87,7 +86,7 @@ namespace DirtX.Web.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public  IActionResult Error(int statusCode)
+        public IActionResult Error(int statusCode)
         {
             if (statusCode == 404)
                 return PartialView("Error404");

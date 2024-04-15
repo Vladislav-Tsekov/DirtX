@@ -28,7 +28,7 @@ namespace DirtX.Web.Controllers
             {
                 List<Product> parts = await productService.GetAllPartsAsync();
                 List<ProductBrand> partBrands = await productService.GetDistinctProductBrandsAsync(parts);
-                List<ProductCategory> partTypes =  productService.GetProductCategories(parts);
+                List<ProductCategory> partTypes = productService.GetProductCategories(parts);
 
                 if (parts is null || partBrands is null || partTypes is null)
                 {

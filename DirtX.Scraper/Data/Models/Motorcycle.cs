@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using DirtX.Scraper.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
-using DirtX.Scraper.Data.Models.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirtX.Scraper.Data.Models
 {

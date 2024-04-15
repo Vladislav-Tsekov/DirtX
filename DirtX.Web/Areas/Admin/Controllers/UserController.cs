@@ -1,8 +1,6 @@
 ﻿namespace DirtX.Web.Areas.Admin.Controllers
 {
     using DirtX.Core.Interfaces;
-    using DirtX.Infrastructure.Data.Models.Users;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class UserController : BaseController

@@ -4,7 +4,7 @@
     {
         Name_Descending,
         Name_Ascending,
-        Price_Descending, 
+        Price_Descending,
         Price_Ascending
     }
 }

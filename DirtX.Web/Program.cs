@@ -45,7 +45,6 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
-builder.Services.AddScoped<ITrailerService, TrailerService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();

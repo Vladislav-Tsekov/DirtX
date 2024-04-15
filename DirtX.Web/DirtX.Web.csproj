@@ -5,6 +5,7 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-DirtX.Web-6d665c92-e06c-4f7e-aa07-be442d26fc4b</UserSecretsId>
+    <Configurations>Debug;Release;ASPNETCORE_ENVIRONMENT</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

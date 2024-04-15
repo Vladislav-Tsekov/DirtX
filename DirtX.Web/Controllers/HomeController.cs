@@ -1,6 +1,7 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models;
 using DirtX.Web.Models.Home;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
@@ -86,8 +87,13 @@ namespace DirtX.Web.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public  IActionResult Error(int statusCode)
         {
+            if (statusCode == 404)
+                return PartialView("Error404");
+            else if (statusCode == 500)
+                return PartialView("Error500");
+
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

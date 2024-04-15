@@ -2,7 +2,6 @@
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
 using DirtX.Infrastructure.Data.Models.Products;
-using DirtX.Infrastructure.Data.Models.Trailers;
 using DirtX.Infrastructure.Data.Models.Users;
 using DirtX.Infrastructure.Data.Seeders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -27,28 +26,21 @@ namespace DirtX.Infrastructure.Data
         public DbSet<ProductBrand> ProductBrands { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Specification> Specifications { get; set; }
-        public DbSet<SpecificationTitle> SpecificationTitles { get; set; }
-        
-        // TRAILER AND TRAILER RENT TABLES
-        public DbSet<Trailer> Trailers { get; set; }
-        public DbSet<TrailerRent> TrailersRents { get; set; }
 
-        // USER-SPECIFIC AND RETAIL TABLES
+        // CARTS AND ORDERS TABLES
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<Garage> Garages { get; set; }
         public DbSet<Order> Orders { get; set; }
 
         // MAPPING/JUNCTION TABLES
         public DbSet<MotorcycleProduct> MotorcyclesParts { get; set; }
         public DbSet<ProductSpecification> ProductsSpecifications { get; set; }
         public DbSet<CartProduct> CartsProducts { get; set; }
-        public DbSet<Wishlist> Wishlists { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=DirtX.Test;Integrated Security=True");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=DirtX;Integrated Security=True");
             }
         }
 
@@ -72,20 +64,8 @@ namespace DirtX.Infrastructure.Data
             modelBuilder.Entity<CartProduct>()
                 .HasKey(cp => new { cp.CartId, cp.ProductId });
 
-            modelBuilder.Entity<Wishlist>()
-                .HasKey(w => new { w.UserId, w.ProductId });
-
-            modelBuilder.Entity<Garage>()
-                .HasKey(g => g.UserId);
-
-            modelBuilder.Entity<Garage>()
-                .HasOne(g => g.User)
-                .WithOne(u => u.Garage)
-                .HasForeignKey<Garage>(g => g.UserId);
-
             ProductSeeder.SeedProducts(modelBuilder);
             MotorcycleSeeder.SeedMotorcycles(modelBuilder);
-            TrailerSeeder.SeedTrailers(modelBuilder);
             ProductSpecificationSeeder.SeedProductsSpecifications(modelBuilder);
             MotorcyclePartSeeder.SeedMotorcyclesParts(modelBuilder);
         }

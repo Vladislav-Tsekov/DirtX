@@ -129,34 +129,17 @@ namespace DirtX.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SpecificationTitles",
+                name: "Specifications",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier for the specification title.")
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier for the specification.")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false, comment: "The title or name of the specification.")
+                    Title = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false, comment: "The title or name of the specification."),
+                    Value = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "The value of the specification.")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SpecificationTitles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trailers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier for the trailer.")
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Title or name of the trailer."),
-                    CostPerDay = table.Column<decimal>(type: "decimal(5,2)", nullable: false, comment: "Cost per day for renting the trailer."),
-                    Capacity = table.Column<int>(type: "int", nullable: false, comment: "Capacity of the trailer (max number of motorcycles)."),
-                    MaximumLoad = table.Column<int>(type: "int", nullable: false, comment: "Maximum load capacity of the trailer (in kilograms)."),
-                    IsAvailable = table.Column<bool>(type: "bit", nullable: false, comment: "Indicates whether the trailer is available for renting."),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "URL pointing to the image of the trailer.")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trailers", x => x.Id);
+                    table.PrimaryKey("PK_Specifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,7 +173,7 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,7 +194,7 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -231,7 +214,7 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,13 +232,13 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,7 +258,7 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -295,24 +278,6 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Garages",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "The ID of the user who owns the garage."),
-                    MotoCount = table.Column<int>(type: "int", nullable: false, comment: "The maximum number of motorcycles allowed in the garage.")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Garages", x => x.UserId);
-                    table.ForeignKey(
-                        name: "FK_Garages_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -348,50 +313,41 @@ namespace DirtX.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Specifications",
+                name: "Motorcycles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier for the specification.")
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle identifier.")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TitleId = table.Column<int>(type: "int", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "The value of the specification.")
+                    MakeId = table.Column<int>(type: "int", nullable: false),
+                    ModelId = table.Column<int>(type: "int", nullable: false),
+                    DisplacementId = table.Column<int>(type: "int", nullable: false),
+                    YearId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Specifications", x => x.Id);
+                    table.PrimaryKey("PK_Motorcycles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Specifications_SpecificationTitles_TitleId",
-                        column: x => x.TitleId,
-                        principalTable: "SpecificationTitles",
+                        name: "FK_Motorcycles_Displacements_DisplacementId",
+                        column: x => x.DisplacementId,
+                        principalTable: "Displacements",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TrailersRents",
-                columns: table => new
-                {
-                    RentId = table.Column<int>(type: "int", nullable: false, comment: "Identifier for the trailer rent.")
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TrailerId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true, comment: "The user who rented the trailer."),
-                    Duration = table.Column<int>(type: "int", nullable: false, comment: "Duration of the trailer rental (in days)."),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Start date of the trailer rental."),
-                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Return date of the trailer rental."),
-                    TotalCost = table.Column<decimal>(type: "decimal(10,2)", nullable: false, comment: "Total cost of the trailer rental.")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TrailersRents", x => x.RentId);
                     table.ForeignKey(
-                        name: "FK_TrailersRents_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        name: "FK_Motorcycles_Makes_MakeId",
+                        column: x => x.MakeId,
+                        principalTable: "Makes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TrailersRents_Trailers_TrailerId",
-                        column: x => x.TrailerId,
-                        principalTable: "Trailers",
+                        name: "FK_Motorcycles_Models_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "Models",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Motorcycles_Years_YearId",
+                        column: x => x.YearId,
+                        principalTable: "Years",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -473,52 +429,6 @@ namespace DirtX.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Motorcycles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle identifier.")
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MakeId = table.Column<int>(type: "int", nullable: false),
-                    ModelId = table.Column<int>(type: "int", nullable: false),
-                    DisplacementId = table.Column<int>(type: "int", nullable: false),
-                    YearId = table.Column<int>(type: "int", nullable: false),
-                    GarageUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Motorcycles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Displacements_DisplacementId",
-                        column: x => x.DisplacementId,
-                        principalTable: "Displacements",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Garages_GarageUserId",
-                        column: x => x.GarageUserId,
-                        principalTable: "Garages",
-                        principalColumn: "UserId");
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Makes_MakeId",
-                        column: x => x.MakeId,
-                        principalTable: "Makes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Motorcycles_Years_YearId",
-                        column: x => x.YearId,
-                        principalTable: "Years",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CartsProducts",
                 columns: table => new
                 {
@@ -534,37 +444,13 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.CartId,
                         principalTable: "Carts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CartsProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Wishlists",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Wishlists", x => new { x.UserId, x.ProductId });
-                    table.ForeignKey(
-                        name: "FK_Wishlists_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Wishlists_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -582,13 +468,13 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.ProductsId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductSpecification_Specifications_SpecificationsId",
                         column: x => x.SpecificationsId,
                         principalTable: "Specifications",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -606,13 +492,13 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductsSpecifications_Specifications_SpecificationId",
                         column: x => x.SpecificationId,
                         principalTable: "Specifications",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -630,13 +516,13 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.MotorcycleId,
                         principalTable: "Motorcycles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MotorcyclesParts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -714,36 +600,59 @@ namespace DirtX.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "SpecificationTitles",
-                columns: new[] { "Id", "Title" },
+                table: "Specifications",
+                columns: new[] { "Id", "Title", "Value" },
                 values: new object[,]
                 {
-                    { 1, "Material" },
-                    { 2, "Manufacture Method" },
-                    { 3, "Color" }
+                    { 1, "Material", "Aluminum" },
+                    { 2, "Material", "Titanium" },
+                    { 3, "Material", "Foam" }
                 });
 
             migrationBuilder.InsertData(
-                table: "SpecificationTitles",
-                columns: new[] { "Id", "Title" },
+                table: "Specifications",
+                columns: new[] { "Id", "Title", "Value" },
                 values: new object[,]
                 {
-                    { 4, "Diameter" },
-                    { 5, "Spring Rate" },
-                    { 6, "Seal Fitment" },
-                    { 7, "Viscosity" },
-                    { 8, "Package" },
-                    { 9, "Size" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Trailers",
-                columns: new[] { "Id", "Capacity", "CostPerDay", "ImageUrl", "IsAvailable", "MaximumLoad", "Title" },
-                values: new object[,]
-                {
-                    { 1, 1, 30m, "https://i.ibb.co/3zZVXNd/capacity-1.jpg", true, 200, "NEPTUN - Trailer for One Motorcycle" },
-                    { 2, 2, 45m, "https://i.ibb.co/Fxnr737/capacity-2.jpg", true, 450, "MGT - Trailer for Two Motorcycles" },
-                    { 3, 3, 60m, "https://i.ibb.co/TR8jdFq/capacity-3.jpg", true, 750, "FELK - Trailer for Three Motorcycles" }
+                    { 4, "Material", "Ferodo" },
+                    { 5, "Material", "Impregnated Cork" },
+                    { 6, "Material", "Steel" },
+                    { 7, "Manufacture Method", "Cast" },
+                    { 8, "Manufacture Method", "Forged" },
+                    { 9, "Color", "Red" },
+                    { 10, "Color", "Blue" },
+                    { 11, "Color", "Green" },
+                    { 12, "Color", "Yellow" },
+                    { 13, "Color", "Orange" },
+                    { 14, "Color", "White" },
+                    { 15, "Color", "Gray" },
+                    { 16, "Color", "Black" },
+                    { 17, "Diameter", "74.98mm" },
+                    { 18, "Diameter", "75.00mm" },
+                    { 19, "Diameter", "88.96mm" },
+                    { 20, "Diameter", "88.98mm" },
+                    { 21, "Diameter", "89.00mm" },
+                    { 22, "Spring Rate", "4.2kg/mm" },
+                    { 23, "Spring Rate", "4.6kg/mm" },
+                    { 24, "Spring Rate", "5.0kg/mm" },
+                    { 25, "Diameter", "220mm" },
+                    { 26, "Diameter", "270mm" },
+                    { 27, "Seal Fitment", "48mm" },
+                    { 28, "Seal Fitment", "50mm" },
+                    { 29, "Viscosity", "5W" },
+                    { 30, "Viscosity", "10W40" },
+                    { 31, "Viscosity", "15W60" },
+                    { 32, "Material", "Polyester Mesh" },
+                    { 33, "Material", "Cotton" },
+                    { 34, "Package", "1L" },
+                    { 35, "Package", "4L" },
+                    { 36, "Package", "0.5L" },
+                    { 37, "Package", "0.75L" },
+                    { 38, "Size", "S" },
+                    { 39, "Size", "M" },
+                    { 40, "Size", "L" },
+                    { 41, "Size", "43" },
+                    { 42, "Size", "45" }
                 });
 
             migrationBuilder.InsertData(
@@ -753,7 +662,14 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     { 1, 2005 },
                     { 2, 2006 },
-                    { 3, 2007 },
+                    { 3, 2007 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Years",
+                columns: new[] { "Id", "ManufactureYear" },
+                values: new object[,]
+                {
                     { 4, 2008 },
                     { 5, 2009 },
                     { 6, 2010 },
@@ -775,29 +691,29 @@ namespace DirtX.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Motorcycles",
-                columns: new[] { "Id", "DisplacementId", "GarageUserId", "MakeId", "ModelId", "YearId" },
+                columns: new[] { "Id", "DisplacementId", "MakeId", "ModelId", "YearId" },
                 values: new object[,]
                 {
-                    { 1, 1, null, 1, 1, 1 },
-                    { 2, 1, null, 1, 1, 2 },
-                    { 3, 3, null, 1, 1, 3 },
-                    { 4, 3, null, 2, 2, 4 },
-                    { 5, 3, null, 2, 2, 5 },
-                    { 6, 1, null, 2, 2, 6 },
-                    { 7, 3, null, 3, 3, 7 },
-                    { 8, 1, null, 3, 3, 8 },
-                    { 9, 1, null, 3, 3, 9 },
-                    { 10, 3, null, 4, 4, 10 },
-                    { 11, 1, null, 4, 4, 11 },
-                    { 12, 3, null, 4, 4, 12 },
-                    { 13, 1, null, 5, 5, 13 },
-                    { 14, 2, null, 5, 5, 14 },
-                    { 15, 3, null, 5, 5, 15 },
-                    { 16, 1, null, 6, 6, 16 },
-                    { 17, 1, null, 6, 6, 17 },
-                    { 18, 3, null, 6, 6, 18 },
-                    { 19, 1, null, 7, 7, 19 },
-                    { 20, 3, null, 7, 7, 20 }
+                    { 1, 1, 1, 1, 1 },
+                    { 2, 1, 1, 1, 2 },
+                    { 3, 3, 1, 1, 3 },
+                    { 4, 3, 2, 2, 4 },
+                    { 5, 3, 2, 2, 5 },
+                    { 6, 1, 2, 2, 6 },
+                    { 7, 3, 3, 3, 7 },
+                    { 8, 1, 3, 3, 8 },
+                    { 9, 1, 3, 3, 9 },
+                    { 10, 3, 4, 4, 10 },
+                    { 11, 1, 4, 4, 11 },
+                    { 12, 3, 4, 4, 12 },
+                    { 13, 1, 5, 5, 13 },
+                    { 14, 2, 5, 5, 14 },
+                    { 15, 3, 5, 5, 15 },
+                    { 16, 1, 6, 6, 16 },
+                    { 17, 1, 6, 6, 17 },
+                    { 18, 3, 6, 6, 18 },
+                    { 19, 1, 7, 7, 19 },
+                    { 20, 3, 7, 7, 20 }
                 });
 
             migrationBuilder.InsertData(
@@ -857,62 +773,6 @@ namespace DirtX.Infrastructure.Migrations
                     { 43, 13, 13, "Motocross/Enduro boots with waterproof lining and reinforced toe.", "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg", 559.99m, 6, "Blitz XR", 3 },
                     { 44, 13, 14, "Motocross goggles with flippers.", "https://i.ibb.co/sHzPG34/Product-B20-Goggles.jpg", 129.99m, 6, "B20 Goggles", 3 },
                     { 45, 13, 14, "Universal offroad gloves.", "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg", 39.99m, 11, "Element Gloves", 3 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Specifications",
-                columns: new[] { "Id", "TitleId", "Value" },
-                values: new object[,]
-                {
-                    { 1, 1, "Aluminum" },
-                    { 2, 1, "Titanium" },
-                    { 3, 1, "Foam" },
-                    { 4, 1, "Ferodo" },
-                    { 5, 1, "Impregnated Cork" },
-                    { 6, 1, "Steel" },
-                    { 7, 2, "Cast" },
-                    { 8, 2, "Forged" },
-                    { 9, 3, "Red" },
-                    { 10, 3, "Blue" },
-                    { 11, 3, "Green" },
-                    { 12, 3, "Yellow" },
-                    { 13, 3, "Orange" },
-                    { 14, 3, "White" },
-                    { 15, 3, "Gray" },
-                    { 16, 3, "Black" },
-                    { 17, 4, "74.98mm" },
-                    { 18, 4, "75.00mm" },
-                    { 19, 4, "88.96mm" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Specifications",
-                columns: new[] { "Id", "TitleId", "Value" },
-                values: new object[,]
-                {
-                    { 20, 4, "88.98mm" },
-                    { 21, 4, "89.00mm" },
-                    { 22, 5, "4.2kg/mm" },
-                    { 23, 5, "4.6kg/mm" },
-                    { 24, 5, "5.0kg/mm" },
-                    { 25, 4, "220mm" },
-                    { 26, 4, "270mm" },
-                    { 27, 6, "48mm" },
-                    { 28, 6, "50mm" },
-                    { 29, 7, "5W" },
-                    { 30, 7, "10W40" },
-                    { 31, 7, "15W60" },
-                    { 32, 1, "Polyester Mesh" },
-                    { 33, 1, "Cotton" },
-                    { 34, 8, "1L" },
-                    { 35, 8, "4L" },
-                    { 36, 8, "0.5L" },
-                    { 37, 8, "0.75L" },
-                    { 38, 9, "S" },
-                    { 39, 9, "M" },
-                    { 40, 9, "L" },
-                    { 41, 9, "43" },
-                    { 42, 9, "45" }
                 });
 
             migrationBuilder.InsertData(
@@ -1404,11 +1264,6 @@ namespace DirtX.Infrastructure.Migrations
                 column: "DisplacementId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Motorcycles_GarageUserId",
-                table: "Motorcycles",
-                column: "GarageUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Motorcycles_MakeId_ModelId_YearId_DisplacementId",
                 table: "Motorcycles",
                 columns: new[] { "MakeId", "ModelId", "YearId", "DisplacementId" });
@@ -1459,21 +1314,6 @@ namespace DirtX.Infrastructure.Migrations
                 column: "SpecificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Specifications_TitleId",
-                table: "Specifications",
-                column: "TitleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrailersRents_TrailerId",
-                table: "TrailersRents",
-                column: "TrailerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrailersRents_UserId",
-                table: "TrailersRents",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UsedMotorcycles_DisplacementId",
                 table: "UsedMotorcycles",
                 column: "DisplacementId");
@@ -1492,11 +1332,6 @@ namespace DirtX.Infrastructure.Migrations
                 name: "IX_UsedMotorcycles_YearId",
                 table: "UsedMotorcycles",
                 column: "YearId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Wishlists_ProductId",
-                table: "Wishlists",
-                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1532,13 +1367,7 @@ namespace DirtX.Infrastructure.Migrations
                 name: "ProductsSpecifications");
 
             migrationBuilder.DropTable(
-                name: "TrailersRents");
-
-            migrationBuilder.DropTable(
                 name: "UsedMotorcycles");
-
-            migrationBuilder.DropTable(
-                name: "Wishlists");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -1550,19 +1379,13 @@ namespace DirtX.Infrastructure.Migrations
                 name: "Carts");
 
             migrationBuilder.DropTable(
-                name: "Specifications");
-
-            migrationBuilder.DropTable(
-                name: "Trailers");
-
-            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Displacements");
+                name: "Specifications");
 
             migrationBuilder.DropTable(
-                name: "Garages");
+                name: "Displacements");
 
             migrationBuilder.DropTable(
                 name: "Makes");
@@ -1574,16 +1397,13 @@ namespace DirtX.Infrastructure.Migrations
                 name: "Years");
 
             migrationBuilder.DropTable(
-                name: "SpecificationTitles");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "ProductBrands");
 
             migrationBuilder.DropTable(
                 name: "ProductTypes");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }

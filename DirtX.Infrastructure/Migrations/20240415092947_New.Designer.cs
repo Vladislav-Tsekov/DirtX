@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirtX.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240413232425_New")]
+    [Migration("20240415092947_New")]
     partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -397,21 +397,6 @@ namespace DirtX.Infrastructure.Migrations
                             ProductId = 45,
                             SpecificationId = 40
                         });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.Wishlist", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Wishlists");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcycleProduct", b =>
@@ -2028,9 +2013,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Property<int>("DisplacementId")
                         .HasColumnType("int");
 
-                    b.Property<string>("GarageUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("MakeId")
                         .HasColumnType("int");
 
@@ -2043,8 +2025,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DisplacementId");
-
-                    b.HasIndex("GarageUserId");
 
                     b.HasIndex("ModelId");
 
@@ -3252,8 +3232,11 @@ namespace DirtX.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("TitleId")
-                        .HasColumnType("int");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)")
+                        .HasComment("The title or name of the specification.");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -3263,443 +3246,261 @@ namespace DirtX.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TitleId");
-
                     b.ToTable("Specifications");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Aluminum"
                         },
                         new
                         {
                             Id = 2,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Titanium"
                         },
                         new
                         {
                             Id = 3,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Foam"
                         },
                         new
                         {
                             Id = 4,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Ferodo"
                         },
                         new
                         {
                             Id = 5,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Impregnated Cork"
                         },
                         new
                         {
                             Id = 6,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Steel"
                         },
                         new
                         {
                             Id = 7,
-                            TitleId = 2,
+                            Title = "Manufacture Method",
                             Value = "Cast"
                         },
                         new
                         {
                             Id = 8,
-                            TitleId = 2,
+                            Title = "Manufacture Method",
                             Value = "Forged"
                         },
                         new
                         {
                             Id = 9,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "Red"
                         },
                         new
                         {
                             Id = 10,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "Blue"
                         },
                         new
                         {
                             Id = 11,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "Green"
                         },
                         new
                         {
                             Id = 12,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "Yellow"
                         },
                         new
                         {
                             Id = 13,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "Orange"
                         },
                         new
                         {
                             Id = 14,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "White"
                         },
                         new
                         {
                             Id = 15,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "Gray"
                         },
                         new
                         {
                             Id = 16,
-                            TitleId = 3,
+                            Title = "Color",
                             Value = "Black"
                         },
                         new
                         {
                             Id = 17,
-                            TitleId = 4,
+                            Title = "Diameter",
                             Value = "74.98mm"
                         },
                         new
                         {
                             Id = 18,
-                            TitleId = 4,
+                            Title = "Diameter",
                             Value = "75.00mm"
                         },
                         new
                         {
                             Id = 19,
-                            TitleId = 4,
+                            Title = "Diameter",
                             Value = "88.96mm"
                         },
                         new
                         {
                             Id = 20,
-                            TitleId = 4,
+                            Title = "Diameter",
                             Value = "88.98mm"
                         },
                         new
                         {
                             Id = 21,
-                            TitleId = 4,
+                            Title = "Diameter",
                             Value = "89.00mm"
                         },
                         new
                         {
                             Id = 22,
-                            TitleId = 5,
+                            Title = "Spring Rate",
                             Value = "4.2kg/mm"
                         },
                         new
                         {
                             Id = 23,
-                            TitleId = 5,
+                            Title = "Spring Rate",
                             Value = "4.6kg/mm"
                         },
                         new
                         {
                             Id = 24,
-                            TitleId = 5,
+                            Title = "Spring Rate",
                             Value = "5.0kg/mm"
                         },
                         new
                         {
                             Id = 25,
-                            TitleId = 4,
+                            Title = "Diameter",
                             Value = "220mm"
                         },
                         new
                         {
                             Id = 26,
-                            TitleId = 4,
+                            Title = "Diameter",
                             Value = "270mm"
                         },
                         new
                         {
                             Id = 27,
-                            TitleId = 6,
+                            Title = "Seal Fitment",
                             Value = "48mm"
                         },
                         new
                         {
                             Id = 28,
-                            TitleId = 6,
+                            Title = "Seal Fitment",
                             Value = "50mm"
                         },
                         new
                         {
                             Id = 29,
-                            TitleId = 7,
+                            Title = "Viscosity",
                             Value = "5W"
                         },
                         new
                         {
                             Id = 30,
-                            TitleId = 7,
+                            Title = "Viscosity",
                             Value = "10W40"
                         },
                         new
                         {
                             Id = 31,
-                            TitleId = 7,
+                            Title = "Viscosity",
                             Value = "15W60"
                         },
                         new
                         {
                             Id = 32,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Polyester Mesh"
                         },
                         new
                         {
                             Id = 33,
-                            TitleId = 1,
+                            Title = "Material",
                             Value = "Cotton"
                         },
                         new
                         {
                             Id = 34,
-                            TitleId = 8,
+                            Title = "Package",
                             Value = "1L"
                         },
                         new
                         {
                             Id = 35,
-                            TitleId = 8,
+                            Title = "Package",
                             Value = "4L"
                         },
                         new
                         {
                             Id = 36,
-                            TitleId = 8,
+                            Title = "Package",
                             Value = "0.5L"
                         },
                         new
                         {
                             Id = 37,
-                            TitleId = 8,
+                            Title = "Package",
                             Value = "0.75L"
                         },
                         new
                         {
                             Id = 38,
-                            TitleId = 9,
+                            Title = "Size",
                             Value = "S"
                         },
                         new
                         {
                             Id = 39,
-                            TitleId = 9,
+                            Title = "Size",
                             Value = "M"
                         },
                         new
                         {
                             Id = 40,
-                            TitleId = 9,
+                            Title = "Size",
                             Value = "L"
                         },
                         new
                         {
                             Id = 41,
-                            TitleId = 9,
+                            Title = "Size",
                             Value = "43"
                         },
                         new
                         {
                             Id = 42,
-                            TitleId = 9,
+                            Title = "Size",
                             Value = "45"
                         });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.SpecificationTitle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("Identifier for the specification title.");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)")
-                        .HasComment("The title or name of the specification.");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SpecificationTitles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Title = "Material"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Title = "Manufacture Method"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Title = "Color"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Title = "Diameter"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Title = "Spring Rate"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Title = "Seal Fitment"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Title = "Viscosity"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Title = "Package"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Title = "Size"
-                        });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.Trailer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("Identifier for the trailer.");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int")
-                        .HasComment("Capacity of the trailer (max number of motorcycles).");
-
-                    b.Property<decimal>("CostPerDay")
-                        .HasColumnType("decimal(5,2)")
-                        .HasComment("Cost per day for renting the trailer.");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("URL pointing to the image of the trailer.");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit")
-                        .HasComment("Indicates whether the trailer is available for renting.");
-
-                    b.Property<int>("MaximumLoad")
-                        .HasColumnType("int")
-                        .HasComment("Maximum load capacity of the trailer (in kilograms).");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("Title or name of the trailer.");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Trailers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Capacity = 1,
-                            CostPerDay = 30m,
-                            ImageUrl = "https://i.ibb.co/3zZVXNd/capacity-1.jpg",
-                            IsAvailable = true,
-                            MaximumLoad = 200,
-                            Title = "NEPTUN - Trailer for One Motorcycle"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Capacity = 2,
-                            CostPerDay = 45m,
-                            ImageUrl = "https://i.ibb.co/Fxnr737/capacity-2.jpg",
-                            IsAvailable = true,
-                            MaximumLoad = 450,
-                            Title = "MGT - Trailer for Two Motorcycles"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Capacity = 3,
-                            CostPerDay = 60m,
-                            ImageUrl = "https://i.ibb.co/TR8jdFq/capacity-3.jpg",
-                            IsAvailable = true,
-                            MaximumLoad = 750,
-                            Title = "FELK - Trailer for Three Motorcycles"
-                        });
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
-                {
-                    b.Property<int>("RentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("Identifier for the trailer rent.");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentId"), 1L, 1);
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int")
-                        .HasComment("Duration of the trailer rental (in days).");
-
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2")
-                        .HasComment("Return date of the trailer rental.");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2")
-                        .HasComment("Start date of the trailer rental.");
-
-                    b.Property<decimal>("TotalCost")
-                        .HasColumnType("decimal(10,2)")
-                        .HasComment("Total cost of the trailer rental.");
-
-                    b.Property<int>("TrailerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasComment("The user who rented the trailer.");
-
-                    b.HasKey("RentId");
-
-                    b.HasIndex("TrailerId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("TrailersRents");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.AppUser", b =>
@@ -3830,21 +3631,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Garage", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasComment("The ID of the user who owns the garage.");
-
-                    b.Property<int>("MotoCount")
-                        .HasColumnType("int")
-                        .HasComment("The maximum number of motorcycles allowed in the garage.");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Garages");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Order", b =>
@@ -4093,25 +3879,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Specification");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Mappings.Wishlist", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.Product", "Product")
-                        .WithMany("Wishlists")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.MotorcycleProduct", b =>
                 {
                     b.HasOne("DirtX.Infrastructure.Data.Models.Motorcycles.Motorcycle", "Motorcycle")
@@ -4138,10 +3905,6 @@ namespace DirtX.Infrastructure.Migrations
                         .HasForeignKey("DisplacementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.Garage", null)
-                        .WithMany("Motorcycles")
-                        .HasForeignKey("GarageUserId");
 
                     b.HasOne("DirtX.Infrastructure.Data.Models.Motorcycles.Make", "Make")
                         .WithMany()
@@ -4224,50 +3987,11 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Products.Specification", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Products.SpecificationTitle", "Title")
-                        .WithMany()
-                        .HasForeignKey("TitleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Title");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Trailers.TrailerRent", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Trailers.Trailer", "Trailer")
-                        .WithMany()
-                        .HasForeignKey("TrailerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Trailer");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Cart", b =>
                 {
                     b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
                         .WithMany("Carts")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Garage", b =>
-                {
-                    b.HasOne("DirtX.Infrastructure.Data.Models.Users.AppUser", "User")
-                        .WithOne("Garage")
-                        .HasForeignKey("DirtX.Infrastructure.Data.Models.Users.Garage", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -4365,15 +4089,11 @@ namespace DirtX.Infrastructure.Migrations
                     b.Navigation("CartProducts");
 
                     b.Navigation("MotorcycleParts");
-
-                    b.Navigation("Wishlists");
                 });
 
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.AppUser", b =>
                 {
                     b.Navigation("Carts");
-
-                    b.Navigation("Garage");
 
                     b.Navigation("Orders");
                 });
@@ -4381,11 +4101,6 @@ namespace DirtX.Infrastructure.Migrations
             modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Cart", b =>
                 {
                     b.Navigation("CartProducts");
-                });
-
-            modelBuilder.Entity("DirtX.Infrastructure.Data.Models.Users.Garage", b =>
-                {
-                    b.Navigation("Motorcycles");
                 });
 #pragma warning restore 612, 618
         }

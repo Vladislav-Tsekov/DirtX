@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using static DirtX.Infrastructure.Shared.ValidationConstants;
-using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Infrastructure.Data.Models.Products
 {
@@ -11,10 +10,10 @@ namespace DirtX.Infrastructure.Data.Models.Products
         [Comment("Identifier for the specification.")]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(TitleId))]
+        [Required]
+        [MaxLength(SpecificationTitleMaxLength)]
         [Comment("The title or name of the specification.")]
-        public SpecificationTitle Title { get; set; }
-        public int TitleId { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(SpecificationValueMaxLength)]
@@ -22,6 +21,6 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public string Value { get; set; }
 
         [Comment("Collection of products associated with this specification.")]
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; } = new HashSet<Product>();
     }
 }

@@ -52,15 +52,12 @@ namespace DirtX.Infrastructure.Data.Models.Products
         public string ImageUrl { get; set; }
 
         [Comment("Specifications associated with this product.")]
-        public ICollection<Specification> Specifications { get; set; }
+        public ICollection<Specification> Specifications { get; set; } = new HashSet<Specification>();
 
         [Comment("Products added to shopping carts by users.")]
-        public ICollection<CartProduct> CartProducts { get; set; }
-
-        [Comment("Products added to wishlists by users.")]
-        public ICollection<Wishlist> Wishlists { get; set; }
+        public ICollection<CartProduct> CartProducts { get; set; } = new HashSet<CartProduct>();
 
         [Comment("Motorcycles compatible with this product.")]
-        public ICollection<MotorcycleProduct> MotorcycleParts { get; set; }
+        public ICollection<MotorcycleProduct> MotorcycleParts { get; set; } = new HashSet<MotorcycleProduct>();
     }
 }

@@ -45,9 +45,5 @@ namespace DirtX.Infrastructure.Data.Models.Users
 
         [Comment("Shopping carts belonging to the user.")]
         public ICollection<Cart> Carts { get; set; } = new List<Cart>();
-
-        [Comment("Garage associated with the user.")]
-        public Garage Garage { get; set; } = new Garage();
     }
-
 }

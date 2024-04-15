@@ -11,7 +11,6 @@ namespace DirtX.Infrastructure.Data.Seeders
         {
             SeedProductTypes(modelBuilder);
             SeedProductBrands(modelBuilder);
-            SeedPropertyTitles(modelBuilder);
             SeedProductProperties(modelBuilder);
             SeedAllProducts(modelBuilder);
         }
@@ -48,68 +47,52 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new ProductBrand { Id = 18, Name = "Wiseco", Description = WisecoDescription, ImageUrl = WisecoImage },
                 new ProductBrand { Id = 19, Name = "YAMALUBE", Description = YamalubeDescription, ImageUrl = YamalubeImage } 
             );
-        }
-
-        private static void SeedPropertyTitles(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<SpecificationTitle>().HasData(
-                new SpecificationTitle { Id = 1, Title = "Material" },
-                new SpecificationTitle { Id = 2, Title = "Manufacture Method" },
-                new SpecificationTitle { Id = 3, Title = "Color" },
-                new SpecificationTitle { Id = 4, Title = "Diameter" },
-                new SpecificationTitle { Id = 5, Title = "Spring Rate" },
-                new SpecificationTitle { Id = 6, Title = "Seal Fitment" },
-                new SpecificationTitle { Id = 7, Title = "Viscosity" },
-                new SpecificationTitle { Id = 8, Title = "Package" },
-                new SpecificationTitle { Id = 9, Title = "Size" }
-            );
-        }
-
+        }  
         private static void SeedProductProperties(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Specification>().HasData(
-                new Specification { Id = 1, TitleId = 1, Value = "Aluminum" },
-                new Specification { Id = 2, TitleId = 1, Value = "Titanium" },
-                new Specification { Id = 3, TitleId = 1, Value = "Foam" },
-                new Specification { Id = 4, TitleId = 1, Value = "Ferodo" },
-                new Specification { Id = 5, TitleId = 1, Value = "Impregnated Cork" },
-                new Specification { Id = 6, TitleId = 1, Value = "Steel" },
-                new Specification { Id = 7, TitleId = 2, Value = "Cast" },
-                new Specification { Id = 8, TitleId = 2, Value = "Forged" },
-                new Specification { Id = 9, TitleId = 3, Value = "Red" },
-                new Specification { Id = 10, TitleId = 3, Value = "Blue" },
-                new Specification { Id = 11, TitleId = 3, Value = "Green" },
-                new Specification { Id = 12, TitleId = 3, Value = "Yellow" },
-                new Specification { Id = 13, TitleId = 3, Value = "Orange" },
-                new Specification { Id = 14, TitleId = 3, Value = "White" },
-                new Specification { Id = 15, TitleId = 3, Value = "Gray" },
-                new Specification { Id = 16, TitleId = 3, Value = "Black" },
-                new Specification { Id = 17, TitleId = 4, Value = "74.98mm" },
-                new Specification { Id = 18, TitleId = 4, Value = "75.00mm" },
-                new Specification { Id = 19, TitleId = 4, Value = "88.96mm" },
-                new Specification { Id = 20, TitleId = 4, Value = "88.98mm" },
-                new Specification { Id = 21, TitleId = 4, Value = "89.00mm" },
-                new Specification { Id = 22, TitleId = 5, Value = "4.2kg/mm" },
-                new Specification { Id = 23, TitleId = 5, Value = "4.6kg/mm" },
-                new Specification { Id = 24, TitleId = 5, Value = "5.0kg/mm" },
-                new Specification { Id = 25, TitleId = 4, Value = "220mm" },
-                new Specification { Id = 26, TitleId = 4, Value = "270mm" },
-                new Specification { Id = 27, TitleId = 6, Value = "48mm" },
-                new Specification { Id = 28, TitleId = 6, Value = "50mm" },
-                new Specification { Id = 29, TitleId = 7, Value = "5W" },
-                new Specification { Id = 30, TitleId = 7, Value = "10W40" },
-                new Specification { Id = 31, TitleId = 7, Value = "15W60" },
-                new Specification { Id = 32, TitleId = 1, Value = "Polyester Mesh" },
-                new Specification { Id = 33, TitleId = 1, Value = "Cotton" },
-                new Specification { Id = 34, TitleId = 8, Value = "1L" },
-                new Specification { Id = 35, TitleId = 8, Value = "4L" },
-                new Specification { Id = 36, TitleId = 8, Value = "0.5L" },
-                new Specification { Id = 37, TitleId = 8, Value = "0.75L" },
-                new Specification { Id = 38, TitleId = 9, Value = "S" },
-                new Specification { Id = 39, TitleId = 9, Value = "M" },
-                new Specification { Id = 40, TitleId = 9, Value = "L" },
-                new Specification { Id = 41, TitleId = 9, Value = "43" },
-                new Specification { Id = 42, TitleId = 9, Value = "45" }
+                new Specification { Id = 1, Title = "Material", Value = "Aluminum" },
+                new Specification { Id = 2, Title = "Material", Value = "Titanium" },
+                new Specification { Id = 3, Title = "Material", Value = "Foam" },
+                new Specification { Id = 4, Title = "Material", Value = "Ferodo" },
+                new Specification { Id = 5, Title = "Material", Value = "Impregnated Cork" },
+                new Specification { Id = 6, Title = "Material", Value = "Steel" },
+                new Specification { Id = 7, Title = "Manufacture Method", Value = "Cast" },
+                new Specification { Id = 8, Title = "Manufacture Method", Value = "Forged" },
+                new Specification { Id = 9, Title = "Color", Value = "Red" },
+                new Specification { Id = 10, Title = "Color", Value = "Blue" },
+                new Specification { Id = 11, Title = "Color", Value = "Green" },
+                new Specification { Id = 12, Title = "Color", Value = "Yellow" },
+                new Specification { Id = 13, Title = "Color", Value = "Orange" },
+                new Specification { Id = 14, Title = "Color", Value = "White" },
+                new Specification { Id = 15, Title = "Color", Value = "Gray" },
+                new Specification { Id = 16, Title = "Color", Value = "Black" },
+                new Specification { Id = 17, Title = "Diameter", Value = "74.98mm" },
+                new Specification { Id = 18, Title = "Diameter", Value = "75.00mm" },
+                new Specification { Id = 19, Title = "Diameter", Value = "88.96mm" },
+                new Specification { Id = 20, Title = "Diameter", Value = "88.98mm" },
+                new Specification { Id = 21, Title = "Diameter", Value = "89.00mm" },
+                new Specification { Id = 22, Title = "Spring Rate", Value = "4.2kg/mm" },
+                new Specification { Id = 23, Title = "Spring Rate", Value = "4.6kg/mm" },
+                new Specification { Id = 24, Title = "Spring Rate", Value = "5.0kg/mm" },
+                new Specification { Id = 25, Title = "Diameter", Value = "220mm" },
+                new Specification { Id = 26, Title = "Diameter", Value = "270mm" },
+                new Specification { Id = 27, Title = "Seal Fitment", Value = "48mm" },
+                new Specification { Id = 28, Title = "Seal Fitment", Value = "50mm" },
+                new Specification { Id = 29, Title = "Viscosity", Value = "5W" },
+                new Specification { Id = 30, Title = "Viscosity", Value = "10W40" },
+                new Specification { Id = 31, Title = "Viscosity", Value = "15W60" },
+                new Specification { Id = 32, Title = "Material", Value = "Polyester Mesh" },
+                new Specification { Id = 33, Title = "Material", Value = "Cotton" },
+                new Specification { Id = 34, Title = "Package", Value = "1L" },
+                new Specification { Id = 35, Title = "Package", Value = "4L" },
+                new Specification { Id = 36, Title = "Package", Value = "0.5L" },
+                new Specification { Id = 37, Title = "Package", Value = "0.75L" },
+                new Specification { Id = 38, Title = "Size", Value = "S" },
+                new Specification { Id = 39, Title = "Size", Value = "M" },
+                new Specification { Id = 40, Title = "Size", Value = "L" },
+                new Specification { Id = 41, Title = "Size", Value = "43" },
+                new Specification { Id = 42, Title = "Size", Value = "45" }
             );
         }
 

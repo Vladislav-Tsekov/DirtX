@@ -24,6 +24,7 @@ namespace DirtX.Scraper
             using HttpClient client = new();
 
             string baseUrl = string.Empty;
+
             if (motoClass == "motocross")
             {
                 baseUrl = MxBaseUrl;

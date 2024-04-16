@@ -1,0 +1,68 @@
+16.4.2024 г.
+Make,Year,Count,Variance
+Други,2023,2,0.237
+GASGAS,2021,5,0.216
+GASGAS,2023,11,0.403
+GASGAS,2024,5,0.314
+Honda,2018,5,0.256
+Husqvarna,2020,6,0.278
+Husqvarna,2022,4,0.272
+Husqvarna,2024,2,0.621
+Kawasaki,2021,2,0.338
+Kawasaki,2023,3,0.280
+Ktm,2011,8,0.239
+Ktm,2013,6,0.208
+Ktm,2017,22,0.240
+Ktm,2020,13,0.292
+Suzuki,2012,4,0.198
+Yamaha,2012,5,0.233
+Yamaha,2019,9,0.205
+Yamaha,2021,6,0.318
+Make,Year,Count,Range
+Други , 2023,2,2491
+GASGAS , 2021,5,6501
+GASGAS , 2022,4,3010
+GASGAS , 2023,11,11600
+GASGAS , 2024,5,15750
+Honda , 2008,5,2600
+Honda , 2018,5,6200
+Honda , 2019,8,4500
+Honda , 2021,6,4200
+Honda , 2023,3,2501
+Husqvarna , 2016,4,3499
+Husqvarna , 2017,9,3199
+Husqvarna , 2018,10,4801
+Husqvarna , 2019,7,3700
+Husqvarna , 2020,6,5899
+Husqvarna , 2021,2,3100
+Husqvarna , 2022,4,7000
+Husqvarna , 2023,4,5100
+Husqvarna , 2024,2,11490
+Kawasaki , 2015,6,3500
+Kawasaki , 2019,3,2150
+Kawasaki , 2020,7,5499
+Kawasaki , 2021,2,4900
+Kawasaki , 2023,3,4999
+Ktm , 2006,4,3301
+Ktm , 2008,5,2499
+Ktm , 2009,4,2400
+Ktm , 2011,8,4000
+Ktm , 2012,12,3300
+Ktm , 2013,6,2800
+Ktm , 2014,12,3700
+Ktm , 2015,9,3000
+Ktm , 2016,10,4201
+Ktm , 2017,22,8700
+Ktm , 2018,17,5800
+Ktm , 2019,21,5099
+Ktm , 2020,13,9700
+Ktm , 2021,7,4000
+Ktm , 2022,5,3200
+Ktm , 2023,5,7000
+Suzuki , 2012,4,3200
+Yamaha , 2012,5,4400
+Yamaha , 2017,11,2900
+Yamaha , 2018,6,4001
+Yamaha , 2019,9,6650
+Yamaha , 2021,6,10500
+Yamaha , 2023,3,3450

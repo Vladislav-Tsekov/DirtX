@@ -1,6 +1,8 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data.Models.Users;
+using DirtX.Scraper;
+using DirtX.Scraper.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +13,15 @@ namespace DirtX.Web.Areas.Admin.Controllers
         private readonly IProductService productService;
         private readonly IUserService userService;
         private readonly UserManager<AppUser> userManager;
+        private readonly IScraperService scraperService;
 
-        public AdminController(IProductService _productService, IUserService _userService, UserManager<AppUser> _userManager)
+        public AdminController(IProductService _productService, IUserService _userService, 
+                               UserManager<AppUser> _userManager, IScraperService _scraperService)
         {
             productService = _productService;
             userService = _userService;
             userManager = _userManager;
+            scraperService = _scraperService;
         }
 
         [HttpGet]
@@ -48,9 +53,9 @@ namespace DirtX.Web.Areas.Admin.Controllers
             {
                 List<ProductViewModel> allProducts = await productService.GetAllProductsAsync();
 
-                var pageSize = 12;
-                var totalProductCount = allProducts.Count();
-                var pageCount = (int)Math.Ceiling((double)totalProductCount / pageSize);
+                int pageSize = 12;
+                int totalProductCount = allProducts.Count;
+                int pageCount = (int)Math.Ceiling((double)totalProductCount / pageSize);
 
                 if (page < 1)
                     page = 1;
@@ -77,9 +82,9 @@ namespace DirtX.Web.Areas.Admin.Controllers
             {
                 List<UserViewModel> allUsers = await userService.GetAllUsersAsync();
 
-                var pageSize = 12;
-                var totalUserCount = allUsers.Count();
-                var pageCount = (int)Math.Ceiling((double)totalUserCount / pageSize);
+                int pageSize = 12;
+                int totalUserCount = allUsers.Count;
+                int pageCount = (int)Math.Ceiling((double)totalUserCount / pageSize);
 
                 if (page < 1)
                     page = 1;
@@ -99,6 +104,31 @@ namespace DirtX.Web.Areas.Admin.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Scrape()
+        {
+            string result = await scraperService.RunScraper();
+
+            string outputDirectory = scraperService.GetScraperOutputFolder();
+
+            string[] csvFiles = Directory.GetFiles(outputDirectory, "*.csv");
+
+            ViewBag.FileNames = csvFiles.Select(Path.GetFileName).ToList();
+            ViewBag.Result = result;
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DownloadFile(string fileName)
+        {
+            string outputDirectory = scraperService.GetScraperOutputFolder();
+
+            string filePath = Path.Combine(outputDirectory, fileName);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "application/octet-stream", fileName);
+        }
 
         [HttpPost]
         public async Task<IActionResult> ToggleReseller(string userId)

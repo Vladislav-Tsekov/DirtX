@@ -1,19 +1,35 @@
-﻿using DirtX.Scraper.Data.Models.Enums;
+﻿using DirtX.Scraper.Data;
 using DirtX.Scraper.Models;
+using DirtX.Scraper.Shared;
 using HtmlAgilityPack;
 using System.Text;
 using System.Text.RegularExpressions;
-using static DirtX.Scraper.Settings;
+using static DirtX.Scraper.Shared.Constants;
 
 namespace DirtX.Scraper
 {
-    public class Scraper
+    public class BaseScraper
     {
-        public async Task Run(string vehicleClass)
-        {
-            Config();
+        private readonly ScraperDbContext context;
+        private readonly ScraperSettings settings;
 
-            string motoClass = vehicleClass.ToLower();
+        public BaseScraper(ScraperDbContext _context, ScraperSettings _settings)
+        {
+            context = _context;
+            settings = _settings;
+        }
+
+        public async Task<string> Run()
+        {
+            DateTime? lastRunDate = settings.GetLastRunDateAsync();
+
+            if (lastRunDate.HasValue && lastRunDate.Value.Date == DateTime.Today)
+            {
+                return ScraperHasRunToday;
+            }
+
+            settings.UpdateLastRunDateAsync();
+            settings.Config();
 
             List<string> makes = new();
             List<int> displacements = new();
@@ -23,19 +39,10 @@ namespace DirtX.Scraper
 
             using HttpClient client = new();
 
-            string baseUrl = string.Empty;
+            string baseUrl = BaseUrl;
 
-            if (motoClass == "motocross")
-            {
-                baseUrl = MxBaseUrl;
-            }
-            else if (motoClass == "enduro")
-            {
-                baseUrl = EnduroBaseUrl;
-            }
-
-            int maxPages = 150;
-            int doomCounter = 0;
+            int maxPages = MaxPages;
+            int doomCounter = DoomCounterDefault;
 
             for (int i = 1; i <= maxPages; i++)
             {
@@ -62,7 +69,7 @@ namespace DirtX.Scraper
                     HtmlNodeCollection descriptionNodes = doc.DocumentNode.SelectNodes(DescriptionNodes);
                     HtmlNodeCollection linkNodes = doc.DocumentNode.SelectNodes(LinkNodes);
 
-                    if (titleNodes != null)
+                    if (titleNodes is not null)
                     {
                         foreach (var titleNode in titleNodes)
                         {
@@ -104,10 +111,9 @@ namespace DirtX.Scraper
                     else
                     {
                         doomCounter++;
-                        Console.WriteLine("No titles found on the page.");
                     }
 
-                    if (priceNodes != null)
+                    if (priceNodes is not null)
                     {
                         foreach (var priceNode in priceNodes)
                         {
@@ -127,10 +133,9 @@ namespace DirtX.Scraper
                     else
                     {
                         doomCounter++;
-                        Console.WriteLine("No prices found on the page.");
                     }
 
-                    if (descriptionNodes != null)
+                    if (descriptionNodes is not null)
                     {
                         foreach (var infoNode in descriptionNodes)
                         {
@@ -151,10 +156,9 @@ namespace DirtX.Scraper
                     else
                     {
                         doomCounter++;
-                        Console.WriteLine("No years found on the page.");
                     }
 
-                    if (linkNodes != null)
+                    if (linkNodes is not null)
                     {
                         foreach (var href in linkNodes)
                         {
@@ -166,40 +170,43 @@ namespace DirtX.Scraper
                     else
                     {
                         doomCounter++;
-                        Console.WriteLine("No matching links found.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Failed to retrieve the web page.");
-                    return;
+                    return ScrapeFailed;
                 }
             }
 
-            HashSet<Motorcycle> motorcycles = new();
-
-            Category ctg = Category.Motocross;
-
-            if (motoClass == "enduro")
-            {
-                ctg = Category.Enduro;
-            }
+            HashSet<ScrapeMotorcycle> motorcycles = new();
 
             for (int i = 0; i < makes.Count; i++)
             {
-                Motorcycle currentMoto = new(makes[i], displacements[i], years[i], prices[i], links[i], ctg);
+                ScrapeMotorcycle currentMoto = new(makes[i], displacements[i], years[i], prices[i], links[i]);
                 motorcycles.Add(currentMoto);
             }
 
-            List<Motorcycle> scrapedMoto = motorcycles
-                                .Where(m => m.Price > 3000 && m.Year >= 2006 && m.Year <= DateTime.Now.Year)
-                                .OrderBy(m => m.Make)
-                                .ThenBy(m => m.Year)
-                                .ThenBy(m => m.Price)
-                                .ToList();
+            List<ScrapeMotorcycle> scrapedMoto = motorcycles
+                .Where(m => m.Price > 3000 && m.Year >= 2006 && m.Year <= DateTime.Now.Year)
+                .OrderBy(m => m.Make)
+                .ThenBy(m => m.Year)
+                .ThenBy(m => m.Price)
+                .ToList();
 
             List<string> distinctMakes = makes.Distinct().OrderBy(m => m).ToList();
             List<int> distinctYears = years.Distinct().OrderBy(y => y).ToList();
+
+            await DataExport.UpdateMakesTable(distinctMakes, context);
+            await DataExport.UpdateYearsTable(distinctYears, context);
+            await DataExport.AddMotorcycleEntries(scrapedMoto, context, settings);
+            await DataExport.AddMarketPrices(scrapedMoto, context, settings);
+            await DataExport.TransferSoldEntries(context);
+
+            await DataAnalysis.MarketOverviewReport(context, settings);
+            await DataAnalysis.SoldMotorcyclesReport(context, settings);
+            await DataAnalysis.UnusualValuesReport(context, settings);
+
+            return ScrapeSuccess;
         }
     }
 }

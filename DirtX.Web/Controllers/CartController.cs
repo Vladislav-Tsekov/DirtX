@@ -66,15 +66,12 @@ namespace DirtX.Web.Controllers
 
                 await cartService.AddProductToCartAsync(id, cartId, userId);
 
-                string previousUrl = Request.Headers["Referer"].ToString();
-
-                return Redirect(previousUrl);
+                return RedirectToAction("Cart", "Cart");
             }
             catch (Exception)
             {
                 return GeneralErrorMessage();
             }
-
         }
 
         [HttpPost]
@@ -116,7 +113,6 @@ namespace DirtX.Web.Controllers
             }
 
             return RedirectToAction("Cart", "Cart");
-
         }
 
         [HttpPost]

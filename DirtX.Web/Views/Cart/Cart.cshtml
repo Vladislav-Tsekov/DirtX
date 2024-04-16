@@ -11,7 +11,7 @@
 {
     <h2 class="text-center">There are no products in the cart yet!</h2>
     <div class="text-center">
-        <img src="~/Images/EmtyCart.png" class="w-50 rounded mx-auto d-block" />
+        <img src="https://assets.materialup.com/uploads/66fb8bdf-29db-40a2-996b-60f3192ea7f0/preview.png" class="w-50 rounded mx-auto d-block" />
     </div>
 }
 else
@@ -38,7 +38,7 @@ else
                                     <div class="modal-body text-center">
                                         <p class="h4" style="color:#077fa6">@product.Title</p>
                                         <p class="h4" style="color:#077fa6">Price: @product.Price BGN</p>
-                                        <p><img src="~/Images/@product.Image" style="width: 18rem;"/></p>
+                                        <img src="~/Images/@product.Image" style="width: 18rem;" />
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                 </div>
@@ -47,38 +47,26 @@ else
                     </td>
                     <td>@product.Price BGN</td>
                     <td class="align-middle">
-                        @if (product.Quantity <= 1)
-                        {
-                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@product.ProductId" method="post" class="d-inline-block">
-                                <button type="submit" class="btn btn-sm" disabled>
-                                    <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
-                                </button>
-                            </form>
-                        }
-                        else
-                        {
-                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@product.ProductId" method="post" class="d-inline-block">
-                                <button type="submit" class="btn btn-sm">
-                                    <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
-                                </button>
-                            </form>
-                        }
+                        <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@product.ProductId" method="post" class="d-inline-block">
+                            <button type="submit" class="btn btn-sm @(product.Quantity <= 1 ? "disabled" : "")">
+                                <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;">-</i>
+                            </button>
+                        </form>
                         <span>@product.Quantity</span>
                         <form asp-controller="Cart" asp-action="Increase" asp-route-id="@product.ProductId" method="post" class="d-inline-block">
                             <button type="submit" class="btn btn-sm">
-                                <i class="fas fa-chevron-right fa-lg" style="color: #0771a6;"></i>
+                                <i class="fas fa-chevron-right fa-lg" style="color: #0771a6;">+</i>
                             </button>
                         </form>
-                        
                     </td>
                     <td>
                         <form asp-controller="Cart" asp-action="Remove" asp-route-id="@product.ProductId" method="post" class="me-2 mb-2">
-                            <button type="submit" class="btn btn-sm ms-2">
-                                <i class="far fa-times-circle fa-lg" style="color: #700000;"></i>
+                            <button type="submit" class="btn btn-sm">
+                                <i class="far fa-times-circle fa-lg" style="color: #700000;">REMOVE</i>
                             </button>
                         </form>
                     </td>
-                    <td>$@product.TotalPrice BGN</td>
+                    <td>@product.TotalPrice BGN</td>
                 </tr>
             }
         </tbody>
@@ -87,10 +75,9 @@ else
     <hr />
 
     <div class="d-flex justify-content-between align-items-center">
-        <p class="h4 mb-0">Total: $@Model.TotalPrice BGN</p>
-        <dev class="d-inline-block">
+        <p class="h4 mb-0">Total: @Model.TotalPrice BGN</p>
+        <div class="d-inline-block">
             <a class="btn btn-warning btn-outline-secondary float-end" asp-controller="Order" asp-action="Checkout">Continue</a>
-        </dev>
-        
+        </div>
     </div>
 }

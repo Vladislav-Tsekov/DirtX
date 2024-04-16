@@ -38,17 +38,16 @@ namespace DirtX.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=DirtX;Integrated Security=True");
-            }
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=DirtX;Integrated Security=True");
+            //}
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            //TODO - IS THIS REALLY NECESSARY?
             modelBuilder.Entity<AppUser>().ToTable("AspNetUsers");
 
             modelBuilder.Entity<Motorcycle>()

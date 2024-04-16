@@ -51,6 +51,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DirtX.Core\DirtX.Core.csproj" />
     <ProjectReference Include="..\DirtX.Infrastructure\DirtX.Infrastructure.csproj" />
+    <ProjectReference Include="..\DirtX.Scraper\DirtX.Scraper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

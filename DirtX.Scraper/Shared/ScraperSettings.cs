@@ -23,7 +23,7 @@ namespace DirtX.Scraper.Shared
 
         public DateTime GetLastRunDateAsync()
         {
-            ScraperInfo scraperInfo = context.ScraperInfo.FirstOrDefault();
+            ScraperInfo scraperInfo = context.ScraperInfo.OrderByDescending(d => d).FirstOrDefault();
 
             if (scraperInfo is null)
             {
@@ -35,11 +35,15 @@ namespace DirtX.Scraper.Shared
 
         public void UpdateLastRunDateAsync()
         {
-            ScraperInfo scraperInfo = context.ScraperInfo.FirstOrDefault();
+            ScraperInfo scraperInfo = context.ScraperInfo.OrderByDescending(d => d).FirstOrDefault();
 
             if (scraperInfo is null)
             {
-                scraperInfo = new ScraperInfo();
+                scraperInfo = new ScraperInfo
+                {
+                    LastRunDate = DateTime.Now
+                };
+
                 context.ScraperInfo.Add(scraperInfo);
             }
             else

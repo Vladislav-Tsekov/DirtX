@@ -29,12 +29,50 @@ button[type="submit"]:hover {
     gap: 20px;
 }
 
+.products-container a {
+    text-decoration: none;
+    color: inherit; 
+}
+
 .product-cell {
+    position: relative;
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: hidden;
-    position: relative;
-    transition: all 0.3s; 
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+}
+
+.product-actions p {
+    margin: 0; 
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center; 
+}
+
+.product-actions button {
+    padding: 8px 16px;
+    border: solid 1px black;
+    border-radius: 4px;
+    background-color: darkblue;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.product-actions button:hover {
+    background-color: darkorange;
+    color: black;
 }
 
 .product-image img {
@@ -45,6 +83,7 @@ button[type="submit"]:hover {
 
 .product-details {
     padding: 10px;
+    flex-grow: 1;
 }
 
 .out-of-stock {

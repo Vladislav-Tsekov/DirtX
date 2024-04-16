@@ -108,13 +108,13 @@ namespace DirtX.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Scrape()
         {
             string result = await scraperService.RunScraper();
+            ViewBag.Result = result;
 
             string outputDirectory = scraperService.GetScraperOutputFolder();
 
             string[] csvFiles = Directory.GetFiles(outputDirectory, "*.csv");
 
             ViewBag.FileNames = csvFiles.Select(Path.GetFileName).ToList();
-            ViewBag.Result = result;
 
             return View();
         }

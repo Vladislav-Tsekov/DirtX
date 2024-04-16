@@ -22,3 +22,49 @@ button[type="submit"]:hover {
     color: black;
     border: solid 1px black;
 }
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-cell {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s; 
+}
+
+.product-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.product-details {
+    padding: 10px;
+}
+
+.out-of-stock {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.out-of-stock-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: red;
+}
+
+.product-cell:hover {
+    border-color: orange;
+    transform: scale(1.05);
+}

@@ -7,7 +7,6 @@ using DirtX.Scraper.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
 using static DirtX.Infrastructure.Data.Seeders.UserSeeder;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -65,9 +64,9 @@ using (IServiceScope scope = app.Services.CreateScope())
     IServiceProvider services = scope.ServiceProvider;
     //try
     //{
-        var userManager = services.GetRequiredService<UserManager<AppUser>>();
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        await SeedUsersAsync(userManager, roleManager);
+    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await SeedUsersAsync(userManager, roleManager);
     //}
     //catch (Exception)
     //{

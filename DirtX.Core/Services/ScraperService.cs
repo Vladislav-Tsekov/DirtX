@@ -22,7 +22,7 @@ namespace DirtX.Core.Services
             return await baseScraper.Run();
         }
 
-        public string GetScraperOutputFolder() 
+        public string GetScraperOutputFolder()
         {
             return settings.GetScraperOutputDirectory();
         }

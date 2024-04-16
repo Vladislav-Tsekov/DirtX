@@ -37,6 +37,10 @@
     <None Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
     <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Views\Order\Checkout.cshtml" />
+    <None Include="Views\Order\Confirmed.cshtml" />
+    <None Include="Views\Order\OrderDetails.cshtml" />
+    <None Include="Views\Order\OrderHistory.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

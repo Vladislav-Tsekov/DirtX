@@ -15,6 +15,6 @@ namespace DirtX.Web.Models
         [Range(0, int.MaxValue)]
         public decimal TotalPrice { get; set; }
 
-        public IEnumerable<CartProductViewModel> Products { get; set; }
+        public ICollection<CartProductViewModel> Products { get; set; } = new HashSet<CartProductViewModel>();
     }
 }

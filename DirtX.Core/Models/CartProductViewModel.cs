@@ -12,9 +12,8 @@ namespace DirtX.Web.Models
 
         public int ProductId { get; set; }
 
-        public string Title { get; set; } = null!;
+        public string Title { get; set; }
 
-        //TODO - CHANGE THIS IF IMAGES WILL BE HANDLED IN DB
         public string Image { get; set; }
 
         public decimal Price { get; set; }

@@ -1,8 +1,8 @@
 ﻿using DirtX.Core.Interfaces;
+using DirtX.Core.Models;
 using DirtX.Core.Validation;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Motorcycles;
-using DirtX.Web.Models.Used;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

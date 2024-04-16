@@ -1,4 +1,5 @@
-﻿namespace DirtX.Web.Models.Used;
+﻿namespace DirtX.Core.Models;
+
 public class UsedMotoViewModel
 {
     public int Id { get; set; }

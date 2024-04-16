@@ -1,8 +1,6 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data.Models.Users;
-using DirtX.Scraper;
-using DirtX.Scraper.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +13,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly IScraperService scraperService;
 
-        public AdminController(IProductService _productService, IUserService _userService, 
+        public AdminController(IProductService _productService, IUserService _userService,
                                UserManager<AppUser> _userManager, IScraperService _scraperService)
         {
             productService = _productService;

@@ -14,7 +14,7 @@ namespace DirtX.Scraper.Data
         public DbSet<MotorcycleMarketPrice> MarketPrices { get; set; }
         public DbSet<ScraperInfo> ScraperInfo { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

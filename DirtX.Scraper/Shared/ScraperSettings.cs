@@ -1,7 +1,5 @@
 ﻿using DirtX.Scraper.Data;
 using DirtX.Scraper.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Text;
 
 namespace DirtX.Scraper.Shared
@@ -15,7 +13,7 @@ namespace DirtX.Scraper.Shared
             context = _context;
         }
 
-        public string GetScraperOutputDirectory() 
+        public string GetScraperOutputDirectory()
         {
             string parentDir = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             return Path.Combine(parentDir, @"DirtX.Scraper\Output");

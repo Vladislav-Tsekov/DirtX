@@ -1,0 +1,96 @@
+﻿@model CartFormViewModel
+
+@{
+    ViewBag.Title = "Products in Cart";
+}
+
+<h1 class="text-center">@ViewBag.Title</h1>
+<hr />
+
+@if (Model == null || !Model.Products.Any())
+{
+    <h2 class="text-center">There are no products in the cart yet!</h2>
+    <div class="text-center">
+        <img src="~/Images/EmtyCart.png" class="w-50 rounded mx-auto d-block" />
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-link btn-product" data-bs-toggle="modal" data-bs-target="#modal-@product.ProductId">@product.Title</button>
+                        <div class="modal fade" id="modal-@product.ProductId" tabindex="-1" aria-labelledby="modal-@product.ProductId-label" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <p class="h4" style="color:#077fa6">@product.Title</p>
+                                        <p class="h4" style="color:#077fa6">Price: @product.Price BGN</p>
+                                        <p><img src="~/Images/@product.Image" style="width: 18rem;"/></p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@product.Price BGN</td>
+                    <td class="align-middle">
+                        @if (product.Quantity <= 1)
+                        {
+                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@product.ProductId" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-sm" disabled>
+                                    <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@product.ProductId" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-sm">
+                                    <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
+                                </button>
+                            </form>
+                        }
+                        <span>@product.Quantity</span>
+                        <form asp-controller="Cart" asp-action="Increase" asp-route-id="@product.ProductId" method="post" class="d-inline-block">
+                            <button type="submit" class="btn btn-sm">
+                                <i class="fas fa-chevron-right fa-lg" style="color: #0771a6;"></i>
+                            </button>
+                        </form>
+                        
+                    </td>
+                    <td>
+                        <form asp-controller="Cart" asp-action="Remove" asp-route-id="@product.ProductId" method="post" class="me-2 mb-2">
+                            <button type="submit" class="btn btn-sm ms-2">
+                                <i class="far fa-times-circle fa-lg" style="color: #700000;"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td>$@product.TotalPrice BGN</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+
+    <div class="d-flex justify-content-between align-items-center">
+        <p class="h4 mb-0">Total: $@Model.TotalPrice BGN</p>
+        <dev class="d-inline-block">
+            <a class="btn btn-warning btn-outline-secondary float-end" asp-controller="Order" asp-action="Checkout">Continue</a>
+        </dev>
+        
+    </div>
+}

@@ -12,7 +12,7 @@ namespace DirtX.Calculations
                 if (entry.Make?.Title is not null && entry.Year?.ManufactureYear is not 0)
                 {
                     MotorcycleMarketPrice currentPrice = marketPricesSet
-                        .FirstOrDefault(m => m.Make?.Title == entry.Make.Title 
+                        .FirstOrDefault(m => m.Make?.Title == entry.Make.Title
                                           && m.Year?.ManufactureYear == entry.Year.ManufactureYear);
 
                     if (currentPrice is not null)

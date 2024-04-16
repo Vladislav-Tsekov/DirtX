@@ -5,7 +5,6 @@ using DirtX.Scraper.Models;
 using DirtX.Scraper.Shared;
 using Microsoft.EntityFrameworkCore;
 using static DirtX.Scraper.Shared.Constants;
-using static DirtX.Scraper.Shared.ScraperSettings;
 
 namespace DirtX.Scraper
 {
@@ -149,7 +148,7 @@ namespace DirtX.Scraper
             foreach (var m in averagePrices)
             {
                 MotorcycleMarketPrice motoExists = context.MarketPrices
-                    .FirstOrDefault(record => record.Make.Title == m.Make 
+                    .FirstOrDefault(record => record.Make.Title == m.Make
                                  && record.Year.ManufactureYear == m.Year);
 
                 if (motoExists is not null)

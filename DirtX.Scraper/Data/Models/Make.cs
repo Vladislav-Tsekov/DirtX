@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Scraper.Data.Models
 {
@@ -9,6 +10,7 @@ namespace DirtX.Scraper.Data.Models
 
         [Required]
         [MaxLength(100)]
+        [Comment("Motorcycle's Make - Manufacturer's Title")]
         public string Title { get; set; }
     }
 }

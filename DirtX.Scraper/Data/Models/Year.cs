@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Scraper.Data.Models
 {
@@ -9,6 +10,7 @@ namespace DirtX.Scraper.Data.Models
 
         [Required]
         [Range(1980, 2024)]
+        [Comment("Motorcycle's Year of manufacture")]
         public int ManufactureYear { get; set; }
     }
 }

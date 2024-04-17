@@ -19,4 +19,10 @@
 This will automatically seed the dummy data and you will be able to run the program.
 If you want to run the tests, first you must navigate to the "SeedUsedMotorcycles" method and comment the code inside, since the **Directory** and **Path** methods will interfere with NUnit framework. Unless you do that, all test will fail.
 
+When playing around within the Admin Dashboard, do not delete default users. Those are:
+
+Admin: 
+> Name: admin@dirtx.com / Pass: AdminUser111
+> User: user@dirtx.com / Pass: NormalUser333 
+
 The DirtX.Web profile is for development. If you want to experience the program as a regular user would, you must choose "IIS Express" as a startup project.

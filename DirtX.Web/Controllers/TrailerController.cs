@@ -1,6 +1,4 @@
-﻿using DirtX.Core.Models;
-using DirtX.Infrastructure.Data;
-using DirtX.Infrastructure.Data.Models.Trailers;
+﻿using DirtX.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

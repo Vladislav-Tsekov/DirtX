@@ -1,0 +1,20 @@
+﻿@model LinkMotoProductViewModel
+
+<h1>Link Product with Motorcycle</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="ProductId">Product Id:</label>
+        <input asp-for="ProductId" readonly />
+    </div>
+    <div>
+        <label>Select Motorcycle:</label>
+        <select name="motorcycleId">
+            @foreach (var motorcycle in Model.Motorcycles)
+            {
+                <option value="@motorcycle.Id">@motorcycle.Make.Title, @motorcycle.Model.Title, @motorcycle.Displacement.Volume, @motorcycle.Year.ManufactureYear</option>
+            }
+        </select>
+    </div>
+    <button type="submit">Link</button>
+</form>

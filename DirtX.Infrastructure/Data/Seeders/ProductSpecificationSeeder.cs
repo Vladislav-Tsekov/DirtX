@@ -76,7 +76,7 @@ namespace DirtX.Infrastructure.Data.Seeders
                 new ProductSpecification { ProductId = 44, SpecificationId = 12 },
                 new ProductSpecification { ProductId = 45, SpecificationId = 10 },
                 new ProductSpecification { ProductId = 45, SpecificationId = 40 }
-            ); 
+            );
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://i.ibb.co/mHcFWj8/dirt-bike-maintenance.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: darkorange;
+    color: black;
+}
+
+p {
+    display: inline;
+    margin-bottom: 10px;
+    font-size: 2em;
+    text-shadow: 2px 2px 2px black;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 5px 10px;
+    -webkit-text-stroke-width: 0.3px;
+    -webkit-text-stroke-color: white;
+}
+
+a:hover {
+    color: darkorange;
+    background-color: transparent;
+    text-shadow: 2px 2px 2px black;
+}

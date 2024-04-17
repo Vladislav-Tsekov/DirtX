@@ -1,0 +1,18 @@
+﻿<h1>Scrape Data</h1>
+
+<p><a asp-action="Index">Back to Admin Dashboard</a></p>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <p>@ViewBag.Message</p>
+}
+
+<p>Scraping Result: @ViewBag.Result</p>
+
+@foreach (var fileName in ViewBag.FileNames)
+{
+    <form asp-action="DownloadFile" method="post">
+        <input type="hidden" name="fileName" value="@fileName" />
+        <button type="submit">Download @fileName</button>
+    </form>
+}

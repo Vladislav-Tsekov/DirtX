@@ -1,0 +1,20 @@
+﻿@model LinkSpecProductViewModel
+
+<h1>Link Product with Specification</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="ProductId">Product Id:</label>
+        <input asp-for="ProductId" readonly />
+    </div>
+    <div>
+        <label>Select Specification:</label>
+        <select name="specificationId">
+            @foreach (var specification in Model.Specifications)
+            {
+                <option value="@specification.Id">@specification.Title, @specification.Value</option>
+            }
+        </select>
+    </div>
+    <button type="submit">Link</button>
+</form>

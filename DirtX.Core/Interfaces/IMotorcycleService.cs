@@ -5,6 +5,7 @@ namespace DirtX.Core.Interfaces
 {
     public interface IMotorcycleService
     {
+        Task<List<Motorcycle>> GetAllMotorcyclesAsync();
         Task<int> AddUsedMotorcycleAsync(UsedMotorcycle usedMotorcycle);
         Task<UsedMotorcycle> GetUsedMotorcycleAsync(int id);
         Task<List<UsedMotorcycle>> GetAllUsedMotorcyclesAsync();

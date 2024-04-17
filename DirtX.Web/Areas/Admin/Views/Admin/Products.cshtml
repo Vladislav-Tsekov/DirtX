@@ -1,0 +1,79 @@
+﻿@model List<ProductViewModel>
+
+@{
+    var pageSize = 12;
+    var currentPage = ViewBag.Page != null ? (int)ViewBag.Page : 1;
+    var pageCount = (int)Math.Ceiling((double)ViewBag.TotalCount / pageSize);
+}
+
+<form method="get">
+    <partial name="_AdministrationPartial" />
+</form>
+
+<h2>All Products</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Id</th>
+            <th>Brand</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Specs</th>
+            <th>Fitment</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Type</td>
+                <td>@product.Category.Replace('_',' ')</td>
+                <td>@product.Id</td>
+                <td>@product.Brand</td>
+                <td>@product.Title</td>
+                <td>@product.Price</td>
+                <td>@product.StockQuantity</td>
+                <td>
+                    <a href="@Url.Action("LinkWithSpecification", "Product", new { productId = product.Id })">
+                        <button type="submit" class="btn btn-info">Specs</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("LinkWithMotorcycle", "Product", new { productId = product.Id })">
+                        <button type="submit" class="btn btn-success">Fitment</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Product", new { id = product.Id })">                        
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="@Url.Action("Delete", "Product", new { id = product.Id })" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                        <input type="hidden" name="id" value="@product.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (pageCount > 1)
+{
+    <nav aria-label="Product navigation">
+        <ul class="pagination">
+            @for (var i = 1; i <= pageCount; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" href="?page=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

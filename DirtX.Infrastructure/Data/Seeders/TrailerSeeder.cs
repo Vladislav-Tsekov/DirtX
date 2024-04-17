@@ -1,5 +1,4 @@
-﻿using DirtX.Infrastructure.Data.Models.Trailers;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Infrastructure.Data.Seeders
 {

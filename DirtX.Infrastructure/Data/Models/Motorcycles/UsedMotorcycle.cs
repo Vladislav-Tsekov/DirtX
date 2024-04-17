@@ -53,6 +53,6 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         [Required]
         [RegularExpression(UsedMotoContactRegEx)]
         [Comment("Telephone number of the seller.")]
-        public string Contact {  get; set; }
+        public string Contact { get; set; }
     }
 }

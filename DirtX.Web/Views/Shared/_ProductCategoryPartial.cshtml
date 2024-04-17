@@ -3,23 +3,38 @@
 <div class="products-container">
     @foreach (var product in Model.Products)
     {
-        <div class="product">
-            <h2>@product.Title</h2>
-            <p>@product.Description</p>
-            <p>Price: @product.Price</p>
-
-            @if (product.TypeId == 1)
-            {
-                <a href="@Url.Action("Details", "Part", new { id = product.Id })">View Details</a>
-            }
-            else if (product.TypeId == 2)
-            {
-                <a href="@Url.Action("Details", "Oil", new { id = product.Id })">View Details</a>
-            }
-            else if (product.TypeId == 3)
-            {
-                <a href="@Url.Action("Details", "Gear", new { id = product.Id })">View Details</a>
-            }
-        </div>
+        <a href="@GetProductDetailsUrl(product)" class="product-cell @(product.StockQuantity == 0 ? "out-of-stock" : "")">
+            <div class="product-image">
+                <img src="@product.ImageUrl" alt="@product.Title">
+                @if (product.StockQuantity == 0)
+                {
+                    <div class="out-of-stock-overlay">Out of Stock</div>
+                }
+            </div>
+            <div class="product-details">
+                <h2>@product.Title</h2>
+                <p>@product.Description</p>
+            </div>
+            <div class="product-actions">
+                <p>Price: @product.Price BGN</p>
+            </div>
+        </a>
     }
 </div>
+
+@functions {
+    public string GetProductDetailsUrl(Product product)
+    {
+        switch (product.TypeId)
+        {
+            case 1:
+                return Url.Action("Details", "Part", new { id = product.Id });
+            case 2:
+                return Url.Action("Details", "Oil", new { id = product.Id });
+            case 3:
+                return Url.Action("Details", "Gear", new { id = product.Id });
+            default:
+                return "#";
+        }
+    }
+}

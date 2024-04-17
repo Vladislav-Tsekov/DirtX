@@ -1,0 +1,77 @@
+﻿@using DirtX.Core.Interfaces
+@using System.Security.Claims
+@model OrderFormViewModel
+@inject ICartService cartService
+
+@{
+    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var cart = await cartService.GetCartByUserIdAsync(userId);
+}
+
+<br />
+<br />
+<h1 class="text-center text-primary">Confirm Order</h1>
+<br />
+<br />
+
+<div style="position: relative;">
+    <img src="https://www.pngall.com/wp-content/uploads/2016/07/Online-Shopping-PNG-Clipart.png"
+         style="width: 15rem; position: absolute; top: -11.5rem; left: 20%; transform: translateX(-50%);" />
+    <hr />
+</div>
+
+<div class="container rounded col-md-8  bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-8 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Customer Information</h4>
+                </div>
+                <form asp-controller="Order" asp-action="Checkout" method="post" enctype="multipart/form-data">
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <input asp-for="@Model.FirstName" class="form-control mt-2" type="text" placeholder="First Name" aria-required="true" />
+                            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <input asp-for="@Model.LastName" class="form-control mt-2" type="text" placeholder="Last Name" aria-required="true" />
+                            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <input asp-for="@Model.City" class="form-control  mt-2" type="text" placeholder="City" aria-required="true" />
+                            <span asp-validation-for="@Model.City" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <input asp-for="@Model.Address" class="form-control mt-2" type="text" placeholder="Address" aria-required="true" />
+                            <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <input class="btn btn-warning btn-outline-secondary float-end" type="submit" value="Order Confirmation" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience">
+                    <span class="h4">Order Information</span>
+                </div>
+                <br>
+                @foreach (var product in cart.Products)
+                {
+                    <div class="col-md-12">
+                        <label>@product.Title x @product.Quantity</label>
+                    </div>
+                    <br>
+                }
+                <div class="col-md-12">
+                    <hr />
+                    <p class="h5">Total Price: @cart.TotalPrice BGN</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,6 +23,7 @@ When playing around within the Admin Dashboard, do not delete default users. Tho
 
 Admin: 
 > Name: admin@dirtx.com / Pass: AdminUser111
+User:
 > User: user@dirtx.com / Pass: NormalUser333 
 
 The DirtX.Web profile is for development. If you want to experience the program as a regular user would, you must choose "IIS Express" as a startup project.

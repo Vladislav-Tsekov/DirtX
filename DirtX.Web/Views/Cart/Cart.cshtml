@@ -20,7 +20,7 @@ else
         <thead>
             <tr>
                 <th>Product</th>
-                <th>Price</th>
+                <th>Price (Per Unit)</th>
                 <th>Quantity</th>
                 <th></th>
                 <th>Total Price</th>
@@ -37,7 +37,7 @@ else
                                 <div class="modal-content">
                                     <div class="modal-body text-center">
                                         <p class="h4" style="color:#077fa6">@product.Title</p>
-                                        <p class="h4" style="color:#077fa6">Price: @product.Price BGN</p>
+                                        <p class="h4" style="color:#077fa6">Price: @product.Price.ToString("f2") BGN</p>
                                         <img src="~/Images/@product.Image" style="width: 18rem;" />
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -66,7 +66,7 @@ else
                             </button>
                         </form>
                     </td>
-                    <td>@product.TotalPrice BGN</td>
+                    <td>@product.TotalPrice.ToString("f2") BGN</td>
                 </tr>
             }
         </tbody>
@@ -75,7 +75,7 @@ else
     <hr />
 
     <div class="d-flex justify-content-between align-items-center">
-        <p class="h4 mb-0">Total: @Model.TotalPrice BGN</p>
+        <p class="h4 mb-0">Total: @Model.TotalPrice.ToString("f2") BGN</p>
         <div class="d-inline-block">
             <a class="btn btn-warning btn-outline-secondary float-end" asp-controller="Order" asp-action="Checkout">Continue</a>
         </div>

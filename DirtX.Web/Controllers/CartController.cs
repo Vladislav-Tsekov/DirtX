@@ -1,11 +1,13 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace DirtX.Web.Controllers
 {
-    public class CartController : Controller
+    [Authorize]
+    public class CartController : BaseController
     {
         private readonly ICartService cartService;
 
@@ -20,13 +22,19 @@ namespace DirtX.Web.Controllers
             try
             {
                 string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
                 CartFormViewModel cart = await cartService.GetCartByUserIdAsync(userId);
+
+                if (cart is null)
+                {
+                    return NotFound();
+                }
 
                 return View(cart);
             }
             catch (Exception)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -36,13 +44,14 @@ namespace DirtX.Web.Controllers
             try
             {
                 string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
                 CartFormViewModel cart = await cartService.GetCartByUserIdAsync(userId);
 
                 return View(cart);
             }
             catch (Exception)
             {
-                return GeneralErrorMessage();
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -66,11 +75,11 @@ namespace DirtX.Web.Controllers
 
                 await cartService.AddProductToCartAsync(id, cartId, userId);
 
-                return RedirectToAction("Cart", "Cart");
+                return RedirectToAction(nameof(Cart), "Cart");
             }
             catch (Exception)
             {
-                return GeneralErrorMessage();
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -83,14 +92,14 @@ namespace DirtX.Web.Controllers
 
                 CartFormViewModel cart = await cartService.GetCartByUserIdAsync(userId);
 
-                await cartService.RemoveProductFromCartAsync(id, cart!.Id);
+                await cartService.RemoveProductFromCartAsync(id, cart.Id);
 
-                return RedirectToAction("Cart", "Cart");
+                return RedirectToAction(nameof(Cart), "Cart");
 
             }
             catch (Exception)
             {
-                return GeneralErrorMessage();
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -103,16 +112,14 @@ namespace DirtX.Web.Controllers
 
                 CartFormViewModel cart = await cartService.GetCartByUserIdAsync(userId);
 
-                await cartService.IncreaseProductQuantityAsync(id, cart!.Id);
+                await cartService.IncreaseProductQuantityAsync(id, cart.Id);
             }
             catch
             {
-                TempData["ErrorMessage"] = "An unexpected error occurred with cart! Please, try again.";
-
-                return RedirectToAction("Cart", "Cart");
+                return RedirectToAction(nameof(Error));
             }
 
-            return RedirectToAction("Cart", "Cart");
+            return RedirectToAction(nameof(Cart), "Cart");
         }
 
         [HttpPost]
@@ -124,25 +131,14 @@ namespace DirtX.Web.Controllers
 
                 CartFormViewModel cart = await cartService.GetCartByUserIdAsync(userId);
 
-                await cartService.DecreaseProductQuantityAsync(id, cart!.Id);
+                await cartService.DecreaseProductQuantityAsync(id, cart.Id);
             }
             catch
             {
-                TempData["ErrorMessage"] = "An unexpected error occurred with cart! Please, try again.";
-
-                return RedirectToAction("Cart", "Cart");
+                return RedirectToAction(nameof(Error));
             }
 
-            return RedirectToAction("Cart", "Cart");
-        }
-
-        private IActionResult GeneralErrorMessage()
-        {
-            TempData["ErrorMessage"] = "An unexpected error occurred with cart! Please, try again.";
-
-            string previousUrl = Request.Headers["Referer"].ToString();
-
-            return Redirect(previousUrl);
+            return RedirectToAction(nameof(Cart), "Cart");
         }
     }
 }

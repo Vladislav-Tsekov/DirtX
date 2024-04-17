@@ -25,6 +25,18 @@
                     }
                 </div>
             }
+            @if (@Model.StockQuantity > 0)
+            {
+                <form asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" method="post" class="mb-2">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    Product is Out of Stock!
+                </div>
+            }
             <div class="price-container">
                 <div class="custom-price">
                     Price: @Model.Price

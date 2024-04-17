@@ -1,35 +1,55 @@
 ﻿@model UsedMotoViewModel
 
-@{
-    ViewData["Title"] = "Motorcycle Details";
-}
+<body>
+        <h1>@Model.Make @Model.Displacement @Model.Model (@Model.Year)</h1>
 
-<h1>@Model.Make @Model.Model (@Model.Year)</h1>
+        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" alt="Motorcycle Image" />
 
-<div>
-    <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" alt="Motorcycle Image" style="max-width: 100%;" />
-</div>
+        <div>
+            <p><strong>Location:</strong> @Model.Province.Replace("_", " ")</p>
+            <p><strong>Price:</strong> @Model.Price BGN</p>
+        </div>
 
-<div>
-    <h2>Details</h2>
-    <p><strong>Make:</strong> @Model.Make</p>
-    <p><strong>Model:</strong> @Model.Model</p>
-    <p><strong>Displacement:</strong> @Model.Displacement</p>
-    <p><strong>Year:</strong> @Model.Year</p>
-    <p><strong>Location:</strong> @Model.Province.Replace("_", " ")</p>
-    <p><strong>Price:</strong> @Model.Price</p>
-</div>
+        <div>
+            <h3>Description</h3>
+            <p>@Model.Description</p>
+        </div>
 
-<div>
-    <h2>Description</h2>
-    <p>@Model.Description</p>
-</div>
+        <div>
+            <h3>Contact Information</h3>
+            <p>@Model.Contact</p>
+        </div>
+</body>
 
-<div>
-    <h2>Contact Information</h2>
-    <p>@Model.Contact</p>
-</div>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        color: dimgray;
+    }
 
-<div>
-    <a href="@Url.Action("Index", "Home")">Back to Home</a>
-</div>
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+        color: dimgray;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin: 0 0 10px;
+    }
+</style>

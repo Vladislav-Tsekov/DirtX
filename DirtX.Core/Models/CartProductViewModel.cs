@@ -4,17 +4,10 @@ namespace DirtX.Web.Models
 {
     public class CartProductViewModel
     {
-        public CartProductViewModel()
-        {
-            Quantity = 0;
-            TotalPrice = Price * Quantity;
-        }
-
         public int ProductId { get; set; }
 
-        public string Title { get; set; } = null!;
+        public string Title { get; set; }
 
-        //TODO - CHANGE THIS IF IMAGES WILL BE HANDLED IN DB
         public string Image { get; set; }
 
         public decimal Price { get; set; }

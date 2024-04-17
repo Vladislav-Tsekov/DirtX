@@ -7,20 +7,21 @@ using DirtX.Scraper.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
 using static DirtX.Infrastructure.Data.Seeders.UserSeeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// DATABASE SERVICE
+// DEFAULT DATABASE SERVICE
 string defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-string scraperConnection = builder.Configuration.GetConnectionString("ScraperConnection");
-
 builder.Services.AddDbContext<ApplicationDbContext>(options => { options.UseSqlServer(defaultConnection); });
+
+// SCRAPER DATABASE SERVICE
+string scraperConnection = builder.Configuration.GetConnectionString("ScraperConnection");
 builder.Services.AddDbContext<ScraperDbContext>(options => { options.UseSqlServer(scraperConnection); });
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// EXTENDED ASP.NET IDENTITY
 builder.Services.AddDefaultIdentity<AppUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -50,10 +51,10 @@ builder.Services.AddSession(options =>
 
 // SERVICES
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
 builder.Services.AddScoped<IUserService, UserService>();
-
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ScraperSettings>();
 builder.Services.AddTransient<IScraperService, ScraperService>();
 
@@ -63,16 +64,16 @@ var app = builder.Build();
 using (IServiceScope scope = app.Services.CreateScope())
 {
     IServiceProvider services = scope.ServiceProvider;
-    //try
-    //{
+    try
+    {
         var userManager = services.GetRequiredService<UserManager<AppUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         await SeedUsersAsync(userManager, roleManager);
-    //}
-    //catch (Exception)
-    //{
-    //    throw new ApplicationException();
-    //}
+    }
+    catch (Exception)
+    {
+        throw new ApplicationException();
+    }
 }
 
 if (app.Environment.IsDevelopment())

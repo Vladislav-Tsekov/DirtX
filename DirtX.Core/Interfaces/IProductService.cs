@@ -1,4 +1,5 @@
 ﻿using DirtX.Core.Enums;
+using DirtX.Core.Models;
 using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
@@ -21,9 +22,7 @@ namespace DirtX.Core.Interfaces
         Task AddSpecificationAsync(SpecificationFormViewModel model);
         Task LinkProductMotorcycleAsync(int productId, int motorcycleId);
         Task LinkProductSpecificationAsync(int productId, int specificationId);
-
-
-
+        Task UpdateStockQuantityAsync(OrderFormViewModel order);
         Task<Product> GetProductAsync(int id);
         Task<List<Product>> GetAllPartsAsync();
         Task<List<Product>> GetAllOilsAsync();

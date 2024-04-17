@@ -27,10 +27,6 @@ namespace DirtX.Infrastructure.Data.Models.Users
         [Comment("Address of the user.")]
         public string Address { get; set; }
 
-        [MaxLength(ImageMaxSize)]
-        [Comment("Profile picture of the user.")]
-        public byte[] ProfilePicture { get; set; }
-
         [Comment("Indicates whether the user has admin privileges.")]
         public bool IsAdmin { get; set; }
 

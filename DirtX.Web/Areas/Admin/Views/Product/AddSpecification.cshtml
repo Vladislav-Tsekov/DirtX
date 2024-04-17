@@ -1,5 +1,12 @@
 ﻿@model SpecificationFormViewModel
 
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] as string))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
 <h2>Add Specification</h2>
 
 <form asp-action="AddSpecification" method="post">

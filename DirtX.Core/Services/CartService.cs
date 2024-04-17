@@ -73,7 +73,8 @@ namespace DirtX.Core.Services
         {
             Cart cart = new()
             {
-                UserId = userId
+                UserId = userId,
+                DateCreated = DateTime.Now,
             };
 
             await context.Carts.AddAsync(cart);
@@ -143,8 +144,13 @@ namespace DirtX.Core.Services
                 .Where(cp => cp.ProductId == productId && cp.CartId == cartId)
                 .FirstOrDefaultAsync();
 
-            cartProduct.Quantity++;
+            Product product = await context.Products.Where(p => p.Id == productId).FirstOrDefaultAsync();
 
+            if (product.StockQuantity > cartProduct.Quantity) 
+            {
+                cartProduct.Quantity++;
+            }
+            
             await context.SaveChangesAsync();
         }
 

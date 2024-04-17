@@ -1,21 +1,19 @@
 ﻿using DirtX.Core.Interfaces;
 using DirtX.Core.Models;
-using DirtX.Web.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
 
 namespace DirtX.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> logger;
         private readonly IMotorcycleService motorcycleService;
+        private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> _logger, IMotorcycleService _motorcycleService)
+        public HomeController(IMotorcycleService _motorcycleService, IProductService _productService)
         {
-            logger = _logger;
             motorcycleService = _motorcycleService;
+            productService = _productService;
         }
 
         [HttpGet]
@@ -28,12 +26,13 @@ namespace DirtX.Web.Controllers
                     Makes = await motorcycleService.GetMotorcycleMake()
                 };
 
+                ViewBag.AllBrands = await productService.GetAllProductBrandsAsync();
+
                 return View(makes);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle makes. Debug the Home/Index action for more details.");
-                return View("Error");
+                return BadRequest();
             }
         }
 
@@ -46,10 +45,9 @@ namespace DirtX.Web.Controllers
 
                 return Json(models);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle models. Debug the Home/GetModel action for more details.");
-                return View("Error");
+                return BadRequest();
             }
         }
 
@@ -62,10 +60,9 @@ namespace DirtX.Web.Controllers
 
                 return Json(displacements);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle displacements. Debug the Home/GetDisplacement action for more details.");
-                return View("Error");
+                return BadRequest();
             }
         }
 
@@ -78,22 +75,10 @@ namespace DirtX.Web.Controllers
 
                 return Json(years);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle years. Debug the Home/GetYear action for more details.");
-                return View("Error");
+                return BadRequest();
             }
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error(int statusCode)
-        {
-            if (statusCode == 404)
-                return PartialView("Error404");
-            else if (statusCode == 500)
-                return PartialView("Error500");
-
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using DirtX.Core.Enums;
 using DirtX.Core.Interfaces;
+using DirtX.Core.Models;
 using DirtX.Core.Models.Admin;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models;
 using DirtX.Infrastructure.Data.Models.Enums;
 using DirtX.Infrastructure.Data.Models.Mappings;
 using DirtX.Infrastructure.Data.Models.Products;
+using DirtX.Infrastructure.Data.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Core.Services
@@ -326,6 +328,37 @@ namespace DirtX.Core.Services
             };
 
             context.ProductsSpecifications.Add(productSpec);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task UpdateStockQuantityAsync(OrderFormViewModel order)
+        {
+            Cart cart = await context.Carts
+                .Where(c => c.Id == order.CartId
+                    && c.UserId == order.UserId)
+                .OrderByDescending(c => c)
+                .FirstOrDefaultAsync();
+
+            List<CartProduct> cartProducts = await context.CartsProducts
+                .Where(cp => cp.CartId == cart.Id)
+                .ToListAsync();
+
+            foreach (var cp in cartProducts)
+            {
+                if (cp != null)
+                {
+                    Product product = await context.Products
+                        .Where(p => p.Id == cp.ProductId)
+                        .FirstOrDefaultAsync();
+
+                    product.StockQuantity -= cp.Quantity;
+                }
+                else
+                {
+
+                }
+            }
+
             await context.SaveChangesAsync();
         }
     }

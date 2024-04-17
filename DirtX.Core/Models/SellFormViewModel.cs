@@ -1,7 +1,8 @@
-﻿namespace DirtX.Web.Models.Used;
+﻿namespace DirtX.Core.Models;
 
 using DirtX.Core.Validation;
 using DirtX.Infrastructure.Data.Models.Enums;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 

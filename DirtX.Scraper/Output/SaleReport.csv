@@ -1,9 +1,18 @@
-16.4.2024 г. 17:04:01
+17.4.2024 г. 1:04:24
 Make, Year, CC, Price Sold, Avg Market Price, Date Listed, Date Sold
-Yamaha, 2017, 0, 7400.00, 8050, 16.4.2024 г., 16.4.2024 г.
-The average price for all sold entries is: 7400.00
-The average year for all sold entries is: 2017
-250cc: 0 out of 0. Ratio of NaN%
-350cc: 0 out of 0. Ratio of NaN%
-450cc: 0 out of 0. Ratio of NaN%
+Husqvarna, 2018, 0, 8299.00, 9122, 16.4.2024 г., 17.4.2024 г.
+Husqvarna, 2019, 350, 8700.00, 8263, 16.4.2024 г., 17.4.2024 г.
+Kawasaki, 2012, 450, 5500.00, 5500, 16.4.2024 г., 17.4.2024 г.
+Kawasaki, 2023, 140, 6700.00, 8800, 16.4.2024 г., 17.4.2024 г.
+Ktm, 2017, 0, 7700.00, 8714, 16.4.2024 г., 17.4.2024 г.
+Ktm, 2018, 0, 6900.00, 9134, 16.4.2024 г., 17.4.2024 г.
+Yamaha, 2017, 0, 7400.00, 7973, 16.4.2024 г., 16.4.2024 г.
+The average price for all sold entries is: 7314.14
+The average year for all sold entries is: 2018
+250cc: 0 out of 2. Ratio of 0.00%
+350cc: 1 out of 2. Ratio of 50.00%
+450cc: 1 out of 2. Ratio of 50.00%
+A total of 2 Husqvarna sold!
+A total of 2 Kawasaki sold!
+A total of 2 Ktm sold!
 A total of 1 Yamaha sold!

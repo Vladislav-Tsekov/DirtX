@@ -3580,11 +3580,6 @@ namespace DirtX.Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasMaxLength(1048576)
-                        .HasColumnType("varbinary(max)")
-                        .HasComment("Profile picture of the user.");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 

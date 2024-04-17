@@ -9,31 +9,6 @@
     <link rel="stylesheet" href="~/DirtX.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="row" style="padding-top: 5px; padding-bottom: 5px; max-width: 100%;">
-        <header class="d-flex justify-content-between align-items-center">
-            <div class="logo">
-                <a asp-controller="Home" asp-action="Index"><img src="https://i.ibb.co/VvdNQrj/resized.jpg" title="Logo Title" alt="Logo Alt Text"></a>
-            </div>
-            <div class="contact">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/XsgDt50/contact.png" alt="Phone Icon"> Contact Us</a>
-            </div>
-            <div class="sell">
-                <a asp-controller="Used" asp-action="Sell"><img src="https://i.ibb.co/hB4QC3J/money.png" alt="Sale Icon"> Sell Your Motorcycle</a>
-            </div>
-            <div class="trailer">
-                <a asp-controller="Trailer" asp-action="Index"><img src="https://i.ibb.co/DgZ6x1b/trailer.png" alt="Trailer Icon"> Rent a Trailer</a>
-            </div>
-            <div class="garage">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/zVZpJfk/dirtbike.png" alt="Garage Icon"> My Garage</a>
-            </div>
-            <div class="wishlist">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/6DMXFC0/heart.png" alt="Heart Icon" alt="Wishlist Icon"> My Wishlist</a>
-            </div>
-            <div class="cart">
-                <a asp-controller="" asp-action=""><img src="https://i.ibb.co/61BjcxW/cart.png" alt="Trailer Icon"> Cart</a>
-            </div>
-        </header>
-    </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -57,15 +32,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Used" asp-action="Index">Used Motorcycles</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">About Us</a>
-                        </li>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin Dashboard</a>
-                            </li>
-                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -91,25 +57,3 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
 </body>
 </html>
-
-<style>
-    .contact a,
-    .sell a,
-    .garage a,
-    .wishlist a,
-    .trailer a,
-    .cart a{
-        text-decoration: none; 
-        color: black;
-    }
-
-    .contact a:hover,
-    .sell a:hover,
-    .garage a:hover,
-    .wishlist a:hover,
-    .trailer a:hover,
-    .cart a:hover{
-        color: darkorange;
-        transition: 0.3s ;
-    }
-</style>

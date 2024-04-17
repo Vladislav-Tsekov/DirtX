@@ -21,7 +21,6 @@ namespace DirtX.Infrastructure.Data.Models.Users
         public DateTime DateCreated { get; set; }
 
         [Comment("Products added to the cart.")]
-        public ICollection<CartProduct> CartProducts { get; set; }
+        public ICollection<CartProduct> CartProducts { get; set; } = new HashSet<CartProduct>();
     }
-
 }

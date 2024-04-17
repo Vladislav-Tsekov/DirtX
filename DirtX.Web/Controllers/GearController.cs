@@ -8,14 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DirtX.Web.Controllers
 {
-    public class GearController : Controller
+    public class GearController : BaseController
     {
-        private readonly ILogger<GearController> logger;
         private readonly IProductService productService;
 
         public GearController(ILogger<GearController> _logger, IProductService _productService)
         {
-            logger = _logger;
             productService = _productService;
         }
 
@@ -30,7 +28,6 @@ namespace DirtX.Web.Controllers
 
                 if (gears is null || gearBrands is null || gearTypes is null)
                 {
-                    logger.LogError("An error occurred in the Gear/Index action. At least one out of three collections is null.");
                     return NotFound();
                 }
 
@@ -45,10 +42,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Gear/Index action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -63,7 +59,6 @@ namespace DirtX.Web.Controllers
 
                     if (gears is null)
                     {
-                        logger.LogError($"An error occurred in the Gear/Category action. '{currCategory}' category may not exists.");
                         return NotFound();
                     }
 
@@ -77,14 +72,12 @@ namespace DirtX.Web.Controllers
                 }
                 else
                 {
-                    logger.LogError($"Enum parsing failed in the Gear/Category action, while trying to parse {category}.");
-                    return View("Error");
+                    return BadRequest();
                 }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "An error occurred in the Gear/Category action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -97,7 +90,6 @@ namespace DirtX.Web.Controllers
 
                 if (brand is null)
                 {
-                    logger.LogError($"An error occurred in the Gear/Brand action. Brand with name '{brandName}' could not be found.");
                     return NotFound();
                 }
 
@@ -105,7 +97,6 @@ namespace DirtX.Web.Controllers
 
                 if (gears is null)
                 {
-                    logger.LogError($"An error occurred in the Gear/Brand action. Gears collection for '{brandName}' is null.");
                     return NotFound();
                 }
 
@@ -119,10 +110,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Gear/Brand action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -135,7 +125,6 @@ namespace DirtX.Web.Controllers
 
                 if (gear is null)
                 {
-                    logger.LogError($"An error occurred in the Gear/Details action. Product with ID '{id}' could not be found.");
                     return NotFound();
                 }
 
@@ -149,15 +138,15 @@ namespace DirtX.Web.Controllers
                     Price = gear.Price,
                     Description = gear.Description,
                     ImageUrl = gear.ImageUrl,
+                    StockQuantity = gear.StockQuantity,
                     Specs = gearSpecs
                 };
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Gear/Details action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
     }

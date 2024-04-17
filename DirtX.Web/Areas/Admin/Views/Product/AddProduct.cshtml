@@ -1,8 +1,11 @@
 ﻿@using DirtX.Infrastructure.Data.Models.Enums
 @model ProductFormViewModel
 
-@{
-    ViewData["Title"] = "Add Product";
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] as string))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
 }
 
 <h2>Add Product</h2>

@@ -1,17 +1,13 @@
 ﻿@model BrandFormViewModel
 
-@{
-    ViewData["Title"] = "Add Brand";
-}
-
-<h2>Add Brand</h2>
-
-@if (TempData["ErrorMessage"] != null)
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] as string))
 {
     <div class="alert alert-danger" role="alert">
         @TempData["ErrorMessage"]
     </div>
 }
+
+<h2>Add Brand</h2>
 
 <form asp-action="AddBrand" method="post">
     <div class="form-group">

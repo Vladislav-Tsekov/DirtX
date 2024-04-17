@@ -6,11 +6,11 @@ namespace DirtX.Calculations
 {
     public class MarketOverview
     {
-        public static void MarketShareByEngineDisplacement(HashSet<Motorcycle> entriesSet, StreamWriter marketWriter) 
+        public static void MarketShareByEngineDisplacement(HashSet<Motorcycle> entriesSet, StreamWriter marketWriter)
         {
             int totalEntries = entriesSet.Where(m => m.Displacement == 250 || m.Displacement == 350 || m.Displacement == 450).Count();
 
-            Dictionary<int,int> displacementCount = entriesSet
+            Dictionary<int, int> displacementCount = entriesSet
                 .Where(m => m.Displacement == 250 || m.Displacement == 350 || m.Displacement == 450)
                 .GroupBy(m => m.Displacement)
                 .OrderByDescending(m => m.Key)

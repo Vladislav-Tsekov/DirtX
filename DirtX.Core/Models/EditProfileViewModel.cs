@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DirtX.Core.Models
 {
@@ -22,9 +21,5 @@ namespace DirtX.Core.Models
         public string City { get; set; }
 
         public string Address { get; set; }
-
-        public byte[] ProfilePicture { get; set; }
-
-        public IFormFile NewProfilePicture { get; set; }
     }
 }

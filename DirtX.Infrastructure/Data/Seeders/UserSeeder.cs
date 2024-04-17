@@ -7,7 +7,7 @@ namespace DirtX.Infrastructure.Data.Seeders
     {
         public static async Task SeedUsersAsync(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            string[] roles = new[] { "Admin", "Reseller", "User" };
+            string[] roles = new[] { "Admin", "User" };
 
             foreach (string role in roles)
             {
@@ -42,23 +42,6 @@ namespace DirtX.Infrastructure.Data.Seeders
             };
             admin.PasswordHash = hasher.HashPassword(admin, "AdminUser111");
 
-            AppUser reseller = new()
-            {
-                UserName = "reseller@dirtx.com",
-                Email = "reseller@dirtx.com",
-                FirstName = "Ken",
-                LastName = "Roczen",
-                Address = "Downtown",
-                City = "Miami",
-                Country = "USA",
-                IsAdmin = false,
-                IsReseller = true,
-                NormalizedEmail = "reseller@dirtx.com",
-                NormalizedUserName = "reseller",
-                EmailConfirmed = true
-            };
-            reseller.PasswordHash = hasher.HashPassword(reseller, "Reseller222");
-
             AppUser user = new()
             {
                 UserName = "user@dirtx.com",
@@ -77,13 +60,10 @@ namespace DirtX.Infrastructure.Data.Seeders
             user.PasswordHash = hasher.HashPassword(user, "NormalUser333");
 
             admin.Id = Guid.NewGuid().ToString();
-            reseller.Id = Guid.NewGuid().ToString();
             user.Id = Guid.NewGuid().ToString();
 
             await userManager.CreateAsync(admin);
             await userManager.AddToRoleAsync(admin, "Admin");
-            await userManager.CreateAsync(reseller);
-            await userManager.AddToRoleAsync(admin, "Reseller");
             await userManager.CreateAsync(user);
             await userManager.AddToRoleAsync(admin, "User");
         }

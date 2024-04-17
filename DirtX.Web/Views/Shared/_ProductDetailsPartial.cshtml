@@ -1,5 +1,9 @@
 ﻿@model ProductDetailsViewModel
 
+@{
+    bool isAuthenticated = User.Identity.IsAuthenticated;
+}
+
 <div class="custom-container">
     <h3 class="custom-heading">PRODUCT'S DETAILS</h3>
     <div class="product-details">
@@ -27,9 +31,19 @@
             }
             @if (@Model.StockQuantity > 0)
             {
-                <form asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" method="post" class="mb-2">
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </form>
+                @if (isAuthenticated)
+                {
+                    <form asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" method="post" class="mb-2">
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                }
+                else
+                {
+                    <form action="@Url.Action("Login", "User")" method="get" class="mb-2">
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        <input type="hidden" name="productId" value="@Model.Id" />
+                    </form>
+                }
             }
             else
             {
@@ -39,7 +53,7 @@
             }
             <div class="price-container">
                 <div class="custom-price">
-                    Price: @Model.Price
+                    Price: @Model.Price BGN
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Web.Models
 {
@@ -12,10 +13,10 @@ namespace DirtX.Web.Models
 
         public decimal Price { get; set; }
 
-        [Range(1, 100)]
+        [Range(ProductQtyMin, ProductQtyMax)]
         public int Quantity { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(typeof(decimal), ProductMinPrice, ProductMaxPrice, ConvertValueInInvariantCulture = true)]
         public decimal TotalPrice { get; set; }
     }
 }

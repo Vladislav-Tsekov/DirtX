@@ -11,6 +11,6 @@ namespace DirtX.Core.Models
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public int StockQuantity { get; set; }
-        public ICollection<ProductSpecification> Specs { get; set; }
+        public ICollection<ProductSpecification> Specs { get; set; } = new List<ProductSpecification>();
     }
 }

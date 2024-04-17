@@ -2,10 +2,10 @@
 {
     public static class ValidationConstants
     {
-        // COMMON
         public const int ImageMaxSize = 1048576;
+        public const int ImageMinLength = 3;
+        public const int ImageMaxLength = 1000;
 
-        // MOTORCYCLE AND USED MOTORCYCLE CONSTANTS
         public const int MakeTitleMinLength = 2;
         public const int MakeTitleMaxLength = 100;
 
@@ -24,7 +24,6 @@
         public const int UsedMotoDescriptionMaxLength = 5000;
         public const string UsedMotoContactRegEx = @"^08\d{8}$";
 
-        // PRODUCT CONSTANTS
         public const int ProductTitleMinLength = 2;
         public const int ProductTitleMaxLength = 100;
         public const string ProductMinPrice = "0";
@@ -32,49 +31,25 @@
         public const int ProductDescriptionMinLength = 25;
         public const int ProductDescriptionMaxLength = 5000;
         public const int ProductImageMaxSize = 1048576;
+        public const int ProductQtyMin = 1;
+        public const int ProductQtyMax = 99;
 
-        // PRODUCT BRAND
         public const int BrandNameMinLength = 1;
         public const int BrandNameMaxLength = 100;
         public const int BrandDescriptionMinLength = 25;
         public const int BrandDescriptionMaxLength = 3000;
         public const int BrandImageMaxSize = 1048576;
 
-        // PRODUCT TYPE
         public const int ProductTypeTitleMinLength = 2;
         public const int ProductTypeTitleMaxLength = 100;
         public const int ProductTypeDescriptionMinLength = 25;
         public const int ProductTypeDescriptionMaxLength = 1000;
 
-        // OIL SPECIFIC CONSTANTS
-        public const int OilPackageSizeMin = 0;
-        public const int OilPackageSizeMax = 300;
-
-        // SPECIFICATION CONSTANTS
         public const int SpecificationValueMinLength = 1;
         public const int SpecificationValueMaxLength = 50;
-
-        // SPECIFICATION TITLES CONSTANTS
         public const int SpecificationTitleMinLength = 1;
         public const int SpecificationTitleMaxLength = 70;
 
-        // TRAILER AND TRAILER RENT CONSTANTS
-        public const int TrailerTypeMinLength = 5;
-        public const int TrailerTypeMaxLength = 40;
-        public const string TrailerMinCostPerDay = "10";
-        public const string TrailerMaxCostPerDay = "100";
-        public const int TrailerMinCapacity = 1;
-        public const int TrailerMaxCapacity = 5;
-        public const int TrailerMinLoad = 100;
-        public const int TrailerMaxLoad = 2000;
-        public const string TrailerRentMinTotalCost = "10";
-        public const string TrailerRentMaxTotalCost = "1000";
-
-        // GARAGE CONSTANTS
-        public const int GarageMinCapacity = 0;
-        public const int GarageMaxCapacity = 10;
-
-        // USER AND ORDER CONSTANTS
         public const int UserFirstNameMinLength = 1;
         public const int UserFirstNameMaxLength = 99;
         public const int UserLastNameMinLength = 1;
@@ -85,5 +60,8 @@
         public const int UserCityMaxLength = 99;
         public const int UserAddressMinLength = 1;
         public const int UserAddressMaxLength = 300;
+
+        public const string LengthMustBeBetween = "{0} length must be between {2} and {1}.";
+        public const string FieldIsRequired = "The field is required!";
     }
 }

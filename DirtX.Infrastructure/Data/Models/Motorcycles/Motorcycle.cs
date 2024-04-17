@@ -30,11 +30,6 @@ namespace DirtX.Infrastructure.Data.Models.Motorcycles
         public Year Year { get; set; }
         public int YearId { get; set; }
 
-        //[ForeignKey(nameof(GarageId))]
-        //[Comment("Indicates whether the current motorcycle is part of the user's garage.")]
-        //public Garage Garage { get; set; }
-        //public int? GarageId { get; set; }
-
         [Comment("A list of compatible parts, fitting a specific motorcycle.")]
         public ICollection<MotorcycleProduct> MotorcycleParts { get; set; } = new List<MotorcycleProduct>();
     }

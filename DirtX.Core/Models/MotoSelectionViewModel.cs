@@ -9,6 +9,6 @@ namespace DirtX.Core.Models
         public int SelectedYear { get; set; }
         public int SelectedDisplacement { get; set; }
 
-        public IEnumerable<SelectListItem> Makes { get; set; }
+        public IEnumerable<SelectListItem> Makes { get; set; } = new List<SelectListItem>();
     }
 }

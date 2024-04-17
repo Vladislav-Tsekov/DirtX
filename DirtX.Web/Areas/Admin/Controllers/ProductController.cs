@@ -174,6 +174,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try

@@ -4,7 +4,6 @@
     using DirtX.Infrastructure.Data.Models.Users;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Security.Claims;
 
     public class UserController : AdminBaseController
     {
@@ -18,6 +17,7 @@
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Delete(string userId)
         {
             AppUser user = await userManager.FindByIdAsync(userId);

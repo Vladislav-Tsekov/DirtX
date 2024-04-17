@@ -353,10 +353,6 @@ namespace DirtX.Core.Services
 
                     product.StockQuantity -= cp.Quantity;
                 }
-                else
-                {
-
-                }
             }
 
             await context.SaveChangesAsync();

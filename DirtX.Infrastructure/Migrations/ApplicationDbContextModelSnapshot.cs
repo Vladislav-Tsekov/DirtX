@@ -2499,7 +2499,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "Protective cover for motorcycle engines made of titanium.",
                             ImageUrl = "https://i.ibb.co/1RXqkVy/Product-Engine-Cover.png",
                             Price = 99.99m,
-                            StockQuantity = 4,
+                            StockQuantity = 0,
                             Title = "Engine Clutch Cover",
                             TypeId = 1
                         },
@@ -2595,7 +2595,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "High-quality oil filter for efficient filtration and engine longevity.",
                             ImageUrl = "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg",
                             Price = 54.29m,
-                            StockQuantity = 8,
+                            StockQuantity = 0,
                             Title = "Oil Filter Cap",
                             TypeId = 1
                         },
@@ -2643,7 +2643,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "High-performance brake disc for superior stopping power.",
                             ImageUrl = "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg",
                             Price = 89.99m,
-                            StockQuantity = 1,
+                            StockQuantity = 0,
                             Title = "Front Brake Disc",
                             TypeId = 1
                         },
@@ -2691,7 +2691,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.",
                             ImageUrl = "https://i.ibb.co/7jy1dvG/Product-Fork-Seals.jpg",
                             Price = 44.99m,
-                            StockQuantity = 18,
+                            StockQuantity = 0,
                             Title = "Fork Seal Kit",
                             TypeId = 1
                         },
@@ -2739,7 +2739,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "Durable motorcycle chain for smooth power transfer.",
                             ImageUrl = "https://i.ibb.co/9tCHFWY/Product-Chain.jpg",
                             Price = 129.99m,
-                            StockQuantity = 7,
+                            StockQuantity = 0,
                             Title = "120-Links Chain",
                             TypeId = 1
                         },
@@ -2859,7 +2859,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "The baseline 4-stroke engine oil for motorcycles.",
                             ImageUrl = "https://i.ibb.co/2dRRzHy/Product-Yamalube-10w40.jpg",
                             Price = 26.29m,
-                            StockQuantity = 14,
+                            StockQuantity = 0,
                             Title = "YAMALUBE 10W40",
                             TypeId = 2
                         },
@@ -2895,7 +2895,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.",
                             ImageUrl = "https://i.ibb.co/rs2c1Pd/Product-SM5-Helmet.jpg",
                             Price = 899.99m,
-                            StockQuantity = 2,
+                            StockQuantity = 0,
                             Title = "SM5",
                             TypeId = 3
                         },
@@ -2979,7 +2979,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "Motocross/Enduro boots with waterproof lining and reinforced toe.",
                             ImageUrl = "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg",
                             Price = 559.99m,
-                            StockQuantity = 6,
+                            StockQuantity = 0,
                             Title = "Blitz XR",
                             TypeId = 3
                         },
@@ -3003,7 +3003,7 @@ namespace DirtX.Infrastructure.Migrations
                             Description = "Universal offroad gloves.",
                             ImageUrl = "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg",
                             Price = 39.99m,
-                            StockQuantity = 11,
+                            StockQuantity = 0,
                             Title = "Element Gloves",
                             TypeId = 3
                         });

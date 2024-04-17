@@ -146,11 +146,11 @@ namespace DirtX.Core.Services
 
             Product product = await context.Products.Where(p => p.Id == productId).FirstOrDefaultAsync();
 
-            if (product.StockQuantity > cartProduct.Quantity) 
+            if (product.StockQuantity > cartProduct.Quantity)
             {
                 cartProduct.Quantity++;
             }
-            
+
             await context.SaveChangesAsync();
         }
 

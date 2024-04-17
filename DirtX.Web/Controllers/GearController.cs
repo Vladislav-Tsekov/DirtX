@@ -75,7 +75,7 @@ namespace DirtX.Web.Controllers
                     return BadRequest();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return RedirectToAction(nameof(Error));
             }

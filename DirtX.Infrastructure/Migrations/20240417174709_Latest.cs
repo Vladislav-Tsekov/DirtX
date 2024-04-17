@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace DirtX.Infrastructure.Migrations
 {
-    public partial class Latest1704 : Migration
+    public partial class Latest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -276,7 +275,8 @@ namespace DirtX.Infrastructure.Migrations
                         name: "FK_Carts_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -302,13 +302,13 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.BrandId,
                         principalTable: "ProductBrands",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_ProductTypes_TypeId",
                         column: x => x.TypeId,
                         principalTable: "ProductTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -330,25 +330,25 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.DisplacementId,
                         principalTable: "Displacements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Motorcycles_Makes_MakeId",
                         column: x => x.MakeId,
                         principalTable: "Makes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Motorcycles_Models_ModelId",
                         column: x => x.ModelId,
                         principalTable: "Models",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Motorcycles_Years_YearId",
                         column: x => x.YearId,
                         principalTable: "Years",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -375,25 +375,25 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.DisplacementId,
                         principalTable: "Displacements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UsedMotorcycles_Makes_MakeId",
                         column: x => x.MakeId,
                         principalTable: "Makes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UsedMotorcycles_Models_ModelId",
                         column: x => x.ModelId,
                         principalTable: "Models",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UsedMotorcycles_Years_YearId",
                         column: x => x.YearId,
                         principalTable: "Years",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -722,7 +722,7 @@ namespace DirtX.Infrastructure.Migrations
                 {
                     { 1, 17, 0, "High-quality forged piston for 4-Stroke motorcycle engines. Rings and pin are included in the set.", "https://i.ibb.co/jTnS3W0/Product-High-Comp-Piston.jpg", 455.00m, 11, "High-Compression Forged Piston", 1 },
                     { 2, 18, 0, "High-performance cast piston. Piston rings are not included.", "https://i.ibb.co/m6fQKSx/Product-Forged-Piston.jpg", 325.00m, 6, "Cast Piston", 1 },
-                    { 3, 7, 0, "Protective cover for motorcycle engines made of titanium.", "https://i.ibb.co/1RXqkVy/Product-Engine-Cover.png", 99.99m, 4, "Engine Clutch Cover", 1 },
+                    { 3, 7, 0, "Protective cover for motorcycle engines made of titanium.", "https://i.ibb.co/1RXqkVy/Product-Engine-Cover.png", 99.99m, 0, "Engine Clutch Cover", 1 },
                     { 4, 3, 0, "Complete gasket set for top-end engine rebuilds and maintenance.", "https://i.ibb.co/Yj4MJ6r/Product-Top-End-Gasket.jpg", 89.99m, 31, "Top-End Gasket Set", 1 },
                     { 5, 3, 0, "Enhanced water pump cover for improved cooling efficiency.", "https://i.ibb.co/ZHQ36hf/Product-Water-Pump-Cover.jpg", 87.79m, 10, "Water Pump Cover", 1 },
                     { 6, 12, 0, "High-flow fuel injector for increased horsepower, throttle response and fuel efficiency.", "https://i.ibb.co/dmkcV30/Product-Fuel-Injector.jpg", 289.99m, 3, "8-Point Fuel Injector", 1 },
@@ -730,15 +730,15 @@ namespace DirtX.Infrastructure.Migrations
                     { 8, 18, 0, "Electric fuel pump for replacing the old one. Comes with all necessary components.", "https://i.ibb.co/LnW1Y4k/Product-Fuel-Pump.jpg", 149.99m, 12, "Fuel Pump", 1 },
                     { 9, 16, 1, "Premium air filter for improved air flow and engine performance.", "https://i.ibb.co/vqg672F/Product-Air-Filter.jpg", 24.49m, 27, "Air Filter", 1 },
                     { 10, 6, 1, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/kG1KnVN/Product-Product-Filter.jpg", 10.99m, 19, "Oil Filter", 1 },
-                    { 11, 16, 1, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg", 54.29m, 8, "Oil Filter Cap", 1 },
+                    { 11, 16, 1, "High-quality oil filter for efficient filtration and engine longevity.", "https://i.ibb.co/V2qj6c0/Product-Product-Filter-Cap.jpg", 54.29m, 0, "Oil Filter Cap", 1 },
                     { 12, 16, 1, "Custom shaped adaptor for each model that fits securely under the gas cap, creating a leak-proof seal.", "https://i.ibb.co/s1YdYwt/Product-Fuel-Filter-Tank.jpg", 50.99m, 5, "Fuel Filter (Gas Tank)", 1 },
                     { 13, 5, 3, "Replacement brake pads offering reliable stopping performance.", "https://i.ibb.co/tc2m4jh/Product-Brake-Pads.jpg", 35.89m, 20, "Sintered Front Brake Pads", 1 },
                     { 14, 11, 3, "Comfortable and durable lever, made out of aluminum for improved control and comfort.", "https://i.ibb.co/1RqcRGm/Product-Brake-Lever.jpg", 71.99m, 14, "Aluminum Brake Lever", 1 },
-                    { 15, 11, 3, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg", 89.99m, 1, "Front Brake Disc", 1 },
+                    { 15, 11, 3, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/DG6HpM4/Product-Front-Brake-Disc.jpg", 89.99m, 0, "Front Brake Disc", 1 },
                     { 16, 11, 3, "High-performance brake disc for superior stopping power.", "https://i.ibb.co/BNPMF26/Product-Rear-Brake-Disc.jpg", 77.29m, 7, "Rear Brake Disc", 1 },
                     { 17, 14, 4, "Precision-engineered shock absorber for smooth ride experience.", "https://i.ibb.co/LRQphRW/Product-Shock-Absorber.jpg", 799.19m, 3, "Shock Absorber", 1 },
                     { 18, 14, 4, "Upgraded front fork springs for improved suspension response and handling. Set of two.", "https://i.ibb.co/yyZK9tT/Product-Fork-Springs.jpg", 429.99m, 5, "Front Fork Springs", 1 },
-                    { 19, 8, 4, "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.", "https://i.ibb.co/7jy1dvG/Product-Fork-Seals.jpg", 44.99m, 18, "Fork Seal Kit", 1 },
+                    { 19, 8, 4, "Seal kit for motorcycle forks to prevent leaks and maintain suspension performance.", "https://i.ibb.co/7jy1dvG/Product-Fork-Seals.jpg", 44.99m, 0, "Fork Seal Kit", 1 },
                     { 20, 8, 4, "The latest KYB technology is used to develop this shock, used by Yamaha Factory Racing drivers.", "https://i.ibb.co/LtFwYZ3/Product-KYB-Shock.jpg", 1404.49m, 2, "HI-C Shock Absorber", 1 },
                     { 21, 14, 4, "Designed as a drop-in replacement to upgrade OEM ball-type bearings to taper bearings.", "https://i.ibb.co/VCWrYtY/Product-Steering-Bearings.jpg", 125.50m, 6, "Steering Stem Bearing Kit", 1 },
                     { 22, 4, 2, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", 119.99m, 10, "114-Links Chain", 1 }
@@ -749,7 +749,7 @@ namespace DirtX.Infrastructure.Migrations
                 columns: new[] { "Id", "BrandId", "Category", "Description", "ImageUrl", "Price", "StockQuantity", "Title", "TypeId" },
                 values: new object[,]
                 {
-                    { 23, 4, 2, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", 129.99m, 7, "120-Links Chain", 1 },
+                    { 23, 4, 2, "Durable motorcycle chain for smooth power transfer.", "https://i.ibb.co/9tCHFWY/Product-Chain.jpg", 129.99m, 0, "120-Links Chain", 1 },
                     { 24, 4, 2, "Quality rear sprocked made out of aluminum.", "https://i.ibb.co/xGz2dVn/Product-Rear-Sprocket.png", 89.79m, 4, "52-Teeth Rear Sprocket", 1 },
                     { 25, 4, 2, "Standart-sized front sprocked with self-cleaning properties.", "https://i.ibb.co/9pKtqn6/Product-Front-Sprocket.jpg", 24.19m, 13, "13-Teeth Front Sprocket", 1 },
                     { 26, 7, 2, "Complete clutch kit for enhanced performance and durability.", "https://i.ibb.co/y0KwgV5/Product-Clutch-Kit.jpg", 2149.99m, 3, "Complete Clutch Kit", 1 },
@@ -759,19 +759,19 @@ namespace DirtX.Infrastructure.Migrations
                     { 30, 10, 6, "Ester Core Premium 4-stroke oil for motorcycle engines.", "https://i.ibb.co/3ywBxpQ/Product-Motul-300-V-4-L.jpg", 114.99m, 3, "300V 10W40 4L", 2 },
                     { 31, 2, 8, "Lightweight fork oil for smoother suspension stroke.", "https://i.ibb.co/W52svBD/Product-Bel-Ray-Fork-5-W.jpg", 27.00m, 8, "Fork Oil 5W", 2 },
                     { 32, 9, 8, "Performance Line Products Series is used by MXGP Factory teams.", "https://i.ibb.co/f1fW4j5/Product-Motorex-Shock-Product.jpg", 29.99m, 8, "Performance Line: Shock Oil", 2 },
-                    { 33, 19, 6, "The baseline 4-stroke engine oil for motorcycles.", "https://i.ibb.co/2dRRzHy/Product-Yamalube-10w40.jpg", 26.29m, 14, "YAMALUBE 10W40", 2 },
+                    { 33, 19, 6, "The baseline 4-stroke engine oil for motorcycles.", "https://i.ibb.co/2dRRzHy/Product-Yamalube-10w40.jpg", 26.29m, 0, "YAMALUBE 10W40", 2 },
                     { 34, 10, 9, "The most efficient coolant on the market.", "https://i.ibb.co/9rgYKcv/Product-Motul-Antifreeze.jpg", 26.29m, 14, "AutoCool -35°C 1L", 2 },
                     { 35, 10, 7, "More throttle, less grinding gears.", "https://i.ibb.co/zntBCFg/Product-Transmission-Motul.jpg", 28.29m, 4, "TransOil Expert 10W40", 2 },
-                    { 36, 1, 10, "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.", "https://i.ibb.co/rs2c1Pd/Product-SM5-Helmet.jpg", 899.99m, 2, "SM5", 3 },
+                    { 36, 1, 10, "Alpinestars' premium class lightweight motorcycle helmet for maximum protection.", "https://i.ibb.co/rs2c1Pd/Product-SM5-Helmet.jpg", 899.99m, 0, "SM5", 3 },
                     { 37, 13, 10, "High-quality full-face racing helmet with aerodynamic design.", "https://i.ibb.co/YkHnz4F/Product-3-Series-Oneal.jpg", 279.99m, 7, "3-Series", 3 },
                     { 38, 1, 11, "Durable protective vest for safe riding.", "https://i.ibb.co/RhPrZB3/Product-Bionic-Action.jpg", 319.99m, 4, "Bionic Action V2", 3 },
                     { 39, 15, 11, "Knee protection that allows for some movement while protecting the knee cap and shin.", "https://i.ibb.co/JrJSf2y/Product-Asterix-Knee.jpg", 179.99m, 10, "AsteriX Knee Braces", 3 },
                     { 40, 13, 12, "Limited anniversary edition jersey.", "https://i.ibb.co/bRsz5gz/Product-Jersey-50th.jpg", 79.99m, 3, "50th Anniversary Jersey", 3 },
                     { 41, 15, 12, "A complete outfit of THOR's middle-class 'Prime Ace' line.", "https://i.ibb.co/hcZKcsB/Product-Thor-Outfit.jpg", 259.99m, 5, "Prime Ace Complete Outfit", 3 },
                     { 42, 1, 13, "The most advanced riding boots on the market.", "https://i.ibb.co/pzGDVTv/Product-Tech10-Boots.jpg", 1099.99m, 2, "Tech10", 3 },
-                    { 43, 13, 13, "Motocross/Enduro boots with waterproof lining and reinforced toe.", "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg", 559.99m, 6, "Blitz XR", 3 },
+                    { 43, 13, 13, "Motocross/Enduro boots with waterproof lining and reinforced toe.", "https://i.ibb.co/34RRszr/Product-Blitz-Thor.jpg", 559.99m, 0, "Blitz XR", 3 },
                     { 44, 13, 14, "Motocross goggles with flippers.", "https://i.ibb.co/sHzPG34/Product-B20-Goggles.jpg", 129.99m, 6, "B20 Goggles", 3 },
-                    { 45, 13, 14, "Universal offroad gloves.", "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg", 39.99m, 11, "Element Gloves", 3 }
+                    { 45, 13, 14, "Universal offroad gloves.", "https://i.ibb.co/4Rf2r40/Product-Element-Gloves.jpg", 39.99m, 0, "Element Gloves", 3 }
                 });
 
             migrationBuilder.InsertData(

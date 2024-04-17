@@ -6,16 +6,16 @@ namespace DirtX.Core.Models.Admin
     public class BrandFormViewModel
     {
         [Required]
-        [StringLength(BrandNameMaxLength, MinimumLength = BrandNameMinLength, ErrorMessage = "{0} length must be between {2} and {1}.")]
+        [StringLength(BrandNameMaxLength, MinimumLength = BrandNameMinLength, ErrorMessage = LengthMustBeBetween)]
         public string Name { get; set; }
 
         [Required]
         [MaxLength(BrandDescriptionMaxLength)]
-        [StringLength(BrandDescriptionMaxLength, MinimumLength = BrandDescriptionMinLength, ErrorMessage = "{0} length must be between {2} and {1}.")]
+        [StringLength(BrandDescriptionMaxLength, MinimumLength = BrandDescriptionMinLength, ErrorMessage = LengthMustBeBetween)]
         public string Description { get; set; }
 
         [Required]
-        [StringLength(1000, MinimumLength = 5, ErrorMessage = "{0} length must be between {2} and {1}.")]
+        [StringLength(ImageMaxLength, MinimumLength = ImageMinLength, ErrorMessage = LengthMustBeBetween)]
         public string ImageUrl { get; set; }
     }
 }

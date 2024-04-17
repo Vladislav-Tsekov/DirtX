@@ -87,7 +87,13 @@ namespace DirtX.Infrastructure.Data.Seeders
             );
         }
 
-        private static void SeedUsedMotorcycles(ModelBuilder modelBuilder)
+        /// <summary>
+        ///  IMPORTANT! UPDATE DATABASE AND COMMENT THE CODE BELOW!
+        ///  The method "SeedUsedMotorcycles" might cause problems when running unit tests. 
+        ///  The framework will try to find a path to these images and will fail.
+        ///  That's why when you're trying to run the tests just comment the code below.
+        /// </summary>
+        public static void SeedUsedMotorcycles(ModelBuilder modelBuilder)
         {
             string currentDir = Directory.GetCurrentDirectory();
             string parentDir = Directory.GetParent(currentDir).FullName;
@@ -101,9 +107,45 @@ namespace DirtX.Infrastructure.Data.Seeders
             byte[] kawasakiImage = File.ReadAllBytes(kawasakiImagePath);
 
             modelBuilder.Entity<UsedMotorcycle>().HasData(
-                new UsedMotorcycle { Id = 1, MakeId = 1, ModelId = 1, DisplacementId = 1, YearId = 2, Price = 3200, Contact = "0885992255", Image = yamahaImage, Province = Province.Blagoevgrad, Description = "In a very good condition for its age. Leaky suspension. For more questions don't hesitate to call me!" },
-                new UsedMotorcycle { Id = 2, MakeId = 5, ModelId = 5, DisplacementId = 3, YearId = 15, Price = 9800, Contact = "0892557711", Image = ktmImage, Province = Province.Sofia_Province, Description = "Oil and filters changes 5h ago. Excellent bike for beginners. Get in touch if you want to see more pictures." },
-                new UsedMotorcycle { Id = 3, MakeId = 4, ModelId = 4, DisplacementId = 3, YearId = 12, Price = 7800, Contact = "0884110044", Image = kawasakiImage, Province = Province.Plovdiv, Description = "Recently imported from Italy. I've only used it for sporadic rides together with my son. Oil was changed recently. 94h on the bike." }
+                new UsedMotorcycle
+                {
+                    Id = 1,
+                    MakeId = 1,
+                    ModelId = 1,
+                    DisplacementId = 1,
+                    YearId = 2,
+                    Price = 3200,
+                    Contact = "0885992255",
+                    Image = yamahaImage,
+                    Province = Province.Blagoevgrad,
+                    Description = "In a very good condition for its age. Leaky suspension. For more questions don't hesitate to call me!"
+                },
+                new UsedMotorcycle
+                {
+                    Id = 2,
+                    MakeId = 5,
+                    ModelId = 5,
+                    DisplacementId = 3,
+                    YearId = 15,
+                    Price = 9800,
+                    Contact = "0892557711",
+                    Image = ktmImage,
+                    Province = Province.Sofia_Province,
+                    Description = "Oil and filters changes 5h ago. Excellent bike for beginners. Get in touch if you want to see more pictures."
+                },
+                new UsedMotorcycle
+                {
+                    Id = 3,
+                    MakeId = 4,
+                    ModelId = 4,
+                    DisplacementId = 3,
+                    YearId = 12,
+                    Price = 7800,
+                    Contact = "0884110044",
+                    Image = kawasakiImage,
+                    Province = Province.Plovdiv,
+                    Description = "Recently imported from Italy. I've only used it for sporadic rides together with my son. Oil was changed recently. 94h on the bike."
+                }
              );
         }
     }

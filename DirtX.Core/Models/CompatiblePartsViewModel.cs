@@ -7,5 +7,5 @@ public class CompatiblePartsViewModel
     public string Model { get; set; }
     public string Displacement { get; set; }
     public string Year { get; set; }
-    public IEnumerable<Product> Parts { get; set; }
+    public ICollection<Product> Parts { get; set; } = new List<Product>();
 }

@@ -2,7 +2,6 @@
 using DirtX.Core.Models;
 using DirtX.Infrastructure.Data;
 using DirtX.Infrastructure.Data.Models.Users;
-using DirtX.Web.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirtX.Core.Services
@@ -79,6 +78,5 @@ namespace DirtX.Core.Services
 
             return (lastOrder);
         }
-
     }
 }

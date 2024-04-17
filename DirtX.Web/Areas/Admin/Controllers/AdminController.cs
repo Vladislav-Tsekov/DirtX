@@ -14,7 +14,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
         private readonly IUserService userService;
         private readonly UserManager<AppUser> userManager;
 
-        public AdminController(IProductService _productService, IUserService _userService, 
+        public AdminController(IProductService _productService, IUserService _userService,
                                UserManager<AppUser> _userManager, IScraperService _scraperService)
         {
             productService = _productService;
@@ -158,7 +158,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
         private IActionResult GeneralErrorMessage()
         {
             TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
-            
+
             return RedirectToAction("Index", "Admin");
         }
     }

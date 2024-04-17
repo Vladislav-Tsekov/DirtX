@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static DirtX.Infrastructure.Shared.ValidationConstants;
 
 namespace DirtX.Web.Models
 {
@@ -6,7 +7,7 @@ namespace DirtX.Web.Models
     {
         public int Id { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(typeof(decimal), ProductMinPrice, ProductMaxPrice, ConvertValueInInvariantCulture = true)]
         public decimal TotalPrice { get; set; }
 
         public ICollection<CartProductViewModel> Products { get; set; } = new HashSet<CartProductViewModel>();

@@ -1,4 +1,12 @@
-﻿@model List<UserViewModel>
+﻿@using DirtX.Core.Models
+@model List<UserViewModel>
+
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] as string))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <form method="get">
     <partial name="_AdministrationPartial" />
@@ -8,16 +16,44 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Username:</th>
+            <th>Email:</th>
             <th>Created On:</th>
+            <th>Promote/Demote:</th>
+            <th>Delete User</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.Username</td>
+                <td>@user.Email</td>
                 <td>@user.CreatedOn</td>
+                <td>
+                    <form method="post" asp-area="Admin" asp-controller="User" asp-action="ToggleAdmin">
+                            @if (user.IsAdmin)
+                            {
+                                <input type="hidden" name="userId" value="@user.Id" />
+                                <button type="submit" class="btn btn-danger">
+                                <span>Demote</span>
+                                </button>
+                            }
+                            else
+                            {
+                                <input type="hidden" name="userId" value="@user.Id" />
+                                <button type="submit" class="btn btn-primary">
+                                <span>Promote</span>
+                                </button>
+                            }
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-area="Admin" asp-controller="User" asp-action="Delete">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <button type="submit" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

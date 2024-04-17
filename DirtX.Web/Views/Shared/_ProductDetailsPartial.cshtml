@@ -31,6 +31,12 @@
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </form>
             }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    Product is Out of Stock!
+                </div>
+            }
             <div class="price-container">
                 <div class="custom-price">
                     Price: @Model.Price

@@ -35,13 +35,13 @@
     margin-top: 5px;
 }
 
-    #submitButton:hover {
-        background-color: darkorange;
-        border-color: black;
-        color: black;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
+#submitButton:hover {
+    background-color: darkorange;
+    border-color: black;
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
 
 .card {
     width: 100%;

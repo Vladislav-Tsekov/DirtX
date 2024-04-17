@@ -93,10 +93,34 @@ namespace DirtX.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(ProductFormViewModel model)
         {
+            var ctg = (int)model.Category;
+            bool isCategoryValid = false;
+
+            if (model.TypeId == 1)
+            {
+                if (ctg >= 0 && ctg <= 4)
+                    isCategoryValid = true;
+            }
+            else if (model.TypeId == 2)
+            {
+                if (ctg >= 5 && ctg <= 9)
+                    isCategoryValid = true;
+            }
+            else if (model.TypeId == 3)
+            {
+                if (ctg >= 10 && ctg <= 14)
+                    isCategoryValid = true;
+            }
+
+            if (!isCategoryValid)
+            {
+                ModelState.AddModelError("Category", "Invalid category for the current type of product!");
+            }
+
             if (!ModelState.IsValid)
             {
                 TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
-                return View(model);
+                return RedirectToAction(nameof(AddProduct));
             }
 
             try

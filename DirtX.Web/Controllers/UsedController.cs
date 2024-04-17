@@ -8,14 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DirtX.Web.Controllers
 {
-    public class UsedController : Controller
+    public class UsedController : BaseController
     {
-        private readonly ILogger<UsedController> logger;
         private readonly IMotorcycleService motorcycleService;
 
-        public UsedController(ILogger<UsedController> _logger, IMotorcycleService _motorcycleService)
+        public UsedController(IMotorcycleService _motorcycleService)
         {
-            logger = _logger;
             motorcycleService = _motorcycleService;
         }
 
@@ -28,7 +26,6 @@ namespace DirtX.Web.Controllers
 
                 if (usedMotorcycles is null)
                 {
-                    logger.LogError("An error occurred in the Used/Index action. No used motorcycles found.");
                     return NotFound();
                 }
 
@@ -48,10 +45,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Used/Index action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -64,7 +60,6 @@ namespace DirtX.Web.Controllers
 
                 if (motoDetails is null)
                 {
-                    logger.LogError($"An error occurred in the Used/Details action. Used motorcycle with ID '{id}' could not be found.");
                     return NotFound();
                 }
 
@@ -83,10 +78,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Used/Details action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -102,10 +96,9 @@ namespace DirtX.Web.Controllers
 
                 return View(makes);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle makes. Debug the Used/Sell action for more details.");
-                return View("Error");
+                return BadRequest();
             }
         }
 
@@ -118,10 +111,9 @@ namespace DirtX.Web.Controllers
 
                 return Json(models);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle models. Debug the Used/GetModel action for more details.");
-                return View("Error");
+                return BadRequest();
             }
         }
 
@@ -134,10 +126,9 @@ namespace DirtX.Web.Controllers
 
                 return Json(displacements);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle displacements. Debug the Used/GetDisplacement action for more details.");
-                return View("Error");
+                return BadRequest();
             }
         }
 
@@ -150,10 +141,9 @@ namespace DirtX.Web.Controllers
 
                 return Json(years);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "AJAX OPERATION ERROR: An error occurred while fetching motorcycle years. Debug the Used/GetYear action for more details.");
-                return View("Error");
+                return BadRequest();
             }
         }
 
@@ -193,7 +183,7 @@ namespace DirtX.Web.Controllers
 
             await motorcycleService.AddUsedMotorcycleAsync(usedMotorcycle);
 
-            return RedirectToAction("Index", "Used");
+            return RedirectToAction(nameof(Index), "Used");
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace DirtX.Infrastructure.Migrations
 {
-    public partial class New : Migration
+    public partial class Latest1704 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +33,6 @@ namespace DirtX.Infrastructure.Migrations
                     Country = table.Column<string>(type: "nvarchar(99)", maxLength: 99, nullable: true, comment: "Country where the user resides."),
                     City = table.Column<string>(type: "nvarchar(99)", maxLength: 99, nullable: true, comment: "City where the user resides."),
                     Address = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true, comment: "Address of the user."),
-                    ProfilePicture = table.Column<byte[]>(type: "varbinary(max)", maxLength: 1048576, nullable: true, comment: "Profile picture of the user."),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false, comment: "Indicates whether the user has admin privileges."),
                     IsReseller = table.Column<bool>(type: "bit", nullable: false, comment: "Indicates whether the user is a reseller."),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Date and time when the user account was created."),
@@ -302,13 +302,13 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.BrandId,
                         principalTable: "ProductBrands",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_ProductTypes_TypeId",
                         column: x => x.TypeId,
                         principalTable: "ProductTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -330,25 +330,25 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.DisplacementId,
                         principalTable: "Displacements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Motorcycles_Makes_MakeId",
                         column: x => x.MakeId,
                         principalTable: "Makes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Motorcycles_Models_ModelId",
                         column: x => x.ModelId,
                         principalTable: "Models",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Motorcycles_Years_YearId",
                         column: x => x.YearId,
                         principalTable: "Years",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -375,25 +375,25 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.DisplacementId,
                         principalTable: "Displacements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UsedMotorcycles_Makes_MakeId",
                         column: x => x.MakeId,
                         principalTable: "Makes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UsedMotorcycles_Models_ModelId",
                         column: x => x.ModelId,
                         principalTable: "Models",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UsedMotorcycles_Years_YearId",
                         column: x => x.YearId,
                         principalTable: "Years",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -424,7 +424,7 @@ namespace DirtX.Infrastructure.Migrations
                         column: x => x.CartId,
                         principalTable: "Carts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

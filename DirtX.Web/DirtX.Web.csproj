@@ -9,13 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Part\**" />
     <Compile Remove="Views\Trailer\**" />
-    <Content Remove="Models\Part\**" />
     <Content Remove="Views\Trailer\**" />
-    <EmbeddedResource Remove="Models\Part\**" />
     <EmbeddedResource Remove="Views\Trailer\**" />
-    <None Remove="Models\Part\**" />
     <None Remove="Views\Trailer\**" />
   </ItemGroup>
 
@@ -39,8 +35,11 @@
     <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Views\Order\Checkout.cshtml" />
     <None Include="Views\Order\Confirmed.cshtml" />
-    <None Include="Views\Order\OrderDetails.cshtml" />
-    <None Include="Views\Order\OrderHistory.cshtml" />
+    <None Include="Views\User\ChangePassword.cshtml" />
+    <None Include="Views\User\Details.cshtml" />
+    <None Include="Views\User\Edit.cshtml" />
+    <None Include="Views\User\Login.cshtml" />
+    <None Include="Views\User\Register.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="~/css/home-index.css" />
+    <link rel="stylesheet" href="~/css/product-index.css" />
 </head>
 
 <div class="container">
@@ -36,6 +37,20 @@
         <button id="submitButton" class="btn btn-primary">Find Parts</button>
     </div>
 </div>
+
+<br/>
+
+<div class="brands-list">
+    @foreach (var brand in ViewBag.AllBrands)
+    {
+    <div class="brand-item">
+        <div class="brand-image">
+            <img src="@brand.ImageUrl" alt="@brand.Name" />
+        </div>
+    </div>
+    }
+</div>
+
 
 @section scripts {
     <script>

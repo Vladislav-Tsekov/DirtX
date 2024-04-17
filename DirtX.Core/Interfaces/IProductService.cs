@@ -23,9 +23,6 @@ namespace DirtX.Core.Interfaces
         Task LinkProductMotorcycleAsync(int productId, int motorcycleId);
         Task LinkProductSpecificationAsync(int productId, int specificationId);
         Task UpdateStockQuantityAsync(OrderFormViewModel order);
-
-
-
         Task<Product> GetProductAsync(int id);
         Task<List<Product>> GetAllPartsAsync();
         Task<List<Product>> GetAllOilsAsync();

@@ -2,8 +2,6 @@
 
 namespace DirtX.Core.Models
 {
-
-
     public class OrderFormViewModel
     {
         public int Id { get; set; }

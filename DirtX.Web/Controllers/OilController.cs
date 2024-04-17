@@ -8,14 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DirtX.Web.Controllers
 {
-    public class OilController : Controller
+    public class OilController : BaseController
     {
-        private readonly ILogger<OilController> logger;
         private readonly IProductService productService;
 
-        public OilController(ILogger<OilController> _logger, IProductService _productService)
+        public OilController(IProductService _productService)
         {
-            logger = _logger;
             productService = _productService;
         }
 
@@ -30,7 +28,6 @@ namespace DirtX.Web.Controllers
 
                 if (oils is null || oilBrands is null || oilTypes is null)
                 {
-                    logger.LogError("An error occurred in the Oil/Index action. At least one out of three collections is null.");
                     return NotFound();
                 }
 
@@ -45,10 +42,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Oil/Index action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -63,7 +59,6 @@ namespace DirtX.Web.Controllers
 
                     if (oils is null)
                     {
-                        logger.LogError($"An error occurred in the Oil/Category action. '{currCategory}' category may not exists.");
                         return NotFound();
                     }
 
@@ -77,14 +72,12 @@ namespace DirtX.Web.Controllers
                 }
                 else
                 {
-                    logger.LogError($"Enum parsing failed in the Oil/Category action, while trying to parse {category}.");
-                    return View("Error");
+                    return BadRequest();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Oil/Category action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -97,7 +90,6 @@ namespace DirtX.Web.Controllers
 
                 if (brand is null)
                 {
-                    logger.LogError($"An error occurred in the Oil/Brand action. Brand with name '{brandName}' could not be found.");
                     return NotFound();
                 }
 
@@ -105,7 +97,6 @@ namespace DirtX.Web.Controllers
 
                 if (oils is null)
                 {
-                    logger.LogError($"An error occurred in the Oil/Brand action. Oils collection for '{brandName}' is null.");
                     return NotFound();
                 }
 
@@ -119,10 +110,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Oil/Brand action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -135,7 +125,6 @@ namespace DirtX.Web.Controllers
 
                 if (oil is null)
                 {
-                    logger.LogError($"An error occurred in the Oil/Details action. Product with ID '{id}' could not be found.");
                     return NotFound();
                 }
 
@@ -149,15 +138,15 @@ namespace DirtX.Web.Controllers
                     Price = oil.Price,
                     Description = oil.Description,
                     ImageUrl = oil.ImageUrl,
+                    StockQuantity = oil.StockQuantity,
                     Specs = oilSpecs
                 };
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Oil/Details action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
     }

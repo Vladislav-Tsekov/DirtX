@@ -10,14 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DirtX.Web.Controllers
 {
-    public class PartController : Controller
+    public class PartController : BaseController
     {
-        private readonly ILogger<PartController> logger;
         private readonly IProductService productService;
 
-        public PartController(ILogger<PartController> _logger, IProductService _productService)
+        public PartController(IProductService _productService)
         {
-            logger = _logger;
             productService = _productService;
         }
 
@@ -32,7 +30,6 @@ namespace DirtX.Web.Controllers
 
                 if (parts is null || partBrands is null || partTypes is null)
                 {
-                    logger.LogError("An error occurred in the Part/Index action. At least one out of three collections is null.");
                     return NotFound();
                 }
 
@@ -47,10 +44,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Part/Index action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -65,7 +61,6 @@ namespace DirtX.Web.Controllers
 
                     if (parts is null)
                     {
-                        logger.LogError($"An error occurred in the Part/Category action. '{currCategory}' category may not exists.");
                         return NotFound();
                     }
 
@@ -79,14 +74,12 @@ namespace DirtX.Web.Controllers
                 }
                 else
                 {
-                    logger.LogError($"Enum parsing failed in the Part/Category action, while trying to parse {category}.");
-                    return View("Error");
+                    return RedirectToAction(nameof(Error));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Part/Category action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -99,7 +92,6 @@ namespace DirtX.Web.Controllers
 
                 if (brand is null)
                 {
-                    logger.LogError($"An error occurred in the Part/Brand action. Brand with name '{brandName}' could not be found.");
                     return NotFound();
                 }
 
@@ -107,7 +99,6 @@ namespace DirtX.Web.Controllers
 
                 if (parts is null)
                 {
-                    logger.LogError($"An error occurred in the Part/Brand action. Parts collection for '{brandName}' is null.");
                     return NotFound();
                 }
 
@@ -121,10 +112,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Part/Brand action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -137,7 +127,6 @@ namespace DirtX.Web.Controllers
 
                 if (part is null)
                 {
-                    logger.LogError($"An error occurred in the Part/Details action. Product with ID '{id}' could not be found.");
                     return NotFound();
                 }
 
@@ -151,15 +140,15 @@ namespace DirtX.Web.Controllers
                     Price = part.Price,
                     Description = part.Description,
                     ImageUrl = part.ImageUrl,
+                    StockQuantity = part.StockQuantity,
                     Specs = partSpecs
                 };
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Part/Details action. Debug for more information.");
-                return View("Error");
+                return RedirectToAction(nameof(Error));
             }
         }
 
@@ -172,15 +161,13 @@ namespace DirtX.Web.Controllers
 
                 if (compatibleParts is null)
                 {
-                    logger.LogError($"An error occurred in the Part/CompatibleParts action. No compatible parts found for Make: {makeId}, Model: {modelId}, Displacement: {displacementId}, Year: {yearId}.");
-                    return NotFound();
+                    return BadRequest();
                 }
 
                 Motorcycle motorcycle = compatibleParts.FirstOrDefault().Motorcycle;
 
                 if (motorcycle is null)
                 {
-                    logger.LogError($"An error occurred in the Part/CompatibleParts action. Motorcycle details not found for Make: {makeId}, Model: {modelId}, Displacement: {displacementId}, Year: {yearId}.");
                     return NotFound();
                 }
 
@@ -195,10 +182,9 @@ namespace DirtX.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "An error occurred in the Part/CompatibleParts action. Debug for more information.");
-                return View("Error");
+                return BadRequest();
             }
         }
     }

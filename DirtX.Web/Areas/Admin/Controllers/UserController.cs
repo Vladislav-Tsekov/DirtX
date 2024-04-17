@@ -1,38 +1,75 @@
 ﻿namespace DirtX.Web.Areas.Admin.Controllers
 {
     using DirtX.Core.Interfaces;
+    using DirtX.Infrastructure.Data.Models.Users;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using System.Security.Claims;
 
-    public class UserController : BaseController
+    public class UserController : AdminBaseController
     {
         private readonly IUserService userService;
-        //private readonly SignInManager<AppUser> signInManager;
+        private readonly UserManager<AppUser> userManager;
 
-        public UserController(IUserService _userService /*SignInManager<AppUser> _signInManager*/)
+        public UserController(IUserService _userService, UserManager<AppUser> _userManager)
         {
             userService = _userService;
-            //signInManager = _signInManager;
+            userManager = _userManager;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string userId)
         {
+            AppUser user = await userManager.FindByIdAsync(userId);
+
             try
             {
-                await userService.DeleteUserAsync(id);
+                await userService.DeleteUser(user.Id);
 
-                string previousUrl = Request.Headers["Referer"].ToString();
-
-                return Redirect(previousUrl);
+                return RedirectToAction("Users", "Admin");
             }
             catch (Exception)
             {
                 TempData["ErrorMessage"] = "Delete was unsuccessful!";
 
-                var previousUrl = Request.Headers["Referer"].ToString();
-
-                return Redirect(previousUrl);
+                return RedirectToAction("Users", "Admin");
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleAdmin(string userId)
+        {
+            AppUser user = await userManager.FindByIdAsync(userId);
+            var roles = await userManager.GetRolesAsync(user);
+
+            bool isAdmin = roles.Any(r => r.Contains("Admin"));
+
+            try
+            {
+                if (!isAdmin)
+                {
+                    await userManager.AddToRoleAsync(user, "Admin");
+                }
+                else if (isAdmin)
+                {
+                    await userManager.RemoveFromRoleAsync(user, "Admin");
+                }
+
+                await userService.ToggleUserAdmin(userId);
+
+                return RedirectToAction("Users", "Admin");
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        private IActionResult GeneralErrorMessage()
+        {
+            TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
+
+            return RedirectToAction("Index", "Admin");
         }
     }
 }

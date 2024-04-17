@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DirtX.Web.Areas.Admin.Controllers
 {
-    public class ProductController : BaseController
+    public class ProductController : AdminBaseController
     {
-        //TODO - ADD LOGGER
         private readonly IProductService productService;
         private readonly IMotorcycleService motorcycleService;
 
@@ -41,8 +40,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "An unexpected error occurred. Please try again.";
-                return View(model);
+                return GeneralErrorMessage();
             }
         }
 
@@ -62,9 +60,16 @@ namespace DirtX.Web.Areas.Admin.Controllers
                 return View(model);
             }
 
-            productService.AddSpecificationAsync(model);
+            try
+            {
+                productService.AddSpecificationAsync(model);
 
-            return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "Admin");
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
         }
 
         [HttpGet]
@@ -97,6 +102,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
             try
             {
                 await productService.AddProductAsync(model);
+
                 return RedirectToAction("Index", "Admin");
             }
             catch (Exception)
@@ -112,6 +118,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
             try
             {
                 var currProduct = await productService.GetProductEditFormAsync(id);
+
                 return View(currProduct);
             }
             catch (Exception)
@@ -126,19 +133,20 @@ namespace DirtX.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["ErrorMessage"] = "An unexpected error occurred! Please, try again.";
+
                 return View(model);
             }
 
             try
             {
                 await productService.EditProductAsync(id, model);
+
+                return RedirectToAction("Products", "Admin");
             }
             catch (Exception)
             {
                 return GeneralErrorMessage();
             }
-
-            return RedirectToAction("Products", "Admin");
         }
 
         [HttpPost]
@@ -183,6 +191,7 @@ namespace DirtX.Web.Areas.Admin.Controllers
             try
             {
                 await productService.LinkProductMotorcycleAsync(productId, motorcycleId);
+
                 return RedirectToAction("Products", "Admin");
             }
             catch (Exception)

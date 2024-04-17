@@ -1,7 +1,10 @@
 ﻿@model BrandFormViewModel
 
-@{
-    ViewData["Title"] = "Add Brand";
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] as string))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
 }
 
 <h2>Add Brand</h2>
